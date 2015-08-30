@@ -1,0 +1,50 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Login</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeModal(1)">Schließen</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="modal1" scroll="false">
+
+    <div class="row">
+      <div class="col">
+      <div class="list">
+        <label class="item item-input">
+                    <input ng-model="username" type="text" placeholder="Benutzername/Email" />
+                </label>
+       <label class="item item-input" >
+                    <input ng-model="password" type="password" placeholder="Passwort" />
+                </label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col">
+              <label style="color: #337CD4">
+                <button ng-click="doLogin(username,password)" class="button button-positive">
+                  Einloggen
+                </button>
+              </label>
+            </div>
+            </div>
+
+            <div class="row" style="text-align:center;vertical-align:text-bottom">
+              <div class="col">
+
+
+
+      <button class="button button-assertive" ui-sref="app.register" ng-click="closeModal(1)">
+    Sie haben noch keinen Account? Klicken Sie hier!
+</button>
+
+</div>
+</div>
+
+
+
+  </ion-content>
+
+</ion-modal-view>

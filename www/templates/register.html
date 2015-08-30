@@ -1,0 +1,44 @@
+<ion-view>
+
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear button-assertive ion-navicon" menu-toggle="left">
+    </button>
+  </ion-nav-buttons>
+
+
+
+  <ion-content class="registration">
+
+    <div class="row">
+      <div class="col">
+       <div class="list">
+
+         <label class="item item-input">
+                     <input name="name" ng-model="username1" type="text" placeholder="Benutzername/Email" required/>
+                 </label>
+        <label class="item item-input">
+                     <input name="email" ng-model="password1" type="password" placeholder="Passwort" required/>
+                 </label>
+<label class="item item-input">
+
+</label>
+<label class="item">
+
+
+       <button ng-click="doRegister(username1,password1)" class="button button-block button-positive">Registrieren</button>
+
+    </label>
+
+
+
+      <!--  6LcGeAsTAAAAAMI8bpWwyZ6eio8e80QvVqKjSlg3 <label class="item">
+           <button type="submit" value="Submit" ng-click="doRegister(username1,password1)" class="button button-block button-positive">Registrieren</button>
+         </label>
+-->
+       </div>
+     </div>
+   </div>
+  </ion-content>
+
+
+</ion-view>

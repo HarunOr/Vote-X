@@ -1,0 +1,28 @@
+/* Empty. Add your own CSS if you like */
+
+
+/* Modal Background Image */
+
+.modal1.scroll-content {
+    background: url('../img/modal1_opt.jpg') no-repeat;
+    background-size: cover;
+}
+
+
+
+.registration.scroll-content {
+  background: url('../img/background_opt.jpg') no-repeat;
+  background-size: cover;
+}
+
+.applestore.scroll-content {
+
+  background: url('../img/app-store-logo.png') no-repeat;
+  style: "max-width:30%"
+}
+
+.googlestore.scroll-content {
+
+  background: url('../img/appstore_button_google.png') no-repeat;
+  style: "max-width:30%"
+}
