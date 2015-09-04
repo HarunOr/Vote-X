@@ -4,25 +4,23 @@
 /* Modal Background Image */
 
 .modal1.scroll-content {
-    background: url('../img/modal1_opt.jpg') no-repeat;
+    background: url('../img/modal1_opt-compressor.jpg') no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 
 
 .registration.scroll-content {
-  background: url('../img/background_opt.jpg') no-repeat;
+  background: url('../img/background_opt-compressor.jpg') no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
-.applestore.scroll-content {
+#form {
 
-  background: url('../img/app-store-logo.png') no-repeat;
-  style: "max-width:30%"
-}
-
-.googlestore.scroll-content {
-
-  background: url('../img/appstore_button_google.png') no-repeat;
-  style: "max-width:30%"
+  background-color: white;
+  margin-top: 25px;
 }

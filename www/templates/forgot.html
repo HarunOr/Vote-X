@@ -1,0 +1,32 @@
+
+<ion-view>
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear button-assertive ion-navicon" menu-toggle="left">
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="padding-top">
+    <div class="text-center padding" style="color:red">
+      Geben Sie hier ihre Email-Adresse an, mit der sie sich registriert haben.
+    </div>
+    <form name="forgotForm" novalidate ng-submit="forgotForm.$valid && resetpassword(user)">
+   <div class="list">
+      <label class="item item-input item-floating-label" ng-class="{ 'has-error' : forgotForm.txtemail.$invalid && forgotForm.$submitted }">
+        <span class="input-label">Email</span>
+        <input name="txtemail" ng-model="user.email" placeholder="Email" type="email"
+        ng-minlength="5"
+        ng-maxlength="30"
+        required>
+      </label>
+      <div class="form-errors" ng-messages="forgotForm.txtemail.$error" ng-if="forgotForm.$submitted" style="color:red">
+        <div class="form-error" ng-message="required">Dieses Feld muss ausgefüllt werden.</div>
+        <div class="form-error" ng-message="email">Dieses Feld muss eine Email enthalten.</div>
+        <div class="form-error" ng-message="minlength">Dieses Feld muss mindestens 5 Zeichen enthalten.</div>
+        <div class="form-error" ng-message="maxlength">Dieses Feld darf maximal 30 Zeichen enthalten.</div>
+      </div>
+      <div class="padding-top">
+      <input type="submit" value="Passwort zurücksetzen" class="button button-block button-positive"/>
+
+  </form>
+    </div>
+  </ion-content>
+</ion-view>

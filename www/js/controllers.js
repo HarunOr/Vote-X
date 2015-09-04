@@ -1,14 +1,11 @@
-angular.module('starter.controllers', ['firebase','vcRecaptcha'])
+angular.module('starter.controllers', ['firebase'])
 
 .controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading,
- $state, $ionicModal, $timeout, $ionicPopup, vcRecaptchaService) {
+ $state, $ionicModal, $timeout, $ionicPopup) {
 
     // Firebase reference
     var myRef = new Firebase("https://vote-x.firebaseio.com");
 
-    //username and password
-    $scope.username;
-    $scope.password;
 
     //ion-refresher
 
@@ -55,12 +52,11 @@ angular.module('starter.controllers', ['firebase','vcRecaptcha'])
     //--------------------------------------------------------------------------------------------------
 
     // Perform the login action when the user submits the login form
-    $scope.doLogin = function (username, password) {
-        var fbAuth = new Firebase("https://vote-x.firebaseio.com/");
+    $scope.doLogin = function (email, password) {
 
-        if (username !== undefined && password !== undefined) {
-            fbAuth.authWithPassword({
-                email: username,
+        if (email !== undefined && password !== undefined) {
+            myRef.authWithPassword({
+                email: email,
                 password: password
             }, function (error, authData) {
                 if (error) {
@@ -86,6 +82,7 @@ angular.module('starter.controllers', ['firebase','vcRecaptcha'])
                 } else {
                     console.log("Authenticated successfully with payload:", authData);
                     showAlertLoggedIn(authData);
+                  $scope.modal1.hide();
                 }
             })
 
@@ -94,143 +91,88 @@ remember: "sessionOnly"
             ;
         }
         else {
-
-            console.log('Die Felder sind leer!');
             showAlertEmpty();
 
         }
     };
 
 
+      $scope.doRegister = function (username1, password1, password2) {
 
-    //--------------------------------------------------------------------------------------------------
+        if (password1 !== password2) {
+          showAlertError("Fehler!", "Ihr Passwort stimmt nicht überein!");
 
+        }
 
+        else
+        if (username1 !== undefined && password1 !== undefined && password2 !== undefined) {
+            myRef.createUser({
 
-
-      /*<!-- function setResponse(response) {
-        console.log('Response enthält:');
-        console.log(response);
-
-      };
-
-      function cbExpiration() {
-        console.log('reCaptcha expired');
-        vcRecaptchaService.reset();
-        console.log('reCaptcha reset');
-      } -->
- */
-
-
-      $scope.doRegister = function (username1, password1) {
-
-
-
-        //------------------Recaptcha Go--------------------------
-            var response = vcRecaptchaService.getResponse(); // returns the string response
-
-
-            // if recaptcha goes wrong
-            if (response == 0) {
-
-              console.log('recaptcha failed!');
-              console.log('bye!');
-              ionic.Platform.exitApp();
-            }
-
-          //----------------Recaptcha End--------------------------
-
-
-        var ref = new Firebase("https://vote-x.firebaseio.com");
-
-        if (username1 !== undefined && password1 !== undefined) {
-            ref.createUser({
                 email: username1,
-                password: password1
+                password: password1,
+                registered_in: Date()
 
             },
 
              function (error, authData) {
-
-
-                //---------------------------------------------------------------------------------------------------------------
-
-                // ERROR-HANDLING
                 if (error) {
 
-                    switch (error.code) {
-                        case "INVALID_EMAIL":
-                            showAlertError(ErrorTitle1, ErrorText1);
-                            console.log("The specified user account email is invalid.");
-                            break;
-                        case "INVALID_PASSWORD":
-                            showAlertError(ErrorTitle2, ErrorText2);
-                            console.log("The specified user account password is incorrect.");
-                            break;
-                        case "INVALID_USER":
-                            showAlertError(ErrorTitle3, ErrorText3);
-                            console.log("The specified user account does not exist.");
-                            break;
+                  switch (error.code) {
+                     case "INVALID_EMAIL":
+                         showAlertError(ErrorTitle1, ErrorText1);
+                         console.log("The specified user account email is invalid.");
+                         break;
+                     case "INVALID_PASSWORD":
+                         showAlertError(ErrorTitle2, ErrorText2);
+                         console.log("The specified user account password is incorrect.");
+                         break;
+                     case "INVALID_USER":
+                         showAlertError(ErrorTitle3, ErrorText3);
+                         console.log("The specified user account does not exist.");
+                         break;
 
-                        case "EMAIL_TAKEN":
-                            showAlertError(ErrorTitle4, ErrorText4);
-                            console.log("The specified user account email is already in use.");
-                            break;
+                     case "EMAIL_TAKEN":
+                         showAlertError(ErrorTitle4, ErrorText4);
+                         console.log("The specified user account email is already in use.");
+                         break;
 
-                        case "UNKNOWN_ERROR":
-                            showAlertError(ErrorTitle5, ErrorText5);
-                            console.log("An unknown error occurred.");
-                            break;
+                     case "UNKNOWN_ERROR":
+                         showAlertError(ErrorTitle5, ErrorText5);
+                         console.log("An unknown error occurred.");
+                         break;
 
-                        default:
-                            showAlertError(ErrorTitle5, ErrorText5);
-                            console.log("Error logging user in:", error);
-                    }
-                    //-------------------------------------------------------------------------------------------------------------
+                     default:
+                         showAlertError(ErrorTitle5, ErrorText5);
+                         console.log("Error logging user in:", error);
+                 }
                 } else {
                     showAlertCreated(username1);
-
+                   $state.go("app.home");
                 }
             })
         }
-
-
-
-        else {
-            console.log('Die Felder sind leer!');
-            showAlertEmpty();
-
-        }
-
-
-
-
     }
 
     //---------------------------------------------------------------------------------------------------------------
 
-    // ERROR-HANDLING Registration
-    var ErrorTitle1 = "Ungültige Email!";
-    var ErrorText1 = "Die angegebene Email-Adresse ist leider ungültig ! :(";
+        // ERROR-HANDLING Registration
+        var ErrorTitle1 = "Ungültige Email!";
+        var ErrorText1 = "Die angegebene Email-Adresse ist leider ungültig ! :(";
 
-    var ErrorTitle2 = "Ungültiges Passwort!"
-    var ErrorText2 = "Das angegebene Passwort ist leider ungültig ! :(";
+        var ErrorTitle2 = "Ungültiges Passwort!"
+        var ErrorText2 = "Das angegebene Passwort ist leider ungültig ! :(";
 
-    var ErrorTitle3 = "Ungültiger Benutzername!"
-    var ErrorText3 = "Der angegebene Benutzername ist leider ungültig oder vergeben ! :(";
+        var ErrorTitle3 = "Ungültiger Benutzername!"
+        var ErrorText3 = "Der angegebene Benutzername ist leider ungültig oder vergeben ! :(";
 
-    var ErrorTitle4 = "Diese Email-Adresse ist nicht verfügbar!"
-    var ErrorText4 = "Die angegebene Email-Adresse ist leider schon vergeben! :(";
+        var ErrorTitle4 = "Diese Email-Adresse ist nicht verfügbar!"
+        var ErrorText4 = "Die angegebene Email-Adresse ist leider schon vergeben! :(";
 
-    var ErrorTitle5 = "Es gab einen Fehler!"
-    var ErrorText5 = "Es ist leider ein Fehler aufgetreten! :(";
-
+        var ErrorTitle5 = "Es gab einen Fehler!"
+        var ErrorText5 = "Es ist leider ein Fehler aufgetreten! :(";
 
     //------------------------------------------------------------------------------------------------------------------
     // ERROR-HANDLING Login
-
-    var ErrorLoginTitle1 = "Ungültige Email!";
-    var ErrorLoginText1 = "Die angegebene Email-Adresse ist leider ungültig ! :(";
 
     var ErrorLoginTitle2 = "Ungültiges Passwort!";
     var ErrorLoginText2 = "Das angegebene Passwort ist leider falsch! Haben Sie ihr Kennwort vergessen ?";
@@ -273,28 +215,24 @@ remember: "sessionOnly"
 
     var showAlertLoggedIn = function (authData) {
         var alertPopup = $ionicPopup.alert({
-            title: 'Willkommen zurück!',
+            title: 'Willkommen!',
             template: 'Du hast dich erfolgreich mit der Email: ' + authData.password.email + ' eingeloggt :)'
         })
     };
+    //------------------------------------------------------------------------------------------------------------------
 
+    // Forgot Password
 
-    // Empty fields
-
-    var showAlertEmpty = function () {
-        var alertPopup = $ionicPopup.alert({
-            title: 'Fehler!',
-            template: 'Bitte tragen Sie Ihre Daten zunächst in die entsprechenden Felder ein!'
-        })
-    };
-
-    //----------------------------------------------------------------------------------------------------------------------------------
-
-
-    $scope.closeRegister = function () {
-        console.log('try to close');
-        $scope.modal.hide();
-
-    }
+    myRef.resetpassword = function(user) {
+        if(angular.isDefined(user)){
+        Auth.resetpassword(user)
+          .then(function() {
+            console.log("Password reset email sent successfully!");
+            $location.path('app.home');
+          }, function(err) {
+             console.error("Error: ", err);
+          });
+        }
+      };
 
 })

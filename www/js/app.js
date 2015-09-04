@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var votex = angular.module('starter', ['ionic','starter.controllers', 'ngCordova','firebase'])
+var votex = angular.module('starter', ['ionic','starter.controllers', 'ngCordova','firebase','ngMessages'])
 
 votex.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,7 +36,7 @@ votex.config(function ($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent': {
         templateUrl: 'templates/home.html',
-      
+
       }
     }
   })
@@ -77,6 +77,14 @@ votex.config(function ($stateProvider, $urlRouterProvider) {
     }
   })
 
+  .state('app.forgot', {
+    url: "/forgot",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/forgot.html"
+      }
+    }
+  })
 
   $urlRouterProvider.otherwise('/app/home');
 

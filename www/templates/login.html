@@ -1,49 +1,52 @@
 <ion-modal-view>
-  <ion-header-bar class="bar-stable">
+  <ion-header-bar class="bar-stable" align-title="center">
     <h1 class="title">Login</h1>
     <div class="buttons">
       <button class="button button-clear" ng-click="closeModal(1)">Schließen</button>
     </div>
   </ion-header-bar>
   <ion-content class="modal1" scroll="false">
-
-    <div class="row">
-      <div class="col">
-      <div class="list">
-        <label class="item item-input">
-                    <input ng-model="username" type="text" placeholder="Benutzername/Email" />
-                </label>
-       <label class="item item-input" >
-                    <input ng-model="password" type="password" placeholder="Passwort" />
-                </label>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="row">
-                <div class="col">
-              <label style="color: #337CD4">
-                <button ng-click="doLogin(username,password)" class="button button-positive">
-                  Einloggen
-                </button>
+    <div id="form">
+              <form novalidate name="loginForm" ng-submit="loginForm.$valid && doLogin(email,password)">
+            <div class="list">
+              <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.email.$invalid && loginForm.$submitted }">
+                <span class="input-label">Email</span>
+                <input name="email" type="email" ng-model="email" placeholder="Email"
+                ng-minlength="5"
+                ng-maxlength="30"
+                required>
               </label>
+              <!-- Edit this messages if you want -->
+              <div style="color:red" class="form-errors" ng-messages="loginForm.email.$error" ng-if="loginForm.$submitted">
+                <div class="form-error" ng-message="required">Dieses Feld muss ausgefüllt werden.</div>
+                <div class="form-error" ng-message="email">Dieses Feld muss eine Email enthalten.</div>
+                <div class="form-error" ng-message="minlength">Dieses Feld muss mindestens 5 Zeichen enthalten.</div>
+                <div class="form-error" ng-message="maxlength">Dieses Feld darf maximal 30 Zeichen enthalten.</div>
+              </div>
+              <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : loginForm.email.$invalid && loginForm.$submitted }">
+                <span class="input-label">Passwort</span>
+                <input name="password" type="password" ng-model="password" placeholder="Passwort"
+                ng-minlength="5"
+                ng-maxlength="30"
+                required>
+              </label>
+              <!-- Edit this messages if you want -->
+              <div style="color:red" class="form-errors" ng-messages="loginForm.password.$error" ng-if="loginForm.$submitted">
+              <div class="form-error" ng-message="required">Dieses Feld muss ausgefüllt werden.</div>
+              <div class="form-error" ng-message="minlength">Dieses Feld muss mindestens 5 Zeichen enthalten.</div>
+              <div class="form-error" ng-message="maxlength">Dieses Feld darf maximal 30 Zeichen enthalten.</div>
+              </div>
             </div>
+            <div class="padding-top">
+              <input type="submit" class="button button-block button-positive" value="Einloggen">
+              <button class="button button-block button-assertive" ui-sref="app.register" ng-click="closeModal(1)">
+                  Registrieren sie sich hier!
+        </button>
+              <p class="text-center ">
+                  <a ui-sref="app.forgot" class="button button-clear button-positive" ng-click="closeModal(1)">Passwort vergessen</a>
             </div>
-
-            <div class="row" style="text-align:center;vertical-align:text-bottom">
-              <div class="col">
-
-
-
-      <button class="button button-assertive" ui-sref="app.register" ng-click="closeModal(1)">
-    Sie haben noch keinen Account? Klicken Sie hier!
-</button>
-
-</div>
-</div>
-
-
+          </form>
+        </div>
 
   </ion-content>
 
