@@ -8,16 +8,16 @@
     <div class="text-center padding" style="color:red">
       Geben Sie hier ihre Email-Adresse an, mit der sie sich registriert haben.
     </div>
-    <form name="forgotForm" novalidate ng-submit="forgotForm.$valid && resetpassword(user)">
+    <form name="forgotForm" novalidate ng-submit="forgotForm.$valid && resetPW(username1)">
    <div class="list">
       <label class="item item-input item-floating-label" ng-class="{ 'has-error' : forgotForm.txtemail.$invalid && forgotForm.$submitted }">
         <span class="input-label">Email</span>
-        <input name="txtemail" ng-model="user.email" placeholder="Email" type="email"
+        <input name="txtemail" ng-model="username1" placeholder="Email" type="email"
         ng-minlength="5"
         ng-maxlength="30"
         required>
       </label>
-      <div class="form-errors" ng-messages="forgotForm.txtemail.$error" ng-if="forgotForm.$submitted" style="color:red">
+      <div class="form-errors" ng-messages="forgotForm.username1.$error" ng-if="forgotForm.$submitted" style="color:red">
         <div class="form-error" ng-message="required">Dieses Feld muss ausgefüllt werden.</div>
         <div class="form-error" ng-message="email">Dieses Feld muss eine Email enthalten.</div>
         <div class="form-error" ng-message="minlength">Dieses Feld muss mindestens 5 Zeichen enthalten.</div>

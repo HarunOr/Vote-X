@@ -219,20 +219,42 @@ remember: "sessionOnly"
             template: 'Du hast dich erfolgreich mit der Email: ' + authData.password.email + ' eingeloggt :)'
         })
     };
+
+    //Alert popup Password Recovery Success
+
+    var showAlertPasswordRecoverySuccess = function () {
+        var alertPopup = $ionicPopup.alert({
+            title: 'Fertig!',
+            template: 'Dir wurde soeben eine Email mit deinem neuen Passwort zugeschickt!'
+        })
+    };
+
+    //Alert popup Password Recovery Failed
+
+    var showAlertPasswordRecoveryFail = function () {
+        var alertPopup = $ionicPopup.alert({
+            title: 'Fehler!',
+            template: 'Es ist ein Fehler aufgetreten!'
+        })
+    };
     //------------------------------------------------------------------------------------------------------------------
 
     // Forgot Password
+    $scope.resetPW = function (username1) {
 
-    myRef.resetpassword = function(user) {
-        if(angular.isDefined(user)){
-        Auth.resetpassword(user)
-          .then(function() {
-            console.log("Password reset email sent successfully!");
-            $location.path('app.home');
-          }, function(err) {
-             console.error("Error: ", err);
-          });
-        }
-      };
+    myRef.resetPassword({
+      email : username1
+    }, function(error) {
+    if (error === null) {
+      //console.log("Password reset email sent successfully");
+      $state.go('app.home');
+      showAlertPasswordRecoverySuccess();
+    } else {
+      console.log("Error sending password reset email:", error);
+      showAlertPasswordRecoveryFail();
+    }
+  });
+}
 
+//-----END-----
 })
