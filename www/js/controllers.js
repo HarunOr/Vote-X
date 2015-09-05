@@ -238,23 +238,33 @@ remember: "sessionOnly"
         })
     };
     //------------------------------------------------------------------------------------------------------------------
-
     // Forgot Password
-    $scope.resetPW = function (username1) {
-
+    $scope.resetPW = function (username) {
     myRef.resetPassword({
-      email : username1
+      email: username
     }, function(error) {
-    if (error === null) {
-      //console.log("Password reset email sent successfully");
-      $state.go('app.home');
-      showAlertPasswordRecoverySuccess();
-    } else {
-      console.log("Error sending password reset email:", error);
-      showAlertPasswordRecoveryFail();
+      if (error) {
+        switch (error.code) {
+          case "INVALID_USER":
+            console.log("The specified user account does not exist.");
+            $ionicPopup.alert({
+                title: 'Fehler!',
+                template: 'Konnten keinen Benutzer mit dieser Email finden! '
+            })
+            break;
+          default:
+            console.log("Error resetting password:", error);
+        }
+      } else {
+        console.log("Password reset email sent successfully!");
+         $ionicPopup.alert({
+                title: 'Fertig!',
+                template: 'Eine Email mit dem neuen Passwort wurde verschickt! '
+            })
+      }
+    });
     }
-  });
-}
+
 
 //-----END-----
 })

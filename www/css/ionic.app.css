@@ -7699,3 +7699,17 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+.modal1.scroll-content {
+  background: url('../img/modal1_opt.jpg') no-repeat fixed;
+  background-size: cover; }
+
+.registration.scroll-content {
+  background: url('../img/background_opt-compressor.jpg') no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center; }
+
+#form {
+  background-color: white;
+  margin-top: 25px; }
