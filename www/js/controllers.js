@@ -21,10 +21,6 @@ angular.module('starter.controllers', ['firebase'])
     };
 
 
-    // Triggered in the login modal to close it
-    $scope.closeLogin = function () {
-        $scope.modal.hide();
-    };
 
     // Open the login modal
 
@@ -91,7 +87,7 @@ remember: "sessionOnly"
             ;
         }
         else {
-            showAlertEmpty();
+           
 
         }
     };
@@ -267,15 +263,14 @@ remember: "sessionOnly"
 
 //-----------------------------Facebook-Login------------------------------- 
  $scope.loginFB = function() {
+      $scope.modal1.hide();
 myRef.authWithOAuthPopup("facebook", function(error, authData) {
-  if (error) {
-    console.log("Login Failed!", error);
-  } else {
-    console.log("Authenticated successfully with payload:", authData);
-     var alertPopup = $ionicPopup.alert({
+      if (error) {
+    } else {
+        $ionicPopup.alert({
             title: 'Willkommen!',
             template: 'Du hast dich erfolgreich eingeloggt :)'
-        })
+        });
       }
     remember:"sessionOnly"
     }
