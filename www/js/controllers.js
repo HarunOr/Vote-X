@@ -1,7 +1,7 @@
 angular.module('starter.controllers', ['firebase'])
 
 .controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading,
- $state, $ionicModal, $timeout, $ionicPopup) {
+ $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth) {
 
     // Firebase reference
     var myRef = new Firebase("https://vote-x.firebaseio.com");
@@ -265,6 +265,21 @@ remember: "sessionOnly"
     });
     }
 
+//-----------------------------Facebook-Login------------------------------- 
+ $scope.loginFB = function() {
+myRef.authWithOAuthPopup("facebook", function(error, authData) {
+  if (error) {
+    console.log("Login Failed!", error);
+  } else {
+    console.log("Authenticated successfully with payload:", authData);
+     var alertPopup = $ionicPopup.alert({
+            title: 'Willkommen!',
+            template: 'Du hast dich erfolgreich eingeloggt :)'
+        })
+      }
+    remember:"sessionOnly"
+    }
+)};
 
 //-----END-----
 })

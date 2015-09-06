@@ -36,18 +36,23 @@
               <div class="form-error" ng-message="minlength">Dieses Feld muss mindestens 5 Zeichen enthalten.</div>
               <div class="form-error" ng-message="maxlength">Dieses Feld darf maximal 30 Zeichen enthalten.</div>
               </div>
-            </div>
+           
             <div class="padding-top">
               <input type="submit" class="button button-block button-positive" value="Einloggen">
+                </div> 
+                </div>
+            </form>
+             
+             
+             <button class="button button-block button-facebook" ng-click="loginFB()" style="color: $facebook">Einloggen via Facebook</button>
+             <div style="padding-top: 3px">
               <button class="button button-block button-assertive" ui-sref="app.register" ng-click="closeModal(1)">
                   Registrieren
         </button>
               <p class="text-center ">
                   <a ui-sref="app.forgot" class="button button-clear button-positive" ng-click="closeModal(1)">Passwort vergessen</a>
-            </div>
-          </form>
-        </div>
-
-  </ion-content>
+        </p>
+        </div></div>
+        </ion-content>
 
 </ion-modal-view>

@@ -20,6 +20,14 @@ $dark:                            #444 !default;
 $stable: #DFDFDF!default;
 $assertive: #D43D33!default;
 
+
+
+
+// Facebook Button on Login page
+.button.button-facebook {
+    border-color: #263F7B;
+    background-color: #5370A9;
+    color: #fff; }
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
