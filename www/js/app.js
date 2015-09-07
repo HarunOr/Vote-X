@@ -86,6 +86,15 @@ votex.config(function ($stateProvider, $urlRouterProvider) {
     }
   })
 
+  .state('app.profile', {
+    url: "/profile",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/profile.html"
+      }
+    }
+  })
+
   $urlRouterProvider.otherwise('/app/home');
 
 })

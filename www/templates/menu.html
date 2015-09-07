@@ -10,8 +10,11 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-           <button class="button button-assertive" ng-click="openModal(1)">
+           <button class="button button-assertive" ng-click="openModal(1)" ng-hide="currentUserSignedIn">
             Login
+           </button>
+            <button class="button button-stable" ng-click="logout()" ng-show="currentUserSignedIn">
+            Logout
            </button>
          </ion-nav-buttons>
     </ion-nav-bar>
@@ -24,11 +27,15 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-          <ion-item nav-clear menu-close ng-click="openModal(1)">
+          <ion-item nav-clear menu-close ng-click="openModal(1)" ng-hide="currentUserSignedIn">
           <i class="icon ion-log-in" style="color: #D43D33"></i>
              Login
           </ion-item>
 
+          <ion-item nav-clear menu-close href="#/app/profile" ng-show="currentUserSignedIn">
+          <i class="icon ion-android-person" style="color: #D43D33"></i>
+            Profil
+          </ion-item>
           <ion-item nav-clear menu-close href="#/app/home">
           <i class="icon ion-ios-home-outline" style="color: #D43D33"></i>
             Startseite

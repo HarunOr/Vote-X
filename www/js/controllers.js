@@ -6,6 +6,9 @@ angular.module('starter.controllers', ['firebase'])
     // Firebase reference
     var myRef = new Firebase("https://vote-x.firebaseio.com");
 
+    // Login Status
+    
+    $rootScope.currentUserSignedIn = false;
 
     //ion-refresher
 
@@ -57,40 +60,30 @@ angular.module('starter.controllers', ['firebase'])
             }, function (error, authData) {
                 if (error) {
                     switch (error.code) {
-                        case "INVALID_EMAIL":
-                            showAlertLogin(ErrorLoginTitle1, ErrorLoginText1);
-                            console.log("The specified user account email is invalid.");
-                            break;
                         case "INVALID_PASSWORD":
                             showAlertLogin(ErrorLoginTitle2, ErrorLoginText2);
-                            console.log("The specified user account password is incorrect.");
+                           // console.log("The specified user account password is incorrect.");
                             break;
 
                         case "INVALID_USER":
                             showAlertLogin(ErrorLoginTitle4, ErrorLoginText4);
-                            console.log("There is no user with this email registered.");
+                           // console.log("There is no user with this email registered.");
                             break;
 
                         default:
                             showAlertLogin(ErrorLoginTitle3, ErrorLoginText3);
-                            console.log("Error logging user in:", error);
+                           // console.log("Error logging user in:", error);
                     }
                 } else {
-                    console.log("Authenticated successfully with payload:", authData);
+                     $rootScope.currentUserSignedIn =true;
+                     console.log("current user signed in");
                     showAlertLoggedIn(authData);
                   $scope.modal1.hide();
                 }
+            },{remember: "sessionOnly"
             })
-
-remember: "sessionOnly"
-
-            ;
         }
-        else {
-           
-
-        }
-    };
+      };
 
 
       $scope.doRegister = function (username1, password1, password2) {
@@ -145,6 +138,8 @@ remember: "sessionOnly"
                     showAlertCreated(username1);
                    $state.go("app.home");
                 }
+            },{
+                remember: "sessionOnly"
             })
         }
     }
@@ -271,10 +266,25 @@ myRef.authWithOAuthPopup("facebook", function(error, authData) {
             title: 'Willkommen!',
             template: 'Du hast dich erfolgreich eingeloggt :)'
         });
+      $rootScope.currentUserSignedIn =true;
+                     console.log("current user signed in");
       }
     remember:"sessionOnly"
     }
 )};
+
+//-------------------------Log Out------------------------------------------
+
+$scope.logout = function() {
+      myRef.unauth();
+       $rootScope.currentUserSignedIn =false;
+    console.log("user signed out");
+     $ionicPopup.alert({
+            title: 'Ciao!',
+            template: 'Du hast dich erfolgreich ausgeloggt'
+        });
+    
+};
 
 //-----END-----
 })
