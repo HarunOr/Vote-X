@@ -98,9 +98,7 @@ angular.module('starter.controllers', ['firebase'])
             myRef.createUser({
 
                 email: username1,
-                password: password1,
-                registered_in: Date()
-
+                password: password1          
             },
 
              function (error, authData) {
@@ -137,9 +135,8 @@ angular.module('starter.controllers', ['firebase'])
                 } else {
                     showAlertCreated(username1);
                    $state.go("app.home");
+                   remember: "sessionOnly";
                 }
-            },{
-                remember: "sessionOnly"
             })
         }
     }
@@ -177,7 +174,7 @@ angular.module('starter.controllers', ['firebase'])
     //------------------------------------------------------------------------------------------------------------------
     //Alert popup Error Registrierung
     var showAlertError = function (title, text) {
-        var alertPopup = $ionicPopup.alert({
+        $ionicPopup.alert({
             title: title,
             template: text
         })
@@ -186,7 +183,7 @@ angular.module('starter.controllers', ['firebase'])
 
     //Alert popup Registrierung successful
     var showAlertCreated = function (username) {
-        var alertPopup = $ionicPopup.alert({
+       $ionicPopup.alert({
             title: 'Geschafft!',
             template: 'Dein Konto mit der Email: ' + username + ' wurde erfolgreich erstellt :)'
         })
@@ -196,7 +193,7 @@ angular.module('starter.controllers', ['firebase'])
     //Alert popup Error Login
 
     var showAlertLogin = function (title, text) {
-        var alertPopup = $ionicPopup.alert({
+        $ionicPopup.alert({
             title: title,
             template: text
         })
@@ -205,29 +202,14 @@ angular.module('starter.controllers', ['firebase'])
     //Alert popup login success
 
     var showAlertLoggedIn = function (authData) {
-        var alertPopup = $ionicPopup.alert({
+        $ionicPopup.alert({
             title: 'Willkommen!',
             template: 'Du hast dich erfolgreich mit der Email: ' + authData.password.email + ' eingeloggt :)'
         })
     };
 
-    //Alert popup Password Recovery Success
+    
 
-    var showAlertPasswordRecoverySuccess = function () {
-        var alertPopup = $ionicPopup.alert({
-            title: 'Fertig!',
-            template: 'Dir wurde soeben eine Email mit deinem neuen Passwort zugeschickt!'
-        })
-    };
-
-    //Alert popup Password Recovery Failed
-
-    var showAlertPasswordRecoveryFail = function () {
-        var alertPopup = $ionicPopup.alert({
-            title: 'Fehler!',
-            template: 'Es ist ein Fehler aufgetreten!'
-        })
-    };
     //------------------------------------------------------------------------------------------------------------------
     // Forgot Password
     $scope.resetPW = function (username) {
