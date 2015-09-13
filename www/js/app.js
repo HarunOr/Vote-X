@@ -3,19 +3,25 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var votex = angular.module('starter', ['ionic','starter.controllers', 'ngCordova','firebase','ngMessages'])
+var votex = angular.module('starter', ['ionic','starter.controllers', 'starter.profileCtrl', 'ngCordova','firebase','ngMessages'])
 
-votex.run(function($ionicPlatform) {
+votex.run(function($ionicPlatform, $cordovaSplashscreen) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
+      
     }
     if(window.StatusBar) {
       StatusBar.backgroundColorByHexString("#393940")
     }
+      setTimeout(function() {
+    $cordovaSplashscreen.hide();
+    }, 2000);
+   
+    
   });
 })
 
@@ -38,7 +44,8 @@ votex.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'templates/home.html',
 
       }
-    }
+    },
+    reload: true
   })
 
   .state('app.map', {
@@ -88,6 +95,7 @@ votex.config(function ($stateProvider, $urlRouterProvider) {
 
   .state('app.profile', {
     url: "/profile",
+    controller: "profileCtrl",
     views: {
       'menuContent': {
         templateUrl: "templates/profile.html"

@@ -1,16 +1,84 @@
-angular.module('starter.controllers', ['firebase'])
+var votex = angular.module('starter.controllers', ['firebase'])
 
 .controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading,
  $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth) {
 
     // Firebase reference
     var myRef = new Firebase("https://vote-x.firebaseio.com");
-
-    // Login Status
+    var userRef ;
+    // Login Status-----------------------------------
     
     $rootScope.currentUserSignedIn = false;
 
-    //ion-refresher
+    //UserData after Registration-----------------------------
+   
+    $scope.userEmail;
+    $scope.registerID;
+    $scope.userID; //authData.uid nach Login gespeichert
+    $scope.profilePic;
+    
+
+    
+    //Get initial userdata-----------------------------
+     var usersRef;
+            
+    
+    $scope.getInitialData = function(userRef, recipient){
+              var fbStr = "https://vote-x.firebaseio.com/users/"+userRef;
+              console.log(fbStr);
+              usersRef = new Firebase (fbStr);
+  
+   usersRef.push({
+        
+        email: $scope.userEmail,        
+        });
+       };
+      
+       //---------------SMS VERIF--------------------- 
+       var sendSMSText = function(recipient) {
+       var newFb = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.userID);
+        var smsQueue = newFb.child("/sms/"+recipient.phone);
+        
+        var personalizedText = "Hallo "+ recipient.name+". Danke für's verifizieren !"+ "./n/n"
+                                "Wir wünschen Dir noch viel Spaß, dein Vote-X Team :)";
+        
+        smsQueue.set({
+                name: recipient.name,
+                phone: recipient.phone,
+                text: personalizedText
+            
+                }); 
+                }
+           
+    //---------------SMS VERIF---------------------
+    
+
+    
+    //------------Get profile Url----------------
+        $scope.getProfilePic = function(authData) {
+              $scope.userID = authData.uid;
+              
+              var fbStr = "https://vote-x.firebaseio.com/users/"+$scope.userID;
+              var testRef = new Firebase (fbStr);
+              console.log(testRef);
+       /*      if($rootScope.currentUserSignedIn) {
+                console.log("scope.userID = "+$scope.userID);
+              
+                userRef.child($scope.userID);
+                userDetailRef.update({
+                   
+                   ProfileImage: authData.password.profileImageURL
+                    
+                });
+                
+                console.log("ProfileImg updated"); 
+            }
+            */
+            
+        };
+    
+    //ion-refresher----------------------------------------------------------
+    
 
     $scope.doRefresh = function () {
 
@@ -25,7 +93,7 @@ angular.module('starter.controllers', ['firebase'])
 
 
 
-    // Open the login modal
+    // Open the login modal----------------------------------------------------------
 
           // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -50,7 +118,7 @@ angular.module('starter.controllers', ['firebase'])
 
     //--------------------------------------------------------------------------------------------------
 
-    // Perform the login action when the user submits the login form
+    // Login
     $scope.doLogin = function (email, password) {
 
         if (email !== undefined && password !== undefined) {
@@ -77,15 +145,18 @@ angular.module('starter.controllers', ['firebase'])
                 } else {
                      $rootScope.currentUserSignedIn =true;
                      console.log("current user signed in");
+                     $scope.getProfilePic(authData);
+                     $scope.userID = authData.uid;
                     showAlertLoggedIn(authData);
                   $scope.modal1.hide();
+                 $state.go("app.home");
                 }
             },{remember: "sessionOnly"
             })
         }
       };
 
-
+//----------------------Register function ------------------------------
       $scope.doRegister = function (username1, password1, password2) {
 
         if (password1 !== password2) {
@@ -98,10 +169,12 @@ angular.module('starter.controllers', ['firebase'])
             myRef.createUser({
 
                 email: username1,
-                password: password1          
+                password: password1,
+                verified: 0    
+                     
             },
 
-             function (error, authData) {
+             function (error, authData,password) {
                 if (error) {
 
                   switch (error.code) {
@@ -133,9 +206,13 @@ angular.module('starter.controllers', ['firebase'])
                          console.log("Error logging user in:", error);
                  }
                 } else {
+                    $scope.userEmail = username1;
+                    console.log(authData.uid);
+                    userRef = authData.uid;
+                    $scope.getInitialData(userRef);
                     showAlertCreated(username1);
-                   $state.go("app.home");
-                   remember: "sessionOnly";
+                    $state.go("app.home");
+                   
                 }
             })
         }
@@ -261,6 +338,7 @@ $scope.logout = function() {
       myRef.unauth();
        $rootScope.currentUserSignedIn =false;
     console.log("user signed out");
+   $scope.loggedOut();
      $ionicPopup.alert({
             title: 'Ciao!',
             template: 'Du hast dich erfolgreich ausgeloggt'
@@ -268,5 +346,21 @@ $scope.logout = function() {
     
 };
 
-//-----END-----
-})
+//----------------------Logged out -----------------------------------------
+
+$scope.loggedOut = function(){
+  if($rootScope.currentUserSignedIn == false) {
+       $state.go("app.home");
+  }
+    
+};
+
+
+});
+//-----------------------------------------END APPCTRL-----------------------------------------
+
+votex.factory('ScopeService', function($rootScopes){
+    
+    
+    
+});

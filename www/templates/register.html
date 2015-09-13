@@ -1,5 +1,9 @@
 <ion-view>
-
+  
+ <ion-nav-title bar-dark align-title="center">
+          <img src="img/votex_title.png">
+              </ion-nav-title>
+              
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear button-assertive ion-navicon" menu-toggle="left">
     </button>
@@ -11,11 +15,12 @@
   <form name="registerForm" novalidate ng-submit="registerForm.$valid && doRegister(username1, password1, password2)"
     ng-class="{ 'has-error' : registerForm.username1.$invalid && registerForm.$submitted }">
     <div class="list">
+  
         <label class="item item-input item-floating-label">
           <span class="input-label">Email</span>
         <input name="username1" type="email" ng-model="username1" placeholder="Email"
         ng-minlength="5"
-        ng-maxlength="30"
+        ng-maxlength="25"
         required>
       </label>
       <div style="color:red" class="form-errors" ng-messages="registerForm.username1.$error" ng-if="registerForm.$submitted">
