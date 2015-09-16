@@ -1,7 +1,6 @@
-angular.module('starter.profileCtrl', ['firebase'])
+angular.module('starter.profileCtrl', [])
 
-.controller('profileCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading,
- $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth) {
+.controller('profileCtrl', function () {
 	 
 	 
   });

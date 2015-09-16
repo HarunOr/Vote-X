@@ -5,10 +5,13 @@
         An Ionic Framework and Cordova project.
     </description>
   <author email="admin@vote-x.net" href="http://vote-x.net">
-      Ionic Framework Team
+     Vote-X
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <allow-navigation href="*" />
+  <allow-navigation href="http://*/*"/>
+  <allow-navigation href="https://*/*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -16,14 +19,12 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
-  <!-- Whitelist -->
-  <!-- Allow links to web pages to open in a browser -->
-
-<allow-intent href="http://*/*" />
-<allow-intent href="https://*/*" />
-
-
-
+  <allow-intent href="http://*/*"/>
+  <allow-intent href="https://*/*"/>
+  <allow-intent href="*.firebaseio.com" />
+  <allow-intent href="auth.firebase.com" />
+  <access origin="*.firebaseio.com" />
+  <access origin="auth.firebase.com" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

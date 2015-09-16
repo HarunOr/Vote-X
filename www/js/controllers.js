@@ -5,20 +5,20 @@ var votex = angular.module('starter.controllers', ['firebase'])
 
     // Firebase reference
     var myRef = new Firebase("https://vote-x.firebaseio.com");
-    var userRef ;
+   var userRef ;
     // Login Status-----------------------------------
     
     $rootScope.currentUserSignedIn = false;
 
     //UserData after Registration-----------------------------
    
+ 
     $scope.userEmail;
     $scope.registerID;
     $scope.userID; //authData.uid nach Login gespeichert
     $scope.profilePic;
     
 
-    
     //Get initial userdata-----------------------------
      var usersRef;
             
@@ -54,14 +54,15 @@ var votex = angular.module('starter.controllers', ['firebase'])
     
 
     
-    //------------Get profile Url----------------
+    //------------Get profile Url---------------- 
+    /*
         $scope.getProfilePic = function(authData) {
               $scope.userID = authData.uid;
               
               var fbStr = "https://vote-x.firebaseio.com/users/"+$scope.userID;
               var testRef = new Firebase (fbStr);
               console.log(testRef);
-       /*      if($rootScope.currentUserSignedIn) {
+            if($rootScope.currentUserSignedIn) {
                 console.log("scope.userID = "+$scope.userID);
               
                 userRef.child($scope.userID);
@@ -73,10 +74,10 @@ var votex = angular.module('starter.controllers', ['firebase'])
                 
                 console.log("ProfileImg updated"); 
             }
-            */
+           
             
         };
-    
+   */
     //ion-refresher----------------------------------------------------------
     
 
@@ -145,7 +146,7 @@ var votex = angular.module('starter.controllers', ['firebase'])
                 } else {
                      $rootScope.currentUserSignedIn =true;
                      console.log("current user signed in");
-                     $scope.getProfilePic(authData);
+            //    $scope.getProfilePic(authData);
                      $scope.userID = authData.uid;
                     showAlertLoggedIn(authData);
                   $scope.modal1.hide();
@@ -206,10 +207,10 @@ var votex = angular.module('starter.controllers', ['firebase'])
                          console.log("Error logging user in:", error);
                  }
                 } else {
-                    $scope.userEmail = username1;
+                  $scope.userEmail = username1;
                     console.log(authData.uid);
                     userRef = authData.uid;
-                    $scope.getInitialData(userRef);
+                    $scope.getInitialData(userRef); 
                     showAlertCreated(username1);
                     $state.go("app.home");
                    
@@ -359,8 +360,3 @@ $scope.loggedOut = function(){
 });
 //-----------------------------------------END APPCTRL-----------------------------------------
 
-votex.factory('ScopeService', function($rootScopes){
-    
-    
-    
-});

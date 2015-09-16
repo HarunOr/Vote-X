@@ -2,9 +2,11 @@
   "name": "HelloIonic",
   "private": "true",
   "devDependencies": {
+    "angular-mocks": "~1.4.5",
     "ionic": "driftyco/ionic-bower#1.1.0"
   },
   "dependencies": {
-    "angular-recaptcha": "~2.2.4"
+    "angular-recaptcha": "~2.2.4",
+    "angularfire": "~1.1.2"
   }
 }
