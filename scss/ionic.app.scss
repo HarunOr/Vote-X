@@ -20,9 +20,6 @@ $dark:                            #444 !default;
 $stable: #DFDFDF!default;
 $assertive: #D43D33!default;
 
-
-
-
 // Facebook Button on Login page
 .button.button-facebook {
     border-color: #263F7B;
@@ -35,7 +32,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 .modal1.scroll-content {
-    background: url('../img/modal1_opt.jpg') no-repeat fixed;
+    background: url('../img/modal1_opt-compressor.jpg') no-repeat fixed;
     background-size: cover;
 }
 
@@ -53,3 +50,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   background-color: white;
   margin-top: 25px;
 }
+
+
+
+// Ionic slider
+

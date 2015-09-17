@@ -7,12 +7,16 @@
   <h2 class="title">Karte</h2>
 </div>
 
-<div style="visibility: visible;" class="search-bar">
-  <span class="search-icon ionic"><i class="ion-ios7-search-strong"></i></span>
-  <input id="search-input" value="Search" type="search">
-</div>
-
   <ion-content class="has-subheader">
+   
+   <ion-slide-box>
+    <ion-slide ng-repeat="image in testImages" >
+        <img style="width: 100%" src="{{image}}" >
+    </ion-slide>
+
+</ion-slide-box>
+   
+   
    
   </ion-content>
 </ion-view>

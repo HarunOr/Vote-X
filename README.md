@@ -3,9 +3,11 @@
 
 Todo:
 
+- Read user data.. Firebase push parameters..Register
 - Kostenplan für alle features schätzen
 - places photo image gallery
 - codepen animationen implementieren
+- loading spinner 
 - Video über update
 _________________
 New updates:

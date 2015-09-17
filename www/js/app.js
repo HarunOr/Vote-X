@@ -100,7 +100,30 @@ votex.config(function ($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  
+    .state('app.restaurant1', {
+    url: "/restaurant1",
+    controller: "AppCtrl",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/restaurant1.html"
+      }
+    }
+  })
+  
+      .state('app.restaurant2', {
+    url: "/restaurant2",
+    controller: "AppCtrl",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/restaurant2.html"
+      }
+    }
+  })
+
 
   $urlRouterProvider.otherwise('/app/home');
+  
+
 
 });

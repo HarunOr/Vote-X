@@ -7706,7 +7706,7 @@ a.button {
   transition-duration: 0s; }
 
 .modal1.scroll-content {
-  background: url('../img/modal1_opt.jpg') no-repeat fixed;
+  background: url('../img/modal1_opt-compressor.jpg') no-repeat fixed;
   background-size: cover; }
 
 .registration.scroll-content {

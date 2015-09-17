@@ -1,11 +1,11 @@
 var votex = angular.module('starter.controllers', ['firebase'])
 
 .controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading,
- $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth) {
+ $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate) {
 
     // Firebase reference
     var myRef = new Firebase("https://vote-x.firebaseio.com");
-   var userRef ;
+    var userRef ;
     // Login Status-----------------------------------
     
     $rootScope.currentUserSignedIn = false;
@@ -17,43 +17,23 @@ var votex = angular.module('starter.controllers', ['firebase'])
     $scope.registerID;
     $scope.userID; //authData.uid nach Login gespeichert
     $scope.profilePic;
-    
+    var fid; // Firebade user ID firebaseio.com/users/*fid*/email etc
 
     //Get initial userdata-----------------------------
-     var usersRef;
-            
-    
-    $scope.getInitialData = function(userRef, recipient){
-              var fbStr = "https://vote-x.firebaseio.com/users/"+userRef;
-              console.log(fbStr);
-              usersRef = new Firebase (fbStr);
-  
-   usersRef.push({
-        
-        email: $scope.userEmail,        
-        });
-       };
-      
-       //---------------SMS VERIF--------------------- 
-       var sendSMSText = function(recipient) {
-       var newFb = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.userID);
-        var smsQueue = newFb.child("/sms/"+recipient.phone);
-        
-        var personalizedText = "Hallo "+ recipient.name+". Danke für's verifizieren !"+ "./n/n"
-                                "Wir wünschen Dir noch viel Spaß, dein Vote-X Team :)";
-        
-        smsQueue.set({
-                name: recipient.name,
-                phone: recipient.phone,
-                text: personalizedText
-            
-                }); 
-                }
-           
-    //---------------SMS VERIF---------------------
-    
 
+            
     
+    $scope.getInitialData = function(userRef){
+              var fbStr = new Firebase ("https://vote-x.firebaseio.com/users/");
+              var usersRef = fbStr.push({
+               email: $scope.userEmail    
+                });
+    
+      fid = usersRef.key();
+       console.log("Firebase ID: "+fid);
+    };
+     
+      
     //------------Get profile Url---------------- 
     /*
         $scope.getProfilePic = function(authData) {
@@ -150,7 +130,7 @@ var votex = angular.module('starter.controllers', ['firebase'])
                      $scope.userID = authData.uid;
                     showAlertLoggedIn(authData);
                   $scope.modal1.hide();
-                 $state.go("app.home");
+                 $state.go("app.profile");
                 }
             },{remember: "sessionOnly"
             })
@@ -322,24 +302,32 @@ var votex = angular.module('starter.controllers', ['firebase'])
 myRef.authWithOAuthPopup("facebook", function(error, authData) {
       if (error) {
     } else {
+        console.log("FB Authdata: "+JSON.stringify(authData.facebook.profileImageURL)); // noch andere Daten auslesen
         $ionicPopup.alert({
             title: 'Willkommen!',
             template: 'Du hast dich erfolgreich eingeloggt :)'
         });
       $rootScope.currentUserSignedIn =true;
                      console.log("current user signed in");
+                       }
+     },
+     
+      {
+        remember:"sessionOnly",
+        scope: "email"   
+          
       }
-    remember:"sessionOnly"
-    }
-)};
+)
+
+};
 
 //-------------------------Log Out------------------------------------------
 
 $scope.logout = function() {
       myRef.unauth();
-       $rootScope.currentUserSignedIn =false;
-    console.log("user signed out");
-   $scope.loggedOut();
+      $rootScope.currentUserSignedIn =false;
+     console.log("user signed out");
+     $scope.loggedOut();
      $ionicPopup.alert({
             title: 'Ciao!',
             template: 'Du hast dich erfolgreich ausgeloggt'
@@ -355,6 +343,13 @@ $scope.loggedOut = function(){
   }
     
 };
+
+
+//------------------------------TestImages------------------------------------
+$scope.$on("$ionicView.enter",function(){
+   $ionicSlideBoxDelegate.update();
+});
+  $scope.testImages = ['https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=AIzaSyAPiSQRMf0-ZVJzrLwU9o56pm3Q_0fb6Hw','https://lh4.ggpht.com/wKrDLLmmxjfRG2-E-k5L5BUuHWpCOe4lWRF7oVs1Gzdn5e5yvr8fj-ORTlBF43U47yI=w300']; 
 
 
 });
