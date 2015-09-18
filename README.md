@@ -2,6 +2,7 @@
 
 
 Todo:
+- Vote-X Bewertungssymbole ( X X X X X)
 - $templateCache
 - !!! Imagepreload (auch Vote-X Title img!) !!!
 - Android Statusbar Color
