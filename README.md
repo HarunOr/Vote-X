@@ -2,13 +2,16 @@
 
 
 Todo:
+- Votes nur für verifizierte Nutzer ? Kommentare auch für nicht-verifizierte
+- Profilseite
+- Ionic Material Design
 - Vote-X Bewertungssymbole ( X X X X X)
 - $templateCache
 - !!! Imagepreload (auch Vote-X Title img!) !!!
 - Android Statusbar Color
 - Read user data.. Firebase push parameters..Register
 - Kostenplan für alle features schätzen
-- places photo image gallery
+
 - codepen animationen implementieren
 - loading spinner 
 - Video über update
