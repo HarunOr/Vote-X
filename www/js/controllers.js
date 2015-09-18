@@ -359,7 +359,7 @@ $scope.$on("$ionicView.enter",function(){
 
  $ionicModal.fromTemplateUrl('templates/business.html', {
     scope: $scope,
-    animation: 'slide-in-up'
+   
   }).then(function(modal) {
     $scope.business = modal
   })  

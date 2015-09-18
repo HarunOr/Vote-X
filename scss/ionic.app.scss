@@ -20,6 +20,13 @@ $dark:                            #444 !default;
 $stable: #DFDFDF!default;
 $assertive: #D43D33!default;
 
+
+.voteBg {
+  
+  background-color: #ECEDEF;
+}
+
+
 // Facebook Button on Login page
 .button.button-facebook {
     border-color: #263F7B;
@@ -62,6 +69,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   
 }
 
+
+
+// Subheader
+
+.bar.bar-subheader {
+  
+  width: 100%;
+  background-color: #B3B2B2;
+  border-bottom-color: #5C5858;
+}
 
 
 // Google Map

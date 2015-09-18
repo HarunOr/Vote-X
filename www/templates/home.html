@@ -3,29 +3,78 @@
           <img src="img/votex_title.png">
               </ion-nav-title>  
 
-
+<ion-header-bar class="bar bar-subheader">
+    <div class="row">
+      <div class="col">
+              <a class="tab-item" ui-sref="list">
+                <p>Overall</p>
+              </a>
+              </div>
+              <div class="col">
+              <a class="tab-item" ui-sref="secondlist">
+                <p>Mine</p>
+              </a>
+              </div>
+           </div>
+  </ion-header-bar>
 <!-- Content -->
 
-  <ion-content>
+  <ion-content class="voteBg">
 
-  <p>Home!</p>
+ 
 
+<div class="list card" ng-click="openBusiness()">
 
+  <div class="item item-avatar">
+    <img ng-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg">
+    <h2>Marc's Restaurant</h2>
+    <p>Restaurant</p>
+  </div>
+
+  <div class="item item-body">
+    <img class="full-image" ng-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg">
+    <p>
+      Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
+      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
+      Der Footer besteht aus Buttons mit Icons.
+    </p>
+    <p>
+      <a href="#" class="subdued">1094 Likes</a>
+      <a href="#" class="subdued">185 Comments</a>
+    </p>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" href="#">
+      <i class="icon ion-thumbsup"></i>
+      Like
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-chatbox"></i>
+      Comment
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-share"></i>
+      Share
+    </a>
+  </div>
+
+</div>
 <!-- ------------------------------------ -->
 <div class="list card" ng-click="openBusiness()">
 
   <div class="item item-avatar">
-    <img src="img/votex_title.png">
-    <h2>Marty McFly</h2>
-    <p>November 05, 1955</p>
+    <img ng-src="https://www.total-e-quality.de/media/cache/03/88/03887d7f0d71651d92959fa251231b9b.jpg">
+    <h2>Harun's Bar</h2>
+    <p>Bar</p>
   </div>
 
   <div class="item item-body">
-    <img class="full-image" src="delorean.jpg">
+    <img class="full-image" ng-src="https://www.total-e-quality.de/media/cache/03/88/03887d7f0d71651d92959fa251231b9b.jpg">
     <p>
-      This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-      the content is from a card-body consisting of an image and paragraph text. The footer
-      consists of tabs, icons aligned left, within the card-footer.
+      Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
+      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
+      Der Footer besteht aus Buttons mit Icons.
     </p>
     <p>
       <a href="#" class="subdued">1 Like</a>
@@ -49,6 +98,10 @@
   </div>
 
 </div>
+
+<!-- Beispiel Karte --->
+
+
 
 <!-- --------------------------------------------------------------- -->
 

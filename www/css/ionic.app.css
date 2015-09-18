@@ -15,6 +15,9 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+.voteBg {
+  background-color: #ECEDEF; }
+
 .button.button-facebook {
   border-color: #263F7B;
   background-color: #5370A9;
@@ -7723,3 +7726,8 @@ a.button {
   display: block !important;
   max-width: 100% !important;
   height: 360px !important; }
+
+.bar.bar-subheader {
+  width: 100%;
+  background-color: #B3B2B2;
+  border-bottom-color: #5C5858; }

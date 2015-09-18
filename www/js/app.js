@@ -36,7 +36,7 @@ votex.config(function ($stateProvider, $urlRouterProvider) {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controllers: 'AppCtrl'
+
   })
 
   .state('app.home', {
