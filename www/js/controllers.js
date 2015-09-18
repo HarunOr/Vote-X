@@ -1,7 +1,10 @@
 var votex = angular.module('starter.controllers', ['firebase'])
 
 .controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading,
- $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate) {
+ $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate, $cordovaGeolocation) {
+
+
+    // GeoLocation
 
     // Firebase reference
     var myRef = new Firebase("https://vote-x.firebaseio.com");
@@ -349,8 +352,27 @@ $scope.loggedOut = function(){
 $scope.$on("$ionicView.enter",function(){
    $ionicSlideBoxDelegate.update();
 });
-  $scope.testImages = ['https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=AIzaSyAPiSQRMf0-ZVJzrLwU9o56pm3Q_0fb6Hw','https://lh4.ggpht.com/wKrDLLmmxjfRG2-E-k5L5BUuHWpCOe4lWRF7oVs1Gzdn5e5yvr8fj-ORTlBF43U47yI=w300']; 
+  $scope.testImages = ['https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=AIzaSyAPiSQRMf0-ZVJzrLwU9o56pm3Q_0fb6Hw','https://lh4.ggpht.com/wKrDLLmmxjfRG2-E-k5L5BUuHWpCOe4lWRF7oVs1Gzdn5e5yvr8fj-ORTlBF43U47yI=w300','https://upload.wikimedia.org/wikipedia/commons/e/e0/Long_March_2D_launching_VRSS-1.jpg']; 
 
+
+//------------------------------Business Modal---------------------------------
+
+ $ionicModal.fromTemplateUrl('templates/business.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.business = modal
+  })  
+
+  $scope.openBusiness = function() {
+    $scope.business.show()
+  }
+
+  $scope.closeBusiness = function() {
+    $scope.business.hide();
+  };
+
+  
 
 });
 //-----------------------------------------END APPCTRL-----------------------------------------

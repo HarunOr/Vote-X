@@ -7718,3 +7718,8 @@ a.button {
 #form {
   background-color: white;
   margin-top: 25px; }
+
+.businessBox {
+  display: block !important;
+  max-width: 100% !important;
+  height: 360px !important; }

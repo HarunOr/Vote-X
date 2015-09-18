@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','firebase','starter.controllers', 'starter.profileCtrl', 'ngCordova','ngMessages'])
 
-votex.run(function($ionicPlatform, $cordovaSplashscreen) {
+votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
   $ionicPlatform.ready(function() {
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -15,11 +15,15 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen) {
       cordova.plugins.Keyboard.disableScroll(true);
       
     }
-    if(window.StatusBar) {
-      StatusBar.backgroundColorByHexString("#393940")
+    if(window.Statusbar) {
+      if ($ionicPlatform.isAndroid()) {
+      StatusBar.overlaysWebView(false);
+      Statusbar.backgroundColorByHexString("#A93028") 
+      }
+      else {
+        StatusBar.styleLightContent();
+              }
     }
-
-    
   });
 })
 
@@ -101,26 +105,13 @@ votex.config(function ($stateProvider, $urlRouterProvider) {
     }
   })
   
-    .state('app.restaurant1', {
-    url: "/restaurant1",
-    controller: "AppCtrl",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/restaurant1.html"
-      }
-    }
+  .state('app.business', {
+    url: "/business",
+    abstract: true,
+    templateUrl: "templates/business.html",
+    controller: 'AppCtrl'
   })
   
-      .state('app.restaurant2', {
-    url: "/restaurant2",
-    controller: "AppCtrl",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/restaurant2.html"
-      }
-    }
-  })
-
 
   $urlRouterProvider.otherwise('/app/home');
   

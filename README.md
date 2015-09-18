@@ -2,7 +2,9 @@
 
 
 Todo:
-
+- $templateCache
+- !!! Imagepreload (auch Vote-X Title img!) !!!
+- Android Statusbar Color
 - Read user data.. Firebase push parameters..Register
 - Kostenplan für alle features schätzen
 - places photo image gallery
