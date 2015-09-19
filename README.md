@@ -1,8 +1,12 @@
 # Vote-X
 
 
-Todo:
-- Votes nur für verifizierte Nutzer ? Kommentare auch für nicht-verifizierte
+Todo
+- Kommentare empfehlen können - Filter-Option
+- Kommentare wie angular-reddit-comments ? 
+
+- Votes nur für verifizierte Nutzer ? Kommentare auch für nicht-verifizierte, eingeloggte Benutzer
+
 - Profilseite
 - Ionic Material Design
 - Vote-X Bewertungssymbole ( X X X X X)

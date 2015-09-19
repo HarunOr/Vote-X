@@ -33,10 +33,13 @@ $assertive: #D43D33!default;
     background-color: #5370A9;
     color: #fff; }
 // The path for our ionicons font files, relative to the built CSS in www/css
-$ionicons-font-path: "../lib/ionic/fonts" !default;
+$ionicons-font-path: "../lib/ionic/release/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+
+//-------------------------
 
 .modal1.scroll-content {
     background: url('../img/modal1_opt-compressor.jpg') no-repeat fixed;
@@ -66,10 +69,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   display:block !important;
   max-width:100% !important;
   height:360px !important;
+  box-shadow: none;
   
 }
 
-
+.card{
+  background-image: linear-gradient(0deg, #B2B2B2, #B2B2B2 50%, rgba(0, 0, 0, 0) 50%);
+  box-shadow: none;
+  
+}
 
 // Subheader
 
