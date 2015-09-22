@@ -19,6 +19,7 @@ $dark:                            #444 !default;
 
 $stable: #DFDFDF!default;
 $assertive: #D43D33!default;
+$testColor: #FFFAFA!default;
 
 
 .voteBg {
@@ -42,17 +43,15 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 //-------------------------
 
 .modal1.scroll-content {
-    background: url('../img/modal1_opt-compressor.jpg') no-repeat fixed;
-    background-size: cover;
+    background: url('../img/modal1_opt-compressor.jpg') no-repeat;
+   webkit-background-size: auto;;
 }
 
 
 
 .registration.scroll-content {
   background: url('../img/background_opt-compressor.jpg') no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
+  webkit-background-size: 280% auto;
 }
 
 #form {
@@ -73,7 +72,10 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
   
 }
 
+ 
+
 .card{
+
   background-image: linear-gradient(0deg, #B2B2B2, #B2B2B2 50%, rgba(0, 0, 0, 0) 50%);
   box-shadow: none;
   
@@ -88,6 +90,59 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
   border-bottom-color: #5C5858;
 }
 
+
+// Animation (performance)
+
+
+.animated.modal.slideInRight.ng-leave {
+    -webkit-animation-name:slideOutRight;
+    animation-name:slideOutRight;
+}
+
+
+// Vote-X font & Icon
+
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?uza62r');
+	src:url('fonts/icomoon.eot?#iefixuza62r') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?uza62r') format('truetype'),
+		url('fonts/icomoon.woff?uza62r') format('woff'),
+		url('fonts/icomoon.svg?uza62r#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-votex_icon:before {
+	content: "\e600";
+}
+
+
+// ------------------ Vote-X Rating------------------
+
+.ionic_ratings .icon {
+  font-size:50px;
+}
+
+.ionic_ratings .read_only {
+  pointer-events:none;
+}
+
+// ---------------------- Vote-X Rating End -------------------
 
 // Google Map
 

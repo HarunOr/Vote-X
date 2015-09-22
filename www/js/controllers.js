@@ -1,7 +1,20 @@
 var votex = angular.module('starter.controllers', ['firebase'])
 
 .controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading,
- $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate, $cordovaGeolocation) {
+ $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate, $cordovaGeolocation, $ImageCacheFactory) {
+
+    //Preload ALL Images
+    $ImageCacheFactory.Cache([
+        
+        'img/votex_title.png',
+        'http://www.ncr.com/wp-content/uploads/iStock_000016978975SmallMedium.jpg',
+        'http://www.komu.com/images/news/restaurant.jpg',
+        'http://www.blogrollcenter.com/news/gallery/searching-for-authentic-italian-restaurants/searching_for_authentic_italian_restaurants.jpg'
+    ]); 
+
+     //Vote-X Logo Titel Img
+     
+     $scope.votexTitle = 'img/votex_title.png';
 
 
     // GeoLocation
@@ -352,28 +365,166 @@ $scope.loggedOut = function(){
 $scope.$on("$ionicView.enter",function(){
    $ionicSlideBoxDelegate.update();
 });
-  $scope.testImages = ['https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=AIzaSyAPiSQRMf0-ZVJzrLwU9o56pm3Q_0fb6Hw','https://lh4.ggpht.com/wKrDLLmmxjfRG2-E-k5L5BUuHWpCOe4lWRF7oVs1Gzdn5e5yvr8fj-ORTlBF43U47yI=w300','https://upload.wikimedia.org/wikipedia/commons/e/e0/Long_March_2D_launching_VRSS-1.jpg']; 
+  $scope.testImages = [
+  'http://www.ncr.com/wp-content/uploads/iStock_000016978975SmallMedium.jpg',
+  'http://www.komu.com/images/news/restaurant.jpg',
+  'http://www.blogrollcenter.com/news/gallery/searching-for-authentic-italian-restaurants/searching_for_authentic_italian_restaurants.jpg'
+  
+  ]; 
+/*
+  $scope.testImages2 = [
+  'http://blogs.independent.co.uk/wp-content/uploads/2013/02/pub.jpg',
+  'http://www.saexplorers.org/sites/default/files/images/clubhouse/event/cusco/2013/pub1.jpg',
+  'http://i.telegraph.co.uk/multimedia/archive/02328/harp_2328698b.jpg'
+  
+  ]; 
+*/
 
 
 //------------------------------Business Modal---------------------------------
 
- $ionicModal.fromTemplateUrl('templates/business.html', {
-    scope: $scope,
-   
-  }).then(function(modal) {
-    $scope.business = modal
-  })  
+// Business Name
 
-  $scope.openBusiness = function() {
-    $scope.business.show()
-  }
+$scope.businessName = "Marc's Restaurant";
 
-  $scope.closeBusiness = function() {
-    $scope.business.hide();
+//
+
+ $scope.openBusiness = function(animation) {
+    console.log(animation);
+    $ionicModal.fromTemplateUrl('templates/business.html', {
+      scope: $scope,
+      animation: 'animated ' + animation,
+      hideDelay:920
+    }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+      $scope.hideModal = function(){
+        $scope.modal.hide();
+        // Note that $scope.$on('destroy') isn't called in new ionic builds where cache is used
+        // It is important to remove the modal to avoid memory leaks
+        $scope.modal.remove();
+      }
+    });
   };
+  
+  //Business Name 2
+  $scope.businessName2 = "Harun's Bar";
 
+
+
+// ---------------------- Vote-X RATING ----------------------
+
+  function ionicRatings () {
+    return {
+      restrict: 'AE',
+      replace: true,
+      template: '<div class="text-center ionic_ratings">' +
+        '<span class="icon {{iconOff}} ionic_rating_icon_off" ng-style="iconOffColor" ng-click="ratingsClicked(1)" ng-show="rating < 1" ng-class="{\'read_only\':(readOnly)}"></span>' +
+        '<span class="icon {{iconOn}} ionic_rating_icon_on" ng-style="iconOnColor" ng-click="ratingsUnClicked(1)" ng-show="rating > 0" ng-class="{\'read_only\':(readOnly)}"></span>' +
+        '<span class="icon {{iconOff}} ionic_rating_icon_off" ng-style="iconOffColor" ng-click="ratingsClicked(2)" ng-show="rating < 2" ng-class="{\'read_only\':(readOnly)}"></span>' +
+        '<span class="icon {{iconOn}} ionic_rating_icon_on" ng-style="iconOnColor" ng-click="ratingsUnClicked(2)" ng-show="rating > 1" ng-class="{\'read_only\':(readOnly)}"></span>' +
+        '<span class="icon {{iconOff}} ionic_rating_icon_off" ng-style="iconOffColor" ng-click="ratingsClicked(3)" ng-show="rating < 3" ng-class="{\'read_only\':(readOnly)}"></span>' +
+        '<span class="icon {{iconOn}} ionic_rating_icon_on" ng-style="iconOnColor" ng-click="ratingsUnClicked(3)" ng-show="rating > 2" ng-class="{\'read_only\':(readOnly)}"></span>' +
+        '<span class="icon {{iconOff}} ionic_rating_icon_off" ng-style="iconOffColor" ng-click="ratingsClicked(4)" ng-show="rating < 4" ng-class="{\'read_only\':(readOnly)}"></span>' +
+        '<span class="icon {{iconOn}} ionic_rating_icon_on" ng-style="iconOnColor" ng-click="ratingsUnClicked(4)" ng-show="rating > 3" ng-class="{\'read_only\':(readOnly)}"></span>' +
+        '<span class="icon {{iconOff}} ionic_rating_icon_off" ng-style="iconOffColor" ng-click="ratingsClicked(5)" ng-show="rating < 5" ng-class="{\'read_only\':(readOnly)}"></span>' +
+        '<span class="icon {{iconOn}} ionic_rating_icon_on" ng-style="iconOnColor" ng-click="ratingsUnClicked(5)" ng-show="rating > 4" ng-class="{\'read_only\':(readOnly)}"></span>' +
+        '</div>',
+      scope: {
+        ratingsObj: '=ratingsobj'
+      },
+      link: function(scope, element, attrs) {
+
+        //Setting the default values, if they are not passed
+        scope.iconOn = scope.ratingsObj.iconOn || 'ion-ios-star';
+        scope.iconOff = scope.ratingsObj.iconOff || 'ion-ios-star-outline';
+        scope.iconOnColor = scope.ratingsObj.iconOnColor || 'rgb(200, 200, 100)';
+        scope.iconOffColor = scope.ratingsObj.iconOffColor || 'rgb(200, 100, 100)';
+        scope.rating = scope.ratingsObj.rating || 1;
+        scope.minRating = scope.ratingsObj.minRating || 1;
+        scope.readOnly = scope.ratingsObj.readOnly || false;
+
+        //Setting the color for the icon, when it is active
+        scope.iconOnColor = {
+          color: scope.iconOnColor
+        };
+
+        //Setting the color for the icon, when it is not active
+        scope.iconOffColor = {
+          color: scope.iconOffColor
+        };
+
+        //Setting the rating
+        scope.rating = (scope.rating > scope.minRating) ? scope.rating : scope.minRating;
+
+        //Setting the previously selected rating
+        scope.prevRating = 0;
+
+        //Called when he user clicks on the rating
+        scope.ratingsClicked = function(val) {
+          if (scope.minRating !== 0 && val < scope.minRating) {
+            scope.rating = scope.minRating;
+          } else {
+            scope.rating = val;
+          }
+          scope.prevRating = val;
+          scope.ratingsObj.callback(scope.rating);
+        };
+
+        //Called when he user un clicks on the rating
+        scope.ratingsUnClicked = function(val) {
+          if (scope.minRating !== 0 && val < scope.minRating) {
+            scope.rating = scope.minRating;
+          } else {
+            scope.rating = val;
+          }
+          if (scope.prevRating == val) {
+            if (scope.minRating !== 0) {
+              scope.rating = scope.minRating;
+            } else {
+              scope.rating = 0;
+            }
+          }
+          scope.prevRating = val;
+          scope.ratingsObj.callback(scope.rating);
+        };
+      }
+    }
+  }
   
 
+
+  $scope.myTitle = 'IONIC RATINGS DEMO';
+
+  $scope.ratingsObject = {
+    iconOn: 'ion-ios-star',
+    iconOff: 'ion-ios-star-outline',
+    iconOnColor: 'rgb(200, 200, 100)',
+    iconOffColor: 'rgb(200, 100, 100)',
+    rating: 3,
+    minRating: 1,
+    readOnly:false,
+    callback: function(rating) {
+      $scope.ratingsCallback(rating);
+    }
+  };
+
+  $scope.ratingsCallback = function(rating) {
+    console.log('Selected rating is : ', rating);
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------- End RATING ----------------------
 });
 //-----------------------------------------END APPCTRL-----------------------------------------
 

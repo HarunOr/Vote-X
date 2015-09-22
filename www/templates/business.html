@@ -1,44 +1,69 @@
 <ion-modal-view>
   <ion-header-bar class="bar-stable" align-title="center" >
-    <h1 class="title">Business Template</h1>
+    <h1 class="title">{{businessName}}</h1>
     
     <div class="buttons">
-      <button class="button button-dark" ng-click="closeBusiness()">Schließen</button>
+      <button class="button button-dark" ng-click="hideModal()">Schließen</button>
     </div>
   </ion-header-bar>
   <ion-content class="businessModal">
 
-   <ion-slide-box class="businessBox">
+   <ion-slide-box>
     <ion-slide ng-repeat="image in testImages" >       
-        <img style="width: 100%" src="{{image}}" >
+        <img style="width: 100%" ng-src="{{image}}" >
     </ion-slide>
-
 </ion-slide-box>
 
+<div>
+  <ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>
+  </div>
+  
+  
+<div class="businessBox">
    <p>
-      Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
-      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
-      Der Footer besteht aus Buttons mit Icons.
-    </p>   <p>
-      Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
-      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
-      Der Footer besteht aus Buttons mit Icons.
-    </p>   <p>
-      Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
-      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
-      Der Footer besteht aus Buttons mit Icons.
-    </p>   <p>
-      Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
-      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
-      Der Footer besteht aus Buttons mit Icons.
-    </p>   <p>
-      Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
-      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
-      Der Footer besteht aus Buttons mit Icons.
+   <h2> Unser Restaurant ist unser ganzer Stolz!</h2>
+
+
+Nach einem Tag am Strand, einer Fahrradtour in unserer schönen Umgebung oder nach einem Einkaufsbummel, können Sie sich darauf freuen,
+ sich mit einem guten Wein und erstklassigen Speisen verwöhnen zu lassen.</p>
+ <p>
+Mit viel Phantasie bereiten unsere Chefs immer neue und ausgefallene Speisen zu, die Ihnen nie langweilig werden.
+
+Die frischen, hiesigen Zutaten werden dabei mit grosser Sorgfalt ausgewählt.</p>
+ <p>
+Wir sind sicher, dass Sie sich in unserem eleganten Speisesaal wohlfühlen werden.
+
+Unser freundliches und aufmerksames Personal wird Sie hier mit einem erstklassigen Service bedienen.
+</p>
+
+Zu jeder Mahlzeit bieten wir eine reiche Auswahl an Gemüse und Salaten, die von unserem berühmten Olivenöl gekrönt werden.
+
+Sie haben immer die Wahl zwischen drei ersten, drei zweiten Gängen und verschiedenen Beilagen.
+
+Als Dessert stehen Ihnen Früchte der Saison, Obstsalat, Eis oder ein hausgemachter Nachtisch zur Auswahl.
+
+ 
+
+Guten Appetit!
     </p>
 
+</div>
 
 
 
         </ion-content>
+        <div class="tabs tabs-icon-top">
+  <a class="tab-item">
+    <i class="icon icon-votex_icon"></i>
+    Vote
+  </a>
+  <a class="tab-item">
+    <i class="icon ion-compose"></i>
+    Kommentieren
+  </a>
+  <a class="tab-item">
+    <i class="icon ion-share"></i>
+    Teilen
+  </a>
+</div>
 </ion-modal-view>

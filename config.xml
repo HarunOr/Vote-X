@@ -21,10 +21,12 @@
     <preference name="SplashScreenDelay" value="3000" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <allow-intent href="*" />
     <allow-intent href="*.firebaseio.com" />
     <allow-intent href="auth.firebase.com" />
     <access origin="*.firebaseio.com" />
     <access origin="auth.firebase.com" />
+    <access origin="*" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>

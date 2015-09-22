@@ -2,6 +2,8 @@
 
 
 Todo
+
+- $ionScrollDelegate in config geändert. -> collection-repeat für performance boost (http://www.thomasmaximini.com/2015/01/12/improving-scroll-performance-for-lists-in-ionic-framework.html)
 - Kommentare empfehlen können - Filter-Option
 - Kommentare wie angular-reddit-comments ? 
 
