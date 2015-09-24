@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var votex = angular.module('starter', ['ionic','firebase','starter.controllers', 'starter.profileCtrl', 'ngCordova','ngMessages','ionic.ion.imageCacheFactory'])
+var votex = angular.module('starter', ['ionic','firebase','starter.controllers', 'starter.profileCtrl','ui.bootstrap', 'ngCordova','ngMessages','ionic.ion.imageCacheFactory'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
   $ionicPlatform.ready(function() {

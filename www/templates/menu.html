@@ -19,64 +19,77 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Navigation</h1>
+      <h1 class="title">Menü</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list >
         
-          <ion-item nav-clear menu-close href="#/app/profile" >
-           <div class="item-avatar-left"></div>
-          </ion-item>   
-               
+    
           <ion-item nav-clear menu-close ng-click="openModal(1)" ng-hide="currentUserSignedIn" >
           <i class="icon ion-log-in" style="color: #D43D33"></i>
              Login
           </ion-item>
+          
+          <ion-item nav-clear menu-close href="#/app/profile" ng-show="currentUserSignedIn">
+          <div class="item-avatar-left"></div>
+          Pro 
+          </ion-item>     
 
-          <ion-item nav-clear menu-close ng-src="#/app/profile" ng-show="currentUserSignedIn">
+          <ion-item nav-clear menu-close href="#/app/profile" ng-show="currentUserSignedIn">
           <i class="icon ion-android-person" style="color: #D43D33"></i>
             Profil
           </ion-item>
+          
           <ion-item nav-clear menu-close href="#/app/home">
           <i class="icon ion-ios-home-outline" style="color: #D43D33"></i>
             Startseite
           </ion-item>
+          
           <ion-item nav-clear menu-close href="#/app/search">
           <i class="icon ion-android-search" style="color: #D43D33"></i>
             Suche
           </ion-item>
+          
           <ion-item nav-clear menu-close href="#/app/map">
           <i class="icon ion-map" style="color: #D43D33"></i>
             Karte
           </ion-item>
-          <ion-item nav-clear menu-close href="#/app/last_visited">
+          
+          <ion-item nav-clear menu-close href="#/app/last_visited" ng-show="currentUserSignedIn">
           <i class="icon ion-ios-book-outline" style="color: #D43D33"></i>
           Zuletzt besucht
           </ion-item>
+          
           <ion-item nav-clear menu-close href="#/app/trends">
           <i class="icon ion-ios-flame" style="color: #D43D33"></i>
            Trends
           </ion-item>
+          
           <ion-item nav-clear menu-close href="#/app/offers">
           <i class="icon ion-flag" style="color: #D43D33"></i>
             Angebote/Rabatte
           </ion-item>
-          <ion-item nav-clear menu-close href="#/app/settings">
+          
+          <ion-item nav-clear menu-close href="#/app/settings" ng-show="currentUserSignedIn">
           <i class="icon ion-ios-gear" style="color: #D43D33"></i>
            Einstellungen
           </ion-item>
-          <ion-item nav-clear menu-close href="#/app/bookmark">
+          
+          <ion-item nav-clear menu-close href="#/app/bookmark" ng-show="currentUserSignedIn">
           <i class="icon ion-bookmark" style="color: #D43D33"></i>
             Lesezeichen
           </ion-item>
-          <ion-item nav-clear menu-close href="#/app/messages">
+          
+          <ion-item nav-clear menu-close href="#/app/messages" ng-show="currentUserSignedIn">
           <i class="icon ion-android-mail" style="color: #D43D33"></i>
             Nachrichten
           </ion-item>
+          
           <ion-item nav-clear menu-close href="#/app/feedback">
           <i class="icon ion-help-circled" style="color: #D43D33"></i>
            Feedback/Support
           </ion-item>
+          
         </ion-list>
     </ion-content>
   </ion-side-menu>
