@@ -1,0 +1,69 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-assertive" align-title="center" >
+    <h1 class="title">{{businessName2}}</h1>
+    <div class="buttons">
+      <button class="button button-light button-clear" ng-click="hideModal()">Schließen</button>
+    </div>
+  </ion-header-bar>
+
+
+  <ion-content class="businessModal" has-header>
+    
+    
+    
+
+   <ion-slide-box class="slider">
+    <ion-slide ng-repeat="image in testImages2" >       
+        <img style="width: 100%" ng-src="{{image}}" >
+    </ion-slide>
+</ion-slide-box>
+
+<div>
+  <ionic-ratings ratingsobj='ratingsObject'></ionic-ratings>
+  </div>
+  
+  
+<div class="businessBox">
+  <form id="ratingsForm">
+	<div class="stars">
+		<input type="radio" name="star" class="star-1" id="star-1"/>
+		<label class="star-1" for="star-1">1</label>
+		<input type="radio" name="star" class="star-2" id="star-2" />
+		<label class="star-2" for="star-2">2</label>
+		<input type="radio" name="star" class="star-3" id="star-3" />
+		<label class="star-3" for="star-3">3</label>
+		<input type="radio" name="star" class="star-4" id="star-4" />
+		<label class="star-4" for="star-4">4</label>
+		<input type="radio" name="star" class="star-5" id="star-5" />
+		<label class="star-5" for="star-5">5</label>
+		<span></span>
+	</div>
+  
+</form>
+   <p>
+   <h4 style="text-align: center;"> Bock auf Party?</h4>
+<p></p>
+
+
+    </p>
+
+</div>
+
+
+
+        </ion-content>
+        <div class="tabs tabs-icon-top">
+  <a class="tab-item">
+    <i class="icon icon-votex_icon" style="color: #D43D33"></i>
+    Vote
+  </a>
+  <a class="tab-item">
+    <i class="icon ion-compose" style="color: #D43D33"></i>
+    Kommentieren
+  </a>
+  <a class="tab-item">
+    <i class="icon ion-share" style="color: #D43D33"></i>
+    Teilen
+  </a>
+</div>
+</ion-modal-view>

@@ -46,6 +46,7 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
 
   .state('app.home', {
     url: '/home',
+    controller: 'AppCtrl',
     views: {
       'menuContent': {
         templateUrl: 'templates/home.html',
@@ -117,6 +118,13 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     controller: 'AppCtrl'
   })
   
+  
+    .state('app.business2', {
+    url: "/business2",
+    abstract: true,
+    templateUrl: "templates/business2.html",
+    controller: 'AppCtrl'
+  })
 
   $urlRouterProvider.otherwise('/app/home');
   

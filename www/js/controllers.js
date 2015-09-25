@@ -1,4 +1,4 @@
-var votex = angular.module('starter.controllers', ['firebase'])
+var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap'])
 
 .controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading,
  $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate, $cordovaGeolocation, $ImageCacheFactory) {
@@ -371,14 +371,14 @@ $scope.$on("$ionicView.enter",function(){
   'http://www.blogrollcenter.com/news/gallery/searching-for-authentic-italian-restaurants/searching_for_authentic_italian_restaurants.jpg'
   
   ]; 
-/*
+
   $scope.testImages2 = [
   'http://blogs.independent.co.uk/wp-content/uploads/2013/02/pub.jpg',
   'http://www.saexplorers.org/sites/default/files/images/clubhouse/event/cusco/2013/pub1.jpg',
   'http://i.telegraph.co.uk/multimedia/archive/02328/harp_2328698b.jpg'
   
   ]; 
-*/
+
 
 
 //------------------------------Business Modal---------------------------------
@@ -386,6 +386,7 @@ $scope.$on("$ionicView.enter",function(){
 // Business Name
 
 $scope.businessName = "Marc's Restaurant";
+$scope.businessName2 = "Harun's Bar";
 
 //
 
@@ -408,7 +409,23 @@ $scope.businessName = "Marc's Restaurant";
   };
   
   //Business Name 2
-  $scope.businessName2 = "Harun's Bar";
+ $scope.openBusiness2 = function(animation) {
+    console.log(animation);
+    $ionicModal.fromTemplateUrl('templates/business2.html', {
+      scope: $scope,
+      animation: 'animated ' + animation,
+      hideDelay:920
+    }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+      $scope.hideModal = function(){
+        $scope.modal.hide();
+        // Note that $scope.$on('destroy') isn't called in new ionic builds where cache is used
+        // It is important to remove the modal to avoid memory leaks
+        $scope.modal.remove();
+      }
+    });
+  };
 
 
 
@@ -525,6 +542,33 @@ $scope.businessName = "Marc's Restaurant";
 
 
 // ---------------------- End RATING ----------------------
+
+
+
+
+// ----------------------------------------- Progressbar -----------------------------------------
+    $scope.devProgress = 70;
+    
+    
+
+// Collapse
+     $scope.isCollapsed = false;
+// Dynamic accordion bootstrap
+  $scope.groups = [
+    {
+      title: 'Erweitere Votes',
+      content: 'Dynamic Group Body - 1'
+    },
+  ];
+
+  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+  $scope.addItem = function() {
+    var newItemNo = $scope.items.length + 1;
+    $scope.items.push('Item ' + newItemNo);
+  };
+
+// ----------------------------------------------------------------------------------
 });
 //-----------------------------------------END APPCTRL-----------------------------------------
 

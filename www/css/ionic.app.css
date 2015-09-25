@@ -7772,6 +7772,18 @@ a.button {
 .icon-votex_icon:before {
   content: "\e600"; }
 
+.voteOn {
+  height: 35px;
+  width: 40px;
+  background-size: contain;
+  background-image: url('../img/voteOn.png'); }
+
+.voteOff {
+  height: 35px;
+  width: 40px;
+  background-size: contain;
+  background-image: url('../img/voteOff.png'); }
+
 form .stars {
   background: url("stars.png") repeat-x 0 0;
   width: 150px;
