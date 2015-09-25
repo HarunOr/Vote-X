@@ -7784,6 +7784,18 @@ a.button {
   background-size: contain;
   background-image: url('../img/voteOff.png'); }
 
+.voteTitleOn {
+  height: 26px;
+  width: 30px;
+  background-size: contain;
+  background-image: url('../img/voteOn.png'); }
+
+.voteTitleOff {
+  height: 26px;
+  width: 30px;
+  background-size: contain;
+  background-image: url('../img/voteOff.png'); }
+
 form .stars {
   background: url("stars.png") repeat-x 0 0;
   width: 150px;

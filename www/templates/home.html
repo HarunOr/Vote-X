@@ -25,7 +25,10 @@
  
  <!-- Progressbar Development -->
 
-<div class="col-sm-4"><progressbar class="progress-striped active" max="100" value="devProgress" type="danger"><i>{{devProgress}} / 100</i></progressbar>
+<div class="col-sm-4">
+  <h3 align="center"> Development Status</h3>
+  <progressbar class="progress-striped active" max="100" value="devProgress" type="danger"><i>{{devProgress}} / 100</i></progressbar>
+  </div>
     
 <!-- -------------------------------- -->
  
@@ -37,6 +40,7 @@
     <img ng-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg">
     <h2>Marc's Restaurant</h2>
     <p>Restaurant</p>
+    <p>  <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']" ng-model="rate"></rating></p>
   </div>
 
   <div class="item item-body">

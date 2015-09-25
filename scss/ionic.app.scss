@@ -175,6 +175,19 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
     }
 
 
+  .voteTitleOn { 
+      height: 26px;
+      width: 30px;
+      background-size: contain;
+      background-image: url('../img/voteOn.png');
+    }
+    .voteTitleOff {
+      height: 26px;
+      width: 30px;
+      background-size: contain;
+      background-image: url('../img/voteOff.png');
+    }
+
 
 
 

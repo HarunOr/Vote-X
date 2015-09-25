@@ -1,6 +1,9 @@
 # Vote-X
 
+Kosten
 
+- Firebase Whitelist
+____________
 Todo
 
 - $ionScrollDelegate in config geändert. -> collection-repeat für performance boost (http://www.thomasmaximini.com/2015/01/12/improving-scroll-performance-for-lists-in-ionic-framework.html)
