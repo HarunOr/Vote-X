@@ -22,6 +22,15 @@ $dark:                            #444 !default;
 .voteBg {
   background-color: #ECEDEF; }
 
+.no-padding {
+  padding: 0px !important; }
+
+.item-avatar-left {
+  border: none;
+  border-bottom-color: transparent !important;
+  border-top-color: transparent !important;
+  background-color: red; }
+
 .button.button-facebook {
   border-color: #263F7B;
   background-color: #5370A9;
@@ -7746,9 +7755,22 @@ a.button {
   background-color: #B3B2B2;
   border-bottom-color: #5C5858; }
 
-.animated.modal.slideInRight.ng-leave {
-  -webkit-animation-name: slideOutRight;
-  animation-name: slideOutRight; }
+.voteNumber {
+  font-style: italic;
+  font-size: 12px;
+  padding-left: 5%; }
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear; }
+
+.list .item.item-accordion.ng-hide {
+  line-height: 0px; }
+
+.list .item.item-accordion.ng-hide-add, .list .item.item-accordion.ng-hide-remove {
+  display: block !important; }
 
 @font-face {
   font-family: 'icomoon';
@@ -7795,73 +7817,3 @@ a.button {
   width: 30px;
   background-size: contain;
   background-image: url('../img/voteOff.png'); }
-
-form .stars {
-  background: url("stars.png") repeat-x 0 0;
-  width: 150px;
-  margin: 0 auto; }
-
-form .stars input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  filter: alpha(opacity=0); }
-
-form .stars input[type="radio"].star-5:checked ~ span {
-  width: 100%; }
-
-form .stars input[type="radio"].star-4:checked ~ span {
-  width: 80%; }
-
-form .stars input[type="radio"].star-3:checked ~ span {
-  width: 60%; }
-
-form .stars input[type="radio"].star-2:checked ~ span {
-  width: 40%; }
-
-form .stars input[type="radio"].star-1:checked ~ span {
-  width: 20%; }
-
-form .stars label {
-  display: block;
-  width: 30px;
-  height: 30px;
-  margin: 0 !important;
-  padding: 0 !important;
-  text-indent: 999em;
-  float: left;
-  position: relative;
-  z-index: 10;
-  background: transparent !important;
-  cursor: pointer; }
-
-form .stars label:hover ~ span {
-  background-position: 0 -30px; }
-
-form .stars label.star-5:hover ~ span {
-  width: 100% !important; }
-
-form .stars label.star-4:hover ~ span {
-  width: 80% !important; }
-
-form .stars label.star-3:hover ~ span {
-  width: 60% !important; }
-
-form .stars label.star-2:hover ~ span {
-  width: 40% !important; }
-
-form .stars label.star-1:hover ~ span {
-  width: 20% !important; }
-
-form .stars span {
-  display: block;
-  width: 0;
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 30px;
-  background: url("stars.png") repeat-x 0 -60px;
-  -webkit-transition: -webkit-width 0.5s;
-  -moz-transition: -moz-width 0.5s;
-  -ms-transition: -ms-width 0.5s;
-  -o-transition: -o-width 0.5s;
-  transition: width 0.5s; }

@@ -1,0 +1,42 @@
+<ion-view ng-controller="premiumCtrl">
+ <ion-nav-title bar-dark align-title="center">
+          <img ng-src ="{{votexTitle}}">
+              </ion-nav-title>
+              
+<div class="bar bar-subheader" style="background-color: #387ef5">
+  <h2 class="title" style="color:white">Premium Features</h2>
+</div>
+
+  <ion-content has-subheader>
+    
+    
+    <div class="row" style="padding-top:10%"> 
+      <div class="col">
+        <h4 align="left" style="padding-left: 3%">Analysiere deine Besucher</h4>
+   <canvas id="pie" class="chart chart-pie"
+  chart-data="data" chart-labels="labels">
+</canvas> 
+
+</div>
+</div>
+
+   <div class="row" > 
+      <div class="col" >
+          <h4 align="center">Erhalte genaue Statistiken</h4>
+<canvas id="line" class="chart chart-line" chart-data="dataMonths"
+  chart-labels="months" chart-legend="true" chart-series="series"
+  chart-click="onClick" style="padding-left:3%">
+</canvas> 
+   </div>
+   </div>
+   
+   <div class="row">
+     <div class="col">
+         <h4 align="right">Vergleiche deine Ergebnisse über Zeit!</h4>
+    <canvas id="bar" class="chart chart-bar"
+  chart-data="data2" chart-labels="labels2" style="padding-left:3%">
+</canvas>   
+     </div>
+    </div>
+  </ion-content>
+</ion-view>

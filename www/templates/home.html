@@ -3,19 +3,16 @@
           <img ng-src="{{votexTitle}}">
               </ion-nav-title>  
 
-<ion-header-bar class="bar bar-subheader item-input-inset" style="background-color: #FFF;outline-color:#D43D33; margin-left: 2.5%;">
-    <div class="row" style="background-color: #FFF;outline-color:#D43D33;">
-      <div class="col">
+   <div class="row" style="bottom-border-color: white">
+      <div class="col"  style="bottom-border-color: white">
+        <ion-header-bar class="bar bar-subheader item-input-inset" style="background-color: #FFF; margin-left: 2.5%;bottom-border-color: white">
+ 
                 <label class="item-input-wrapper">
     <i class="icon ion-ios-search placeholder-icon" style="color:#D43D33"></i>
     <input type="search" placeholder="Suche" >
   </label>
 
-              </div>
-              
-             
-   
-             
+              </div>                                     
            </div>
   </ion-header-bar>
 <!-- Content -->
@@ -24,23 +21,29 @@
 
  
  <!-- Progressbar Development -->
-
-<div class="col-sm-4">
-  <h3 align="center"> Development Status</h3>
+ <div>
+  <h3 align="center" style="padding-top:5%"> Development Status</h3>
   <progressbar class="progress-striped active" max="100" value="devProgress" type="danger"><i>{{devProgress}} / 100</i></progressbar>
-  </div>
-    
+ </div>
 <!-- -------------------------------- -->
  
  
 
 <div class="list card" >
 
-  <div class="item item-avatar" ng-click="openBusiness('slideInRight')">
+  <div class="item item-avatar" ng-click="openBusiness()">
     <img ng-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg">
     <h2>Marc's Restaurant</h2>
     <p>Restaurant</p>
-    <p>  <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']" ng-model="rate"></rating></p>
+    <div class="row">
+      <div class="col col-75">
+    <p>  <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']" ng-model="rate"></rating> </p>
+    </div>
+    <div class="col">
+      <div class="voteNumber">1084 Votes</div>
+      </div>
+  </div>
+  
   </div>
 
   <div class="item item-body">
@@ -50,10 +53,6 @@
       Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
       Der Footer besteht aus Buttons mit Icons.
     </p>
-    <p>
-      <a href="#" class="subdued">1084 Votes</a>
-      <a href="#" class="subdued">73 Kommentare</a>
-    </p>
   </div>
 
   <div class="item tabs tabs-secondary tabs-icon-left" ng-click="openBusiness('slideInRight')">
@@ -61,10 +60,10 @@
       <i class="icon icon-votex_icon" style="color: #D43D33"></i>
       Vote
     </a>
-    <a class="tab-item" href="#">
-      <i class="icon ion-chatbox" style="color: #D43D33"></i>
-      Kommentieren
-    </a>
+      <a class="tab-item">
+    <i class="icon ion-information-circled" style="color: #D43D33"></i>
+    Informationen
+  </a>
     <a class="tab-item" href="#">
       <i class="icon ion-share" style="color: #D43D33"></i>
       Teilen
@@ -95,22 +94,28 @@
 
 <div class="list card">
 
-  <div class="item item-avatar" ng-click="openBusiness2('slideInRight')">
+  <div class="item item-avatar" ng-click="openBusiness2()">
     <img ng-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg">
     <h2>Harun's Bar</h2>
     <p>Bar</p>
+    
+    <div class="row">
+      <div class="col col-75">
+     <p>  <rating ng-model="rateBiz" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" ></rating></p>
+     </div>
+     <div class="col">
+      <div class="voteNumber">604 Votes</div>
+     </div>
+    </div>
   </div>
 
   <div class="item item-body">
-    <img class="full-image" ng-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg" ng-click="openBusiness2('slideInRight')">
+    <img class="full-image" ng-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg" ng-click="openBusiness2()">
     <p>
       2 für 1 jeden Donnerstag.
       Saufeeeeeeeeen !!!    
     </p>
-    <p>
-      <a href="#" class="subdued">604 Votes</a>
-      <a href="#" class="subdued">185 Kommentare</a>
-    </p>
+
   </div>
 
   <div class="item tabs tabs-secondary tabs-icon-left">
@@ -118,10 +123,10 @@
         <i class="icon icon-votex_icon" style="color: #D43D33"></i>
       Vote
     </a>
-    <a class="tab-item" href="#">
-      <i class="icon ion-chatbox" style="color: #D43D33"></i>
-      Kommentieren
-    </a>
+      <a class="tab-item">
+    <i class="icon ion-information-circled" style="color: #D43D33"></i>
+    Informationen
+  </a>
     <a class="tab-item" href="#">
       <i class="icon ion-share" style="color: #D43D33"></i>
       Teilen

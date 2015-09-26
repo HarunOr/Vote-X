@@ -1,13 +1,12 @@
-<ion-modal-view>
-  <ion-header-bar class="bar-assertive" align-title="left" >
-    <h1 class="title">{{businessName}}</h1>
-    <div class="buttons">
-      <button class="button button-light button-clear" ng-click="hideModal()">Schließen</button>
-    </div>
-  </ion-header-bar>
-
-
-  <ion-content class="businessModal" has-header>
+<ion-view animation="no-animation">
+  <ion-nav-buttons> <button class="button ion-ios-arrow-back" ng-click="goHome()" >
+            Zurück
+           </button></ion-nav-buttons>
+ <ion-nav-title bar-dark align-title="center">
+          <img ng-src ="{{votexTitle}}">
+              </ion-nav-title>
+              
+  <ion-content class="padding" has-header has-tabs>
     
     
     
@@ -18,26 +17,35 @@
     </ion-slide>
 </ion-slide-box>
 <!-- Slidebox End -->
-       <rating ng-model="rate" max="5" state-on="'voteOn'" state-off="'voteOff'"></rating>
-  <accordion close-others="oneAtATime">
-     <accordion-group heading="Erweiterte Votes">
+<div class="row">
+  <div class="col" align="center">
+  <h2 >{{businessName}}</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-75" align="center">
+       <rating ng-model="rate" max="5" state-on="'voteOn'" state-off="'voteOff'" readonly = "true"></rating>
+       </div>
+       <div class="col">
+          <div style="font-style:italic">1084 Votes</div>
+       </div>
+     </div>
+     
+     
+
+  <accordion close-others="oneAtATime" >
+    
+    <accordion-group  ng-click="resize()" is-open="status.open">
+      <accordion-heading><i class="icon ion-plus-round" style="color: #D43D33;font-size: 22px" ng-class="{'ion-minus-round': status.open, 'ion-plus-round': !status.open}"></i> 
+      Erweiterte Votes</accordion-heading>
        <rating ng-model="rate" max="5" state-on="'voteOn'" state-off="'voteOff'"></rating>
     </accordion-group>
-   </accordion>
-
-<!-- ------ -->
-
-<button type="button" class="button button-clear" ng-click="isCollapsed = !isCollapsed"><i class="ion-ios-arrow-down"></i>
-  
-</button>
-
-<div collapse="isCollapsed">
-		<div class="well well-lg">
-      
-      <div class="businessBox">
-
-   <p>
-   <h4 style="text-align: center;"> Unser Restaurant ist unser ganzer Stolz!</h4>
+    
+          <accordion-group  ng-click="resize()" is-open="statusArticle.open">
+             <accordion-heading><i class="icon ion-minus-round" ng-class="{'ion-minus-round': statusArticle.open, 'ion-plus-round': !statusArticle.open}" style="color: #D43D33;font-size: 22px"></i> 
+      Beschreibung</accordion-heading>
+       <h4 style="text-align: center;"> Unser Restaurant ist unser ganzer Stolz!</h4>
 <p></p>
 
 Nach einem Tag am Strand, einer Fahrradtour in unserer schönen Umgebung oder nach einem Einkaufsbummel, können Sie sich darauf freuen,
@@ -49,39 +57,15 @@ Wir sind sicher, dass Sie sich in unserem eleganten Speisesaal wohlfühlen werde
 
 Unser freundliches und aufmerksames Personal wird Sie hier mit einem erstklassigen Service bedienen.
 </p>
-Guten Appetit!
-    </p>
-
-</div>
-      
-      
-      
-      </div>
-	</div>
-  
-
-<!-- Toggle -->
-
-
-  
+Guten Appetit! </p>
+    </accordion-group>
+     
+            
+   </accordion>
   
 
 
+  </ion-content>
+</ion-view>
 
 
-        </ion-content>
-        <div class="tabs tabs-icon-top">
-  <a class="tab-item">
-    <i class="icon icon-votex_icon" style="color: #D43D33"></i>
-    Vote
-  </a>
-  <a class="tab-item">
-    <i class="icon ion-information-circled" style="color: #D43D33"></i>
-    Informationen
-  </a>
-  <a class="tab-item">
-    <i class="icon ion-share" style="color: #D43D33"></i>
-    Teilen
-  </a>
-</div>
-</ion-modal-view>

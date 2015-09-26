@@ -3,7 +3,8 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var votex = angular.module('starter', ['ionic','firebase','starter.controllers', 'starter.profileCtrl','ui.bootstrap', 'ngCordova','ngMessages','ionic.ion.imageCacheFactory'])
+var votex = angular.module('starter', ['ionic','firebase','starter.controllers', 'starter.profileCtrl','starter.premiumCtrl',
+                                        'starter.businessCtrl','ui.bootstrap', 'ngCordova','ngMessages','ionic.ion.imageCacheFactory'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
   $ionicPlatform.ready(function() {
@@ -19,11 +20,11 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
     }
     if(window.Statusbar) {
       if ($ionicPlatform.isAndroid()) {
-      StatusBar.overlaysWebView(false);
-      Statusbar.backgroundColorByHexString("#A93028") 
+      window.StatusBar.overlaysWebView(false);
+      window.Statusbar.backgroundColorByHexString("#A93028") 
       }
       else {
-        StatusBar.styleLightContent();
+        window.StatusBar.styleLightContent();
               }
     }
   });
@@ -113,18 +114,55 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
   
   .state('app.business', {
     url: "/business",
-    abstract: true,
-    templateUrl: "templates/business.html",
+  views: {
+      'menuContent': {
+        templateUrl: "templates/business.html"
+      }
+    },
     controller: 'AppCtrl'
   })
-  
-  
-    .state('app.business2', {
+    
+.state('app.business2', {
     url: "/business2",
-    abstract: true,
-    templateUrl: "templates/business2.html",
+  views: {
+      'menuContent': {
+        templateUrl: "templates/business2.html"
+      }
+    },
     controller: 'AppCtrl'
   })
+
+  .state('app.premium', {
+    url: '/premium',
+    controller: 'premiumCtrl',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/premium.html'
+      }
+    }
+  })
+
+  .state('app.trends', {
+    url: '/trends',
+    controller: 'AppCtrl',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/trends.html'
+      }
+    }
+  })
+  
+    .state('app.businessInfo', {
+    url: '/businessInfo',
+    controller: 'businessCtrl',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/businessInfo.html'
+      }
+    }
+  })
+
+
 
   $urlRouterProvider.otherwise('/app/home');
   

@@ -1,14 +1,15 @@
 var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap'])
 
-.controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading,
- $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate, $cordovaGeolocation, $ImageCacheFactory) {
+.controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading, $http,
+ $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate, $cordovaGeolocation, $ImageCacheFactory, $ionicScrollDelegate) {
 
     //Preload ALL Images
     $ImageCacheFactory.Cache([
         
         'img/votex_title.png',
+        'img/voteOn.png',
+        'img/voteOff.png',
         'http://www.ncr.com/wp-content/uploads/iStock_000016978975SmallMedium.jpg',
-        'http://www.komu.com/images/news/restaurant.jpg',
         'http://www.blogrollcenter.com/news/gallery/searching-for-authentic-italian-restaurants/searching_for_authentic_italian_restaurants.jpg'
     ]); 
 
@@ -367,7 +368,7 @@ $scope.$on("$ionicView.enter",function(){
 });
   $scope.testImages = [
   'http://www.ncr.com/wp-content/uploads/iStock_000016978975SmallMedium.jpg',
-  'http://www.komu.com/images/news/restaurant.jpg',
+  'http://restaurantcoverings.com/wp-content/uploads/2014/09/Lemon-Water-Stock-Image.jpg',
   'http://www.blogrollcenter.com/news/gallery/searching-for-authentic-italian-restaurants/searching_for_authentic_italian_restaurants.jpg'
   
   ]; 
@@ -388,61 +389,32 @@ $scope.$on("$ionicView.enter",function(){
 $scope.businessName = "Marc's Restaurant";
 $scope.businessName2 = "Harun's Bar";
 
+
+
+
 //
 
- $scope.openBusiness = function(animation) {
-    console.log(animation);
-    $ionicModal.fromTemplateUrl('templates/business.html', {
-      scope: $scope,
-      animation: 'animated ' + animation,
-      hideDelay:920
-    }).then(function(modal) {
-      $scope.modal = modal;
-      $scope.modal.show();
-      $scope.hideModal = function(){
-        $scope.modal.hide();
-        // Note that $scope.$on('destroy') isn't called in new ionic builds where cache is used
-        // It is important to remove the modal to avoid memory leaks
-        $scope.modal.remove();
-      }
-    });
+ $scope.openBusiness = function() {
+   $state.go('app.business')
   };
   
   //Business Name 2
- $scope.openBusiness2 = function(animation) {
-    console.log(animation);
-    $ionicModal.fromTemplateUrl('templates/business2.html', {
-      scope: $scope,
-      animation: 'animated ' + animation,
-      hideDelay:920
-    }).then(function(modal) {
-      $scope.modal = modal;
-      $scope.modal.show();
-      $scope.hideModal = function(){
-        $scope.modal.hide();
-        // Note that $scope.$on('destroy') isn't called in new ionic builds where cache is used
-        // It is important to remove the modal to avoid memory leaks
-        $scope.modal.remove();
-      }
-    });
+ $scope.openBusiness2 = function() {
+      $state.go('app.business2')
   };
 
 
 
 // ---------------------- Vote-X RATING ----------------------
 
-  $scope.rate = 4;
-
-
-
-
-
-
+  $scope.rate = 5;
+  $scope.rateBiz= 4;
 
 
 // ---------------------- End RATING ----------------------
-
-
+$scope.goHome = function() {
+$state.go("app.home");
+}
 
 
 // ----------------------------------------- Progressbar -----------------------------------------
@@ -452,7 +424,33 @@ $scope.businessName2 = "Harun's Bar";
 
 // Collapse
      $scope.isCollapsed = false;
+     
+     $scope.resize = function() {
+         
+          setTimeout(function () {
+    $ionicScrollDelegate.resize();
+    },150);
+         console.log('$ionicScrollDelegate.resize(); executed')
+     }
 // Dynamic accordion bootstrap
+
+  $scope.statusVotes = {
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
+  
+   $scope.statusArticle = {
+    open: true,   
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
+  
+   $scope.statusMap = {
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
+  
+  
   $scope.groups = [
     {
       title: 'Erweitere Votes',
@@ -465,6 +463,19 @@ $scope.businessName2 = "Harun's Bar";
   $scope.addItem = function() {
     var newItemNo = $scope.items.length + 1;
     $scope.items.push('Item ' + newItemNo);
+  };
+
+// Refresh
+$scope.itemsR = [1,2,3];
+  $scope.doRefresh = function() {
+    $http.get('/new-itemsR')
+     .success(function(newItems) {
+       $scope.itemsR = newItems;
+     })
+     .finally(function() {
+       // Stop the ion-refresher from spinning
+       $scope.$broadcast('scroll.refreshComplete');
+     });
   };
 
 // ----------------------------------------------------------------------------------
