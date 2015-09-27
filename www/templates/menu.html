@@ -36,15 +36,21 @@
              Login
           </ion-item>
           
-          <ion-item nav-clear menu-close href="#/app/profile" ng-show="currentUserSignedIn">
-          <div class="item-avatar-left"></div>
-          Pro 
-          </ion-item>     
+          <ion-item nav-clear menu-close href="#/app/profile" style="height: 100px" ng-show="currentUserSignedIn">
+          <div class="row" >
+            <div class="col">
+           <div class="item-thumbnail-left item-image">
+       <img ng-src="{{harunProfileImg}}" alt="Profilbild hochladen!" style="border-radius: 10px; border-width: 1px; border-style: dotted; border-color: #D43D33">
+        </div>
+        </div>
+        <div class="col">
+          Harun Oral
+        <p>Experte </p>
+     </div>
+     </div>
+        </ion-item>     
 
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/profile" ng-show="currentUserSignedIn">
-          <i class="icon ion-android-person" style="color: #D43D33;font-size: 22px"></i>
-            Profil
-          </ion-item>
+        
           
           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/home">
           <i class="icon ion-ios-home-outline" style="color: #D43D33;font-size: 22px"></i>

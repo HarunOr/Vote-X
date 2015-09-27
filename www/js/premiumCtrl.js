@@ -4,11 +4,11 @@ var votex = angular.module('starter.premiumCtrl', ['chart.js'])
   
 .controller("premiumCtrl", function ($scope) {
 
-	  $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+	  $scope.labels = [ "16-18 Jährige", "18-20 Jährige","24-26 Jährige"];
   $scope.data = [400, 500, 100];
   
    $scope.months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli"];
-  $scope.series = ['Series A', 'Series B'];
+  $scope.series = ['Filiale A', 'Filiale B'];
   $scope.dataMonths = [
     [65, 59, 80, 81, 56, 55, 40],
     [28, 48, 40, 19, 86, 27, 90]

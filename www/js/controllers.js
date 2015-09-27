@@ -1,4 +1,4 @@
-var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap'])
+var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap','uiGmapgoogle-maps'])
 
 .controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading, $http,
  $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate, $cordovaGeolocation, $ImageCacheFactory, $ionicScrollDelegate) {
@@ -9,6 +9,11 @@ var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap'])
         'img/votex_title.png',
         'img/voteOn.png',
         'img/voteOff.png',
+        'img/voteTitleOn.png',
+        'img/voteTitleOff.png',
+        'img/voteRateOn.png',
+        'img/voteRateOff.png',
+        'img/profile_harun-oral.jpg',
         'http://www.ncr.com/wp-content/uploads/iStock_000016978975SmallMedium.jpg',
         'http://www.blogrollcenter.com/news/gallery/searching-for-authentic-italian-restaurants/searching_for_authentic_italian_restaurants.jpg'
     ]); 
@@ -16,6 +21,8 @@ var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap'])
      //Vote-X Logo Titel Img
      
      $scope.votexTitle = 'img/votex_title.png';
+     $scope.harunProfileImg = 'img/profile_harun-oral.jpg';
+     
 
 
     // GeoLocation
@@ -409,6 +416,12 @@ $scope.businessName2 = "Harun's Bar";
 
   $scope.rate = 5;
   $scope.rateBiz= 4;
+ 
+  $scope.oneVote = 1;
+  $scope.twoVote = 2;
+  $scope.threeVote = 3;
+  $scope.fourVote = 4;
+  $scope.fiveVote = 5;
 
 
 // ---------------------- End RATING ----------------------
@@ -420,7 +433,7 @@ $state.go("app.home");
 // ----------------------------------------- Progressbar -----------------------------------------
     $scope.devProgress = 70;
     
-    
+ // ----------------------------------------- Progressbar End-----------------------------------------   
 
 // Collapse
      $scope.isCollapsed = false;
@@ -430,7 +443,7 @@ $state.go("app.home");
           setTimeout(function () {
     $ionicScrollDelegate.resize();
     },150);
-         console.log('$ionicScrollDelegate.resize(); executed')
+        
      }
 // Dynamic accordion bootstrap
 
@@ -450,6 +463,10 @@ $state.go("app.home");
     isFirstDisabled: false
   };
   
+     $scope.statusComments = {
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
   
   $scope.groups = [
     {
@@ -477,6 +494,45 @@ $scope.itemsR = [1,2,3];
        $scope.$broadcast('scroll.refreshComplete');
      });
   };
+  
+  // ------------------------------- Angular Google Map -----------------------
+  $scope.map = { 
+    center: { 
+                latitude: 52.476020, 
+                longitude: 13.290786 },
+             zoom: 15
+             };
+ 
+     var events = {
+          places_changed: function (searchBox) {}
+        }
+        $scope.searchbox = {  events:events};
+        
+         $scope.marker = {
+      id: 0,
+      coords: {
+        latitude: 52.476020,
+        longitude: 13.290786
+      },
+      options: { draggable: false },
+      events: {
+        dragend: function (marker, eventName, args) {
+          $log.log('marker dragend');
+          var lat = marker.getPosition().lat();
+          var lon = marker.getPosition().lng();
+          $log.log(lat);
+          $log.log(lon);
+
+          $scope.marker.options = {
+            draggable: true,
+            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+            labelAnchor: "100 0",
+            labelClass: "marker-labels"
+          };
+        }
+      }
+    };
+
 
 // ----------------------------------------------------------------------------------
 });

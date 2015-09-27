@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext');
 /*
 To customize the look and feel of Ionic, you can override the variables
 in ionic's _variables.scss file.
@@ -7733,6 +7733,27 @@ a.button {
   background-color: white;
   margin-top: 25px; }
 
+.comment {
+  font-size: 16px;
+  font-family: 'open-sans'; }
+
+#profile-image {
+  display: block;
+  border-radius: 10px;
+  border: 1px solid #D43D33;
+  width: 128px;
+  height: 128px;
+  margin: 30px auto 0;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7); }
+
+.info {
+  margin-top: 7px;
+  margin-bottom: 5px;
+  border-radius: 0px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #D43D33; }
+
 .businessModal {
   has-subheader: "true";
   text-align: center; }
@@ -7794,6 +7815,18 @@ a.button {
 .icon-votex_icon:before {
   content: "\e600"; }
 
+.voteRateOn {
+  height: 19px;
+  width: 22px;
+  background-size: contain;
+  background-image: url('../img/voteRateOn.png'); }
+
+.voteRateOff {
+  height: 19px;
+  width: 22px;
+  background-size: contain;
+  background-image: url('../img/voteRateOff.png'); }
+
 .voteOn {
   height: 35px;
   width: 40px;
@@ -7810,10 +7843,14 @@ a.button {
   height: 26px;
   width: 30px;
   background-size: contain;
-  background-image: url('../img/voteOn.png'); }
+  background-image: url('../img/voteTitleOn.png'); }
 
 .voteTitleOff {
   height: 26px;
   width: 30px;
   background-size: contain;
-  background-image: url('../img/voteOff.png'); }
+  background-image: url('../img/voteTitleOff.png'); }
+
+.angular-google-map-container {
+  height: 200px;
+  width: 100%; }
