@@ -11,13 +11,13 @@
     
     
 
-  <div class="info">
+  
    <ion-slide-box class="slider">
     <ion-slide ng-repeat="image in testImages" >       
         <img style="width: 100%" ng-src="{{image}}" >
     </ion-slide>
 </ion-slide-box>
-</div>
+
 <!-- Slidebox End -->
 
   
@@ -39,16 +39,18 @@
      
      <!-- Google Maps -->
  <div class="info">
- <ui-gmap-google-map center='map.center' zoom='map.zoom' >
+ <ui-gmap-google-map center='map.center' zoom='map.zoom' dragging="false" >
   <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
         </ui-gmap-marker>
    </ui-gmap-google-map>
-  </div>    
+  </div>  
+  <button class="button button-block button-assertive" ng-click="vote()" >Vote !</button>  
  
   <!-- Google Maps Ende -->
  
   <!-- -------------- Accordion -------------- -->
   <accordion close-others="oneAtATime" >
+    
     
     <accordion-group  ng-click="resize()" is-open="status.open">
       <accordion-heading><i class="icon ion-plus-round" style="color: #D43D33;font-size: 22px" ng-class="{'ion-minus-round': status.open, 'ion-plus-round': !status.open}"></i> 

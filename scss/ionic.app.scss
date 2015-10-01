@@ -63,7 +63,14 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-
+.bar.bar-assertive {
+    border-color: #AF251B;
+    background-color: $assertive;
+    background-image: linear-gradient(0deg, #AF251B, #AF251B 50%, transparent 50%);
+    color: #fff; }
+    
+      .bar.bar-assertive .title {
+      color: #fff; }
 //-------------------------
 
 .modal1.scroll-content {
@@ -118,6 +125,34 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
   border-color: $assertive;
   
 }
+
+// kategorien  - catagory
+
+.kategorien-Titel {
+  text-align: center;
+  font-size: 28px;
+  
+  margin-top: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 20px;
+  border-radius: 100px;
+  border-color: $assertive;
+  border: 2px solid;
+  color: $assertive;
+  
+}
+
+.kategorien {
+  
+  border-top-color: $assertive;
+  border-bottom-color: $assertive;
+  border-style: solid;
+  margin-bottom: 10px;
+  background-color: $assertive;
+ 
+}
+
 
 //  Business Modal
 

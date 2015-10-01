@@ -6,18 +6,21 @@
           <img ng-src ="{{votexTitle}}">
               </ion-nav-title>
               
-  <ion-content class="padding" has-header has-tabs>
+  <ion-content class="padding" has-header>
     
     
     
+
 
    <ion-slide-box class="slider">
     <ion-slide ng-repeat="image in testImages2" >       
         <img style="width: 100%" ng-src="{{image}}" >
     </ion-slide>
 </ion-slide-box>
+
 <!-- Slidebox End -->
-<div class="info">
+
+  
 <div class="row">
   <div class="col" align="center">
   <h2 >{{businessName2}}</h2>
@@ -26,41 +29,110 @@
 
 <div class="row">
   <div class="col col-75" align="center">
-       <rating ng-model="rate" max="5" state-on="'voteOn'" state-off="'voteOff'" readonly = "true"></rating>
+       <rating ng-model="fourVote" max="5" state-on="'voteOn'" state-off="'voteOff'" readonly = "true"></rating>
        </div>
        <div class="col">
-          <div style="font-style:italic">1084 Votes</div>
+          <div style="font-style:italic">604 Votes</div>
        </div>
      </div>
-     </div>
      
-
+     
+     <!-- Google Maps -->
+ <div class="info">
+ <ui-gmap-google-map center='map2.center' zoom='map2.zoom' dragging="false" >
+  <ui-gmap-marker coords="marker2.coords" options="marker2.options" events="marker2.events" idkey="marker2.id">
+        </ui-gmap-marker>
+   </ui-gmap-google-map>
+  </div>    
+ 
+  <!-- Google Maps Ende -->
+ <button class="button button-block button-assertive" ng-click="vote()" >Vote !</button>  
+  <!-- -------------- Accordion -------------- -->
   <accordion close-others="oneAtATime" >
+    
     
     <accordion-group  ng-click="resize()" is-open="status.open">
       <accordion-heading><i class="icon ion-plus-round" style="color: #D43D33;font-size: 22px" ng-class="{'ion-minus-round': status.open, 'ion-plus-round': !status.open}"></i> 
-      Erweiterte Votes</accordion-heading>
-       <rating ng-model="rate" max="5" state-on="'voteOn'" state-off="'voteOff'"></rating>
+      Detaillierte Votes</accordion-heading>
+              <div class="row">
+                <div class="col" style="font-style:italic" align="center">
+              Durchschnittswertungen
+              </div>
+              </div>
+              
+      <div class="row">
+        <div class="col">
+          Preis/Leistung
+          </div>
+          <div class="col">
+             <rating ng-model="fourVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true" style="padding-left: 25%"></rating>
+            </div>
+        </div>
+        
+         <div class="row">
+        <div class="col">
+          Service
+          </div>
+          <div class="col">
+           <rating ng-model="threeVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true" style="padding-left: 25%"></rating>
+            </div>
+              </div>
+        
+        <div class="row">
+        <div class="col">
+          Location
+          </div>
+          <div class="col">
+             <rating ng-model="twoVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true" style="padding-left: 25%"></rating>
+            </div>
+        </div>
+        
+         <div class="row">
+        <div class="col">
+          Küche
+          </div>
+          <div class="col">
+             <rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true" style="padding-left: 25%"></rating>
+            </div>
+        </div>
+        
+  
     </accordion-group>
+    
+      <accordion-group  ng-click="resize()" is-open="statusComments.open">
+      <accordion-heading><i class="icon ion-plus-round" style="color: #D43D33;font-size: 22px" ng-class="{'ion-minus-round': statusComments.open, 'ion-plus-round': !statusComments.open}"></i> 
+      Empfehlung</accordion-heading>
+      
+        <div class="item item-avatar">
+    <img ng-src="{{harunProfileImg}}">
+    <h2>Harun Oral   <rating ng-model="threeVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true" style="padding-left: 10%"></rating></h2> 
+    <p>Experte <i class="icon ion-ios-star" style="color: #D43D33;"></i></p>
+      </div>
+  
+   <div class="item item-body">
+  <div class="comment">
+  
+    Nicht meine Musik, aber gute und günstige Drinks
+   </div>
+  </div>
+  
+      
+    </accordion-group>
+    
     
           <accordion-group  ng-click="resize()" is-open="statusArticle.open">
              <accordion-heading><i class="icon ion-minus-round" ng-class="{'ion-minus-round': statusArticle.open, 'ion-plus-round': !statusArticle.open}" style="color: #D43D33;font-size: 22px"></i> 
       Beschreibung</accordion-heading>
-       <h4 style="text-align: center;"> Wer hat Bock auf Party ?!</h4>
+       <h4 style="text-align: center;"> Wir feiern die ganze Nacht!</h4>
 <p></p>
-
-Lass gemeinsam richtig abgehen!</p>
- <p>
-Jeden Donnerstag 2 für 1 </p>
- <p></p>
-
-    </accordion-group>
-     
-            
+<p>
+Cocktail-Nights im Basement!
+Freitag und Samstag jeder Cocktail für 4,50€!! Kommt vorbei!</p>
+    </accordion-group>        
    </accordion>
-  
-
-
+   
+    <!-- -------------- Accordion End -------------- -->   
+   
   </ion-content>
 </ion-view>
 

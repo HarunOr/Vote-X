@@ -1,7 +1,8 @@
-var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap','uiGmapgoogle-maps'])
+var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap','uiGmapgoogle-maps','ionicLazyLoad'])
 
 .controller('AppCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicLoading, $http,
- $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate, $cordovaGeolocation, $ImageCacheFactory, $ionicScrollDelegate) {
+ $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicSlideBoxDelegate, $cordovaGeolocation, 
+ $ImageCacheFactory, $ionicScrollDelegate) {
 
     //Preload ALL Images
     $ImageCacheFactory.Cache([
@@ -14,9 +15,7 @@ var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap','u
         'img/voteRateOn.png',
         'img/voteRateOff.png',
         'img/profile_harun-oral.jpg',
-        'http://www.ncr.com/wp-content/uploads/iStock_000016978975SmallMedium.jpg',
-        'http://www.blogrollcenter.com/news/gallery/searching-for-authentic-italian-restaurants/searching_for_authentic_italian_restaurants.jpg'
-    ]); 
+        ]); 
 
      //Vote-X Logo Titel Img
      
@@ -33,7 +32,7 @@ var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap','u
     // Login Status-----------------------------------
     
     $rootScope.currentUserSignedIn = false;
-
+    $rootScope.notSignedIn =true;
     //UserData after Registration-----------------------------
    
  
@@ -149,6 +148,7 @@ var votex = angular.module('starter.controllers', ['firebase', 'ui.bootstrap','u
                     }
                 } else {
                      $rootScope.currentUserSignedIn =true;
+                     $rootScope.notSignedIn = false;
                      console.log("current user signed in");
             //    $scope.getProfilePic(authData);
                      $scope.userID = authData.uid;
@@ -332,6 +332,7 @@ myRef.authWithOAuthPopup("facebook", function(error, authData) {
             template: 'Du hast dich erfolgreich eingeloggt :)'
         });
       $rootScope.currentUserSignedIn =true;
+      $rootScope.notSignedIn = false;
                      console.log("current user signed in");
                        }
      },
@@ -350,6 +351,7 @@ myRef.authWithOAuthPopup("facebook", function(error, authData) {
 $scope.logout = function() {
       myRef.unauth();
       $rootScope.currentUserSignedIn =false;
+      $rootScope.notSignedIn = true;
      console.log("user signed out");
      $scope.loggedOut();
      $ionicPopup.alert({
@@ -367,6 +369,7 @@ $scope.loggedOut = function(){
   }
     
 };
+
 
 
 //------------------------------TestImages------------------------------------
@@ -402,12 +405,28 @@ $scope.businessName2 = "Harun's Bar";
 //
 
  $scope.openBusiness = function() {
-   $state.go('app.business')
+     if($rootScope.currentUserSignedIn == false) {
+        $ionicPopup.alert({
+            title: 'Oh nein!',
+            template: 'Du musst dich einloggen, um das sehen zu können!'
+        });
+         return;
+        }
+        else {
+   $state.go('app.business') }
   };
   
   //Business Name 2
  $scope.openBusiness2 = function() {
-      $state.go('app.business2')
+     if($rootScope.currentUserSignedIn == false) {
+        $ionicPopup.alert({
+            title: 'Oh nein!',
+            template: 'Du musst dich einloggen, um das sehen zu können!'
+        });
+         return;
+        }
+        else {
+   $state.go('app.business2') }
   };
 
 
@@ -506,6 +525,7 @@ $scope.itemsR = [1,2,3];
      var events = {
           places_changed: function (searchBox) {}
         }
+        
         $scope.searchbox = {  events:events};
         
          $scope.marker = {
@@ -532,9 +552,41 @@ $scope.itemsR = [1,2,3];
         }
       }
     };
+    
+ $scope.map2 = { 
+    center: { 
+                latitude: 51.227175, 
+                longitude: 6.775432 },
+             zoom: 15
+             };
 
 
-// ----------------------------------------------------------------------------------
+         $scope.marker2 = {
+      id: 1,
+      coords: {
+        latitude: 51.227175,
+        longitude: 6.775432
+      },
+      options: { draggable: false },
+      events: {
+        dragend: function (marker, eventName, args) {
+          $log.log('marker dragend');
+          var lat = marker.getPosition().lat();
+          var lon = marker.getPosition().lng();
+          $log.log(lat);
+          $log.log(lon);
+
+          $scope.marker.options = {
+            draggable: true,
+            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+            labelAnchor: "100 0",
+            labelClass: "marker-labels"
+          };
+        }
+      }
+    };
+
+// -----------------------------------Google Maps END----------------------------------------------
 });
 //-----------------------------------------END APPCTRL-----------------------------------------
 

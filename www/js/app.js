@@ -152,15 +152,7 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     }
   })
   
-    .state('app.businessInfo', {
-    url: '/businessInfo',
-    controller: 'businessCtrl',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/businessInfo.html'
-      }
-    }
-  })
+
 
     .state('app.feedback', {
     url: '/feedback',
@@ -173,15 +165,6 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
   })
   
   
-      .state('app.businessMap', {
-    url: '/businessMap',
-    controller: 'AppCtrl',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/businessMap.html'
-      }
-    }
-  })
 
 
   $urlRouterProvider.otherwise('/app/home');

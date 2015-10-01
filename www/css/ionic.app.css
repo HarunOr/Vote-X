@@ -7721,6 +7721,15 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.bar.bar-assertive {
+  border-color: #AF251B;
+  background-color: #D43D33;
+  background-image: linear-gradient(0deg, #AF251B, #AF251B 50%, transparent 50%);
+  color: #fff; }
+
+.bar.bar-assertive .title {
+  color: #fff; }
+
 .modal1.scroll-content {
   background: url('../img/modal1_opt-compressor.jpg') no-repeat;
   webkit-background-size: auto; }
@@ -7753,6 +7762,25 @@ a.button {
   border-style: solid;
   border-width: 2px;
   border-color: #D43D33; }
+
+.kategorien-Titel {
+  text-align: center;
+  font-size: 28px;
+  margin-top: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 20px;
+  border-radius: 100px;
+  border-color: #D43D33;
+  border: 2px solid;
+  color: #D43D33; }
+
+.kategorien {
+  border-top-color: #D43D33;
+  border-bottom-color: #D43D33;
+  border-style: solid;
+  margin-bottom: 10px;
+  background-color: #D43D33; }
 
 .businessModal {
   has-subheader: "true";

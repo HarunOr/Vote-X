@@ -2,9 +2,13 @@
 
 Kosten
 
-- Firebase Whitelist
+- Ionic Lazy Load
+- Ionic Material Design
+- Profilseite
 ____________
 Todo
+- Vote! Funktion -> Ionic Popup 
+- Google Maps loading verbessern 
 - Anstatt angular accordion <> ionic accordion ausprobieren *Performance Test*
 - Forum / Chat (FireChat)
 - App Logo Android 
@@ -15,17 +19,15 @@ Todo
 - Votes nur für verifizierte Nutzer ? Kommentare auch für nicht-verifizierte, eingeloggte Benutzer
 
 - Profilseite
-- Ionic Material Design
-- Vote-X Bewertungssymbole ( X X X X X)
 - $templateCache
 - !!! Imagepreload (auch Vote-X Title img!) !!!
 - Android Statusbar Color
 - Read user data.. Firebase push parameters..Register
-- Kostenplan für alle features schätzen
+
 
 - codepen animationen implementieren
 - loading spinner 
-- Video über update
+
 _________________
 New updates:
 

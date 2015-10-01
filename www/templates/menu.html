@@ -6,10 +6,11 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-           <button class="button button-assertive" ng-click="openModal(1)" ng-hide="currentUserSignedIn">
+           <button class="button button-assertive" ng-click="openModal(1)" ng-if="notSignedIn">
             Login
            </button>
-            <button class="button button-dark" ng-click="logout()" ng-show="currentUserSignedIn">
+           
+            <button class="button  button-clear" ng-click="logout()" ng-if="currentUserSignedIn">
             Logout
            </button>
          </ion-nav-buttons>
@@ -40,7 +41,7 @@
           <div class="row" >
             <div class="col">
            <div class="item-thumbnail-left item-image">
-       <img ng-src="{{harunProfileImg}}" alt="Profilbild hochladen!" style="border-radius: 10px; border-width: 1px; border-style: dotted; border-color: #D43D33">
+       <img ng-src="{{harunProfileImg}}" alt="Profilbild hochladen!" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33">
         </div>
         </div>
         <div class="col">
@@ -106,12 +107,7 @@
           <i class="icon ion-stats-bars" style="color: #D43D33; font-size: 22px"></i>
            Premium <i class="icon ion-alert" style="padding-right: 32px;color: #D43D33; font-size: 22px"></i>
           </ion-item>
-          
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/businessInfo">
-          <i class="icon ion-ios-information-outline" style="color: #D43D33; font-size: 22px"></i>
-           Business Information 
-          </ion-item>
-          
+                          
         </ion-list>
         
     </ion-content>
