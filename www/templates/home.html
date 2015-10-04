@@ -14,8 +14,9 @@
            
 
 <!-- Content -->
+<!-- add lazy-scroll to ion-content -->
 
-  <ion-content class="voteBg" has-subheader lazy-scroll>
+  <ion-content class="voteBg" has-subheader overflow-scroll="true">
 
  
  <!-- Progressbar Development -->
@@ -30,7 +31,7 @@
 <div class="list card" >
 
   <div class="item item-avatar" ng-click="openBusiness()">
-    <img ng-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg">
+
     <h2>Marc's Restaurant</h2>
     <p>Restaurant</p>
     <div class="row">
@@ -45,7 +46,7 @@
   </div>
 
   <div class="item item-body">
-    <img class="full-image" ng-click="openBusiness('slideInRight')" ng-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg">
+    <img class="full-image" ng-click="openBusiness()" image-lazy-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg"  image-lazy-loader="lines">
     <p>
       Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
       Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
@@ -74,13 +75,13 @@
 <div class="list card">
 
   <div class="item item-avatar" >
-    <img ng-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg">
+    <img image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg"  image-lazy-loader="lines" lazy-scroll-resize="true">
     <h2>Jochen Schweizer</h2>
     <p>Werbung</p>
   </div>
 
   <div class="item item-body">
-    <img class="full-image" ng-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg" onclick="window.open('http://www.jochen-schweizer.de', '_blank', 'location=no');">
+    <img class="full-image" image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg" image-lazy-loader="lines" onclick="window.open('http://www.jochen-schweizer.de', '_blank', 'location=no');">
     <p>
      Hier steht ein sehr überzeugender Clickbait-Text  
     </p>
@@ -93,7 +94,7 @@
 <div class="list card">
 
   <div class="item item-avatar" ng-click="openBusiness2()">
-    <img ng-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg">
+    <img image-lazy-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg" image-lazy-loader="lines">
     <h2>Harun's Bar</h2>
     <p>Bar</p>
     
@@ -108,7 +109,7 @@
   </div>
 
   <div class="item item-body">
-    <img class="full-image" ng-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg" ng-click="openBusiness2()">
+    <img class="full-image" image-lazy-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="0" ng-click="openBusiness2()">
     <p>
       2 für 1 jeden Donnerstag.
       Saufeeeeeeeeen !!!    

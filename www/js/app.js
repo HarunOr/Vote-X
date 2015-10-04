@@ -3,8 +3,8 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var votex = angular.module('starter', ['ionic','firebase','starter.controllers', 'starter.profileCtrl','starter.premiumCtrl',
-                                        'starter.businessCtrl','starter.feedbackCtrl','ui.bootstrap', 'ngCordova','ngMessages','ionic.ion.imageCacheFactory'])
+var votex = angular.module('starter', ['ionic','starter.controllers','starter.loginCtrl','starter.profileCtrl','starter.premiumCtrl',
+                                        'starter.businessCtrl','starter.feedbackCtrl', 'ngCordova','ionic.ion.imageCacheFactory'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
   $ionicPlatform.ready(function() {
@@ -33,7 +33,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
 
 votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-  $ionicConfigProvider.views.maxCache(5);
+  $ionicConfigProvider.views.maxCache(10);
 
 
   $stateProvider
@@ -42,6 +42,7 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
+    controller: 'loginCtrl'
 
   })
 
@@ -69,7 +70,7 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     url: "/login",
     abstract: true,
     templateUrl: "templates/login.html",
-    controller: 'AppCtrl'
+    controller: 'loginCtrl'
   })
 
 
@@ -115,20 +116,20 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     url: "/business",
   views: {
       'menuContent': {
-        templateUrl: "templates/business.html"
+        templateUrl: "templates/business.html",
+            controller: 'businessCtrl'
       }
-    },
-    controller: 'AppCtrl'
+    }
   })
     
 .state('app.business2', {
     url: "/business2",
   views: {
       'menuContent': {
-        templateUrl: "templates/business2.html"
+        templateUrl: "templates/business2.html",
+            controller: 'businessCtrl'
       }
-    },
-    controller: 'AppCtrl'
+    }
   })
 
   .state('app.premium', {

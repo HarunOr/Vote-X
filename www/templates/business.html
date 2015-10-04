@@ -1,3 +1,4 @@
+
 <ion-view animation="no-animation">
   <ion-nav-buttons> <button class="button ion-ios-arrow-back" ng-click="goHome()" >
             Zurück
@@ -6,15 +7,15 @@
           <img ng-src ="{{votexTitle}}">
               </ion-nav-title>
               
-  <ion-content class="padding" has-header>
+  <ion-content class="padding" has-header lazy-scroll overflow-scroll="true">
     
-    
+
     
 
   
    <ion-slide-box class="slider">
     <ion-slide ng-repeat="image in testImages" >       
-        <img style="width: 100%" ng-src="{{image}}" >
+        <img style="width: 100%" image-lazy-src="{{image}}" image-lazy-loader="lines" >
     </ion-slide>
 </ion-slide-box>
 
