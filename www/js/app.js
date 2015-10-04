@@ -53,8 +53,7 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
         templateUrl: 'templates/home.html',
 
       }
-    },
-    reload: true
+    }
   })
 
   .state('app.map', {
