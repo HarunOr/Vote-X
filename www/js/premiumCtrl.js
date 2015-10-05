@@ -1,7 +1,5 @@
-var votex = angular.module('starter.premiumCtrl', ['chart.js'])
-
-
-  
+var votex = angular
+.module('starter.premiumCtrl', ['chart.js'])
 .controller("premiumCtrl", function ($scope) {
 
 	  $scope.labels = [ "16-18 Jährige", "18-20 Jährige","24-26 Jährige"];

@@ -7,9 +7,7 @@ var votex = angular.module('starter', ['ionic','starter.controllers','starter.lo
                                         'starter.businessCtrl','starter.feedbackCtrl', 'ngCordova','ionic.ion.imageCacheFactory'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
-  $ionicPlatform.ready(function() {
-    
-    
+  $ionicPlatform.ready(function() { 
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -121,16 +119,6 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
       }
     }
   })
-    
-.state('app.business2', {
-    url: "/business2",
-  views: {
-      'menuContent': {
-        templateUrl: "templates/business2.html",
-            controller: 'businessCtrl'
-      }
-    }
-  })
 
   .state('app.premium', {
     url: '/premium',
@@ -157,6 +145,7 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     .state('app.feedback', {
     url: '/feedback',
     controller: 'feedbackCtrl',
+    reload: true,
     views: {
       'menuContent': {
         templateUrl: 'templates/feedback.html'

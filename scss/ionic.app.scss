@@ -35,7 +35,7 @@ $testColor: #FFFAFA!default;
     padding: 0px !important;
 }
 // Sidemenu Button
-
+        // Profil Bild
 .item-avatar-left {
   
   border: none;
@@ -44,8 +44,12 @@ $testColor: #FFFAFA!default;
   background-color: red;
 }
 
-// Kategorien Button
-
+// Home Business Avatar
+.row.row-avatar {
+  max-height: 30px;
+ 
+  
+}
 
 // Facebook Button on Login page
 .button.button-facebook {

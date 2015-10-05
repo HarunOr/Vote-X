@@ -5,10 +5,8 @@
     "ionic": "driftyco/ionic-bower#~1"
   },
   "dependencies": {
-    "angular-recaptcha": "~2.2.4",
     "angularfire": "~1.1.2",
     "angular-chart.js": "~0.8.4",
-    "angular-google-places-map": "~1.1.6",
     "ionic-image-lazy-load": "ion-image-lazy-load#*"
   }
 }

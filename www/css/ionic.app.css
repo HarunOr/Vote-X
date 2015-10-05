@@ -27,6 +27,9 @@ $dark:                            #444 !default;
   border-top-color: transparent !important;
   background-color: red; }
 
+.row.row-avatar {
+  max-height: 30px; }
+
 .button.button-facebook {
   border-color: #263F7B;
   background-color: #5370A9;

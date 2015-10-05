@@ -2,11 +2,25 @@
  
   .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad'])
 
-  .controller('AppCtrl', function ($scope, $ionicLoading, $http,
+  .controller('AppCtrl', function ($scope, $ionicLoading, $http,$ionicPlatform,
                                    $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth,
                                      
                                    $ImageCacheFactory)    {
 
+   
+   // start ionic Load
+   
+       $scope.show = function() {
+    $ionicLoading.show({
+      template: 'Gleich geht es los...'
+    });
+  };
+   // ionic Loading ---------------------------------------
+    $ionicPlatform.ready(function() {
+     
+     console.log('VoteX started');
+          $ionicLoading.hide();         
+     });
     //Preload ALL Images
     $ImageCacheFactory.Cache([
         
@@ -57,6 +71,9 @@ $scope.businessName2 = "Harun's Bar";
             
         };
    */
+  
+
+  
     //ion-refresher----------------------------------------------------------
     
 

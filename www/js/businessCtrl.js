@@ -1,6 +1,6 @@
 angular
        .module('starter.businessCtrl', ['ngMap','ionicLazyLoad'])
-       .controller("businessCtrl", function ($scope, $state, $ionicScrollDelegate, $cordovaGeolocation, $http,$log) {
+       .controller("businessCtrl", function ($scope, $state, $ionicScrollDelegate, $cordovaGeolocation, $http,$log, $ionicLoading, $ionicPlatform) {
 
 
 
@@ -33,6 +33,7 @@ $state.go("app.home");
      $scope.resize = function() {
          
           setTimeout(function () {
+            
     $ionicScrollDelegate.resize();
     },150);
         
@@ -55,7 +56,7 @@ $state.go("app.home");
     isFirstDisabled: false
   };
   
-     $scope.statusComments = {
+     $scope.statusComments = { 
     isFirstOpen: true,
     isFirstDisabled: false
   };
@@ -74,18 +75,6 @@ $state.go("app.home");
     $scope.items.push('Item ' + newItemNo);
   };
 
-// Refresh
-$scope.itemsR = [1,2,3];
-  $scope.doRefresh = function() {
-    $http.get('/new-itemsR')
-     .success(function(newItems) {
-       $scope.itemsR = newItems;
-     })
-     .finally(function() {
-       // Stop the ion-refresher from spinning
-       $scope.$broadcast('scroll.refreshComplete');
-     });
-  };
   
   
   
@@ -107,98 +96,23 @@ $scope.itemsR = [1,2,3];
   ]; 
 
   // ------------------------------ ngMap -------------------------------------
-  
- $scope.$on('mapInitialized', function(event, map) {
-    console.log('resize');
-   $ionicScrollDelegate.resize();
-    });
+  $scope.loading = $ionicLoading.show({
+      content: 'Wir suchen für dich gerade einen coolen Laden...',
+      showBackdrop: false
+    });    
     
-$scope.mapCenter = function() {
-   var latitude = "52.476020"
-   var longitude = "13.290786"
-   console.log('mapCenter');
-   return latitude + "," + longitude;
-   
- 
-}
+  $scope.mapCenter = function(lat, lng) {
+   return lat + "," + lng;
 
-  
-
- 
-  
-  
-  // ------------------------------- Angular Google Map -----------------------
-  /*
-  $scope.map = { 
-    center: { 
-                latitude: 52.476020, 
-                longitude: 13.290786 },
-             zoom: 15
-             };
- 
-     var events = {
-          places_changed: function (searchBox) {}
-        }
-        
-        $scope.searchbox = {  events:events};
-        
-         $scope.marker = {
-      id: 0,
-      coords: {
-        latitude: 52.476020,
-        longitude: 13.290786
-      },
-      options: { draggable: false },
-      events: {
-        dragend: function (marker, eventName, args) {
-          $log.log('marker dragend');
-          var lat = marker.getPosition().lat();
-          var lon = marker.getPosition().lng();
-          $log.log(lat);
-          $log.log(lon);
-
-          $scope.marker.options = {
-            draggable: true,
-            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-            labelAnchor: "100 0",
-            labelClass: "marker-labels"
-          };
-        }
-      }
-    };
-    
- $scope.map2 = { 
-    center: { 
-                latitude: 51.227175, 
-                longitude: 6.775432 },
-             zoom: 15
-             };
+}    
+ $scope.lat = "52.687484" ;     //dynamic google data, must be string z.B. "52.11341"
+ $scope.lng = "13.567276" ; 
 
 
-         $scope.marker2 = {
-      id: 1,
-      coords: {
-        latitude: 51.227175,
-        longitude: 6.775432
-      },
-      options: { draggable: false },
-      events: {
-        dragend: function (marker, eventName, args) {
-          $log.log('marker dragend');
-          var lat = marker.getPosition().lat();
-          var lon = marker.getPosition().lng();
-          $log.log(lat);
-          $log.log(lon);
 
-          $scope.marker.options = {
-            draggable: true,
-            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-            labelAnchor: "100 0",
-            labelClass: "marker-labels"
-          };
-        }
-      }
-    };
-*/
-// -----------------------------------Google Maps END----------------------------------------------
+   $ionicPlatform.ready(function() {
+     $scope.resize();
+     console.log('resized ionic');
+          $ionicLoading.hide();         
+     });
 });

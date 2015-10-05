@@ -38,10 +38,11 @@
      
      <!-- Google Maps -->
       <div class="info">
-<div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20"
-  map-lazy-load-params="{{googleMapsUrl}}">
-  <map center="{{mapCenter()}}" zoom="15">
+<div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" >
+  <map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15">
+    <marker position="{{mapCenter(lat,lng)}}"></marker>
   </map>
+</div>
 </div>
  <button class="button button-block button-assertive" ng-click="vote()" >Vote !</button>  
   <!-- Google Maps Ende -->
@@ -140,7 +141,7 @@ Guten Appetit! </p>
    </accordion>
    
     <!-- -------------- Accordion End -------------- -->   
-   </div>
+   
   </ion-content>
 </ion-view>
 
