@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl','starter.premiumCtrl',
-                                        'starter.businessCtrl','starter.feedbackCtrl', 'ngCordova','ionic.ion.imageCacheFactory'])
+                                        'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
   $ionicPlatform.ready(function() { 
@@ -144,8 +144,6 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
 
     .state('app.feedback', {
     url: '/feedback',
-    controller: 'feedbackCtrl',
-    reload: true,
     views: {
       'menuContent': {
         templateUrl: 'templates/feedback.html'
@@ -153,7 +151,14 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     }
   })
   
-  
+  .state('app.agb', {
+    url: '/agb',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/agb/agb.html'
+      }
+    }
+  })
 
 
   $urlRouterProvider.otherwise('/app/home');

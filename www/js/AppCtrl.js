@@ -46,7 +46,11 @@
 
  $scope.businessName = "Marc's Restaurant";
 $scope.businessName2 = "Harun's Bar";
-      
+   
+   
+    //------------- Google Search Box ------------------
+    
+    
     //------------Get profile Url---------------- 
     /*
         $scope.getProfilePic = function(authData) {

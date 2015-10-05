@@ -15,6 +15,10 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+.poweredBy {
+  margin-left: 20%;
+  margin-right: 20%; }
+
 .voteBg {
   background-color: #ECEDEF; }
 
