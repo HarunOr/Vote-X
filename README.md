@@ -3,11 +3,14 @@
 
 
 
+
 Font:
 http://www.cufonfonts.com/de/font/13217/avenir-next-lt-pro
 
 _____________
 Todo
+- Home -> Vote Icon führt direkt zu Vote-Modal
+- Home -> Informationen öffnet popover mit Öffnungszeiten, Straße etc.
 - Ionic Lazy Load
 - Ionic Material Design
 - Profilseite

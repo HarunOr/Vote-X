@@ -1,5 +1,5 @@
 angular
-       .module('starter.businessCtrl', ['uiGmapgoogle-maps','ionicLazyLoad'])
+       .module('starter.businessCtrl', ['ngMap','ionicLazyLoad'])
        .controller("businessCtrl", function ($scope, $state, $ionicScrollDelegate, $cordovaGeolocation, $http,$log) {
 
 
@@ -106,8 +106,29 @@ $scope.itemsR = [1,2,3];
   
   ]; 
 
+  // ------------------------------ ngMap -------------------------------------
+  
+ $scope.$on('mapInitialized', function(event, map) {
+    console.log('resize');
+   $ionicScrollDelegate.resize();
+    });
+    
+$scope.mapCenter = function() {
+   var latitude = "52.476020"
+   var longitude = "13.290786"
+   console.log('mapCenter');
+   return latitude + "," + longitude;
+   
+ 
+}
+
+  
+
+ 
+  
   
   // ------------------------------- Angular Google Map -----------------------
+  /*
   $scope.map = { 
     center: { 
                 latitude: 52.476020, 
@@ -178,6 +199,6 @@ $scope.itemsR = [1,2,3];
         }
       }
     };
-
+*/
 // -----------------------------------Google Maps END----------------------------------------------
 });

@@ -1,12 +1,18 @@
 <ion-side-menus enable-menu-with-back-views="true">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-stable" align-title="center">  
+          
+          <!-- Vote-X Title Icon Origin -->
+       <ion-nav-title align-title="center">
+          <img ng-src="{{votexTitle}}">
+              </ion-nav-title>  
+               
       <ion-nav-buttons side="left">
         <button class="button button-icon button-clear button-assertive ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-           <button class="button button-assertive" ng-click="openModal(1)" ng-if="notSignedIn">
+           <button class="button button-assertive" ng-click="openModal(1)" ng-if="!currentUserSignedIn">
             Login
            </button>
            
@@ -32,12 +38,12 @@
       <ion-list >
         
     
-          <ion-item class="item item-icon-left" nav-clear menu-close ng-click="openModal(1)" ng-hide="currentUserSignedIn" style="border: none;border-bottom-color: transparent;">
+          <ion-item class="item item-icon-left" nav-clear menu-close ng-click="openModal(1)" ng-if="!currentUserSignedIn" style="border: none;border-bottom-color: transparent;">
           <i class="icon ion-log-in" style="color: #D43D33;font-size: 22px"></i>
              Login
           </ion-item>
           
-          <ion-item nav-clear menu-close href="#/app/profile" style="height: 100px" ng-show="currentUserSignedIn">
+          <ion-item nav-clear menu-close href="#/app/profile" style="height: 100px" ng-if="currentUserSignedIn">
           <div class="row" >
             <div class="col">
            <div class="item-thumbnail-left item-image">
@@ -63,12 +69,12 @@
             Suche
           </ion-item>
           
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/map" ng-show="currentUserSignedIn">
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/map" ng-if="currentUserSignedIn">
           <i class="icon ion-map" style="color: #D43D33;font-size: 22px"></i>
             Karte
           </ion-item>
           
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/last_visited" ng-show="currentUserSignedIn">
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/last_visited" ng-if="currentUserSignedIn">
           <i class="icon ion-ios-book-outline" style="color: #D43D33;font-size: 22px"></i>
           Zuletzt besucht
           </ion-item>
@@ -83,17 +89,17 @@
             Angebote/Rabatte
           </ion-item>
           
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/settings" ng-show="currentUserSignedIn">
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/settings" ng-if="currentUserSignedIn">
           <i class="icon ion-ios-gear" style="color: #D43D33;font-size: 22px"></i>
            Einstellungen
           </ion-item>
           
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/bookmark" ng-show="currentUserSignedIn">
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/bookmark" ng-if="currentUserSignedIn">
           <i class="icon ion-bookmark" style="color: #D43D33;font-size: 22px"></i>
             Lesezeichen
           </ion-item>
           
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/messages" ng-show="currentUserSignedIn">
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/messages" ng-if="currentUserSignedIn">
           <i class="icon ion-android-mail" style="color: #D43D33;font-size: 22px"></i>
             Nachrichten
           </ion-item>

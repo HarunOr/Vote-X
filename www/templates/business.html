@@ -3,9 +3,7 @@
   <ion-nav-buttons> <button class="button ion-ios-arrow-back" ng-click="goHome()" >
             Zurück
            </button></ion-nav-buttons>
- <ion-nav-title bar-dark align-title="center">
-          <img ng-src ="{{votexTitle}}">
-              </ion-nav-title>
+
               
   <ion-content class="padding" has-header lazy-scroll overflow-scroll="true">
     
@@ -39,14 +37,13 @@
      
      
      <!-- Google Maps -->
- <div class="info">
- <ui-gmap-google-map center='map.center' zoom='map.zoom' dragging="false"  >
-  <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-        </ui-gmap-marker>
-   </ui-gmap-google-map>
-  </div>  
-  <button class="button button-block button-assertive" ng-click="vote()" >Vote !</button>  
- 
+      <div class="info">
+<div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20"
+  map-lazy-load-params="{{googleMapsUrl}}">
+  <map center="{{mapCenter()}}" zoom="15">
+  </map>
+</div>
+ <button class="button button-block button-assertive" ng-click="vote()" >Vote !</button>  
   <!-- Google Maps Ende -->
  
   <!-- -------------- Accordion -------------- -->
@@ -143,7 +140,7 @@ Guten Appetit! </p>
    </accordion>
    
     <!-- -------------- Accordion End -------------- -->   
-   
+   </div>
   </ion-content>
 </ion-view>
 

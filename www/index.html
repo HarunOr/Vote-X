@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1 ,maximum-scale=1, user-scalable=no, width=device-width">
      <meta http-equiv="Content-Security-Policy" content="img-src &apos;self&apos; data: *;default-src *; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; https://maps.googleapis.com/ https://maps.gstatic.com/ https://mts0.googleapis.com/ *; style-src  &apos;self&apos; &apos;unsafe-inline&apos; *"> 
-    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://maps.googleapis.com/ https://maps.gstatic.com/ https://mts0.googleapis.com/ 'unsafe-inline' 'unsafe-eval'"> -->
     <title></title>
     <!-- compiled css output -->
    <link href="css/ionic.app.min.css" rel="stylesheet"> 
@@ -15,19 +14,19 @@
    
  
     <!-- ionic/angularjs js -->
-    <script src="lib/lodash/lodash.min.js"></script>
     <script src="lib/ionic/js/ionic.bundle.min.js"></script>
     <script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="lib/angular-messages/angular-messages.js"></script>
     <script src="lib/ionic.ion.imagecachefactory.js"></script>
     <script src="lib/ionic-image-lazy-load/ionic-image-lazy-load.js"></script>
-    <script src="lib/angular-simple-logger/dist/index.js"></script>
-    <script src="lib/angular-google-maps/dist/angular-google-maps.min.js"></script>
+    <script src="lib/ngmap/build/scripts/ng-map.min.js"></script> <!-- New Google maps -->
+   
+    
     <script src="lib/Chart.js/Chart.min.js"></script>  
     <script src="lib/angular-chart.js/dist/angular-chart.min.js"></script>
     
     <!-- Google Places API -->
-    <script src="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20"></script>
+   <!-- <script src="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20"></script>
    
   
     <!-- cordova script (this will be a 404 during development) -->

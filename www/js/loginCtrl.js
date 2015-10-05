@@ -8,7 +8,7 @@
     // Login Status-----------------------------------
     
     $rootScope.currentUserSignedIn = false;
-    $rootScope.notSignedIn =true;
+  
     //UserData after Registration-----------------------------
    
  
@@ -68,7 +68,7 @@
                     }
                 } else {
                      $rootScope.currentUserSignedIn =true;
-                     $rootScope.notSignedIn = false;
+                    
                      console.log("current user signed in");
             //    $scope.getProfilePic(authData);
                      $scope.userID = authData.uid;
@@ -251,8 +251,8 @@ myRef.authWithOAuthPopup("facebook", function(error, authData) {
             title: 'Willkommen!',
             template: 'Du hast dich erfolgreich eingeloggt :)'
         });
-      $rootScope.currentUserSignedIn =true;
-      $rootScope.notSignedIn = false;
+      $scope.currentUserSignedIn =true;
+    
                      console.log("current user signed in");
                        }
      },
