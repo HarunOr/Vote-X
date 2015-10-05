@@ -16,26 +16,20 @@
 <!-- Content -->
 <!-- add lazy-scroll to ion-content -->
 
-  <ion-content class="voteBg" has-subheader overflow-scroll="true">
-
- 
- <!-- Progressbar Development -->
-
-  <h3 align="center" style="padding-top:5%"> Development Status</h3>
-  <progressbar class="progress-striped active" max="100" value="devProgress" type="danger"><i>{{devProgress}} / 100</i></progressbar>
+  <ion-content class="voteBg" has-subheader overflow-scroll="true" lazy-scroll>
 
 <!-- -------------------------------- -->
- 
  
 
 <div class="list card" >
 
   <div class="item item-avatar" ng-click="openBusiness()">
-
-    <h2>Marc's Restaurant</h2>
+    
+  <img image-lazy-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg" image-lazy-loader="lines" lazy-scroll-resize="true">
+         <h2>{{businessName}}</h2>
     <p>Restaurant</p>
     <div class="row">
-      <div class="col col-75">
+      <div class="col col-80">
     <p>  <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']" ng-model="rate"></rating> </p>
     </div>
     <div class="col">
@@ -81,7 +75,7 @@
   </div>
 
   <div class="item item-body">
-    <img class="full-image" image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg" image-lazy-loader="lines" onclick="window.open('http://www.jochen-schweizer.de', '_blank', 'location=no');">
+    <img class="full-image" image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg" image-lazy-loader="lines" lazy-scroll-resize="true" onclick="window.open('http://www.jochen-schweizer.de', '_blank', 'location=no');">
     <p>
      Hier steht ein sehr überzeugender Clickbait-Text  
     </p>
@@ -94,8 +88,8 @@
 <div class="list card">
 
   <div class="item item-avatar" ng-click="openBusiness2()">
-    <img image-lazy-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg" image-lazy-loader="lines">
-    <h2>Harun's Bar</h2>
+    <img image-lazy-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg" image-lazy-loader="lines" lazy-scroll-resize="true">
+    <h2>{{businessName2}}</h2>
     <p>Bar</p>
     
     <div class="row">
@@ -109,7 +103,7 @@
   </div>
 
   <div class="item item-body">
-    <img class="full-image" image-lazy-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="0" ng-click="openBusiness2()">
+    <img class="full-image" image-lazy-src="https://uptownco.files.wordpress.com/2011/05/imgl6303.jpg" image-lazy-loader="lines" lazy-scroll-resize="true" ng-click="openBusiness2()">
     <p>
       2 für 1 jeden Donnerstag.
       Saufeeeeeeeeen !!!    

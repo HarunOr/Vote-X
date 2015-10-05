@@ -5,7 +5,7 @@
       <button class="button button-dark button-clear" ng-click="closeModal(1)">Schließen</button>
     </div>
   </ion-header-bar>
-  <ion-content class="modal1" scroll="false">
+  <ion-content class="modal1" scroll="false" ng-controller="loginCtrl">
     <div id="form">
               <form novalidate name="loginForm" ng-submit="loginForm.$valid && doLogin(email,password)">
             <div class="list">

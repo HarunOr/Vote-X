@@ -1,12 +1,16 @@
 # Vote-X
 
-Kosten
 
+
+
+Font:
+http://www.cufonfonts.com/de/font/13217/avenir-next-lt-pro
+
+_____________
+Todo
 - Ionic Lazy Load
 - Ionic Material Design
 - Profilseite
-____________
-Todo
 - Vote! Funktion -> Ionic Popup 
 - Google Maps loading verbessern 
 - Anstatt angular accordion <> ionic accordion ausprobieren *Performance Test*

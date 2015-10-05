@@ -1,7 +1,7 @@
 {
-  "name": "angular-messages",
+  "name": "angular-mocks",
   "version": "1.4.7",
-  "main": "./angular-messages.js",
+  "main": "./angular-mocks.js",
   "ignore": [],
   "dependencies": {
     "angular": "1.4.7"

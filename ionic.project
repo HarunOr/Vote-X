@@ -1,6 +1,6 @@
 {
   "name": "Vote-X-Beta",
-  "app_id": "",
+  "app_id": "c3ce9699",
   "gulpStartupTasks": [
     "sass",
     "watch"

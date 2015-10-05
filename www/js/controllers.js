@@ -2,7 +2,7 @@
  
   .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad'])
 
-  .controller('AppCtrl', function ($scope, $rootScope, $ionicLoading, $http,
+  .controller('AppCtrl', function ($scope, $ionicLoading, $http,
                                    $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth,
                                      
                                    $ImageCacheFactory)    {
@@ -26,10 +26,12 @@
      $scope.harunProfileImg = 'img/profile_harun-oral.jpg';
      
 
-
+  $scope.rate = 5;
+  $scope.rateBiz= 4;
     // GeoLocation
 
- 
+ $scope.businessName = "Marc's Restaurant";
+$scope.businessName2 = "Harun's Bar";
       
     //------------Get profile Url---------------- 
     /*
@@ -70,18 +72,8 @@
     };
 //------------------------------Business Modal---------------------------------
 
-// Business Name
-
-$scope.businessName = "Marc's Restaurant";
-$scope.businessName2 = "Harun's Bar";
-
-
-
-
-//
-
  $scope.openBusiness = function() {
-     if($rootScope.currentUserSignedIn == true) {
+     if($scope.currentUserSignedIn == true) {
         $ionicPopup.alert({
             title: 'Oh nein!',
             template: 'Du musst dich einloggen, um das sehen zu können!'
@@ -94,7 +86,7 @@ $scope.businessName2 = "Harun's Bar";
   
   //Business Name 2
  $scope.openBusiness2 = function() {
-     if($rootScope.currentUserSignedIn == false) {
+     if($scope.currentUserSignedIn == false) {
         $ionicPopup.alert({
             title: 'Oh nein!',
             template: 'Du musst dich einloggen, um das sehen zu können!'
@@ -104,16 +96,6 @@ $scope.businessName2 = "Harun's Bar";
         else {
    $state.go('app.business2') }
   };
-
-
-
-
-
-
-// ----------------------------------------- Progressbar -----------------------------------------
-    $scope.devProgress = 70;
-    
- // ----------------------------------------- Progressbar End-----------------------------------------   
 
 });
 //-----------------------------------------END APPCTRL-----------------------------------------

@@ -17,6 +17,10 @@ angular
   $scope.fourVote = 4;
   $scope.fiveVote = 5;
 
+// // Business Name
+
+$scope.businessName = "Marc's Restaurant";
+$scope.businessName2 = "Harun's Bar";
 
 // ---------------------- End RATING ----------------------
 $scope.goHome = function() {
