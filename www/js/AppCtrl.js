@@ -49,7 +49,9 @@ $scope.businessName2 = "Harun's Bar";
    
    
     //------------- Google Search Box ------------------
-    
+    $scope.filter = [
+        // ['establishment'] etc für input in home.html
+    ]
     
     //------------Get profile Url---------------- 
     /*
@@ -118,6 +120,7 @@ $scope.businessName2 = "Harun's Bar";
    $state.go('app.business2') }
   };
 
-});
+
 //-----------------------------------------END APPCTRL-----------------------------------------
 
+});
