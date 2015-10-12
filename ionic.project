@@ -1,5 +1,5 @@
 {
-  "name": "Vote-X-Beta",
+  "name": "Vote-X",
   "app_id": "c3ce9699",
   "gulpStartupTasks": [
     "sass",

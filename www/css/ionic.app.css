@@ -16,8 +16,8 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 .poweredBy {
-  margin-left: 20%;
-  margin-right: 20%; }
+  position: relative;
+  margin: 0 auto; }
 
 .voteBg {
   background-color: #ECEDEF; }
@@ -7733,17 +7733,39 @@ a.button {
 .bar.bar-assertive .title {
   color: #fff; }
 
+.platform-ipad .registration.scroll-content {
+  background: url('../img/background_opt-compressor.jpg') no-repeat;
+  background-size: 180% auto; }
+
+.platform-ipad .modal1.scroll-content {
+  background: url('../img/modal1_opt-compressor.jpg') no-repeat;
+  background-size: auto; }
+
 .modal1.scroll-content {
   background: url('../img/modal1_opt-compressor.jpg') no-repeat;
-  webkit-background-size: auto; }
+  background-size: auto; }
 
 .registration.scroll-content {
   background: url('../img/background_opt-compressor.jpg') no-repeat;
-  webkit-background-size: 280% auto; }
+  background-size: 235% auto; }
 
 #form {
   background-color: white;
   margin-top: 25px; }
+
+.profile.scroll-content {
+  background: url('../img/profileBg.png') no-repeat;
+  background-size: 100% auto; }
+
+.profileImg {
+  margin-top: 5%;
+  margin-left: 30%;
+  margin-right: 40%; }
+
+.profileInfo {
+  margin-top: 3%;
+  background-color: #DFDFDF;
+  padding-bottom: 25%; }
 
 #profile-image {
   display: block;
@@ -7887,3 +7909,6 @@ a.button {
 .angular-google-map-container {
   height: 200px;
   width: 100%; }
+
+[nav-view-transition="ios"][nav-view-direction="forward"], [nav-view-transition="ios"][nav-view-direction="back"] {
+  background-color: transparent; }

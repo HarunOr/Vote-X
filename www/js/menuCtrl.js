@@ -30,7 +30,7 @@
 
 $scope.logout = function() {
       myRef.unauth();
-      $scope.currentUserSignedIn =false;
+      $rootScope.currentUserSignedIn =false;
       
      console.log("user signed out");
      $scope.loggedOut();

@@ -4,8 +4,7 @@
 
 
 
-Font:
-http://www.cufonfonts.com/de/font/13217/avenir-next-lt-pro
+- Ionic resources --splash Nochmal machen mit guter internetverbindung!
 
 _____________
 Todo

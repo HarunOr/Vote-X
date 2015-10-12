@@ -4,33 +4,34 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl','starter.premiumCtrl',
-                                        'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory'])
+                                        'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
   $ionicPlatform.ready(function() { 
-
+  
+    if (window.cordova && window.cordova.plugins) {
+            if (window.cordova.plugins.Keyboard) {
+              cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+              cordova.plugins.Keyboard.disableScroll(true);
+            }
+        }
+  if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      $cordovaStatusbar.overlaysWebView(true);
+      $cordovaStatusbar.styleHex('#DFDFDF');
+       
+    }
+  
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
-      
-    }
-    if(window.Statusbar) {
-      if ($ionicPlatform.isAndroid()) {
-      window.StatusBar.overlaysWebView(false);
-      window.Statusbar.backgroundColorByHexString("#A93028") 
-      }
-      else {
-        window.StatusBar.styleLightContent();
-              }
-    }
+
+
   });
 })
 
 
-votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-
+.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  
   $ionicConfigProvider.views.maxCache(10);
 
 
@@ -155,7 +156,8 @@ votex.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider)
     url: '/agb',
     views: {
       'menuContent': {
-        templateUrl: 'templates/agb/agb.html'
+        templateUrl: 'templates/agb/agb.html',
+        controller: 'agbCtrl'
       }
     }
   })
