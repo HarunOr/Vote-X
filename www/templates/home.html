@@ -1,19 +1,18 @@
-<ion-view>
+<ion-view >
 
-  <ion-header-bar class="bar bar-subheader" style="background-color: #FFF;">
-    <label class="item-input-wrapper">
-      <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
-      <input type="search" placeholder="Suche" places-auto-complete types="['geocode']" on-place-changed="myCallback(place)" style="background-color:transparent" />
-    </label>
+        <ion-header-bar class="bar bar-subheader" style="background-color: #FFF;">
+                <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
+      <input type="search" placeholder="Suche" places-auto-complete types="['geocode']" on-place-changed="myCallback(place)"  style="background-color:transparent"/>
+  </label>
+ 
+                </ion-header-bar>
+           
 
-  </ion-header-bar>
-
-
-  <!-- Content -->
-  <!-- add lazy-scroll to ion-content -->
+<!-- Content -->
+<!-- add lazy-scroll to ion-content -->
 
   <ion-content class="voteBg" has-subheader overflow-scroll="true" lazy-scroll>
-<<<<<<< HEAD
     
     
            <ion-refresher
@@ -35,67 +34,10 @@
     <div class="row row-avatar">
       <div class="col col-80">
     <p>  <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']" ng-model="rate"></rating> </p>
-=======
-
-
-    <ion-refresher spinner="ripple" pulling-text="Runterziehen zum aktualisieren..." on-refresh="doRefresh()">
-    </ion-refresher>
-
-    <!-- -------------------------------- -->
-
-
-    <div class="list card">
-
-      <div class="item item-avatar" ng-click="openBusiness()">
-
-        <img image-lazy-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg" image-lazy-loader="lines" lazy-scroll-resize="true">
-        <h2>{{businessName}}</h2>
-        <p>Restaurant</p>
-        <div class="row row-avatar">
-          <div class="col col-80">
-            <p>
-              <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']" ng-model="rate"></rating>
-            </p>
-          </div>
-          <div class="col">
-            <div class="voteNumber">1084 Votes</div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="item item-body">
-        <img class="full-image" ng-click="openBusiness()" image-lazy-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg" image-lazy-loader="lines" lazy-scroll-resize="true">
-        <p>
-          Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image. Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext. Der Footer besteht aus
-          Buttons mit Icons.
-        </p>
-      </div>
-
-      <div class="item tabs tabs-secondary tabs-icon-left" ng-click="openBusiness('slideInRight')">
-        <a class="tab-item" href="#">
-          <i class="icon icon-votex_icon" style="color: #D43D33"></i> Vote
-        </a>
-        <a class="tab-item">
-          <i class="icon ion-information-circled" style="color: #D43D33"></i> Informationen
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-share" style="color: #D43D33"></i> Teilen
-        </a>
-      </div>
-
->>>>>>> origin/master
     </div>
-    <!-- ------------------AD CARD ---------------- -->
-
-    <div class="list card">
-
-      <div class="item item-avatar">
-        <img image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg" image-lazy-loader="lines" lazy-scroll-resize="true">
-        <h2>Jochen Schweizer</h2>
-        <p>Werbung</p>
+    <div class="col">
+      <div class="voteNumber">1084 Votes</div>
       </div>
-<<<<<<< HEAD
   </div>
   
   </div>
@@ -145,19 +87,6 @@
   </div>
 </div>
 <!-- ------------------ AD CARD END ----------------- -->
-=======
-
-      <div class="item item-body">
-        <img class="full-image" image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg" image-lazy-loader="lines" lazy-scroll-resize="true" onclick="window.open('http://www.jochen-schweizer.de', '_blank', 'location=no');">
-        <p>
-          Hier steht ein sehr überzeugender Clickbait-Text
-        </p>
-        <p>
-        </p>
-      </div>
-    </div>
-    <!-- ------------------ AD CARD END ----------------- -->
->>>>>>> origin/master
 
   </ion-content>
 </ion-view>
