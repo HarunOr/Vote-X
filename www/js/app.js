@@ -3,6 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
+<<<<<<< HEAD
 var votex = angular.module('starter', ['ionic','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl','starter.premiumCtrl',
                                         'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl'])
 
@@ -26,6 +27,30 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
     // for form inputs)
 
 
+=======
+var votex = angular.module('starter', ['ionic','starter.controllers','starter.loginCtrl','starter.menuCtrl','profileCtrl','starter.premiumCtrl',
+                                        'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory'])
+
+votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
+  $ionicPlatform.ready(function() {
+
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
+
+    }
+    if(window.Statusbar) {
+      if ($ionicPlatform.isAndroid()) {
+      window.StatusBar.overlaysWebView(false);
+      window.Statusbar.backgroundColorByHexString("#A93028")
+      }
+      else {
+        window.StatusBar.styleLightContent();
+              }
+    }
+>>>>>>> origin/master
   });
 })
 
@@ -110,7 +135,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
       }
     }
   })
-  
+
   .state('app.business', {
     url: "/business",
   views: {
@@ -140,7 +165,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
       }
     }
   })
-  
+
 
 
     .state('app.feedback', {
@@ -151,7 +176,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
       }
     }
   })
-  
+
   .state('app.agb', {
     url: '/agb',
     views: {
@@ -164,7 +189,10 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
 
 
   $urlRouterProvider.otherwise('/app/home');
-  
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 });
