@@ -31,14 +31,13 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
 
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-  $ionicConfigProvider.scrolling.jsScrolling(false);
   $ionicConfigProvider.views.maxCache(10);
 
 
   $stateProvider
 
   .state('app', {
-    url: '/votex',
+    url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'menuCtrl'
@@ -163,7 +162,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
   })
 
 
-  $urlRouterProvider.otherwise('/votex/home');
+  $urlRouterProvider.otherwise('/app/home');
   
 
 
