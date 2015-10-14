@@ -30,13 +30,8 @@ $state.go("app.home");
 // Collapse
      $scope.isCollapsed = false;
      
-     $scope.resize = function() {
-         
-          setTimeout(function () {
-            
-    $ionicScrollDelegate.resize();
-    },150);
-        
+     $scope.resize = function() {     
+    $ionicScrollDelegate.resize();        
      }
 // Dynamic accordion bootstrap
 
