@@ -93,6 +93,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ion
 
   .state('app.forgot', {
     url: "/forgot",
+    controller: 'loginCtrl',
     views: {
       'menuContent': {
         templateUrl: "templates/forgot.html"
