@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl','starter.premiumCtrl',
-                                        'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl'])
+                                        'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl', 'pascalprecht.translate'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
   $ionicPlatform.ready(function() { 
@@ -31,14 +31,14 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
 
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-  
+  $ionicConfigProvider.scrolling.jsScrolling(false);
   $ionicConfigProvider.views.maxCache(10);
 
 
   $stateProvider
 
   .state('app', {
-    url: '/app',
+    url: '/votex',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'menuCtrl'
@@ -163,7 +163,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar) {
   })
 
 
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/votex/home');
   
 
 

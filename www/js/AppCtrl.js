@@ -7,14 +7,9 @@
                                      
                                    $ImageCacheFactory)    {
 
+
    
-   // start ionic Load
-   
-       $scope.show = function() {
-    $ionicLoading.show({
-      template: 'Gleich geht es los...'
-    });
-  };
+
    // ionic Loading ---------------------------------------
     $ionicPlatform.ready(function() {
      
@@ -40,8 +35,8 @@
      $scope.harunProfileImg = 'img/profile_harun-oral.jpg';
      
 
-  $scope.rate = 5;
-  $scope.rateBiz= 4;
+  $scope.rate = 4;
+
     // GeoLocation
 
  $scope.businessName = "Marc's Restaurant";

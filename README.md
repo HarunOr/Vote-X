@@ -29,9 +29,7 @@ Todo
 - !!! Imagepreload (auch Vote-X Title img!) !!!
 - Android Statusbar Color
 - Read user data.. Firebase push parameters..Register
-
-
-- codepen animationen implementieren
+ys
 - loading spinner 
 
 _________________

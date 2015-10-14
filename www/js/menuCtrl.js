@@ -9,16 +9,14 @@
 
           // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
-        id: '1',
         animation: 'slide-in-up',
         scope: $scope
     }).then(function (modal) {
         $scope.modal1 = modal;
     });
 
-   $scope.openModal = function(index) {
-      if (index == 1) $scope.modal1.show();
-      else $scope.modal2.show();
+   $scope.openModal = function() {
+      $scope.modal1.show();
     };
 
     $scope.closeModal = function(index) {

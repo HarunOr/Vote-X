@@ -3,7 +3,7 @@
         <ion-header-bar class="bar bar-subheader" style="background-color: #FFF;">
                 <label class="item-input-wrapper">
     <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
-      <input type="search" placeholder="Suche" places-auto-complete types="['geocode']" on-place-changed="myCallback(place)"  style="background-color:transparent"/>
+      <input type="search" placeholder="Suche" places-auto-complete types="['establishment']" on-place-changed="myCallback(place)"  style="background-color:transparent"/>
   </label>
  
                 </ion-header-bar>
@@ -33,7 +33,7 @@
     <p >Restaurant</p>
     <div class="row row-avatar">
       <div class="col col-80">
-    <p>  <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']" ng-model="rate"></rating> </p>
+    <p>  <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating> </p>
     </div>
     <div class="col">
       <div class="voteNumber">1084 Votes</div>
