@@ -1,6 +1,12 @@
    angular.module('starter.menuCtrl', ['firebase'])
       .controller("menuCtrl", function ($scope, $ionicModal, $state, $ionicPopup,$rootScope) {
             
+	   
+	        $scope.votexTitle = 'img/votex_title.png';
+     $scope.harunProfileImg = 'img/profile_harun-oral.jpg';
+	   
+	   
+	   
                // Firebase reference
     var myRef = new Firebase("https://vote-x.firebaseio.com");
      $rootScope.currentUserSignedIn = false;

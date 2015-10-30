@@ -13,10 +13,7 @@
    // ionic Loading ---------------------------------------
     $ionicPlatform.ready(function() {
      
-     console.log('VoteX started');
-          $ionicLoading.hide();         
-     });
-    //Preload ALL Images
+		    //Preload ALL Images
     $ImageCacheFactory.Cache([
         
         'img/votex_title.png',
@@ -27,12 +24,24 @@
         'img/voteRateOn.png',
         'img/voteRateOff.png',
         'img/profile_harun-oral.jpg',
-        ]); 
-
-     //Vote-X Logo Titel Img
+		'img/buttonRestaurant.png',
+		'img/buttonBar.png',
+		'img/buttonCoffee.png',
+		'img/buttonClub.png',
+		'img/profileBg.png',
+		'img/modal1_opt-compressor.jpg',
+		'img/background_opt-compressor.jpg'		
+         ]).then(function(){
+        console.log("Images done loading!");
+    },function(failed){
+        console.log("An image filed: "+failed);
+    });
+		
+		
+     console.log('VoteX started');
+          $ionicLoading.hide();         
+     });
      
-     $scope.votexTitle = 'img/votex_title.png';
-     $scope.harunProfileImg = 'img/profile_harun-oral.jpg';
      
 
   $scope.rate = 4;

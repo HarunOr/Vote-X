@@ -10,9 +10,7 @@
            
 
 <!-- Content -->
-<!-- add lazy-scroll to ion-content -->
-
-  <ion-content class="voteBg" has-subheader overflow-scroll="true" lazy-scroll>
+  <ion-content class="voteBg" has-subheader overflow-scroll="true" lazy-scroll ng-controller="AppCtrl">
     
     
            <ion-refresher
@@ -26,7 +24,7 @@
 
 <div class="list card">
 
-  <div class="item item-avatar" on-touch="openBusiness()"> <!-- ng-click="openBusiness()" -->
+  <div class="item item-avatar" ng-click="openBusiness()"> <!-- ng-click="openBusiness()" -->
     
   <img image-lazy-src="http://www.renk-magazin.de/wp-content/uploads/2015/07/best-turkish-restaurants_renk-05.jpg" image-lazy-loader="lines" lazy-scroll-resize="true">
          <h2>{{businessName}}</h2>

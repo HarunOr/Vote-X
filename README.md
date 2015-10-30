@@ -1,9 +1,7 @@
 # Vote-X
 
 
-
-
-
+- Cosmo CMS https://github.com/CosmoCMS/Cosmo
 - Ionic resources --splash Nochmal machen mit guter internetverbindung!
 
 _____________

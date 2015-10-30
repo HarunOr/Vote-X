@@ -9,31 +9,26 @@ var votex = angular.module('starter', ['ionic','ngIOS9UIWebViewPatch','starter.c
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ionicPopup) {
   $ionicPlatform.ready(function() { 
   
-    if (window.cordova && window.cordova.plugins) {
+    if (window.cordova && window.cordova.plugins && window.StatusBar) {
             if (window.cordova.plugins.Keyboard) {
+			  $cordovaStatusbar.overlaysWebView(true);
+      		  $cordovaStatusbar.styleHex('#DFDFDF');
               cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
               cordova.plugins.Keyboard.disableScroll(true);
             }
         }
-  if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      $cordovaStatusbar.overlaysWebView(true);
-      $cordovaStatusbar.styleHex('#DFDFDF');
-       
-    }
-  
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-
-
+    // for form inputs	  
+	  
   });
 })
 
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-  $ionicConfigProvider.views.maxCache(10);
 
-
+	$ionicConfigProvider.views.maxCache(7);
+	
+	
   $stateProvider
 
   .state('app', {

@@ -16,7 +16,7 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 .poweredBy {
-  position: relative;
+  position: fixed;
   margin: 0 auto; }
 
 .voteBg {
