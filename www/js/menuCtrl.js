@@ -1,10 +1,9 @@
    angular.module('starter.menuCtrl', ['firebase'])
-      .controller("menuCtrl", function ($scope, $ionicModal, $state, $ionicPopup,$rootScope) {
+      .controller("menuCtrl", function ($scope, $ionicModal, $state, $ionicPopup,$rootScope, $ionicScrollDelegate) {
             
 	   
 	        $scope.votexTitle = 'img/votex_title.png';
      $scope.harunProfileImg = 'img/profile_harun-oral.jpg';
-	   
 	   
 	   
                // Firebase reference
@@ -37,21 +36,24 @@ $scope.logout = function() {
       $rootScope.currentUserSignedIn =false;
       
      console.log("user signed out");
-     $scope.loggedOut();
-     $state.go("app.home");
+     
+    
      $ionicPopup.alert({
             title: 'Ciao!',
             template: 'Du hast dich erfolgreich ausgeloggt'
         });
-    
+        $scope.loggedOut();
+    $ionicScrollDelegate.resize();  
 };
 //----------------------Logged out -----------------------------------------
 
 $scope.loggedOut = function(){
   if($rootScope.currentUserSignedIn == false) {
-       $state.go("app.home");
+      setTimeout(function() {
+        $state.go('app.home', {});
+      },400);
   }
     
 };
-    
+
       });

@@ -1,0 +1,25 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-light" align-title="center" style="outline-color: red;">
+    <h1 class="title">BusinessMap</h1>
+    <div class="buttons">
+      <button class="button button-dark button-clear" >Schließen</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="modal1" scroll="false" ng-controller="businessCtrl">
+    BusinessMap
+             
+            
+             
+             <button class="button button-block button-facebook" ng-click="loginFB()" style="color: $facebook">Einloggen via Facebook</button>
+             
+              <button class="button button-block button-assertive" ui-sref="app.register" ng-click="closeModal(1)">
+                  Registrieren
+        </button>
+              <p class="text-center ">
+                  <a ui-sref="app.forgot" class="button button-clear button-positive" ng-click="closeModal(1)">Passwort vergessen</a>
+        </p>
+        </div>
+        </div>
+        </ion-content>
+
+</ion-modal-view>

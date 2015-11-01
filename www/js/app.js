@@ -3,11 +3,39 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var votex = angular.module('starter', ['ionic','ngIOS9UIWebViewPatch','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl','starter.premiumCtrl',
+var votex = angular.module('starter', ['ionic','ngIOS9UIWebViewPatch','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl',
                                         'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl', 'pascalprecht.translate'])
 
-votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ionicPopup) {
+votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory) {
   $ionicPlatform.ready(function() { 
+    
+    		    //Preload ALL Images
+    $ImageCacheFactory.Cache([
+        
+        'img/votex_title.png',
+        'img/voteOn.png',
+        'img/voteOff.png',
+        'img/voteTitleOn.png',
+        'img/voteTitleOff.png',
+        'img/voteRateOn.png',
+        'img/voteRateOff.png',
+        'img/profile_harun-oral.jpg',
+		'img/buttonRestaurant.png',
+		'img/buttonBar.png',
+		'img/buttonCoffee.png',
+		'img/buttonClub.png',
+		'img/profileBg.png',
+		'img/modal1_opt-compressor.jpg',
+		'img/background_opt-compressor.jpg'		
+         ]).then(function(){
+        console.log("Images done loading!");
+    },function(failed){
+        console.log("An image filed: "+failed);
+    });
+		
+		
+     console.log('VoteX started');   
+    
   
     if (window.cordova && window.cordova.plugins && window.StatusBar) {
             if (window.cordova.plugins.Keyboard) {
@@ -41,11 +69,10 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ion
 
   .state('app.home', {
     url: '/home',
-    controller: 'AppCtrl',
     views: {
       'menuContent': {
         templateUrl: 'templates/home.html',
-
+        controller: 'AppCtrl',
       }
     }
   })
@@ -64,6 +91,13 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ion
     abstract: true,
     templateUrl: "templates/login.html",
     controller: 'loginCtrl'
+  })
+  
+    .state('app.businessMap', {
+    url: "/businessMap",
+    abstract: true,
+    templateUrl: "templates/businessMap.html",
+    controller: 'businessCtrl'
   })
 
 
@@ -116,16 +150,6 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ion
     }
   })
 
-  .state('app.premium', {
-    url: '/premium',
-    controller: 'premiumCtrl',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/premium.html'
-      }
-    }
-  })
-
   .state('app.trends', {
     url: '/trends',
     controller: 'AppCtrl',
@@ -156,10 +180,31 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ion
       }
     }
   })
+  
+.state('app.rooms', {
+    url: '/rooms',
+    views: {
+        'tab-rooms': {
+            templateUrl: 'templates/rooms.html',
+            controller: 'RoomsCtrl'
+        }
+    }
+})
 
+.state('app.chat', {
+    url: '/chat',
+    views: {
+        'tab-chat': {
+            templateUrl: 'templates/chat.html',
+            controller: 'ChatCtrl'
+        }
+    }
+})
 
   $urlRouterProvider.otherwise('/app/home');
   
 
 
-});
+})
+;
+

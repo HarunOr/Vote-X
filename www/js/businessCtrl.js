@@ -1,8 +1,6 @@
 angular
        .module('starter.businessCtrl', ['ngMap','ionicLazyLoad'])
-       .controller("businessCtrl", function ($scope, $state, $ionicScrollDelegate, $cordovaGeolocation, $http,$log, $ionicLoading, $ionicPlatform) {
-
-
+       .controller("businessCtrl", function ($scope, $state,$ionicModal ,$ionicScrollDelegate, $cordovaGeolocation, $http,$log, $ionicLoading, $ionicPlatform) {
 
 
 
@@ -30,9 +28,6 @@ $state.go("app.home");
 // Collapse
      $scope.isCollapsed = false;
      
-     $scope.resize = function() {     
-    $ionicScrollDelegate.resize();        
-     }
 // Dynamic accordion bootstrap
 
   $scope.statusVotes = {
@@ -83,18 +78,10 @@ $state.go("app.home");
   
   ]; 
 
-  $scope.testImages2 = [
-  'http://blogs.independent.co.uk/wp-content/uploads/2013/02/pub.jpg',
-  'http://www.saexplorers.org/sites/default/files/images/clubhouse/event/cusco/2013/pub1.jpg',
-  'http://i.telegraph.co.uk/multimedia/archive/02328/harp_2328698b.jpg'
-  
-  ]; 
+
 
   // ------------------------------ ngMap -------------------------------------
-  $scope.loading = $ionicLoading.show({
-      content: 'Wir suchen für dich gerade einen coolen Laden...',
-      showBackdrop: false
-    });    
+
     
   $scope.mapCenter = function(lat, lng) {
    return lat + "," + lng;
@@ -104,10 +91,10 @@ $state.go("app.home");
  $scope.lng = "13.567276" ; 
 
 
-
-   $ionicPlatform.ready(function() {
-     $scope.resize();
-     console.log('resized ionic');
-          $ionicLoading.hide();         
-     });
+     
+     
+     
+     
+     
+     
 });

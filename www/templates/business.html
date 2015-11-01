@@ -5,15 +5,24 @@
            </button></ion-nav-buttons>
 
               
-  <ion-content class="padding" has-header lazy-scroll overflow-scroll="true" has-bouncing="true">
+  <ion-content class="padding" has-header overflow-scroll="true">
     
+    
+    <div class="row" style="margin: 0 auto">
+      <div class="col" align="center">
+             <button class="button button-block button-assertive" ng-click="vote()" ><i class="icon icon-votex_icon" style="color: white;margin-right:10px"></i>Vote</button> 
+      </div>
+      <div class="col" align="center">
+              <button class="button button-block button-positive" ng-click="openBusinessMap()"><i class="icon ion-map" style="color: white;margin-right:10px"></i>Standort</button> 
+        </div>
+        </div>
 
-    
+
 
   
-   <ion-slide-box class="slider">
-    <ion-slide ng-repeat="image in testImages" >       
-        <img style="width: 100%" image-lazy-src="{{image}}" image-lazy-loader="lines" >
+   <ion-slide-box class="slider" auto-play="true" does-continue="true">
+    <ion-slide ng-repeat="image in testImages">       
+        <img style="width: 100%" ng-src="{{image}}">
     </ion-slide>
 </ion-slide-box>
 
@@ -35,8 +44,9 @@
        </div>
      </div>
      
-     
+    
      <!-- Google Maps -->
+     <!--
       <div class="info">
 <div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" >
   <map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15">
@@ -49,15 +59,14 @@
    </info-window>
   </map>
 </div>
-</div>
- <button class="button button-block button-assertive" ng-click="vote()" >Vote !</button>  
+</div> 
   <!-- Google Maps Ende -->
  
   <!-- -------------- Accordion -------------- -->
   <accordion close-others="oneAtATime" >
     
     
-    <accordion-group  ng-click="resize()" is-open="status.open">
+    <accordion-group is-open="status.open">
       <accordion-heading><i class="icon ion-plus-round" style="color: #D43D33;font-size: 22px" ng-class="{'ion-minus-round': status.open, 'ion-plus-round': !status.open}"></i> 
       Detaillierte Votes</accordion-heading>
               <div class="row">
@@ -105,7 +114,7 @@
   
     </accordion-group>
     
-      <accordion-group  ng-click="resize()" is-open="statusComments.open">
+      <accordion-group is-open="statusComments.open">
       <accordion-heading><i class="icon ion-plus-round" style="color: #D43D33;font-size: 22px" ng-class="{'ion-minus-round': statusComments.open, 'ion-plus-round': !statusComments.open}"></i> 
       Empfehlung</accordion-heading>
       
@@ -127,7 +136,7 @@
     </accordion-group>
     
     
-          <accordion-group  ng-click="resize()" is-open="statusArticle.open">
+          <accordion-group is-open="statusArticle.open">
              <accordion-heading><i class="icon ion-minus-round" ng-class="{'ion-minus-round': statusArticle.open, 'ion-plus-round': !statusArticle.open}" style="color: #D43D33;font-size: 22px"></i> 
       Beschreibung</accordion-heading>
        <h4 style="text-align: center;"> Unser Restaurant ist unser ganzer Stolz!</h4>

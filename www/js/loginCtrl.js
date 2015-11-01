@@ -1,5 +1,5 @@
  angular.module('starter.loginCtrl', ['firebase','ngMessages'])
-.controller("loginCtrl", function ($scope, $ionicModal, $rootScope, $ionicPopup, $state, $firebaseAuth) {
+.controller("loginCtrl", function ($scope, $ionicModal, $rootScope, $ionicPopup, $state, $firebaseAuth, $ionicLoading) {
 
 
    // Firebase reference
@@ -46,11 +46,15 @@
     $scope.doLogin = function (email, password) {
 
         if (email !== undefined && password !== undefined) {
+                    $ionicLoading.show({
+            template: 'Anmeldung läuft...'
+        });
             myRef.authWithPassword({
                 email: email,
                 password: password
             }, function (error, authData) {
                 if (error) {
+                    $ionicLoading.hide();
                     switch (error.code) {
                         case "INVALID_PASSWORD":
                             showAlertLogin(ErrorLoginTitle2, ErrorLoginText2);
@@ -67,6 +71,7 @@
                            // console.log("Error logging user in:", error);
                     }
                 } else {
+                    $ionicLoading.hide();
                      $rootScope.currentUserSignedIn =true;
                     
                      console.log("current user signed in");
@@ -251,7 +256,7 @@ myRef.authWithOAuthPopup("facebook", function(error, authData) {
             title: 'Willkommen!',
             template: 'Du hast dich erfolgreich eingeloggt :)'
         });
-      $scope.currentUserSignedIn =true;
+      $rootScope.currentUserSignedIn=true;
     
                      console.log("current user signed in");
                        }

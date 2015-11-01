@@ -2,49 +2,12 @@
  
   .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad'])
 
-  .controller('AppCtrl', function ($scope, $ionicLoading, $http,$ionicPlatform,
-                                   $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth,
-                                     
-                                   $ImageCacheFactory)    {
-
-
-   
-
-   // ionic Loading ---------------------------------------
-    $ionicPlatform.ready(function() {
-     
-		    //Preload ALL Images
-    $ImageCacheFactory.Cache([
-        
-        'img/votex_title.png',
-        'img/voteOn.png',
-        'img/voteOff.png',
-        'img/voteTitleOn.png',
-        'img/voteTitleOff.png',
-        'img/voteRateOn.png',
-        'img/voteRateOff.png',
-        'img/profile_harun-oral.jpg',
-		'img/buttonRestaurant.png',
-		'img/buttonBar.png',
-		'img/buttonCoffee.png',
-		'img/buttonClub.png',
-		'img/profileBg.png',
-		'img/modal1_opt-compressor.jpg',
-		'img/background_opt-compressor.jpg'		
-         ]).then(function(){
-        console.log("Images done loading!");
-    },function(failed){
-        console.log("An image filed: "+failed);
-    });
-		
-		
-     console.log('VoteX started');
-          $ionicLoading.hide();         
-     });
-     
-     
+  .controller('AppCtrl', function ($scope, $http,$ionicPlatform,
+                                   $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicLoading
+                                    )    {
 
   $scope.rate = 4;
+
 
     // GeoLocation
 
@@ -108,6 +71,11 @@ $scope.businessName2 = "Harun's Bar";
          return;
         }
         else {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
+  };
    $state.go('app.business')
   
     }
