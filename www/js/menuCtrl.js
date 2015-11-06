@@ -9,10 +9,12 @@
                // Firebase reference
     var myRef = new Firebase("https://vote-x.firebaseio.com");
      $rootScope.currentUserSignedIn = false;
-    $rootScope.notSignedIn =true;
-   // Open the login modal----------------------------------------------------------
+     
+     
 
-          // Create the login modal that we will use later
+    
+   // Open the login modal----------------------------------------------------------
+   
     $ionicModal.fromTemplateUrl('templates/login.html', {
         animation: 'slide-in-up',
         scope: $scope
@@ -51,7 +53,7 @@ $scope.loggedOut = function(){
   if($rootScope.currentUserSignedIn == false) {
       setTimeout(function() {
         $state.go('app.home', {});
-      },400);
+      },500);
   }
     
 };

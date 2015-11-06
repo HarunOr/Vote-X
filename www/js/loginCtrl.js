@@ -47,7 +47,7 @@
 
         if (email !== undefined && password !== undefined) {
                     $ionicLoading.show({
-            template: 'Anmeldung läuft...'
+            template: 'Anmeldung läuft<p><ion-spinner icon="dots" class="spinner-assertive"></ion-spinner></p>'
         });
             myRef.authWithPassword({
                 email: email,

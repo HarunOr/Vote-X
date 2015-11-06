@@ -5,15 +5,15 @@
            </button></ion-nav-buttons>
 
               
-  <ion-content class="padding" has-header overflow-scroll="true">
+  <ion-content class="padding" has-header overflow-scroll="true" ng-controller="businessCtrl">
     
     
     <div class="row" style="margin: 0 auto">
       <div class="col" align="center">
-             <button class="button button-block button-assertive" ng-click="vote()" ><i class="icon icon-votex_icon" style="color: white;margin-right:10px"></i>Vote</button> 
+             <button class="button button-block button-assertive" ><i class="icon icon-votex_icon" style="color: white;margin-right:10px"></i>Vote</button> 
       </div>
       <div class="col" align="center">
-              <button class="button button-block button-positive" ng-click="openBusinessMap()"><i class="icon ion-map" style="color: white;margin-right:10px"></i>Standort</button> 
+              <button class="button button-block button-positive" ng-click="showBusinessMap()"><i class="icon ion-map" style="color: white;margin-right:10px"></i>Standort</button> 
         </div>
         </div>
 
@@ -44,23 +44,6 @@
        </div>
      </div>
      
-    
-     <!-- Google Maps -->
-     <!--
-      <div class="info">
-<div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" >
-  <map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15">
-    <marker position="{{mapCenter(lat,lng)}}"></marker>
-      <info-window id="1" position="{{mapCenter(lat,lng)}}" >
-     <div ng-non-bindable>
-       Chicago, IL<br/>
-     
-     </div>
-   </info-window>
-  </map>
-</div>
-</div> 
-  <!-- Google Maps Ende -->
  
   <!-- -------------- Accordion -------------- -->
   <accordion close-others="oneAtATime" >
@@ -69,50 +52,37 @@
     <accordion-group is-open="status.open">
       <accordion-heading><i class="icon ion-plus-round" style="color: #D43D33;font-size: 22px" ng-class="{'ion-minus-round': status.open, 'ion-plus-round': !status.open}"></i> 
       Detaillierte Votes</accordion-heading>
-              <div class="row">
-                <div class="col" style="font-style:italic" align="center">
-              Durchschnittswertungen
-              </div>
-              </div>
+      
+      
+      
+       <div class="row responsive-sm">
+    
+       <div class="col" style="max-height: 30px"><h4>Durchschnittswertungen</h4></div>
+         </div>
+
+      <div class="row responsive-sm">
+      <div class="col" style="max-height:10px">Preis/Leistung</div>
+      <div class="col"><rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true"></rating></div>
+      </div>    
               
-      <div class="row">
-        <div class="col">
-          Preis/Leistung
-          </div>
-          <div class="col">
-             <rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true" style="padding-left: 25%"></rating>
-            </div>
-        </div>
+      <div class="row responsive-sm">
+      <div class="col" style="max-height:10px">Service</div>
+      <div class="col"><rating ng-model="fourVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true"></rating></div>
+      </div>   
+      
+      <div class="row responsive-sm">
+      <div class="col" style="max-height:10px">Location</div>
+      <div class="col"> <rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true"></rating></div>
+      </div>      
         
-         <div class="row">
-        <div class="col">
-          Service
-          </div>
-          <div class="col">
-           <rating ng-model="fourVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true" style="padding-left: 25%"></rating>
-            </div>
-              </div>
-        
-        <div class="row">
-        <div class="col">
-          Location
-          </div>
-          <div class="col">
-             <rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true" style="padding-left: 25%"></rating>
-            </div>
-        </div>
-        
-         <div class="row">
-        <div class="col">
-          Küche
-          </div>
-          <div class="col">
-             <rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true" style="padding-left: 25%"></rating>
-            </div>
-        </div>
-        
+      <div class="row responsive-sm">
+      <div class="col" style="max-height:10px">Küche</div>
+      <div class="col"><rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true"></rating></div>
+      </div>         
   
     </accordion-group>
+    
+    <!-- Kommentare   -->
     
       <accordion-group is-open="statusComments.open">
       <accordion-heading><i class="icon ion-plus-round" style="color: #D43D33;font-size: 22px" ng-class="{'ion-minus-round': statusComments.open, 'ion-plus-round': !statusComments.open}"></i> 

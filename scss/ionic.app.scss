@@ -22,11 +22,21 @@ $assertive: #D43D33!default;
 $testColor: #FFFAFA!default;
 
 
+.col {
+  text-align:center;
+}
+
+
+
+.bottom {
+     position:fixed;
+   bottom:0;
+ 
+}
+
 .poweredBy {
   position: relative;
 margin: 0 auto;
-
-   
 }
 
 // Sidemenu Icon Size
@@ -162,12 +172,15 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 // Business Info
 
 .info {
+  margin-right: 2px;
+  margin-left: 2px;
   margin-top: 7px;
-  margin-bottom: 5px;
+  
   border-radius: 0px;
   border-style: solid;
   border-width: 2px;
   border-color: $assertive;
+  height: 100px;
   
 }
 
@@ -200,7 +213,12 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 
 
 //  Business Modal
-
+.businessMap.popup-container .popup {
+  height: 80% !important;
+  width: 95% !important;
+  margin-top: 20px !important;
+  
+}
 .businessModal{
   
   has-subheader: "true";

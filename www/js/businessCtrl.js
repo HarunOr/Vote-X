@@ -1,11 +1,10 @@
 angular
        .module('starter.businessCtrl', ['ngMap','ionicLazyLoad'])
-       .controller("businessCtrl", function ($scope, $state,$ionicModal ,$ionicScrollDelegate, $cordovaGeolocation, $http,$log, $ionicLoading, $ionicPlatform) {
+       .controller("businessCtrl", function ($scope, $state, $ionicPopup ,$ionicScrollDelegate, $cordovaGeolocation, $http,$log, $ionicLoading, $ionicPlatform) {
 
 
 
-// ---------------------- Vote-X RATING ----------------------
-
+// ---------------------- Vote-X RATING ----------------------   
   $scope.rate = 5;
   $scope.rateBiz= 4;
  
@@ -90,11 +89,35 @@ $state.go("app.home");
  $scope.lat = "52.687484" ;     //dynamic google data, must be string z.B. "52.11341"
  $scope.lng = "13.567276" ; 
 
+ // An alert dialog
+ 
+var mapPop;
+ 
+ $scope.showBusinessMap = function() {
+   
+ var mapPopup=$ionicPopup.show({
+     templateUrl: 'templates/businessMap.html',
+     scope: $scope,
+     cssClass: 'businessMap'
+      }).then(function(res) {
+        console.log('Tapped!', res);
+      }, function(err) {
+        console.log('Err:', err);
+      }, function() {
+        // If you need to access the popup directly, do it in the notify method
+        // This is also where you can programatically close the popup:
+        // popup.close();
+          console.log('The popup');
 
-     
-     
-     
-     
-     
-     
+        mapPop = mapPopup;
+      });
+      mapPop = mapPopup;    
+ };
+ 
+ 
+$scope.closePopup = function(){
+
+  mapPop.close();
+ };
+ 
 });
