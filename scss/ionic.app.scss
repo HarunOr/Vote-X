@@ -22,6 +22,17 @@ $assertive: #D43D33!default;
 $testColor: #FFFAFA!default;
 
 
+.scroll-content {
+margin: 0 auto !important;
+}
+
+.card {
+  margin: 0 auto !important;
+  max-width: 750px;
+  margin-bottom: 20px !important;
+}
+
+
 .col {
   text-align:center;
 }

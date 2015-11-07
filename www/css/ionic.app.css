@@ -15,6 +15,14 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+.scroll-content {
+  margin: 0 auto !important; }
+
+.card {
+  margin: 0 auto !important;
+  max-width: 750px;
+  margin-bottom: 20px !important; }
+
 .col {
   text-align: center; }
 
