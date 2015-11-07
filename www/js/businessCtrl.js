@@ -100,6 +100,7 @@ var mapPop;
      scope: $scope,
      buttons: [
                 {
+                  title: 'Karte',
                   text: '<b>Schließen</b>',
                   type: 'button-positive',
                   style: 'margin-top: 100%',

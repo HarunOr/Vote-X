@@ -7820,9 +7820,11 @@ a.button {
 
 .businessMap.popup-container .popup {
   min-height: 350px;
-  height: 60% !important;
+  max-height: 92%;
+  height: 75% !important;
   width: 95% !important;
-  margin-top: 20px !important; }
+  margin-top: 20px !important;
+  margin-bottom: 5px; }
 
 .businessModal {
   has-subheader: "true";
