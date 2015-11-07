@@ -7797,7 +7797,7 @@ a.button {
   border-style: solid;
   border-width: 2px;
   border-color: #D43D33;
-  height: 100px; }
+  min-height: 297px; }
 
 .kategorien-Titel {
   text-align: center;
@@ -7819,7 +7819,8 @@ a.button {
   background-color: #D43D33; }
 
 .businessMap.popup-container .popup {
-  height: 80% !important;
+  min-height: 350px;
+  height: 60% !important;
   width: 95% !important;
   margin-top: 20px !important; }
 

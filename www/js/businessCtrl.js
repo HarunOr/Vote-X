@@ -96,11 +96,20 @@ var mapPop;
  $scope.showBusinessMap = function() {
    
  var mapPopup=$ionicPopup.show({
-     templateUrl: 'templates/businessMap.html',
+     template: '<div class="info"><div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" ><map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15"><marker position="{{mapCenter(lat,lng)}}"></marker><info-window id="1" position="{{mapCenter(lat,lng)}}" ><div ng-non-bindable>Chicago,IL<br/></div></info-window></map></div></div> ',
      scope: $scope,
+     buttons: [
+                {
+                  text: '<b>Schließen</b>',
+                  type: 'button-positive',
+                  style: 'margin-top: 100%',
+                  onTap: function(e) {
+                    return true;
+                  }
+                },
+              ],
      cssClass: 'businessMap'
       }).then(function(res) {
-        console.log('Tapped!', res);
       }, function(err) {
         console.log('Err:', err);
       }, function() {
@@ -115,9 +124,26 @@ var mapPop;
  };
  
  
-$scope.closePopup = function(){
+ // Vote-Popup
+ 
+  $scope.vote = function() {
+   
+$ionicPopup.show({
+     template: '<div class="info"><div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" ><map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15"><marker position="{{mapCenter(lat,lng)}}"></marker><info-window id="1" position="{{mapCenter(lat,lng)}}" ><div ng-non-bindable>Chicago, IL<br/></div></info-window></map></div></div> ',
+     scope: $scope,
+     buttons: [
+                {
+                  text: '<b>Schließen</b>',
+                  type: 'button-positive',
+                  style: 'margin-top: 100%',
+                  onTap: function(e) {
+                    return true;
+                  }
+                },
+              ],
+     cssClass: 'businessMap'
+      })};
+ 
 
-  mapPop.close();
- };
  
 });
