@@ -7,6 +7,7 @@
   "dependencies": {
     "angularfire": "~1.1.2",
     "angular-chart.js": "~0.8.4",
-    "ionic-image-lazy-load": "ion-image-lazy-load#*"
+    "ionic-image-lazy-load": "ion-image-lazy-load#*",
+    "angular-progress-button-styles": "~0.1.0"
   }
 }

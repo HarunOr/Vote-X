@@ -4,11 +4,11 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','ngIOS9UIWebViewPatch','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl',
-                                        'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl', 'pascalprecht.translate'])
+                                        'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl','angular-progress-button-styles'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory) {
   $ionicPlatform.ready(function() { 
-    
+      
     		    //Preload ALL Images
     $ImageCacheFactory.Cache([
         
@@ -52,7 +52,19 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 })
 
 
-.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, progressButtonConfigProvider) {
+
+      //Codrops Button
+      
+
+  progressButtonConfigProvider.profile('testProfile', {
+    style: 'shrink',
+    direction: 'vertical'
+  });
+
+
+
+
 
 	$ionicConfigProvider.views.maxCache(7);
 	
