@@ -11,7 +11,7 @@ Todo
 - Home -> Informationen öffnet popover mit Öffnungszeiten, Straße etc.
 - <s>Ionic Lazy Load</s>
 - Profilseite
-- <s>Google Maps loading verbessern <s>
+- <s>Google Maps loading verbessern </s>
 - Anstatt angular accordion <> ionic accordion ausprobieren *Performance Test*
 - Forum / Chat (FireChat)
 - App Logo Android 
