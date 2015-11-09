@@ -55,15 +55,11 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, progressButtonConfigProvider) {
 
       //Codrops Button
-      
-
   progressButtonConfigProvider.profile('testProfile', {
     style: 'shrink',
     direction: 'vertical'
   });
-
-
-
+// ------------------------
 
 
 	$ionicConfigProvider.views.maxCache(7);
@@ -204,6 +200,15 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
         }
     }
 })
+
+  .state('app.vote', {
+    url: "/vote",
+    abstract: true,
+    templateUrl: "templates/vote.html",
+    controller: 'businessCtrl'
+  })
+
+
 
   $urlRouterProvider.otherwise('/app/home');
   

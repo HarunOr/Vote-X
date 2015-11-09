@@ -26,9 +26,8 @@
       $scope.modal1.show();
     };
 
-    $scope.closeModal = function(index) {
-      if (index == 1) $scope.modal1.hide();
-      else $scope.modal2.hide();
+    $scope.closeModal = function() {
+    $scope.modal1.hide();    
     };
 
 //-------------------------Log Out------------------------------------------

@@ -1,6 +1,6 @@
 angular
        .module('starter.businessCtrl', ['ngMap','ionicLazyLoad'])
-       .controller("businessCtrl", function ($scope, $state, $ionicPopup ,$ionicScrollDelegate, $cordovaGeolocation, $http,$log, $ionicLoading, $ionicPlatform) {
+       .controller("businessCtrl", function ($scope, $state, $ionicPopup, $ionicModal ,$ionicScrollDelegate, $cordovaGeolocation, $http,$log, $ionicLoading, $ionicPlatform) {
 
 
 
@@ -147,6 +147,27 @@ $ionicPopup.show({
               ],
      cssClass: 'businessMap'
       })};
+      
+      
+          
+    
+    //vote modal
+    
+        $ionicModal.fromTemplateUrl('templates/vote.html', {
+        animation: 'slide-in-up',
+        scope: $scope
+    }).then(function (modal) {
+        $scope.modal2 = modal;
+    });
+
+   $scope.openVote = function() {
+      $scope.modal2.show();
+    };
+
+    $scope.closeVote = function() {
+    $scope.modal2.hide();    
+    };
+
  
 
  
