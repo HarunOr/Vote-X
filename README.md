@@ -9,11 +9,9 @@ _____________
 Todo
 - Home -> Vote Icon führt direkt zu Vote-Modal
 - Home -> Informationen öffnet popover mit Öffnungszeiten, Straße etc.
-- Ionic Lazy Load
-- Ionic Material Design
+- <s>Ionic Lazy Load</s>
 - Profilseite
-- Vote! Funktion -> Ionic Popup 
-- Google Maps loading verbessern 
+- <s>Google Maps loading verbessern <s>
 - Anstatt angular accordion <> ionic accordion ausprobieren *Performance Test*
 - Forum / Chat (FireChat)
 - App Logo Android 
@@ -25,11 +23,10 @@ Todo
 
 - Profilseite
 - $templateCache
-- !!! Imagepreload (auch Vote-X Title img!) !!!
+- <s>!!! Imagepreload (auch Vote-X Title img!) !!!</s>
 - Android Statusbar Color
-- Read user data.. Firebase push parameters..Register
-ys
-- loading spinner 
+- <s>Read user data.. Firebase push parameters..Register</s>
+- <s>loading spinner </s>
 
 _________________
 New updates:
