@@ -1,8 +1,9 @@
 # Vote-X
 
 
-- Cosmo CMS https://github.com/CosmoCMS/Cosmo
-- Ionic resources --splash Nochmal machen mit guter internetverbindung!
+- Ionic Wordpress CMS http://code.tutsplus.com/tutorials/create-a-mobile-application-using-wordpress-ionic-and-angularjs--cms-24170
+- Vote Modal erzeugen!
+
 
 _____________
 Todo

@@ -104,14 +104,6 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     templateUrl: "templates/login.html",
     controller: 'loginCtrl'
   })
-  
-    .state('app.businessMap', {
-    url: "/businessMap",
-    abstract: true,
-    templateUrl: "templates/businessMap.html",
-    controller: 'businessCtrl'
-  })
-
 
   .state('app.register', {
   url: "/register",

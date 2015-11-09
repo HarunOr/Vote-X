@@ -96,11 +96,11 @@ var mapPop;
  $scope.showBusinessMap = function() {
    
  var mapPopup=$ionicPopup.show({
-     template: '<div class="info"><div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" ><map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15"><marker position="{{mapCenter(lat,lng)}}"></marker><info-window id="1" position="{{mapCenter(lat,lng)}}" ><div ng-non-bindable>Chicago,IL<br/></div></info-window></map></div></div> ',
+     title: '<h2>Karte</h2>',
+     template: ('<div class="info"><div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" ><map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15"><marker position="{{mapCenter(lat,lng)}}"></marker><info-window id="1" position="{{mapCenter(lat,lng)}}" ><div ng-non-bindable>Chicago,IL<br/></div></info-window></map></div></div> '),
      scope: $scope,
      buttons: [
                 {
-                  title: 'Karte',
                   text: '<b>Schließen</b>',
                   type: 'button-positive',
                   style: 'margin-top: 100%',
@@ -127,11 +127,14 @@ var mapPop;
  
  // Vote-Popup
  
+
+ 
   $scope.vote = function() {
    
 $ionicPopup.show({
-     template: '<div class="info"><div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" ><map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15"><marker position="{{mapCenter(lat,lng)}}"></marker><info-window id="1" position="{{mapCenter(lat,lng)}}" ><div ng-non-bindable>Chicago, IL<br/></div></info-window></map></div></div> ',
+     template: ['<div class="row"><div class="col col-75" align="center"><rating ng-model="rate" max="5" state-on="voteOn" state-off="voteOff" readonly = "true"></rating></div><div class="col"><div style="font-style:italic">1084 Votes</div></div></div>'],
      scope: $scope,
+     title: '<h2>Votes</h2>',
      buttons: [
                 {
                   text: '<b>Schließen</b>',
