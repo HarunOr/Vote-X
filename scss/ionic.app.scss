@@ -22,6 +22,27 @@ $assertive: #D43D33!default;
 $testColor: #FFFAFA!default;
 
 
+
+@media (max-width: 680px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}
+  
+@media (max-width: 680px) {
+    .active .modal-backdrop-bg {
+    opacity: .5;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    }
+}
+
 .scroll-content {
 margin: 0 auto !important;
 }
@@ -234,8 +255,6 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
   
 }
 .businessModal{
-  
-  has-subheader: "true";
   text-align: center;
 }
 
@@ -285,7 +304,7 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
   
   font-style:italic;
   font-size: 12px;
-  padding-left: 5%;
+  float:right;
   
 }
 
@@ -325,7 +344,6 @@ src: local('Avenir Next LT Pro Condensed'), url('fonts/AvenirNextLTPro-Cn.woff')
 
 [class^="icon-"], [class*=" icon-"] {
 	font-family: 'icomoon';
-	speak: none;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;

@@ -3,6 +3,8 @@
 
 - Ionic Wordpress CMS http://code.tutsplus.com/tutorials/create-a-mobile-application-using-wordpress-ionic-and-angularjs--cms-24170
 - Vote Modal erzeugen!
+- Ionic Wizard für Registrierung, oder Intro ? http://arielfaur.github.io/ionic-wizard/
+- <b>Landscape mode buggy für iphone 6 plus ! max-width etc checken </b>
 
 
 _____________

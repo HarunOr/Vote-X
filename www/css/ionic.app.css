@@ -15,6 +15,21 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+@media (max-width: 680px) {
+  .active .modal-backdrop-bg {
+    opacity: .5; }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0; } }
+
+@media (max-width: 680px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000; } }
+
 .scroll-content {
   margin: 0 auto !important; }
 
@@ -7835,7 +7850,6 @@ a.button {
   margin-bottom: 5px; }
 
 .businessModal {
-  has-subheader: "true";
   text-align: center; }
 
 .businessBox {
@@ -7859,7 +7873,7 @@ a.button {
 .voteNumber {
   font-style: italic;
   font-size: 12px;
-  padding-left: 5%; }
+  float: right; }
 
 .list .item.item-accordion {
   line-height: 38px;
@@ -7888,7 +7902,6 @@ a.button {
 
 [class^="icon-"], [class*=" icon-"] {
   font-family: 'icomoon';
-  speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;

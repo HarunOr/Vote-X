@@ -1,7 +1,16 @@
-<ion-modal-view>
+<ion-header-bar align-title="center" class="bar-assertive">
 
-  <ion-content ng-controller="businessCtrl">
-    Vote
-        </ion-content>
+  <h1 class="title">{{businessName}}</h1>
+  <div class="buttons">
+    <button class="button" ng-click="closeVote()">Schließen</button>
+  </div>
+</ion-header-bar>
 
-</ion-modal-view>
+<ion-content class="businessMap" id="vote.html" type="text/ng-template" has-header>
+
+    <div class="row responsive-sm">
+      <div class="col" style="max-height:10px">Preis/Leistung</div>
+      <div class="col"><rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true"></rating></div>
+      </div>    
+</ion-content>
+<script></script>

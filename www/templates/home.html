@@ -27,16 +27,18 @@
     
   <img image-lazy-src="https://www.imagesource.com/Doc/IS0/Media/TR3_WATERMARKED/0/f/f/2/42RME0013RMG.jpg" image-lazy-loader="lines" lazy-scroll-resize="true">
          <h2>{{businessName}}</h2>
-    <p >Restaurant</p>
-    <div class="row row-avatar">
-      <div class="col col">
+    <p>Restaurant</p>
+     <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>  <div class="voteNumber">1084 Votes</div>
+    
+   <!--  <div class="row row-avatar">
+     <div class="col">
     <p>  <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating> </p>
-    </div>
-    <div class="col">
+    </div> 
+    <div class="col" style="max-width: 100px">
       <div class="voteNumber">1084 Votes</div>
       </div>
   </div>
-  
+  -->
   </div>
 
   <div class="item item-body">

@@ -24,6 +24,8 @@ $scope.goHome = function() {
 $state.go("app.home");
 }
   
+  
+  /*
 // Collapse
      $scope.isCollapsed = false;
      
@@ -64,7 +66,41 @@ $state.go("app.home");
     $scope.items.push('Item ' + newItemNo);
   };
 
+  */
   
+  //-----------------------------Ionic-Accordion-------------------------------
+  
+  $scope.groups = [2];
+  
+  $scope.groups[0] = {  name: "Detaillierte Votes",items: [("Test"), ("Test2")]};
+  $scope.groups[1] = {  name: "Bewertungen",items: ("Test")};
+  $scope.groups[2] = {  name: "Beschreibung",items: ("Test")};
+  
+  /*
+    for (var i = 0; i < 3; i++) {
+        $scope.groups[i] = {
+            name: i,
+            items: []
+        };
+        for (var j = 0; j < 3; j++) {
+            $scope.groups[i].items.push(i + '-' + j);
+        }
+    } */
+
+    /*
+     * if given group is the selected group, deselect it
+     * else, select the given group
+     */
+    $scope.toggleGroup = function (group) {
+        if ($scope.isGroupShown(group)) {
+            $scope.shownGroup = null;
+        } else {
+            $scope.shownGroup = group;
+        }
+    };
+    $scope.isGroupShown = function (group) {
+        return $scope.shownGroup === group;
+    };
   
   
   //------------------------------TestImages------------------------------------
@@ -96,14 +132,16 @@ var mapPop;
  $scope.showBusinessMap = function() {
    
  var mapPopup=$ionicPopup.show({
-     title: '<h2>Karte</h2>',
-     template: ('<div class="info"><div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" ><map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15"><marker position="{{mapCenter(lat,lng)}}"></marker><info-window id="1" position="{{mapCenter(lat,lng)}}" ><div ng-non-bindable>Chicago,IL<br/></div></info-window></map></div></div> '),
+     template: ('<ion-header-bar align-title="center" class="bar-stable">'+
+                '<h1 class="title">{{businessName}}</h1>'+
+                '</div></ion-header-bar>'+
+     '<div class="info"><div map-lazy-load="http://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" ><map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15"><marker position="{{mapCenter(lat,lng)}}"></marker><info-window id="1" position="{{mapCenter(lat,lng)}}" ><div ng-non-bindable>Chicago,IL<br/></div></info-window></map></div></div>'),
      scope: $scope,
      buttons: [
                 {
                   text: '<b>Schließen</b>',
                   type: 'button-positive',
-                  style: 'margin-top: 100%',
+                  style: 'max-width: 350px',
                   onTap: function(e) {
                     return true;
                   }
@@ -126,49 +164,19 @@ var mapPop;
  
  
  // Vote-Popup
- 
 
- 
-  $scope.vote = function() {
+  $scope.openVote = function() {
    
-$ionicPopup.show({
-     template: ['<div class="row"><div class="col col-75" align="center"><rating ng-model="rate" max="5" state-on="voteOn" state-off="voteOff" readonly = "true"></rating></div><div class="col"><div style="font-style:italic">1084 Votes</div></div></div>'],
+$scope.myPopup = $ionicPopup.show({
+     templateUrl:'templates/vote.html',
      scope: $scope,
-     title: '<h2>Votes</h2>',
-     buttons: [
-                {
-                  text: '<b>Schließen</b>',
-                  type: 'button-positive',
-                  style: 'margin-top: 100%',
-                  onTap: function(e) {
-                    return true;
-                  }
-                },
-              ],
      cssClass: 'businessMap'
-      })};
+      })}; 
       
-      
-          
-    
-    //vote modal
-    
-        $ionicModal.fromTemplateUrl('templates/vote.html', {
-        animation: 'slide-in-up',
-        scope: $scope
-    }).then(function (modal) {
-        $scope.modal2 = modal;
-    });
-
-   $scope.openVote = function() {
-      $scope.modal2.show();
-    };
-
-    $scope.closeVote = function() {
-    $scope.modal2.hide();    
-    };
-
  
-
+       $scope.closeVote = function(){
+        $scope.myPopup.close();
+      }
+ 
  
 });

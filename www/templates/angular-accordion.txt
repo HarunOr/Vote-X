@@ -1,0 +1,85 @@
+ <!-- -------------- Accordion -------------- -->
+  <accordion close-others="oneAtATime" >
+    
+    
+    <accordion-group is-open="status.open">
+      <accordion-heading><i class="icon ion-plus-round" style="color: #D43D33;font-size: 22px" ng-class="{'ion-minus-round': status.open, 'ion-plus-round': !status.open}"></i> 
+      Detaillierte Votes</accordion-heading>
+      
+      
+      
+      <div class="row responsive-sm">
+      <div class="col" style="max-height: 40px"><h4>Durchschnittswertungen</h4></div>
+      </div>
+
+      <div class="row responsive-sm">
+      <div class="col" style="max-height:10px">Preis/Leistung</div>
+      <div class="col"><rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true"></rating></div>
+      </div>    
+              
+      <div class="row responsive-sm">
+      <div class="col" style="max-height:10px">Service/Personal</div>
+      <div class="col"><rating ng-model="fourVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true"></rating></div>
+      </div>   
+      
+      <div class="row responsive-sm">
+      <div class="col" style="max-height:10px">Location</div>
+      <div class="col"> <rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true"></rating></div>
+      </div>      
+        
+      <div class="row responsive-sm">
+      <div class="col" style="max-height:10px">Küche</div>
+      <div class="col"><rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true"></rating></div>
+      </div>     
+        
+      <div class="row responsive-sm">
+      <div class="col" style="max-height:10px">Erwartungen erfüllt</div>
+      <div class="col"><rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true"></rating></div>
+      </div>           
+  
+    </accordion-group>
+    
+    <!-- Kommentare   -->
+    
+      <accordion-group is-open="statusComments.open">
+      <accordion-heading><i class="icon ion-plus-round" style="color: #D43D33;font-size: 22px" ng-class="{'ion-minus-round': statusComments.open, 'ion-plus-round': !statusComments.open}"></i> 
+      Empfehlung</accordion-heading>
+      
+        <div class="item item-avatar">
+    <img ng-src="{{harunProfileImg}}">
+    <h2>Harun Oral   <rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "true" style="padding-left: 10%"></rating></h2> 
+    <p>Experte <i class="icon ion-ios-star" style="color: #D43D33;"></i></p>
+      </div>
+  
+   <div class="item item-body">
+  <div class="comment">
+  
+    Außergewöhnlich, hervorragend, großartig – perfekt. 
+      Mehr braucht man nicht zu sagen.
+   </div>
+  </div>
+  
+      
+    </accordion-group>
+    
+    
+          <accordion-group is-open="statusArticle.open">
+             <accordion-heading><i class="icon ion-minus-round" ng-class="{'ion-minus-round': statusArticle.open, 'ion-plus-round': !statusArticle.open}" style="color: #D43D33;font-size: 22px"></i> 
+      Beschreibung</accordion-heading>
+       <h4 style="text-align: center;"> Unser Restaurant ist unser ganzer Stolz!</h4>
+<p></p>
+
+Nach einem Tag am Strand, einer Fahrradtour in unserer schönen Umgebung oder nach einem Einkaufsbummel, können Sie sich darauf freuen,
+ sich mit einem guten Wein und erstklassigen Speisen verwöhnen zu lassen.</p>
+ <p>
+Die frischen, hiesigen Zutaten werden dabei mit grosser Sorgfalt ausgewählt.</p>
+ <p>
+Wir sind sicher, dass Sie sich in unserem eleganten Speisesaal wohlfühlen werden.
+
+Unser freundliches und aufmerksames Personal wird Sie hier mit einem erstklassigen Service bedienen.
+</p>
+Guten Appetit! </p>
+    </accordion-group>        
+   </accordion>
+   
+    <!-- -------------- Accordion End -------------- -->   
