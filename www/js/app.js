@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var votex = angular.module('starter', ['ionic','ngIOS9UIWebViewPatch','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl',
+var votex = angular.module('starter', ['ionic','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
                                         'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl','angular-progress-button-styles'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory) {
@@ -20,13 +20,13 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
         'img/voteRateOn.png',
         'img/voteRateOff.png',
         'img/profile_harun-oral.jpg',
-		'img/buttonRestaurant.png',
-		'img/buttonBar.png',
-		'img/buttonCoffee.png',
-		'img/buttonClub.png',
-		'img/profileBg.png',
-		'img/modal1_opt-compressor.jpg',
-		'img/background_opt-compressor.jpg'		
+        'img/buttonRestaurant.png',
+        'img/buttonBar.png',
+        'img/buttonCoffee.png',
+        'img/buttonClub.png',
+        'img/profileBg.png',
+        'img/modal1_opt-compressor.jpg',
+        'img/background_opt-compressor.jpg'		
          ]).then(function(){
         console.log("Images done loading!");
     },function(failed){
@@ -205,6 +205,13 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     url: "/vote",
     abstract: true,
     templateUrl: "templates/vote.html",
+    controller: 'businessCtrl'
+  })
+  
+    .state('app.businessMap', {
+    url: "/businessMap",
+    abstract: true,
+    templateUrl: "templates/businessMap.html",
     controller: 'businessCtrl'
   })
 

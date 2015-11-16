@@ -21,6 +21,9 @@ $stable: #DFDFDF!default;
 $assertive: #D43D33!default;
 $testColor: #FFFAFA!default;
 
+.scroll {
+  height: 100%;
+}
 
 
 @media (max-width: 680px) {
@@ -44,6 +47,7 @@ $testColor: #FFFAFA!default;
 }
 
 .scroll-content {
+  height: 100% !important;
 margin: 0 auto !important;
 }
 
@@ -201,17 +205,19 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
       }
       
       
-// Business Info
+// Google map css
 
-.info {
-  margin-right: 2px;
-  margin-left: 2px;
-  margin-top: 7px;
-  
-  border-radius: 0px;
-  border-style: solid;
-  border-width: 2px;
-  border-color: $assertive;
+.angular-google-map,
+.angular-google-map-container {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+
+.map {
+  height: 100%;
   min-height: 297px;
   
 }
@@ -246,13 +252,11 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 
 //  Business Modal
 .businessMap.popup-container .popup {
-  min-height: 350px;
   max-height: 92%;
-  height: 75% !important;
-  width: 95% !important;
-  margin-top: 20px !important;
-  margin-bottom: 5px;
-  
+  height: 50% !important;
+  width: 100% !important;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
 }
 .businessModal{
   text-align: center;
@@ -405,16 +409,7 @@ src: local('Avenir Next LT Pro Condensed'), url('fonts/AvenirNextLTPro-Cn.woff')
 
 // ---------------------- Vote-X Rating End -------------------
 
-// Google Map
 
-.angular-google-map-container { 
-  height: 200px;
-  width: 100%; 
-  
-  
-  }
-  
-  
   [nav-view-transition="ios"][nav-view-direction="forward"],
 [nav-view-transition="ios"][nav-view-direction="back"] {
 background-color: transparent;

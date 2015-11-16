@@ -1,19 +1,17 @@
 <ion-view >
+ <ion-header-bar class="bar bar-subheader" style="background-color: #FFF;">
+   
 
-        <ion-header-bar class="bar bar-subheader" style="background-color: #FFF;">
-                <label class="item-input-wrapper">
-    <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
-      <input type="search" placeholder="Suche" places-auto-complete types="['establishment']" on-place-changed="myCallback(place)"  style="background-color:transparent"/>
-  </label>
- 
-                </ion-header-bar>
-           
+<ion-google-place placeholder="Adresse" ng-model="yourModel" location-changed="yourLocationChangeCallback" style="height:30px"/>
+
+        </ion-header-bar>
+      
 
 <!-- Content -->
   <ion-content class="voteBg" has-subheader overflow-scroll="true" lazy-scroll ng-controller="AppCtrl">
     
     
-           <ion-refresher
+           <ion-refresher style="position:absolute"
     spinner="ripple"
     pulling-text="Runterziehen zum aktualisieren..."
     on-refresh="doRefresh()">
@@ -29,16 +27,7 @@
          <h2>{{businessName}}</h2>
     <p>Restaurant</p>
      <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>  <div class="voteNumber">1084 Votes</div>
-    
-   <!--  <div class="row row-avatar">
-     <div class="col">
-    <p>  <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating> </p>
-    </div> 
-    <div class="col" style="max-width: 100px">
-      <div class="voteNumber">1084 Votes</div>
-      </div>
-  </div>
-  -->
+
   </div>
 
   <div class="item item-body">
@@ -78,7 +67,7 @@
 
   <div class="item item-body">
     <img class="full-image" image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg" image-lazy-loader="lines" lazy-scroll-resize="true" onclick="window.open('http://www.jochen-schweizer.de', '_blank', 'location=no');">
-    <p>
+    <p style="margin-top: 2px;">
      Hier steht ein sehr überzeugender Clickbait-Text  
     </p>
     <p>

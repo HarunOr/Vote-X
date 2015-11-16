@@ -1,5 +1,8 @@
 # Vote-X
 
+-SEARCHBOX: ion-place-tools(http://devfanatic.com/blog/blog/2015/11/03/google-places-autocomplete-with-ionic-framework/)
+_____________
+
 
 - Ionic Wordpress CMS http://code.tutsplus.com/tutorials/create-a-mobile-application-using-wordpress-ionic-and-angularjs--cms-24170
 - Vote Modal erzeugen!

@@ -1,9 +1,18 @@
 angular
-       .module('starter.businessCtrl', ['ngMap','ionicLazyLoad'])
+       .module('starter.businessCtrl', ['ionicLazyLoad','ion-place-tools'])
        .controller("businessCtrl", function ($scope, $state, $ionicPopup, $ionicModal ,$ionicScrollDelegate, $cordovaGeolocation, $http,$log, $ionicLoading, $ionicPlatform) {
 
 
-
+  
+  $scope.myCallback = function(place) {
+     $scope.place = this.getPlace()
+     console.log('callback');
+     console.log(
+       $scope.place.geometry.location.lat(),
+      $scope.place.geometry.location.lng()
+     );
+     $scope.map.setCenter($scope.place.geometry.location);
+   }
 // ---------------------- Vote-X RATING ----------------------   
   $scope.rate = 5;
   $scope.rateBiz= 4;
@@ -24,57 +33,13 @@ $scope.goHome = function() {
 $state.go("app.home");
 }
   
-  
-  /*
-// Collapse
-     $scope.isCollapsed = false;
-     
-// Dynamic accordion bootstrap
-
-  $scope.statusVotes = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
-  
-   $scope.statusArticle = {
-    open: true,   
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
-  
-   $scope.statusMap = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
-  
-     $scope.statusComments = { 
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
-  
-  $scope.groups = [
-    {
-      title: 'Erweitere Votes',
-      content: 'Dynamic Group Body - 1'
-    },
-  ];
-
-  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-  $scope.addItem = function() {
-    var newItemNo = $scope.items.length + 1;
-    $scope.items.push('Item ' + newItemNo);
-  };
-
-  */
-  
   //-----------------------------Ionic-Accordion-------------------------------
   
   $scope.groups = [2];
   
-  $scope.groups[0] = { id: 0, active: 0, name: "Detaillierte Votes",items: [("Test"), ("Test2")]  };
-  $scope.groups[1] = { id: 1, active: 0, name: "Bewertungen",items: ("Test")  };
-  $scope.groups[2] = { id: 2,active: 0, name: "Beschreibung",items: ("Test")  };
+  $scope.groups[0] = { active: 0, name: "Detaillierte Votes",items: [("Test"), ("Test2")]  };
+  $scope.groups[1] = { active: 0, name: "Bewertungen",items: ("Test")  };
+  $scope.groups[2] = { active: 0, name: "Beschreibung",items: ("Test")  };
   
 
     $scope.toggleGroup = function (group) {
@@ -113,7 +78,7 @@ $state.go("app.home");
 
 
   // ------------------------------ ngMap -------------------------------------
-
+$scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
     
   $scope.mapCenter = function(lat, lng) {
    return lat + "," + lng;
@@ -122,44 +87,21 @@ $state.go("app.home");
  $scope.lat = "52.687484" ;     //dynamic google data, must be string z.B. "52.11341"
  $scope.lng = "13.567276" ; 
 
- // An alert dialog
- 
-var mapPop;
- 
- $scope.showBusinessMap = function() {
-   
- var mapPopup=$ionicPopup.show({
-     template: ('<ion-header-bar align-title="center" class="bar-stable">'+
-                '<h1 class="title">{{businessName}}</h1>'+
-                '</div></ion-header-bar>'+
-     '<div class="info"><div map-lazy-load="https://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=de&amp;v=3.20" ><map draggable="false" center="{{mapCenter(lat,lng)}}" zoom="15"><marker position="{{mapCenter(lat,lng)}}"></marker><info-window id="1" position="{{mapCenter(lat,lng)}}" ><div ng-non-bindable>Chicago,IL<br/></div></info-window></map></div></div>'),
-     scope: $scope,
-     buttons: [
-                {
-                  text: '<b>Schließen</b>',
-                  type: 'button-positive',
-                  style: 'max-width: 350px',
-                  onTap: function(e) {
-                    return true;
-                  }
-                },
-              ],
-     cssClass: 'businessMap'
-      }).then(function(res) {
-      }, function(err) {
-        console.log('Err:', err);
-      }, function() {
-        // If you need to access the popup directly, do it in the notify method
-        // This is also where you can programatically close the popup:
-        // popup.close();
-          console.log('The popup');
 
-        mapPop = mapPopup;
-      });
-      mapPop = mapPopup;    
- };
+  $scope.openBusinessMap = function() {
+   
+$scope.myBusinessPopup = $ionicPopup.show({
+     templateUrl:'templates/businessMap.html',
+     scope: $scope,
+     cssClass: 'businessMap'
+      })}; 
+
+      $scope.closeBusiness = function(){
+        $scope.myBusinessPopup.close();
+      }
  
  
+
  // Vote-Popup
 
   $scope.openVote = function() {

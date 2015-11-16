@@ -5,7 +5,7 @@
            </button></ion-nav-buttons>
 
               
-  <ion-content class="padding" has-header overflow-scroll="true" ng-controller="businessCtrl">
+  <ion-content class="padding" has-header overflow-scroll="false" ng-controller="businessCtrl" lazy-scroll>
     
     
     <div class="row" style="margin: 0 auto !important;max-width: 1300px;">
@@ -13,7 +13,7 @@
              <button class="button button-block button-assertive" ng-click="openVote()" ><i class="icon icon-votex_icon" style="color: white;margin-right:10px"></i>Vote</button> 
       </div>
       <div class="col" style="max-width:650px;">
-              <button class="button button-block button-positive" ng-click="showBusinessMap()" ><i class="icon ion-map" style="color: white;margin-right:10px"></i>Standort</button> 
+              <button class="button button-block button-positive" ng-click="openBusinessMap()" ><i class="icon ion-map" style="color: white;margin-right:10px"></i>Standort</button> 
         </div>
         </div>
 
@@ -43,10 +43,10 @@
           <div style="font-style:italic">1084 Votes</div>
        </div>
      </div>
-     
+
  <!-- Ionic Accordion -->
- 
-         <ion-list>
+        <div style="margin-bottom: 10px;">
+           <ion-list>
             <div ng-repeat="group in groups">
                 <ion-item class="item-stable"
                           style="background-color: white;"
@@ -63,7 +63,11 @@
                 </ion-item>
             </div>
         </ion-list>
- 
+ </div>
+ <br>
+ </br>
+  <br>
+ </br>
  
  <!-- Ionic Accordion End -->
  
