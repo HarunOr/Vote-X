@@ -1,6 +1,17 @@
 <ion-view >
+  
+      <div class="bar bar-subheader item-input-inset" style="background-color: white">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
+    <input type="text" g-places-autocomplete forceSelection="true" ng-model="place" style="background-color:transparent"/>
+  </label>
+  <button class="button button-clear" ng-click="se()">
+    Suchen
+  </button>
+</div>
+
  
-  <ion-content class="voteBg" has-subheader overflow-scroll="true" lazy-scroll ng-controller="AppCtrl">
+  <ion-content class="voteBg has-header has-subheader" overflow-scroll="true" lazy-scroll ng-controller="AppCtrl">
     
     
            <ion-refresher 
@@ -10,17 +21,9 @@
   </ion-refresher>
 
 <!-- -------------------------------- -->
-    <div class="bar bar-header item-input-inset">
-  <label class="item-input-wrapper">
-    <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
-    <input type="text" g-places-autocomplete ng-model="place" style="background-color:transparent; width: 100%; max-width: 800px"/>
-  </label>
-  <button class="button button-clear" ng-click="se()">
-    Suchen
-  </button>
-</div>
 
-    
+<!-- ----------- SAERCH -------------------->
+
     
     
 <div class="list card">
