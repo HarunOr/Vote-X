@@ -1,18 +1,12 @@
 angular
-       .module('starter.businessCtrl', ['ionicLazyLoad','ion-place-tools'])
-       .controller("businessCtrl", function ($scope, $state, $ionicPopup, $ionicModal ,$ionicScrollDelegate, $cordovaGeolocation, $http,$log, $ionicLoading, $ionicPlatform) {
+       .module('starter.businessCtrl', ['ionicLazyLoad','ngMap'])
+       .controller("businessCtrl", function ($scope, $state, $ionicPopup, $ionicModal ,
+                                             $ionicScrollDelegate, $http,$log,
+                                             $ionicLoading, $ionicPlatform) {
 
 
   
-  $scope.myCallback = function(place) {
-     $scope.place = this.getPlace()
-     console.log('callback');
-     console.log(
-       $scope.place.geometry.location.lat(),
-      $scope.place.geometry.location.lng()
-     );
-     $scope.map.setCenter($scope.place.geometry.location);
-   }
+
 // ---------------------- Vote-X RATING ----------------------   
   $scope.rate = 5;
   $scope.rateBiz= 4;

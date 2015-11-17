@@ -9,7 +9,7 @@ _____________
 - Ionic Wizard für Registrierung, oder Intro ? http://arielfaur.github.io/ionic-wizard/
 - <b>Landscape mode buggy für iphone 6 plus ! max-width etc checken </b>
 - possible to Vote DOWN reviews -> comments in ionic popup with ionic infinite scroll ! MIN 180(?) Zeichen lang ein comment
-
+- Auch Achievements für Geschäfte: Vertrauenswürdig, Kumpel etc
 
 
 _____________

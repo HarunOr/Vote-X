@@ -18,6 +18,10 @@ $dark:                            #444 !default;
 .scroll {
   height: 100%; }
 
+.body {
+  width: 90%;
+  margin: 0 auto !important; }
+
 @media (max-width: 680px) {
   .active .modal-backdrop-bg {
     opacity: .5; }
@@ -34,7 +38,7 @@ $dark:                            #444 !default;
     background-color: #000; } }
 
 .scroll-content {
-  height: 100% !important;
+  height: 90% !important;
   margin: 0 auto !important; }
 
 .card {
@@ -7825,7 +7829,9 @@ a.button {
 
 .map {
   height: 100%;
-  min-height: 297px; }
+  min-height: 297px;
+  max-height: 700px;
+  height: 100% !important; }
 
 .kategorien-Titel {
   text-align: center;
@@ -7847,8 +7853,8 @@ a.button {
   background-color: #D43D33; }
 
 .businessMap.popup-container .popup {
-  max-height: 92%;
-  height: 50% !important;
+  max-height: 700px;
+  height: 65% !important;
   width: 100% !important;
   margin-left: 5px !important;
   margin-right: 5px !important; }

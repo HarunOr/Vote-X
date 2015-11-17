@@ -68,7 +68,7 @@ angular.module('ion-place-tools', [])
                                     scope.locations = predictions;
                                 }
                             });
-                        }, 350); // we're throttling the input by 350ms to be nice to google's API
+                        }, 200); // we're throttling the input by 350ms to be nice to google's API
                     });
 
                     var onClick = function(e) {

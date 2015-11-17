@@ -1,10 +1,32 @@
  angular
  
-  .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad'])
+  .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad','ion-place-tools','google.places'])
 
   .controller('AppCtrl', function ($scope, $http,$ionicPlatform,
                                    $state, $ionicModal, $timeout, $ionicPopup, $cordovaOauth, $ionicLoading
                                     )    {
+
+
+
+$scope.place = null;
+
+
+ $scope.se = function() {
+            if($scope.place != null) {  
+            console.log(JSON.stringify($scope.place.formatted_address));    
+            console.log($scope.place);    
+                }   
+             else {
+                 searchNull();
+             }
+}
+
+
+ var searchNull = function() {
+  $ionicPopup.alert({
+     title: 'Leeres Suchfeld'
+   });
+ };
 
   $scope.rate = 4;
 

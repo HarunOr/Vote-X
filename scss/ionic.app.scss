@@ -25,6 +25,10 @@ $testColor: #FFFAFA!default;
   height: 100%;
 }
 
+.body {
+  width: 90%;
+  margin: 0 auto !important;
+}
 
 @media (max-width: 680px) {
   .active .modal-backdrop-bg {
@@ -38,6 +42,7 @@ $testColor: #FFFAFA!default;
   }
 }
   
+
 @media (max-width: 680px) {
     .active .modal-backdrop-bg {
     opacity: .5;
@@ -47,7 +52,7 @@ $testColor: #FFFAFA!default;
 }
 
 .scroll-content {
-  height: 100% !important;
+  height: 90% !important;
 margin: 0 auto !important;
 }
 
@@ -219,7 +224,8 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 .map {
   height: 100%;
   min-height: 297px;
-  
+  max-height: 700px;
+  height: 100% !important;  
 }
 
 // kategorien  - catagory
@@ -252,8 +258,8 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 
 //  Business Modal
 .businessMap.popup-container .popup {
-  max-height: 92%;
-  height: 50% !important;
+  max-height: 700px;
+  height: 65% !important;
   width: 100% !important;
   margin-left: 5px !important;
   margin-right: 5px !important;

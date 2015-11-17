@@ -1,24 +1,28 @@
 <ion-view >
- <ion-header-bar class="bar bar-subheader" style="background-color: #FFF;">
-   
-
-<ion-google-place placeholder="Adresse" ng-model="yourModel" location-changed="yourLocationChangeCallback" style="height:30px"/>
-
-        </ion-header-bar>
-      
-
-<!-- Content -->
+ 
   <ion-content class="voteBg" has-subheader overflow-scroll="true" lazy-scroll ng-controller="AppCtrl">
     
     
-           <ion-refresher style="position:absolute"
+           <ion-refresher 
     spinner="ripple"
     pulling-text="Runterziehen zum aktualisieren..."
     on-refresh="doRefresh()">
   </ion-refresher>
 
 <!-- -------------------------------- -->
+    <div class="bar bar-header item-input-inset">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
+    <input type="text" g-places-autocomplete ng-model="place" style="background-color:transparent; width: 100%; max-width: 800px"/>
+  </label>
+  <button class="button button-clear" ng-click="se()">
+    Suchen
+  </button>
+</div>
 
+    
+    
+    
 <div class="list card">
 
   <div class="item item-avatar" ng-click="openBusiness()">
