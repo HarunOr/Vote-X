@@ -22,6 +22,45 @@ $assertive: #D43D33!default;
 $testColor: #FFFAFA!default;
 
 
+/* loading */
+.loader-center {
+
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.loader .ion-loading-c {
+  font-size: 64px;
+}
+
+
 
 .scroll {
   height: 100%;
@@ -224,10 +263,9 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 
 
 .map {
-  height: 100%;
-  min-height: 297px;
+  min-height: 169px;
   max-height: 700px;
-  height: 100% !important;  
+  height: 90% ;  
 }
 
 // kategorien  - catagory
@@ -261,10 +299,9 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 //  Business Modal
 .businessMap.popup-container .popup {
   max-height: 700px;
-  height: 65% !important;
+  height: 75% !important;
   width: 100% !important;
-  margin-left: 5px !important;
-  margin-right: 5px !important;
+
 }
 .businessModal{
   text-align: center;

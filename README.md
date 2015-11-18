@@ -1,6 +1,7 @@
 # Vote-X
 
--SEARCHBOX: ion-place-tools(http://devfanatic.com/blog/blog/2015/11/03/google-places-autocomplete-with-ionic-framework/)
+- INSTAGRAM API für mehr bilder, neue option, slidebox !
+ --> Button "informationen" mit Modal mit "Bildern" tauschen , Instagram/facebook bilder
 _____________
 
 
