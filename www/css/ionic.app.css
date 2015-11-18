@@ -15,6 +15,9 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+.item.item-avatar  {
+  padding-left: 20px; }
+
 /* loading */
 .loader-center {
   height: 100%;

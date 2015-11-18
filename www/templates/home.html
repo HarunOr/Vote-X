@@ -1,6 +1,6 @@
 <ion-view >
   
-      <div class="bar bar-subheader item-input-inset" style="background-color: white">
+      <div class="bar bar-subheader item-input-inset" style="background-color: white;">
   <label class="item-input-wrapper">
     <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
     <input id="searchBar" type="text" g-places-autocomplete ng-focus="disableTap()" ng-model="input" style="background-color:transparent"/>
@@ -25,17 +25,20 @@
     
 <div class="list card">
 
-  <div class="item item-avatar" ng-click="openBusiness()">
-    
-  <img ng-src="{{icon}}" ng-show="icon" lazy-scroll-resize="true"> </img>
+  <div class="item item-avatar">
+
    
    
          <h2>{{dynamicName}}</h2>
          
-    <p><img ng-src="{{icon}}" ng-show="icon" lazy-scroll-resize="true" style="max-width: 20px"> </img>Restaurant</p>
+    <p><img ng-src="{{icon}}" ng-show="icon" lazy-scroll-resize="true" style="max-width: 20px"> </img> {{type}}</p>
      <rating ng-model="place.rating" max="5" state-on="'voteTitleOn'" 
      state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
-      <div class="voteNumber">{{totalRatings}} Votes</div>
+      <div class="voteNumber">
+        <p><a href="#" tooltips tooltip-lazy="true" tooltip-side='bottom' tooltip-scroll="false" title="von Google">Tooltip me</a></p>
+        {{totalRatings}} Votes
+        
+      </div>
 
   </div>
 
@@ -71,7 +74,7 @@
 
   <div class="item item-avatar" ng-click="openBusiness()">
     
-  <img image-lazy-src="https://www.imagesource.com/Doc/IS0/Media/TR3_WATERMARKED/0/f/f/2/42RME0013RMG.jpg" image-lazy-loader="lines" lazy-scroll-resize="true">
+  
          <h2>{{businessName}}</h2>
     <p>Restaurant</p>
      <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>  <div class="voteNumber">1084 Votes</div>

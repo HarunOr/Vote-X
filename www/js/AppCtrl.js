@@ -1,6 +1,6 @@
  angular
  
-  .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad','google.places','ngMap'])
+  .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad','google.places','ngMap','720kb.tooltips'])
 
   .controller('AppCtrl', function ($scope, $http,$ionicPlatform,
                                    $state, $ionicModal, $timeout, 
@@ -10,12 +10,6 @@
 
 // Search
    
-$scope.testImage = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=AIzaSyAPiSQRMf0-ZVJzrLwU9o56pm3Q_0fb6Hw";
-
-
-
-
-
 
  $scope.se = function() {
                 
@@ -24,7 +18,7 @@ $scope.testImage = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=40
                    $ionicLoading.show({
                      
       noBackdrop: true,
-      template: '<p class="item-icon-left">Loading stuff...<ion-spinner icon="lines"/></p>'
+      template: '<p class="item-icon-left">Wird geladen...<ion-spinner icon="lines"/></p>'
     });
                 
                 
@@ -40,7 +34,215 @@ $scope.testImage = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=40
                    $scope.iconUrl = JSON.stringify($scope.place.icon);
                    console.log($scope.icon);
                    $scope.img = $scope.place.photos;
+                   $scope.type = $scope.place.types[0];
                    
+                   
+                   //Translate Type
+                   console.log("TYPE: "+$scope.type);
+                   
+                    switch($scope.type) {
+                        
+                        case "accounting":   $scope.type = "Verwaltung"
+                                                break;
+                        case "airport":   $scope.type = "Flughafen"
+                                                break;
+                         case "amusement_park":   $scope.type = "Vergnügungspark"
+                                                break;                                                                                               
+                         case "aquarium":   $scope.type = "Aquarienhaus"
+                                                break;                       
+                         case "art_gallery":   $scope.type = "Kunstgallerie"
+                                                break;                       
+                         case "atm":   $scope.type = "Bankautomat"
+                                                break;                       
+                        case "bakery":   $scope.type = "Bäckerei"
+                                                break;          
+                         case "bank":   $scope.type = "Bank"
+                                                break;                                               
+                          case "bar":   $scope.type = "Bar"
+                                                break;
+                          case "beauty_salon":   $scope.type = "Schönheitssalon"
+                                                break;
+                           case "bicycle_store":   $scope.type = "Fahrradgeschäft"
+                                                break;
+                           case "book_store":   $scope.type = "Buchhandlung"
+                                                break;
+                          case "bowling_alley":   $scope.type = "Kegelbahn"
+                                                break;
+                           case "bus_station":   $scope.type = "Bushaltestation"
+                                                break;
+                           case "cafe":   $scope.type = "Café"
+                                                break;
+                           case "campground":   $scope.type = "Campingplatz"
+                                                break;
+                           case "car_dealer":   $scope.type = "Autohändler"
+                                                break;
+                           case "car_rental":   $scope.type = "Autoverleih"
+                                                break;
+                           case "car_repair":   $scope.type = "Autowerkstatt"
+                                                break;
+                           case "car_wash":   $scope.type = "Autowäsche"
+                                                break;
+                           case "casino":   $scope.type = "Kasino"
+                                                break;
+                                                                                                                                                                                                                                                                                                                                        case "cemetery":   $scope.type = "Friedhof"
+                                                break;
+                            case "church":   $scope.type = "Kirche"
+                                                break;
+                            case "city_hall":   $scope.type = "Rathaus"
+                                                break;
+                            case "clothing_store":   $scope.type = "Kleidungsgeschäft"
+                                                break;
+                            case "convenience_store":   $scope.type = "Geschmistwarenladen"
+                                                break;
+                           case "courthouse":   $scope.type = "Gerichtsgebäude"
+                                                break;
+                            case "dentist":   $scope.type = "Zahnarzt"
+                                                break;
+                            case "department_store":   $scope.type = "Kaufhaus"
+                                                break;
+                           case "doctor":   $scope.type = "Arzt"
+                                                break;
+                            case "electrician":   $scope.type = "Elektriker"
+                                                break;
+                           case "electronics_store":   $scope.type = "Elektronikladen"
+                                                break;
+                            case "embassy":   $scope.type = "Botschaft"
+                                                break;
+                            case "establishment":   $scope.type = "Geschäft"
+                                                break;
+                            case "finance":   $scope.type = "Finanzen"
+                                                break;
+                            case "fire_station":   $scope.type = "Feuerwehrstation"
+                                                break;
+                            case "florist":   $scope.type = "Blumenladen"
+                                                break;
+                            case "food":   $scope.type = "Lebensmittel"
+                                                break;
+                            case "funeral_home":   $scope.type = "Beerdigungsinstitut"
+                                                break;
+                            case "furniture_store":   $scope.type = "Möbelgeschäft"
+                                                break;
+                            case "gas_station":   $scope.type = "Tankstelle"
+                                                break;
+                             case "general_contractor":   $scope.type = "Generalunternehmer"
+                                                break;
+                            case "grocery_or_supermarket":   $scope.type = "Supermarkt"
+                                                break;
+                            case "gym":   $scope.type = "Fitnessstudio"
+                                                break;
+                            case "hair_care":   $scope.type = "Haarpflege"
+                                                break;
+                            case "hardware_store":   $scope.type = "Baumarkt"
+                                                break;
+                            case "health":   $scope.type = "Gesundheit"
+                                                break;
+                            case "hindu_temple":   $scope.type = "Hindutempel"
+                                                break;
+                            case "home_goods_store":   $scope.type = "Hauswarengeschäft"
+                                                break;
+                            case "hospital":   $scope.type = "Krankenhaus"
+                                                break;
+                            case "insurance_agency":   $scope.type = "Versicherungsunternehmen"
+                                                break;
+                            case "jewelry_store":   $scope.type = "Juwelier"
+                                                break;
+                             case "laundry":   $scope.type = "Waschsalon"
+                                                break;
+                             case "lawyer":   $scope.type = "Anwaltskanzlei"
+                                                break;
+                            case "library":   $scope.type = "Bibliothek"
+                                                break;
+                             case "liquor_store":   $scope.type = "Spirituosengeschäft"
+                                                break;
+                            case "local_government_office":   $scope.type = "Örtliche Polizei"
+                                                break;
+                             case "locksmith":   $scope.type = "Schlüsseldienst"
+                                                break;
+                             case "lodging":   $scope.type = "Unterkunft"
+                                                break;
+                            case "meal_delivery":   $scope.type = "Lieferdienst"
+                                                break;
+                             case "meal_takeaway":   $scope.type = "Abholrestaurant"
+                                                break;
+                                                                                                                                                                                                                                                                                                                                        case "movie_rental":   $scope.type = "Videothek"
+                                                break;
+                            case "movie_theater":   $scope.type = "Kino"
+                                                break;
+                             case "moving_company":   $scope.type = "Umzugsfirma"
+                                                break;
+                            case "museum":   $scope.type = "Museum"
+                                                break;
+                             case "night_club":   $scope.type = "Discothek"
+                                                break;
+                             case "painter":   $scope.type = "Maler"
+                                                break;
+                            case "park":   $scope.type = "Park"
+                                                break;
+                            case "parking":   $scope.type = "Parkplatz"
+                                                break;
+                             case "pet_store":   $scope.type = "Tierhandlung"
+                                                break;
+                            case "pharmacy":   $scope.type = "Apotheke"
+                                                break;
+                                                                                                                                                                                                                                                                                                                                         case "physiotherapist":   $scope.type = "Physiotherapeut"
+                                                break;
+                                                                                                                                                                                                                                                                                                                                         case "place_of_worship":   $scope.type = "Andachtsstätte"
+                                                break;
+                            case "plumber":   $scope.type = "Klempner"
+                                                break;
+                            case "police":   $scope.type = "Polizei"
+                                                break;
+                             case "post_office":   $scope.type = "Poststelle"
+                                                break;
+                             case "real_estate_agency":   $scope.type = "Immobilienbüro"
+                                                break;
+                            case "restaurant":   $scope.type = "Restaurant"
+                                                break;
+                            case "roofing_contractor":   $scope.type = "Dachdecker"
+                                                break;
+                            case "rv_park":   $scope.type = "Reisemobil-Stellplatz"
+                                                break;
+                            case "school":   $scope.type = "Schule"
+                                                break;
+                            case "shoe_store":   $scope.type = "Schuhladen"
+                                                break;
+                            case "shopping_mall":   $scope.type = "Einkaufszentrum"
+                                                break;
+                            case "spa":   $scope.type = "Spa"
+                                                break;
+                            case "stadium":   $scope.type = "Stadium"
+                                                break;
+                            case "storage":   $scope.type = "Lager"
+                                                break;
+                             case "store":   $scope.type = "Geschäft"
+                                                break;
+                             case "subway_station":   $scope.type = "U-Bahn-Station"
+                                                break;
+                            case "synagogue":   $scope.type = "Synagoge"
+                                                break;
+                            case "taxi_stand":   $scope.type = "Taxistand"
+                                                break;
+                            case "train_station":   $scope.type = "Bahnstation"
+                                                break;
+                             case "travel_agency":   $scope.type = "Reiseagentur"
+                                                break;
+                            case "university":   $scope.type = "Universität"
+                                                break;
+                             case "veterinary_care":   $scope.type = "Tierarzt"
+                                                break;
+                            case "zoo":   $scope.type = "Zoo"
+                                                break;
+                            case "route":   $scope.type = "Straße"
+                                                break;   
+                             case "locality":   $scope.type = "Ort"
+                                                break;                                                                                               
+                    }                                                                                                                                                                                                                                                                                                                                                                                                  
+//-------------------------------------Translate END--------------------------------------------------------------------------
+                   
+                   
+                   
+                   
+                   // Zeige 0 votes, wenn user_ratings_total = null
                    if($scope.place.user_ratings_total >= 0){
                         $scope.totalRatings = $scope.place.user_ratings_total;
                         }
@@ -58,7 +260,7 @@ $scope.testImage = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=40
                    
                    
                               
-            },1500);
+            },0);
                
         
                 }   

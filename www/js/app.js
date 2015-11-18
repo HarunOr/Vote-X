@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
                                         'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl','angular-progress-button-styles',
-                                        'starter.searchFactory','ngMap','google.places'])
+                                        'starter.searchFactory','ngMap','google.places','720kb.tooltips'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory) {
   $ionicPlatform.ready(function() { 
