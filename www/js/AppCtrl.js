@@ -19,7 +19,7 @@ $scope.testImage = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=40
 
  $scope.se = function() {
                 
-                if($scope.place != null) {  
+                if($scope.input != null) {  
                 
                    $ionicLoading.show({
                      
@@ -28,7 +28,7 @@ $scope.testImage = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=40
     });
                 
                 
-                $scope.place = $scope.place;
+                $scope.place = $scope.input;
         console.log("Before"+JSON.stringify($scope.place.formatted_address));   
         $scope.icon = $scope.place.icon;
         
@@ -48,13 +48,16 @@ $scope.testImage = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=40
                         $scope.totalRatings = 0;
                     }    
                         
-                   console.log("ngMAP = "+$scope.place.geometry.location.lat());
-                   console.log("ICON = "+$scope.icon);
+                   
                    
                    console.log("IMG URL "+JSON.stringify($scope.place));
+                   $ionicScrollDelegate.scrollTop(); 
+                   $scope.input = "";
                    $ionicLoading.hide();
                    
-                   $ionicScrollDelegate.scrollTop();            
+                   
+                   
+                              
             },1500);
                
         
@@ -63,6 +66,7 @@ $scope.testImage = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=40
              else {
                  searchNull();
              }
+             
 }
 
 
