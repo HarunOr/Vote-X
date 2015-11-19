@@ -12,8 +12,11 @@
    
 
  $scope.se = function() {
+             
+                if($scope.input != null &&$scope.input.place_id != undefined) {  
                 
-                if($scope.input != null) {  
+                console.log("INPUT= "+$scope.input.place_id);
+                
                 
                    $ionicLoading.show({
                      
@@ -41,6 +44,15 @@
                    console.log("TYPE: "+$scope.type);
                    
                     switch($scope.type) {
+                        
+                        case "street_address": $scope.type = "Straße"
+                                                break;
+                        
+                        case "country": $scope.type = "Land"
+                                               break;
+                        
+                        case "point_of_interest": $scope.type= "Sehenswürdigkeit"
+                                                break;
                         
                         case "accounting":   $scope.type = "Verwaltung"
                                                 break;
@@ -204,7 +216,7 @@
                                                 break;
                             case "school":   $scope.type = "Schule"
                                                 break;
-                            case "shoe_store":   $scope.type = "Schuhladen"
+                            case "shoe_store":   $scope.type = "Schuhgeschäft"
                                                 break;
                             case "shopping_mall":   $scope.type = "Einkaufszentrum"
                                                 break;
@@ -256,10 +268,7 @@
                    $ionicScrollDelegate.scrollTop(); 
                    $scope.input = "";
                    $ionicLoading.hide();
-                   
-                   
-                   
-                              
+
             },0);
                
         
@@ -274,12 +283,13 @@
 
  var searchNull = function() {
   $ionicPopup.alert({
-     title: 'Leeres Suchfeld'
+     title: 'Wählen Sie einen Vorschlag aus!'
    });
  };
 
 $scope.closeSearch = function() {
      $scope.place = null;
+     
  }
 
 // Search END ------------------------

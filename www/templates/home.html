@@ -16,13 +16,7 @@
    
 <!-- -------------------------------- -->
 
-<!-- ----------- Test -------------------->
 
-
-
-
-
-    
 <div class="list card">
 
   <div class="item item-avatar">
@@ -35,7 +29,7 @@
      <rating ng-model="place.rating" max="5" state-on="'voteTitleOn'" 
      state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
       <div class="voteNumber">
-        <p><a href="#" tooltips tooltip-lazy="true" tooltip-side='bottom' tooltip-scroll="false" title="von Google">Tooltip me</a></p>
+        <p><a href="#" tooltips tooltip-lazy="true" tooltip-side='bottom' title="von Google">Google Votings</a></p>
         {{totalRatings}} Votes
         
       </div>
@@ -43,10 +37,13 @@
   </div>
 
   <div class="item item-body">
-    <img class="full-image" ng-click="openBusiness()" image-lazy-src="{{testImage}}"  image-lazy-loader="lines" lazy-scroll-resize="true">
+    <img class="full-image" ng-click="openBusiness()" ng-src="{{testImage}}"  image-lazy-loader="lines" lazy-scroll-resize="true">
     <p>
-      Place. Description
-    </p>
+      <b>Adresse</b>
+      {{place.formatted_address}}
+      <b>Telefon</b>
+      {{place.formatted_phone_number}}
+      </p>
   </div>
 
   <div class="item tabs tabs-secondary tabs-icon-left" ng-click="openBusiness()">
@@ -111,14 +108,13 @@
 <div class="list card">
 
   <div class="item item-avatar" >
-    <img image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg"  image-lazy-loader="lines" lazy-scroll-resize="true">
     <h2>Jochen Schweizer</h2>
     <p>Werbung</p>
   </div>
 
   <div class="item item-body">
     <img class="full-image" image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg" image-lazy-loader="lines" lazy-scroll-resize="true" onclick="window.open('http://www.jochen-schweizer.de', '_blank', 'location=no');">
-    <p style="margin-top: 2px;">
+    <p >
      Hier steht ein sehr überzeugender Clickbait-Text  
     </p>
     <p>
