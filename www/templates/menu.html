@@ -12,13 +12,17 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-           <button class="button button-assertive" ng-if="!currentUserSignedIn" progress-button="openModal(1)">
-            Login
+   
+      
+           <button  class="button button-assertive" ng-if="!currentUserSignedIn" progress-button="openModal(1)">
+            <div style="padding-right:3px !important">Login</div>
            </button>
-           
+       
+
             <button class="button  button-clear" ng-click="logout()" ng-if="currentUserSignedIn">
             Logout
            </button>
+         
          </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>

@@ -55,13 +55,10 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 })
 
 
-.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, progressButtonConfigProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
       //Codrops Button
-  progressButtonConfigProvider.profile('testProfile', {
-    style: 'shrink',
-    direction: 'vertical'
-  });
+
 // ------------------------
 
 

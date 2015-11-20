@@ -14,10 +14,7 @@
  $scope.se = function() {
              
                 if($scope.input != null &&$scope.input.place_id != undefined) {  
-                
-                console.log("INPUT= "+$scope.input.place_id);
-                
-                
+     
                    $ionicLoading.show({
                      
       noBackdrop: true,
@@ -26,22 +23,19 @@
                 
                 
                 $scope.place = $scope.input;
-        console.log("Before"+JSON.stringify($scope.place.formatted_address));   
+        
         $scope.icon = $scope.place.icon;
         
             $timeout(function(){
                 
                    $scope.dynamicName = $scope.place.name; 
-                   console.log(JSON.stringify($scope.place.icon));
+                   
                    $scope.icon = $scope.place.icon;
-                   $scope.iconUrl = JSON.stringify($scope.place.icon);
-                   console.log($scope.icon);
                    $scope.img = $scope.place.photos;
                    $scope.type = $scope.place.types[0];
                    
                    
                    //Translate Type
-                   console.log("TYPE: "+$scope.type);
                    
                     switch($scope.type) {
                         
@@ -263,8 +257,8 @@
                     }    
                         
                    
-                   
-                   console.log("IMG URL "+JSON.stringify($scope.place));
+                   $scope.testImage = $scope.place.photos[1].getUrl({'maxWidth':343, 'maxHeight':229});
+
                    $ionicScrollDelegate.scrollTop(); 
                    $scope.input = "";
                    $ionicLoading.hide();
