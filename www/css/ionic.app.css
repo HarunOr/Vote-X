@@ -18,6 +18,12 @@ $dark:                            #444 !default;
 .item.item-avatar  {
   padding-left: 20px; }
 
+* {
+  -webkit-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  user-select: auto !important; }
+
 /* loading */
 .loader-center {
   height: 100%;

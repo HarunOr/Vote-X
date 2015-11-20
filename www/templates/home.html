@@ -13,6 +13,13 @@
  
   <ion-content class="voteBg has-header has-subheader" overflow-scroll="true" lazy-scroll ng-controller="AppCtrl">
     
+   <!-- REFRESH -->
+          <ion-refresher
+    spinner="ripple"
+    pulling-text="Runterziehen zum aktualisieren..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
+   
    
 <!-- -------------------------------- -->
 
@@ -29,7 +36,7 @@
 
      <rating ng-model="place.rating" max="5" state-on="'voteTitleOn'" 
      state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
-      <a style="font-size: 12px" href="#" tooltips tooltip-scroll="false" tooltip-side='left' title="Da bei uns noch keine Bewertungen eingegangen ist, werden Bewertungen von Google angezeigt.">Info</a>
+      <a style="font-size: 12px" ng-if="isGoogle" href="#" tooltips tooltip-scroll="false" tooltip-lazy="true" title="Da bei uns noch keine Bewertungen eingegangen ist, werden Bewertungen von Google angezeigt.">Info</a>
      
       <div class="voteNumber">
         <b>{{totalRatings}} Votes</b>
@@ -43,9 +50,9 @@
     <p>
    
       
-      <b>Adresse</b>
-      {{place.formatted_address}}
-      <b>Telefon</b>
+      <b>Adresse</b><br />
+       {{place.formatted_address}}<br />
+      <b>Telefon</b><br />
       {{place.formatted_phone_number}}
       </p>
   </div>
@@ -120,12 +127,19 @@
     <img class="full-image" image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg" image-lazy-loader="lines" lazy-scroll-resize="true" onclick="window.open('http://www.jochen-schweizer.de', '_blank', 'location=no');">
     <p >
      Hier steht ein sehr überzeugender Clickbait-Text  
+       Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
+      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
+      Der Footer besteht aus Buttons mit Icons.
     </p>
     <p>
      </p>
   </div>
+<div style="height:45px"></div>
 </div>
 <!-- ------------------ AD CARD END ----------------- -->
 
+
+
   </ion-content>
+
 </ion-view>

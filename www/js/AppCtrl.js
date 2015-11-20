@@ -1,6 +1,7 @@
  angular
  
-  .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad','google.places','ngMap','720kb.tooltips'])
+  .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad','google.places',
+                                   'ngMap','720kb.tooltips'])
 
   .controller('AppCtrl', function ($scope, $http,$ionicPlatform,
                                    $state, $ionicModal, $timeout, 
@@ -14,6 +15,9 @@
  $scope.se = function() {
              
                 if($scope.input != null &&$scope.input.place_id != undefined) {  
+     
+     
+     $scope.isGoogle = "false"; //ng-if Info
      
                    $ionicLoading.show({
                      
@@ -255,9 +259,11 @@
                     else {
                         $scope.totalRatings = 0;
                     }    
-                        
+                    
+                 
                    if($scope.place.photos != undefined){
-                                $scope.testImage = $scope.place.photos[1].getUrl({'maxWidth':750, 'maxHeight':500});
+                     $scope.isGoogle = "true";
+                     $scope.testImage = $scope.place.photos[0].getUrl({'maxWidth':750, 'maxHeight':500});
                     }
                     
                     

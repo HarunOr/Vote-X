@@ -30,10 +30,6 @@
     {
       "locator": "https://github.com/apache/cordova-plugin-statusbar.git",
       "id": "cordova-plugin-statusbar"
-    },
-    {
-      "locator": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions#0.4.2",
-      "id": "com.telerik.plugins.nativepagetransitions"
     }
   ],
   "cordovaPlatforms": [
