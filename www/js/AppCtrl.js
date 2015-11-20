@@ -256,9 +256,12 @@
                         $scope.totalRatings = 0;
                     }    
                         
-                   
+                   if($scope.place.photos[0] != undefined){
                    $scope.testImage = $scope.place.photos[1].getUrl({'maxWidth':343, 'maxHeight':229});
-
+                    }
+                    
+                    
+                    
                    $ionicScrollDelegate.scrollTop(); 
                    $scope.input = "";
                    $ionicLoading.hide();
