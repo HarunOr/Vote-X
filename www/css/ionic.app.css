@@ -18,6 +18,10 @@ $dark:                            #444 !default;
 .item.item-avatar  {
   padding-left: 20px; }
 
+button {
+  padding: 2em;
+  margin: 2em; }
+
 * {
   -webkit-user-select: auto !important;
   -moz-user-select: auto !important;

@@ -29,6 +29,17 @@ $testColor: #FFFAFA!default;
 
 
 
+button{
+    padding:2em;
+    margin: 2em;
+}
+
+
+
+
+
+
+
 //make text selectable
 
 * {
@@ -37,9 +48,6 @@ $testColor: #FFFAFA!default;
 -ms-user-select: auto !important;
 user-select: auto !important;
 }
-
-
-
 
 
 /* loading */

@@ -3,7 +3,7 @@
       <div class="bar bar-subheader item-input-inset" style="background-color: white;border-right-color: transparent;border-left-color: transparent;border-top-color: transparent;border-bottom-color: #D43D33;border-style: solid; border-width:2px;">
   <label class="item-input-wrapper">
     <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
-    <input id="searchBar" type="text" g-places-autocomplete ng-focus="disableTap()" ng-model="input" style="background-color:transparent"/>
+    <input id="searchBar" type="text" g-places-autocomplete ng-focus="disableTap()" ng-model="input" style="background-color:transparent" addbuttons/>
   </label>
   <button class="button button-clear" ng-click="se()">
     Suchen
@@ -22,6 +22,9 @@
    
    
 <!-- -------------------------------- -->
+<addbuttonsbutton></addbuttonsbutton>
+<div id="space-for-buttons"></div>
+
 
 
 <div class="list card">
@@ -134,10 +137,29 @@
     <p>
      </p>
   </div>
-<div style="height:45px"></div>
+
 </div>
 <!-- ------------------ AD CARD END ----------------- -->
+<div class="list card">
 
+  <div class="item item-avatar" >
+    <h2>Jochen Schweizer</h2>
+    <p>Werbung</p>
+  </div>
+
+  <div class="item item-body">
+    
+    <p >
+     Hier steht ein sehr überzeugender Clickbait-Text  
+       Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
+      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
+      Der Footer besteht aus Buttons mit Icons.
+    </p>
+    <p>
+     </p>
+  </div>
+
+</div>
 
 
   </ion-content>

@@ -6,7 +6,8 @@
   .controller('AppCtrl', function ($scope, $http,$ionicPlatform,
                                    $state, $ionicModal, $timeout, 
                                    $ionicPopup, $cordovaOauth, 
-                                   $ionicLoading, $ionicScrollDelegate
+                                   $ionicLoading, $ionicScrollDelegate,
+                                   $compile, $window
                                     )    {
 
 // Search
@@ -273,8 +274,8 @@
                    $ionicLoading.hide();
 
             },0);
-               
-        
+
+
                 }   
                 
              else {
@@ -297,13 +298,15 @@ $scope.closeSearch = function() {
 
 // Search END ------------------------
 
+//------------------- Local storage PlaceID ----------------------
+
+var store = { };
 
 
 
 
 
-
-
+//------------------------------------------
 
 
   $scope.rate = 4;
@@ -406,8 +409,6 @@ $scope.businessName2 = "Harun's Bar";
     };
     
 })
-
-
 
 
 

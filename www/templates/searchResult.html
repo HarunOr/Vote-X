@@ -1,0 +1,49 @@
+<div class="list card">
+
+  <div class="item item-avatar">
+
+   
+   
+         <h2>{{dynamicName}}</h2>
+         
+    <p><img ng-src="{{icon}}" ng-show="icon" lazy-scroll-resize="true" style="max-width: 20px"> </img> {{type}}</p>
+
+     <rating ng-model="place.rating" max="5" state-on="'voteTitleOn'" 
+     state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
+      <a style="font-size: 12px" ng-if="isGoogle" href="#" tooltips tooltip-scroll="false" tooltip-lazy="true" title="Da bei uns noch keine Bewertungen eingegangen ist, werden Bewertungen von Google angezeigt.">Info</a>
+     
+      <div class="voteNumber">
+        <b>{{totalRatings}} Votes</b>
+     </div>
+  </div>
+
+  <div class="item item-body" >
+   
+    <img class="full-image" ng-click="openBusiness()" ng-src="{{testImage}}"  image-lazy-loader="lines" lazy-scroll-resize="true" ng-show="testImage"> 
+
+    <p>
+   
+      
+      <b>Adresse</b><br />
+       {{place.formatted_address}}<br />
+      <b>Telefon</b><br />
+      {{place.formatted_phone_number}}
+      </p>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left" ng-click="openBusiness()">
+    <a class="tab-item" href="#">
+      <i class="icon icon-votex_icon" style="color: #D43D33"></i>
+      Vote
+    </a>
+      <a class="tab-item">
+    <i class="icon ion-information-circled" style="color: #D43D33"></i>
+    Informationen
+  </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-share" style="color: #D43D33"></i>
+      Teilen
+    </a>
+  </div>
+
+</div>
