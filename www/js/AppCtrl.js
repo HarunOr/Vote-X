@@ -1,18 +1,18 @@
  angular
  
   .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad','google.places',
-                                   'ngMap','720kb.tooltips'])
+                                   'ngMap','firebase'])
 
   .controller('AppCtrl', function ($scope, $http,$ionicPlatform,
                                    $state, $ionicModal, $timeout, 
                                    $ionicPopup, $cordovaOauth, 
-                                   $ionicLoading, $ionicScrollDelegate,
-                                   $compile, $window
+                                   $ionicLoading, $ionicScrollDelegate, $firebaseArray
                                     )    {
 
-// Search
-   
+ var ref = new Firebase("https://vote-x.firebaseio.com/");
 
+//----------------------------- Search ------------------------------------
+   
  $scope.se = function() {
              
                 if($scope.input != null &&$scope.input.place_id != undefined) {  
@@ -29,7 +29,7 @@
                 
                 $scope.place = $scope.input;
         
-        $scope.icon = $scope.place.icon;
+            $scope.icon = $scope.place.icon;
         
             $timeout(function(){
                 
@@ -38,7 +38,7 @@
                    $scope.icon = $scope.place.icon;
                    $scope.img = $scope.place.photos;
                    $scope.type = $scope.place.types[0];
-                   
+                   $scope.place_id = $scope.place.place_id;
                    
                    //Translate Type
                    
@@ -251,7 +251,20 @@
 //-------------------------------------Translate END--------------------------------------------------------------------------
                    
                    
-                   
+             // User Suchverlauf --------------------------
+                if(ref.getAuth() !== null ){
+                $scope.user_uid = ref.getAuth().uid;
+                var searchRef = ref.child('users').child($scope.user_uid).child('search_history').child($scope.place_id);
+
+                 
+                 searchRef.update({
+                     place_name: $scope.place.name,
+                     place_type: $scope.type,
+                     place_address: $scope.place.formatted_address
+                 });  
+                }
+ 
+                 
                    
                    // Zeige 0 votes, wenn user_ratings_total = null
                    if($scope.place.user_ratings_total >= 0){
@@ -267,6 +280,9 @@
                      $scope.testImage = $scope.place.photos[0].getUrl({'maxWidth':750, 'maxHeight':500});
                     }
                     
+                    else {
+                        $scope.testImage = 'img/noimage.jpg';
+                    }
                     
                     
                    $ionicScrollDelegate.scrollTop(); 
@@ -285,6 +301,9 @@
 }
 
 
+
+
+
  var searchNull = function() {
   $ionicPopup.alert({
      title: 'Wählen Sie einen Vorschlag aus!'
@@ -300,7 +319,7 @@ $scope.closeSearch = function() {
 
 //------------------- Local storage PlaceID ----------------------
 
-var store = { };
+
 
 
 
@@ -366,7 +385,7 @@ $scope.businessName2 = "Harun's Bar";
 //------------------------------Business Modal---------------------------------
 
  $scope.openBusiness = function() {
-     if($scope.currentUserSignedIn == true) {
+     if($scope.currentUserSignedIn == false) {
         $ionicPopup.alert({
             title: 'Oh nein!',
             template: 'Du musst dich einloggen, um das sehen zu können!'

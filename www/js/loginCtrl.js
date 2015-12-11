@@ -20,16 +20,30 @@
 
     //Get initial userdata-----------------------------
 
-            
+    var d = new Date();
+
+    var day = d.getDate();
+    var month = d.getMonth();
+    var year = d.getFullYear();
     
     $scope.getInitialData = function(userRef){
               var fbStr = new Firebase ("https://vote-x.firebaseio.com/users/");
-              var usersRef = fbStr.push({
-               email: $scope.userEmail    
+               fbStr.child(userRef).set({
+               email: $scope.userEmail,
+               verified: 0,
+               profileImage: "",
+               birthday: "",
+               firstname: "",
+               lastname: "",
+               username: "",
+               votes: 0,
+               uploaded_images: 0,
+               vote_avg: 0,
+               location: "",
+               country: "",
+               phone: 0,
+               registrationDate: day+" "+(month+1)+" "+year,  
                 });
-    
-      fid = usersRef.key();
-       console.log("Firebase ID: "+fid);
     };
      
      
@@ -74,9 +88,10 @@
                     $ionicLoading.hide();
                      $rootScope.currentUserSignedIn =true;
                     
-                     console.log("current user signed in");
+                     
             //    $scope.getProfilePic(authData);
                      $scope.userID = authData.uid;
+                   
                     showAlertLoggedIn(authData);
                   $scope.modal1.hide();
                  $state.go("app.profile");
@@ -91,11 +106,14 @@
 
         if (password1 !== password2) {
           showAlertError("Fehler!", "Ihr Passwort stimmt nicht überein!");
-
+          
         }
 
         else
         if (username1 !== undefined && password1 !== undefined && password2 !== undefined) {
+                $ionicLoading.show({
+            template: 'Sie werden registriert...<p><ion-spinner icon="dots" class="spinner-assertive"></ion-spinner></p>'
+        });
             myRef.createUser({
 
                 email: username1,
@@ -137,12 +155,11 @@
                  }
                 } else {
                   $scope.userEmail = username1;
-                    console.log(authData.uid);
                     userRef = authData.uid;
                     $scope.getInitialData(userRef); 
                     showAlertCreated(username1);
                     $state.go("app.home");
-                   
+                   $ionicLoading.hide();
                 }
             })
         }
@@ -192,7 +209,8 @@
     var showAlertCreated = function (username) {
        $ionicPopup.alert({
             title: 'Geschafft!',
-            template: 'Dein Konto mit der Email: ' + username + ' wurde erfolgreich erstellt :)'
+            template: '<p style="text-align: center"> Dein Konto mit der Email: ' + username + ' wurde erfolgreich erstellt :)</p>'+
+                      '<p style="text-align: center">Jetzt musst Du dich nur noch einloggen, viel Spaß!</p>'
         })
     };
 
@@ -211,7 +229,7 @@
     var showAlertLoggedIn = function (authData) {
         $ionicPopup.alert({
             title: 'Willkommen!',
-            template: 'Du hast dich erfolgreich mit der Email: ' + authData.password.email + ' eingeloggt :)'
+            template: '<p style="text-align: center">Du hast dich erfolgreich eingeloggt :)</p>'
         })
     };
 
@@ -263,7 +281,6 @@ myRef.authWithOAuthPopup("facebook", function(error, authData) {
      },
      
       {
-        remember:"sessionOnly",
         scope: "email"   
           
       }

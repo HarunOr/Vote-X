@@ -1,0 +1,163 @@
+<ion-view >
+  
+      <div class="bar bar-subheader item-input-inset" style="background-color: white;border-right-color: transparent;border-left-color: transparent;border-top-color: transparent;border-bottom-color: #D43D33;border-style: solid; border-width:2px;">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
+    <input id="searchBar" type="text" g-places-autocomplete ng-focus="disableTap()" ng-model="input" style="background-color:transparent" addbuttons/>
+  </label>
+  <button class="button button-clear" ng-click="se()">
+    Suchen
+  </button>
+</div>
+
+ 
+  <ion-content class="voteBg has-header has-subheader" overflow-scroll="true" lazy-scroll ng-controller="AppCtrl">
+    
+   <!-- REFRESH -->
+          <ion-refresher
+    spinner="ripple"
+    pulling-text="Runterziehen zum aktualisieren..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
+   
+   
+<!-- -------------------------------- -->
+<addbuttonsbutton></addbuttonsbutton>
+<div id="space-for-buttons"></div>
+
+
+
+<div class="list card">
+
+  <div class="item item-avatar">
+
+   
+   
+         <h2>{{dynamicName}}</h2>
+         
+    <p><img ng-src="{{icon}}" ng-show="icon" lazy-scroll-resize="true" style="max-width: 20px"> </img> {{type}}</p>
+
+     <rating ng-model="place.rating" max="5" state-on="'voteTitleOn'" 
+     state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
+    
+     
+      <div class="voteNumber">
+        <b>{{totalRatings}} Votes</b>
+     </div>
+  </div>
+
+  <div class="item item-body" >
+   
+    <img class="full-image" ng-click="openBusiness()" ng-src="{{testImage}}"  image-lazy-loader="lines" lazy-scroll-resize="true" ng-if="isGoogle"> 
+
+    <p>
+   
+      
+      <b>Adresse</b><br />
+       {{place.formatted_address}}<br />
+      <b>Telefon</b><br />
+      {{place.formatted_phone_number}}
+      </p>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left" ng-click="openBusiness()">
+    <a class="tab-item" href="#">
+      <i class="icon icon-votex_icon" style="color: #D43D33"></i>
+      Vote
+    </a>
+      <a class="tab-item">
+    <i class="icon ion-information-circled" style="color: #D43D33"></i>
+    Informationen
+  </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-share" style="color: #D43D33"></i>
+      Teilen
+    </a>
+  </div>
+
+</div>
+
+
+<!--- -----------TEST END ------------------->
+    
+    
+<div class="list card">
+
+  <div class="item item-avatar" ng-click="openBusiness()">
+    
+  
+         <h2>{{businessName}}</h2>
+    <p>Restaurant</p>
+     <rating ng-model="rate" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>  <div class="voteNumber">1084 Votes</div>
+
+  </div>
+
+  <div class="item item-body">
+    <img class="full-image" ng-click="openBusiness()" image-lazy-src="https://www.imagesource.com/Doc/IS0/Media/TR3_WATERMARKED/0/f/f/2/42RME0013RMG.jpg"  image-lazy-loader="lines" lazy-scroll-resize="true">
+    <p>
+      Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
+      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
+      Der Footer besteht aus Buttons mit Icons.
+    </p>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left" ng-click="openBusiness()">
+    <a class="tab-item" href="#">
+      <i class="icon icon-votex_icon" style="color: #D43D33"></i>
+      Vote
+    </a>
+      <a class="tab-item">
+    <i class="icon ion-information-circled" style="color: #D43D33"></i>
+    Informationen
+  </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-share" style="color: #D43D33"></i>
+      Teilen
+    </a>
+  </div>
+
+</div>
+<!-- ------------------AD CARD ---------------- -->
+
+<div class="list card" style="margin-bottom: 2%">
+
+  <div class="item item-avatar" >
+    <h2>Jochen Schweizer</h2>
+    <p>Werbung</p>
+  </div>
+
+  <div class="item item-body">
+    <img class="full-image" image-lazy-src="http://www.stuttgart-tourist.de/img/t/k/y/t/n/k/x/c/logo-jochen-schweizer.jpg" image-lazy-loader="lines" lazy-scroll-resize="true" onclick="window.open('http://www.jochen-schweizer.de', '_blank', 'location=no');">
+    <p >
+     Hier steht ein sehr überzeugender Clickbait-Text  
+       Dies ist eine Beispielkarte. Der Header besteht aus dem Titel, Untertitel und einem Thumbnail-Image.
+      Der Content besteht aus einem größerem Bild, welches von Google Places bezogen wird und einem ausführlicheren Beschreibungstext.
+      Der Footer besteht aus Buttons mit Icons.
+    </p>
+  </div>
+  <div class="item tabs tabs-secondary tabs-icon-left" ng-click="openBusiness()">
+    <a class="tab-item" href="#">
+      <i class="icon icon-votex_icon" style="color: #D43D33"></i>
+      Vote
+    </a>
+      <a class="tab-item">
+    <i class="icon ion-information-circled" style="color: #D43D33"></i>
+    Informationen
+  </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-share" style="color: #D43D33"></i>
+      Teilen
+    </a>
+  </div>
+</div>
+<!-- ------------------ AD CARD END ----------------- -->
+
+
+<!-- Bottom Cut fix-->
+<div style="height: 5%; margin-top:35px">
+</div>
+
+
+  </ion-content>
+
+</ion-view>

@@ -6,7 +6,7 @@
 var votex = angular.module('starter', ['ionic','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
                                         'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
                                         'angular-progress-button-styles','starter.searchFactory','ngMap',
-                                        'google.places','720kb.tooltips'])
+                                        'google.places','720kb.tooltips','starter.searchCtrl'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory) {
   $ionicPlatform.ready(function() { 
@@ -31,7 +31,8 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
         'img/buttonClub.png',
         'img/profileBg.png',
         'img/modal1_opt-compressor.jpg',
-        'img/background_opt-compressor.jpg'		
+        'img/background_opt-compressor.jpg',
+        'img/noimage.jpg'		
          ]).then(function(){
         console.log("Images done loading!");
     },function(failed){
@@ -56,8 +57,9 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 })
 
 
-.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-
+.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
+ 
+ $httpProvider.defaults.useXDomain = true;
       //Codrops Button
 
 // ------------------------
@@ -113,10 +115,12 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
 
   .state('app.search', {
+    reload: true,
     url: "/search",
     views: {
       'menuContent': {
-        templateUrl: "templates/search.html"
+        templateUrl: "templates/search.html",
+        controller: "searchCtrl"
       }
     }
   })

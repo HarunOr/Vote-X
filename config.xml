@@ -9,9 +9,6 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
-  <access origin="*.firebaseio.com"/>
-  <access origin="auth.firebase.com"/>
-  <access origin="*"/>
   <allow-navigation href="*"/>
   <allow-navigation href="http://*/*"/>
   <allow-navigation href="https://*/*"/>
