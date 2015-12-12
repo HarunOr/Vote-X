@@ -4,7 +4,7 @@
 </div>
   <ion-content class="voteBg has-header has-subheader" lazy-scroll>
 
-      <div class="list card" ng-repeat="object in search | orderBy:'place_uid':true">
+      <div class="list card" ng-repeat="object in search track by $index | orderBy:'place_uid':true">
 
   <div class="item item-avatar">
          <h2>{{object.place_name}}</h2>

@@ -20,15 +20,12 @@ $scope.$on('$ionicView.beforeEnter', function() {
   
   searchRef.on("child_added", function(snapshot) {
   var data = snapshot.val();
-      
-
-
-  console.log("data = "+data);
+    
 
    var placeRef = "https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history/"+data.place_id+".json";
-    console.log("placeRef = "+placeRef);
     
- $http.get(placeRef).then(function(resp) {
+    // GET suchverlauf
+    $http.get(placeRef).then(function(resp) {
     $scope.search[resp.data.place_uid] = resp.data;
      }); 
       
