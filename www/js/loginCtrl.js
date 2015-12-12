@@ -124,7 +124,7 @@
 
              function (error, authData,password) {
                 if (error) {
-
+                    $ionicLoading.hide();
                   switch (error.code) {
                      case "INVALID_EMAIL":
                          showAlertError(ErrorTitle1, ErrorText1);
