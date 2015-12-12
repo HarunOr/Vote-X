@@ -2,10 +2,13 @@ var votex = angular
 
 .module('starter.searchFactory',[]);
 
-votex.factory('Search', function($scope, data){
-	$scope.user_uid = data;
+votex.factory('searchFactory', function($scope){
 	
-return $scope.user_uid;
+	var googleObjects = [];
+	
+return {
+	
+}
 	
 	
 	

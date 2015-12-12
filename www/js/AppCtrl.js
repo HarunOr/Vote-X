@@ -5,7 +5,7 @@
 
   .controller('AppCtrl', function ($scope, $http,$ionicPlatform,
                                    $state, $ionicModal, $timeout, 
-                                   $ionicPopup, $cordovaOauth, 
+                                   $ionicPopup, $cordovaOauth, $rootScope,
                                    $ionicLoading, $ionicScrollDelegate, $firebaseArray
                                     )    {
 
@@ -252,16 +252,14 @@
                    
                    
              // User Suchverlauf --------------------------
-                if(ref.getAuth() !== null ){
+                if(ref.getAuth() !== null && $rootScope.currentUserSignedIn){
                 $scope.user_uid = ref.getAuth().uid;
                 var searchRef = ref.child('users').child($scope.user_uid).child('search_history').child($scope.place_id);
+                
+                var countChildrenRef =  new Firebase("https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history");
+          
+                var place_uid = searchID(countChildrenRef,searchRef, $scope.place_id, $scope.dynamicName, $scope.type,$scope.place.formatted_address);
 
-                 
-                 searchRef.update({
-                     place_name: $scope.place.name,
-                     place_type: $scope.type,
-                     place_address: $scope.place.formatted_address
-                 });  
                 }
  
                  
@@ -300,7 +298,29 @@
              
 }
 
-
+    // -------------------- Suche Index erzeugen ---------------------
+    
+    var searchID = function(data, searchRef, place_id, place_name1, type,address) {
+        data.once("value", function(snapshot){
+           var a = snapshot.numChildren();
+       
+                 
+     searchRef.set({
+            place_uid: a,
+            place_id: place_id,
+            place_name: place_name1,
+            place_type: type,
+            place_address: address
+                 });
+                 
+      // orderByNewest
+      
+      searchRef.orderByChild("place_uid").on("child_added", function(snapshot){
+      }) ;            
+                 
+        });
+    }
+    // -----------------------------------------------------------------
 
 
 
@@ -337,36 +357,6 @@ $scope.closeSearch = function() {
 $scope.businessName2 = "Harun's Bar";
    
    
-    //------------- Google Search Box ------------------
-    $scope.filter = [
-        // ['establishment'] etc für input in home.html
-    ]
-    
-    //------------Get profile Url---------------- 
-    /*
-        $scope.getProfilePic = function(authData) {
-              $scope.userID = authData.uid;
-              
-              var fbStr = "https://vote-x.firebaseio.com/users/"+$scope.userID;
-              var testRef = new Firebase (fbStr);
-              console.log(testRef);
-            if($rootScope.currentUserSignedIn) {
-                console.log("scope.userID = "+$scope.userID);
-              
-                userRef.child($scope.userID);
-                userDetailRef.update({
-                   
-                   ProfileImage: authData.password.profileImageURL
-                    
-                });
-                
-                console.log("ProfileImg updated"); 
-            }
-           
-            
-        };
-   */
-  
 
   
     //ion-refresher----------------------------------------------------------

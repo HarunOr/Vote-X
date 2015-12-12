@@ -59,8 +59,9 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
  
- $httpProvider.defaults.useXDomain = true;
-      //Codrops Button
+  if (!ionic.Platform.isIOS()) {
+    $ionicConfigProvider.scrolling.jsScrolling(false);
+  }
 
 // ------------------------
 
@@ -115,8 +116,8 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
 
   .state('app.search', {
-    reload: true,
     url: "/search",
+    cache: true,
     views: {
       'menuContent': {
         templateUrl: "templates/search.html",

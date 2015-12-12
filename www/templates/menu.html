@@ -68,9 +68,9 @@
             Startseite
           </ion-item>
           
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/search">
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/search" ng-if="currentUserSignedIn">
           <i class="icon ion-android-search" style="color: #D43D33;font-size: 22px"></i>
-            Suche
+            Suchverlauf
           </ion-item>
           
           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/map" ng-if="currentUserSignedIn">
@@ -83,17 +83,17 @@
           Zuletzt besucht
           </ion-item>
           
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/trends">
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/trends" ng-if="currentUserSignedIn">
           <i class="icon ion-ios-flame" style="color: #D43D33;font-size: 22px"></i>
            Trends
           </ion-item>
           
-           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/trends">
+           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/trends" ng-if="currentUserSignedIn">
           <i class="icon ion-chatbox" style="color: #D43D33;font-size: 22px"></i>
            Chat
           </ion-item>
           
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/offers">
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/offers" ng-if="currentUserSignedIn">
           <i class="icon ion-flag" style="color: #D43D33;font-size: 22px"></i>
             Angebote/Rabatte
           </ion-item>
