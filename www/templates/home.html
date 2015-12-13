@@ -22,8 +22,8 @@
    
    
 <!-- -------------------------------- -->
-
-<div align="center" style="font-color: #bebfc0;margin-top: 20%" ng-hide="searched"> Suchen Sie etwas, um es hier anzeigen zu lassen !</div>
+<div align="center" style="font-color: #bebfc0; font-style: bold ;margin-top: 10%;margin-bottom: 5%; opacity: 0.8;" ng-show="!currentUserSignedIn">      <i class="icon ion-alert" style="color: #D43D33;font-size: 22px; font-style: italic"></i> Loggen Sie sich ein, um Zugang zu allen Funktionen zu erhalten</div>
+<div align="center" style="font-color: #bebfc0;margin-top: 20%;  opacity: 0.5;" ng-hide="searched"> Suchen Sie etwas, um es hier anzeigen zu lassen !</div>
 
 
 <div class="list card" ng-show="searched">
@@ -54,10 +54,10 @@
       <div align="right" style="color: red;font-style:italic" ng-if="!place_open"> Geschlossen </div>
       
       <b>Adresse</b><br />
-       {{place.vicinity}}<br />
+       <div ng-show="place.vicinity">{{place.vicinity}}</div>
       <b>Telefon</b><br />
-      <a ng-href="tel:{{place.formatted_phone_number}}">{{place.formatted_phone_number}}</a><br />
-      <b>Website</b><br />
+      <a ng-href="tel:{{place.formatted_phone_number}}" ng-show="place.formatted_phone_number">{{place.formatted_phone_number}}</a><br />
+      <b ng-show="place.website">Website</b><br />
       <a href='#' ng-click="openWindow()">{{place.website}}</a>
       </p>
   </div>

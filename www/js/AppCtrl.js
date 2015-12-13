@@ -46,6 +46,7 @@
                    if($scope.place.types != undefined)
                    $scope.type = $scope.place.types[0];
                    $scope.place_id = $scope.place.place_id;
+                   if($scope.place.opening_hours != undefined)
                    $scope.place_open = $scope.place.opening_hours.open_now;
                    console.log($scope.place);
                    console.log($scope.place.geometry.location.lat());
