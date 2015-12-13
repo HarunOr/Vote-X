@@ -37,6 +37,7 @@
                    
                    $scope.icon = $scope.place.icon;
                    $scope.img = $scope.place.photos;
+                   if($scope.place.types != undefined)
                    $scope.type = $scope.place.types[0];
                    $scope.place_id = $scope.place.place_id;
                    
@@ -258,7 +259,7 @@
                 
                 var countChildrenRef =  new Firebase("https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history");
           
-                var place_uid = searchID(countChildrenRef,searchRef, $scope.place_id, $scope.dynamicName, $scope.type,$scope.place.formatted_address);
+                searchID(countChildrenRef,searchRef, $scope.place_id, $scope.dynamicName, $scope.type,$scope.place.formatted_address);
 
                 }
  
@@ -304,20 +305,29 @@
         data.once("value", function(snapshot){
            var a = snapshot.numChildren();
        
+      if(place_id == undefined)
+      place_id = null;
+      
+      if(place_name1 == undefined)
+      place_name1 = null;
+      
+      if(type == undefined)
+      type = null;
+      
+      if(address == undefined)
+      address = null;
                  
-     searchRef.set({
+      var searchArray = $firebaseArray(data);
+      
+      searchArray.$add({
             place_uid: a,
             place_id: place_id,
             place_name: place_name1,
             place_type: type,
             place_address: address
-                 });
-                 
-      // orderByNewest
+      }) ;   
+
       
-      searchRef.orderByChild("place_uid").on("child_added", function(snapshot){
-      }) ;            
-                 
         });
     }
     // -----------------------------------------------------------------

@@ -1,10 +1,10 @@
 <ion-view>
-<div class="bar bar-subheader">
-  <h2 class="title">Letzte Suchanfragen</h2>
+<div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
+  <h2 class="title"><i class="icon ion-android-search" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>Letzte Suchanfragen</h2>
 </div>
-  <ion-content class="voteBg has-header has-subheader" lazy-scroll>
+  <ion-content class="voteBg has-header has-subheader" lazy-scroll has-bouncing="true">
 
-      <div class="list card" ng-repeat="object in search.slice().reverse()">
+      <div class="list card" ng-repeat="object in searchHistory | orderBy:'place_uid':true">
 
   <div class="item item-avatar">
          <h2>{{object.place_name}}</h2>
@@ -18,7 +18,8 @@
 
 
       </div>
-
+<div style="height: 10%; margin-top:25px !important">
+</div>
     
   </ion-content>
 
