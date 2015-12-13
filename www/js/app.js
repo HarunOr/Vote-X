@@ -11,7 +11,7 @@ var votex = angular.module('starter', ['ionic','starter.controllers','starter.lo
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory) {
   $ionicPlatform.ready(function() { 
     
-   
+   screen.lockOrientation('portrait');
       
       
     		    //Preload ALL Images
@@ -48,11 +48,13 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 			  $cordovaStatusbar.overlaysWebView(true);
       		  $cordovaStatusbar.styleHex('#DFDFDF');
               cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-              cordova.plugins.Keyboard.disableScroll(true);
+              cordova.plugins.Keyboard.disableScroll(false)
+              
             }
         }
 
-	  
+	  // allow user rotate
+screen.unlockOrientation();
   });
 })
 
