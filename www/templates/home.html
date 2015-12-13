@@ -23,7 +23,7 @@
    
 <!-- -------------------------------- -->
 
-<div align="center" style="font-color: #bebfc0" ng-hide="searched"> Suches Sie etwas, um es hier anzeigen zu lassen !</div>
+<div align="center" style="font-color: #bebfc0;margin-top: 20%" ng-hide="searched"> Suchen Sie etwas, um es hier anzeigen zu lassen !</div>
 
 
 <div class="list card" ng-show="searched">
@@ -50,14 +50,15 @@
     <img class="full-image" ng-click="openBusiness()" ng-src="{{testImage}}"  image-lazy-loader="lines" lazy-scroll-resize="true" ng-if="isGoogle"> 
 
     <p>
-   
-      
-      <b>Adresse</b><br />
-       {{place.formatted_address}}<br />
-      <b>Telefon</b><br />
-      {{place.formatted_phone_number}}
       <div align="right" style="color: green;font-style:italic" ng-if="place_open"> Geöffnet </div>
       <div align="right" style="color: red;font-style:italic" ng-if="!place_open"> Geschlossen </div>
+      
+      <b>Adresse</b><br />
+       {{place.vicinity}}<br />
+      <b>Telefon</b><br />
+      <a ng-href="tel:{{place.formatted_phone_number}}">{{place.formatted_phone_number}}</a><br />
+      <b>Website</b><br />
+      <a href='#' ng-click="openWindow()">{{place.website}}</a>
       </p>
   </div>
 

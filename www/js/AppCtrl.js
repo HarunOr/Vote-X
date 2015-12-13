@@ -6,12 +6,17 @@
   .controller('AppCtrl', function ($scope, $http,$ionicPlatform,
                                    $state, $ionicModal, $timeout, 
                                    $ionicPopup, $cordovaOauth, $rootScope,
-                                   $ionicLoading, $ionicScrollDelegate, $firebaseArray
+                                   $ionicLoading, $ionicScrollDelegate, $firebaseArray, $window
                                     )    {
 
  var ref = new Firebase("https://vote-x.firebaseio.com/");
  $scope.searched = false;
 //----------------------------- Search ------------------------------------
+   
+
+   
+   
+   
    
  $scope.se = function() {
              
@@ -43,8 +48,20 @@
                    $scope.place_id = $scope.place.place_id;
                    $scope.place_open = $scope.place.opening_hours.open_now;
                    console.log($scope.place);
-                   console.log($scope.place_open);
+                   console.log($scope.place.geometry.location.lat());
+                   console.log($scope.place.geometry.location.lng());
+                   if($scope.place.geometry.viewport != null)
+                    console.log($scope.place.geometry.viewport);
                    //Translate Type
+                   
+                   
+                     $scope.openWindow = function() {
+        $window.open($scope.place.website, '_system', 'location=yes');
+    }   
+                   
+                   
+                   
+                   
                    
                     switch($scope.type) {
                         
