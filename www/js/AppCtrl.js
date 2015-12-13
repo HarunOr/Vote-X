@@ -10,14 +10,15 @@
                                     )    {
 
  var ref = new Firebase("https://vote-x.firebaseio.com/");
-
+ $scope.searched = false;
 //----------------------------- Search ------------------------------------
    
  $scope.se = function() {
              
                 if($scope.input != null &&$scope.input.place_id != undefined) {  
      
-     
+     $scope.searched = true;
+    
      $scope.isGoogle = "false"; //ng-if Info
      
                    $ionicLoading.show({
@@ -40,7 +41,9 @@
                    if($scope.place.types != undefined)
                    $scope.type = $scope.place.types[0];
                    $scope.place_id = $scope.place.place_id;
-                   
+                   $scope.place_open = $scope.place.opening_hours.open_now;
+                   console.log($scope.place);
+                   console.log($scope.place_open);
                    //Translate Type
                    
                     switch($scope.type) {

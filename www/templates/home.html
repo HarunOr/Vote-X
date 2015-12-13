@@ -22,12 +22,11 @@
    
    
 <!-- -------------------------------- -->
-<addbuttonsbutton></addbuttonsbutton>
-<div id="space-for-buttons"></div>
+
+<div align="center" style="font-color: #bebfc0" ng-hide="searched"> Suches Sie etwas, um es hier anzeigen zu lassen !</div>
 
 
-
-<div class="list card">
+<div class="list card" ng-show="searched">
 
   <div class="item item-avatar">
 
@@ -57,6 +56,8 @@
        {{place.formatted_address}}<br />
       <b>Telefon</b><br />
       {{place.formatted_phone_number}}
+      <div align="right" style="color: green;font-style:italic" ng-if="place_open"> Geöffnet </div>
+      <div align="right" style="color: red;font-style:italic" ng-if="!place_open"> Geschlossen </div>
       </p>
   </div>
 

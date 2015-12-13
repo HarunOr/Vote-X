@@ -34,13 +34,13 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
         'img/background_opt-compressor.jpg',
         'img/noimage.jpg'		
          ]).then(function(){
-        console.log("Images done loading!");
+
     },function(failed){
-        console.log("An image filed: "+failed);
+        
     });
 		
 		
-     console.log('VoteX started');   
+     
     
   
     if (window.cordova && window.cordova.plugins && window.StatusBar) {

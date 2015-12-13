@@ -1,7 +1,6 @@
 # Vote-X
 
-- INSTAGRAM API für mehr bilder, neue option, slidebox !
- --> Button "informationen" mit Modal mit "Bildern" tauschen , Instagram/facebook bilder
+- LEVEL UPS / EREIGNISSE MIT ngDialog machen ! (https://github.com/likeastore/ngDialog#api)
 _____________
 
 
