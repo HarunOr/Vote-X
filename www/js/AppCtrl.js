@@ -280,7 +280,7 @@
                 
                 var countChildrenRef =  new Firebase("https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history");
           
-                searchID(countChildrenRef,searchRef, $scope.place_id, $scope.dynamicName, $scope.type,$scope.place.formatted_address);
+                searchID(countChildrenRef,searchRef, $scope.place_id, $scope.dynamicName, $scope.type,$scope.place.formatted_address, $scope.icon);
 
                 }
  
@@ -322,7 +322,7 @@
 
     // -------------------- Suche Index erzeugen ---------------------
     
-    var searchID = function(data, searchRef, place_id, place_name1, type,address) {
+    var searchID = function(data, searchRef, place_id, place_name1, type,address, icon) {
         data.once("value", function(snapshot){
            var a = snapshot.numChildren();
        
@@ -337,7 +337,10 @@
       
       if(address == undefined)
       address = null;
-                 
+
+      if(icon == undefined)
+      icon = null;
+                       
       var searchArray = $firebaseArray(data);
       
       searchArray.$add({
@@ -345,7 +348,8 @@
             place_id: place_id,
             place_name: place_name1,
             place_type: type,
-            place_address: address
+            place_address: address,
+            place_icon: icon
       }) ;   
 
       
