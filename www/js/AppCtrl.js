@@ -287,13 +287,7 @@
                  var placeRef = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place_id);
                  var place_votes = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place_id+"/votes");
                  place_votes.once("value",function(snapshot){
-                  
-                       place_votes.push({
-                        titel: "Tolles Erlebnis!",
-                        beschreibung: "Ich war positiv überrascht!",
-      
-                             }) ;    
-                  
+
                     
                     if(snapshot.numChildren() != null || snapshot.numChildren() != undefined){
                     $scope.totalRatings = snapshot.numChildren();
@@ -419,7 +413,7 @@ $scope.businessName2 = "Harun's Bar";
     };
 //------------------------------Business Modal---------------------------------
 
- $scope.openBusiness = function(place) {
+ $scope.openBusiness = function() {
      if($scope.currentUserSignedIn == false) {
         $ionicPopup.alert({
             title: 'Oh nein!',

@@ -94,7 +94,7 @@
                    
                     showAlertLoggedIn(authData);
                   $scope.modal1.hide();
-                 $state.go("app.profile");
+                 $state.go("app.home");
                 }
             },{remember: "sessionOnly"
             })

@@ -9,9 +9,17 @@ var votex = angular
 var place ;
 if($rootScope.placeObject != undefined){
   
-place = $rootScope.placeObject;
+$scope.place = $rootScope.placeObject;
 
-  
+var place_votes = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place.place_id+"/votes");
+place_votes.once("value",function(snapshot){
+
+                    
+  if(snapshot.numChildren() != null || snapshot.numChildren() != undefined){  
+  $scope.totalRatings = snapshot.numChildren();
+  console.log($scope.totalRatings);
+  }
+         });  
 
 // ---------------------- Vote-X RATING ----------------------   
   $scope.rate = 5;
@@ -25,7 +33,7 @@ place = $rootScope.placeObject;
 
 // // Business Name
 
-$scope.businessName = place.name;
+$scope.businessName = $scope.place.name;
 
 
 // ---------------------- End RATING ----------------------
@@ -66,11 +74,11 @@ $state.go("app.home");
     
   
   //------------------------------TestImages------------------------------------
-  if(place.photos != undefined){
+  if($scope.place.photos != undefined){
     $scope.testImages = [];   
     
-    for(var i = 0; place.photos[i] != undefined; i++){
-     $scope.testImages.push(place.photos[i].getUrl({'maxWidth':750, 'maxHeight':400})); 
+    for(var i = 0; $scope.place.photos[i] != undefined && i < 5; i++){
+     $scope.testImages.push($scope.place.photos[i].getUrl({'maxWidth':750, 'maxHeight':400})); 
      
     }
      $scope.isGoogle = "true";
@@ -120,6 +128,10 @@ $scope.myPopup = $ionicPopup.show({
         $scope.myPopup.close();
       }
  
+}
+
+else {
+  $state.go('app.home');
 }
  
 });
