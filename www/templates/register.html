@@ -10,7 +10,7 @@
 
 
     <div id="form">
-  <form name="registerForm" novalidate ng-submit="registerForm.$valid && doRegister(username1, password1, password2)"
+  <form name="registerForm" novalidate ng-submit="registerForm.$valid && doRegister(username1, password1, password2) && submit()"
     ng-class="{ 'has-error' : registerForm.username1.$invalid && registerForm.$submitted }">
     <div class="list">
   
@@ -52,7 +52,15 @@
       <div class="form-error" ng-message="maxlength">Ihr Passwort darf maximal 25 Zeichen enthalten!</div>
       <div class="form-error" ng-message="pattern">Ihr Passwort darf nur aus Buchstaben und Zahlen bestehen!</div>
     </div>
-      <input type="submit" value="Registrieren" class="button button-block button-positive" progress-button="someFunctionThatReturnsPromise()" pb-profile="testProfile"/>
+    <div
+         vc-recaptcha
+         theme="'light'"
+         key="model.key"
+         on-create="setWidgetId(widgetId)"
+         on-success="setResponse(response)"
+         on-expire="cbExpiration()"
+     ></div>
+      <input type="submit" value="Registrieren" class="button button-block button-positive" progress-button="submit()" pb-profile="testProfile"/>
     </div>
 
   </form>

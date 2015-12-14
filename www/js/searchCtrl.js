@@ -1,5 +1,5 @@
  angular.module('starter.searchCtrl', ['firebase','ionicLazyLoad','ui.bootstrap'])
-.controller("searchCtrl", function ($scope,$http,$rootScope,$firebaseArray) {
+.controller("searchCtrl", function ($scope,$http,$rootScope,$firebaseArray,$ionicLoading,$timeout) {
 	
 	$scope.search = [];
 
@@ -12,30 +12,25 @@
 $scope.$on('$ionicView.beforeEnter', function() {
     
 		if($rootScope.currentUserSignedIn){
-		
+
+        
+        
     	$scope.user_uid = rootRef.getAuth().uid;
 	
 
 	var searchRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history");
   
   searchRef.on("child_added", function(snapshot) {
-  var data = snapshot.key();
- 
     
+  $ionicLoading.show({
+    template: '<ion-spinner icon="spiral" class="spinner-assertive"></ion-spinner>'
+  });
  
  var query = searchRef.limitToLast(25);
  $scope.searchHistory = $firebaseArray(query);
-
- 
-/*   var placeRef = "https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history/"+data.place_id+".json";
-    
-    // GET suchverlauf
-    $http.get(placeRef).then(function(resp) {
-    $scope.search[resp.data.place_uid] = resp.data;
-     }); 
-  */    
-      
-    
+     $timeout(function() {
+     $ionicLoading.hide();; //close the popup after 0,5 seconds for some reason
+  }, 150);
 
   });
 
