@@ -1,5 +1,5 @@
- angular.module('starter.searchCtrl', ['firebase','ionicLazyLoad','ui.bootstrap'])
-.controller("searchCtrl", function ($scope,$http,$rootScope,$firebaseArray,$ionicLoading,$timeout) {
+ angular.module('starter.searchHistoryCtrl', ['firebase','ionicLazyLoad','ui.bootstrap'])
+.controller("searchHistoryCtrl", function ($scope,$http,$rootScope,$firebaseArray,$ionicLoading,$timeout) {
 	
 	$scope.search = [];
 

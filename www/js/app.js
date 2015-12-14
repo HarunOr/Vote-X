@@ -3,13 +3,16 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var votex = angular.module('starter', ['ionic','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
-                                        'starter.businessCtrl', 'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
-                                        'angular-progress-button-styles','starter.searchFactory','ngMap',
-                                        'google.places','720kb.tooltips','starter.searchCtrl', 'vcRecaptcha'])
+var votex = angular.module('starter', ['ionic','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
+                                        'ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
+                                        'angular-progress-button-styles','ngMap',
+                                        'google.places','720kb.tooltips','starter.searchHistoryCtrl', 'vcRecaptcha'])
 
-votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory) {
+votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory, $rootScope) {
   $ionicPlatform.ready(function() { 
+    
+    $rootScope = null;
+    
     
    screen.lockOrientation('portrait');
       
@@ -117,13 +120,13 @@ screen.unlockOrientation();
 })
 
 
-  .state('app.search', {
-    url: "/search",
+  .state('app.searchHistory', {
+    url: "/searchHistory",
     cache: true,
     views: {
       'menuContent': {
-        templateUrl: "templates/search.html",
-        controller: "searchCtrl"
+        templateUrl: "templates/searchHistory.html",
+        controller: "searchHistoryCtrl"
       }
     }
   })

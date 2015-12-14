@@ -1,9 +1,15 @@
-angular
-       .module('starter.businessCtrl', ['ionicLazyLoad','ngMap'])
-       .controller("businessCtrl", function ($scope, $state, $ionicPopup, $ionicModal ,
+var votex = angular
+       .module('starter.controllers')
+       .controller("businessCtrl", function ($scope,$rootScope, $state, $ionicPopup, $ionicModal ,
                                              $ionicScrollDelegate, $http,$log,
                                              $ionicLoading, $ionicPlatform) {
 
+ var ref = new Firebase("https://vote-x.firebaseio.com/");
+
+var place ;
+if($rootScope.placeObject != undefined){
+  
+place = $rootScope.placeObject;
 
   
 
@@ -19,8 +25,8 @@ angular
 
 // // Business Name
 
-$scope.businessName = "Marc's Restaurant";
-$scope.businessName2 = "Harun's Bar";
+$scope.businessName = place.name;
+
 
 // ---------------------- End RATING ----------------------
 $scope.goHome = function() {
@@ -60,14 +66,17 @@ $state.go("app.home");
     
   
   //------------------------------TestImages------------------------------------
-
-  $scope.testImages = [
-
-  'http://www.ncr.com/wp-content/uploads/iStock_000016978975SmallMedium.jpg',
-  'http://restaurantcoverings.com/wp-content/uploads/2014/09/Lemon-Water-Stock-Image.jpg',
-  'http://www.blogrollcenter.com/news/gallery/searching-for-authentic-italian-restaurants/searching_for_authentic_italian_restaurants.jpg'
+  if(place.photos != undefined){
+    $scope.testImages = [];   
+    
+    for(var i = 0; place.photos[i] != undefined; i++){
+     $scope.testImages.push(place.photos[i].getUrl({'maxWidth':750, 'maxHeight':400})); 
+     
+    }
+     $scope.isGoogle = "true";
+     
+                    }
   
-  ]; 
 
 
 
@@ -111,5 +120,6 @@ $scope.myPopup = $ionicPopup.show({
         $scope.myPopup.close();
       }
  
+}
  
 });

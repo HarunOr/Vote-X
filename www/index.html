@@ -23,8 +23,8 @@
     <script src="lib/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
     <script src="lib/angular-tooltips/dist/angular-tooltips.min.js"></script>
     <!-- Include the JS ReCaptcha API -->
+    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     <script src="lib/angular-recaptcha/release/angular-recaptcha.min.js"></script>
-    <script src="www.google.com/recaptcha/api.js?render=explicit&onload=vcRecaptchaApiLoaded" async defer></script>
     
     <!-- codrops button -->
     <script type="text/javascript" src="lib/angular-progress-button-styles/dist/angular-progress-button-styles.min.js"></script>
@@ -46,11 +46,11 @@
     <script src="lib/angularfire/dist/angularfire.min.js"></script>
     <script src="js/profileCtrl.js"></script>     
     <script src="templates/agb/agbCtrl.js"></script>
-    <script src="js/searchFactory.js"></script>
-    <script src="js/searchCtrl.js"></script> 
+    <script src="js/viewFactory.js"></script>
+    <script src="js/searchHistoryCtrl.js"></script> 
     
     </head>
-    <body ng-app="starter" ng-controller="AppCtrl">
+    <body ng-app="starter" >
     <ion-nav-view>
     </ion-nav-view>
     </body>

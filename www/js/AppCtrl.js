@@ -1,9 +1,9 @@
- angular
+ var votex = angular
  
   .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad','google.places',
                                    'ngMap','firebase'])
 
-  .controller('AppCtrl', function ($scope, $http,$ionicPlatform,
+  votex.controller('AppCtrl', function ($scope,viewFactory, $http,$ionicPlatform,
                                    $state, $ionicModal, $timeout, 
                                    $ionicPopup, $cordovaOauth, $rootScope,
                                    $ionicLoading, $ionicScrollDelegate, $firebaseArray, $window
@@ -34,7 +34,7 @@
                 
                 
                 $scope.place = $scope.input;
-        
+                $rootScope.placeObject = $scope.place;
             $scope.icon = $scope.place.icon;
         
             $timeout(function(){
@@ -284,15 +284,25 @@
 
                 }
  
-                 
-                   
-                   // Zeige 0 votes, wenn user_ratings_total = null
-                   if($scope.place.user_ratings_total >= 0){
-                        $scope.totalRatings = $scope.place.user_ratings_total;
-                        }
-                    else {
-                        $scope.totalRatings = 0;
-                    }    
+                 var placeRef = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place_id);
+                 var place_votes = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place_id+"/votes");
+                 place_votes.once("value",function(snapshot){
+                  
+                       place_votes.push({
+                        titel: "Tolles Erlebnis!",
+                        beschreibung: "Ich war positiv überrascht!",
+      
+                             }) ;    
+                  
+                    
+                    if(snapshot.numChildren() != null || snapshot.numChildren() != undefined){
+                    $scope.totalRatings = snapshot.numChildren();
+                    console.log($scope.totalRatings);
+                    }
+                 });
+
+
+
                     
                  
                    if($scope.place.photos != undefined){
@@ -409,7 +419,7 @@ $scope.businessName2 = "Harun's Bar";
     };
 //------------------------------Business Modal---------------------------------
 
- $scope.openBusiness = function() {
+ $scope.openBusiness = function(place) {
      if($scope.currentUserSignedIn == false) {
         $ionicPopup.alert({
             title: 'Oh nein!',
@@ -420,33 +430,23 @@ $scope.businessName2 = "Harun's Bar";
         else {
   $scope.show = function() {
     $ionicLoading.show({
-      template: 'Loading...'
+      template: 'Wird geladen..',
+      hideOnStateChange: true
     });
   };
+
    $state.go('app.business')
   
     }
   };
-  
-  //Business Name 2
- $scope.openBusiness2 = function() {
-     if($scope.currentUserSignedIn == false) {
-        $ionicPopup.alert({
-            title: 'Oh nein!',
-            template: 'Du musst dich einloggen, um das sehen zu können!'
-        });
-         return;
-        }
-        else {
-   $state.go('app.business2') }
-  };
+
 
 
 //-----------------------------------------END APPCTRL-----------------------------------------
 
 })
 
-.filter('iif', function(){
+votex.filter('iif', function(){
     
     return function(input, trueValue, falseValue){
         return input ? trueValue : falseValue;
