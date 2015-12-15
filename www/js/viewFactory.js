@@ -1,5 +1,5 @@
 var votex = angular
-
+// Momentan keine Funktion
 .module('starter.controllers');
 votex.factory('viewFactory', function($rootScope){
 	var sharedFactory = {};

@@ -30,7 +30,7 @@ $scope.$on('$ionicView.beforeEnter', function() {
  $scope.searchHistory = $firebaseArray(query);
      $timeout(function() {
      $ionicLoading.hide();; //close the popup after 0,5 seconds for some reason
-  }, 150);
+  }, 500);
 
   });
 

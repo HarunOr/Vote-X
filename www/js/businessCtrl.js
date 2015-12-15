@@ -17,7 +17,6 @@ place_votes.once("value",function(snapshot){
                     
   if(snapshot.numChildren() != null || snapshot.numChildren() != undefined){  
   $scope.totalRatings = snapshot.numChildren();
-  console.log($scope.totalRatings);
   }
          });  
 
