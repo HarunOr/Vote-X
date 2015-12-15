@@ -10,10 +10,24 @@
 
 
     <div id="form">
-  <form name="registerForm" novalidate ng-submit="registerForm.$valid && doRegister(username1, password1, password2) && submit()"
+  <form name="registerForm" novalidate ng-submit="registerForm.$valid && doRegister(username, username1, password1, password2)"
     ng-class="{ 'has-error' : registerForm.username1.$invalid && registerForm.$submitted }">
     <div class="list">
-  
+      
+        <label class="item item-input item-floating-label">
+        <span class="input-label">Benutzername</span>
+        <input name="username" type="text" ng-model="username" placeholder="Benutzername"
+        ng-minlength="5"
+        ng-maxlength="15"
+        required>
+      </label>
+        <div style="color:red" class="form-errors" ng-messages="registerForm.username.$error" ng-if="registerForm.$submitted">
+        <div class="form-error" ng-message="required">Sie benötigen zur Registrierung einen Benutzernamen.</div>
+        <div class="form-error" ng-message="maxlength">Ihr Benutzername darf maximal 15 Zeichen enthalten!</div>
+        <div class="form-error" ng-message="minlength">Ihr Benutzername muss mindestens 5 Zeichen enthalten!</div>
+        <div class="form-error" ng-message="pattern">Ihr Benutzername darf nur aus Buchstaben und Zahlen bestehen!</div>
+      </div>
+      
         <label class="item item-input item-floating-label">
           <span class="input-label">Email</span>
         <input name="username1" type="email" ng-model="username1" placeholder="Email"
@@ -26,6 +40,7 @@
         <div class="form-error" ng-message="email">In dieses Feld muss eine korrekte Email-Adresse eingetragen werden.</div>
         <div class="form-error" ng-message="maxlength">Ups, ihre Eingabe enthält zu viele Zeichen.</div>
       </div>
+      
         <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : registerForm.password1.$invalid  && registerForm.$submitted}">
         <span class="input-label">Password</span>
         <input name="password1" type="password" ng-model="password1" placeholder="Passwort"
@@ -39,6 +54,7 @@
         <div class="form-error" ng-message="maxlength">Ihr Passwort darf maximal 25 Zeichen enthalten!</div>
         <div class="form-error" ng-message="pattern">Ihr Passwort darf nur aus Buchstaben und Zahlen bestehen!</div>
       </div>
+      
       <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : registerForm.password2.$invalid  && registerForm.$submitted}">
       <span class="input-label">Passwort wiederholen</span>
       <input name="password2" type="password" ng-model="password2" placeholder="Passwort wiederholen"
@@ -52,18 +68,8 @@
       <div class="form-error" ng-message="maxlength">Ihr Passwort darf maximal 25 Zeichen enthalten!</div>
       <div class="form-error" ng-message="pattern">Ihr Passwort darf nur aus Buchstaben und Zahlen bestehen!</div>
     </div>
-    <div
-         class="g-recaptcha"
-         style="margin-top: 15px"
-         align="center"
-         vc-recaptcha
-         theme="'light'"
-         key="model.key"
-         on-create="setWidgetId(widgetId)"
-         on-success="setResponse(response)"
-         on-expire="cbExpiration()"
-     ></div>
-      <input type="submit" value="Registrieren" class="button button-block button-positive" progress-button="submit()" pb-profile="testProfile"/>
+
+      <input type="submit" value="Registrieren" ng-disabled="registerForm.$invalid" class="button button-block button-positive"/>
     </div>
 
   </form>

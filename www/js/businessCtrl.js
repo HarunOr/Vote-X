@@ -94,8 +94,8 @@ $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
    return lat + "," + lng;
 
 }    
- $scope.lat = "52.687484" ;     //dynamic google data, must be string z.B. "52.11341"
- $scope.lng = "13.567276" ; 
+ $scope.lat = $rootScope.placeObject.geometry.location.lat() ;     //dynamic google data, must be string z.B. "52.11341"
+ $scope.lng = $rootScope.placeObject.geometry.location.lng() ; 
 
 
   $scope.openBusinessMap = function() {
