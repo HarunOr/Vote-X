@@ -6,11 +6,13 @@ var votex = angular
 
  var ref = new Firebase("https://vote-x.firebaseio.com/");
 
-var place ;
+
 if($rootScope.placeObject != undefined){
   
 $scope.place = $rootScope.placeObject;
 
+
+//Anzahl der Votes
 var place_votes = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place.place_id+"/votes");
 place_votes.once("value",function(snapshot){
 
@@ -20,16 +22,45 @@ place_votes.once("value",function(snapshot){
   }
          });  
 
-// ---------------------- Vote-X RATING ----------------------   
-  $scope.rate = 5;
-  $scope.rateBiz= 4;
- 
-  $scope.oneVote = 1;
-  $scope.twoVote = 2;
-  $scope.threeVote = 3;
-  $scope.fourVote = 4;
-  $scope.fiveVote = 5;
+// ---------------------- Vote-X RATING ----------------------
+var placeRef = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place.place_id);
 
+   //Durchschnittspunktzahl
+   
+   placeRef.child('avg_vote_points').once("value", function(snapshot){
+    $scope.rate = snapshot.val();
+    
+   });
+   
+   //Durchschnitt Preis/Leistung
+    placeRef.child('avg_best_value_points').once("value", function(snapshot){
+    $scope.avg_best_value_points = snapshot.val();
+    $scope.groups[0].scores[3] = $scope.avg_best_value_points;
+   });
+   
+   //Durchschnitt Service  
+    placeRef.child('avg_employee_points').once("value", function(snapshot){
+    $scope.avg_service_points = snapshot.val();
+    $scope.groups[0].scores[0] = $scope.avg_service_points;
+   });  
+   
+   //Durchschnitt Location
+    placeRef.child('avg_location_points').once("value", function(snapshot){
+    $scope.avg_location_points = snapshot.val();
+    $scope.groups[0].scores[1] = $scope.avg_location_points;
+   });     
+
+   //Durchschnitt Quality
+    placeRef.child('avg_quality_points').once("value", function(snapshot){
+    $scope.avg_quality_points = snapshot.val();
+    $scope.groups[0].scores[2] = $scope.avg_quality_points;
+   });
+
+   //Durchschnitt Ambiente
+    placeRef.child('avg_ambience_points').once("value", function(snapshot){
+    $scope.avg_ambience_points = snapshot.val();
+    $scope.groups[0].scores[4] = $scope.avg_ambience_points;
+   });
 // // Business Name
 
 $scope.businessName = $scope.place.name;
@@ -44,11 +75,12 @@ $state.go("app.home");
   
   $scope.groups = [2];
   
-  $scope.groups[0] = { active: 0, name: "Detaillierte Votes",items: [("Test"), ("Test2")]  };
-  $scope.groups[1] = { active: 0, name: "Bewertungen",items: ("Test")  };
-  $scope.groups[2] = { active: 0, name: "Beschreibung",items: ("Test")  };
+  $scope.groups[0] = { id:0 ,active: 0, name: "Detaillierte Votes",items: [("Service"), ("Location"),("Qualität der Speisen"),("Preis/Leistung"),("Ambiente")], scores: []  };
+  $scope.groups[1] = { id:1 ,active: 0, name: "Bewertungen",items: ("Test")  };
+  $scope.groups[2] = { id:2 ,active: 0, name: "Beschreibung",items: ("-")  };
   
-
+  
+  
     $scope.toggleGroup = function (group) {
     
     if (group.active === 1) {
@@ -88,7 +120,7 @@ $state.go("app.home");
 
 
   // ------------------------------ ngMap -------------------------------------
-$scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+
     
   $scope.mapCenter = function(lat, lng) {
    return lat + "," + lng;

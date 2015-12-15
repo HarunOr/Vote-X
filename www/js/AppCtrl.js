@@ -285,12 +285,26 @@
                 }
  
                  var placeRef = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place_id);
+                 var placePoints = placeRef.child('avg_vote_points');
+                 
+                 placePoints.once("value",function(avg_points){
+                    $scope.$apply(function(){
+                     $scope.votexRating = avg_points.val();
+                    });
+                 })
+                 
                  var place_votes = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place_id+"/votes");
                  place_votes.once("value",function(snapshot){
 
                     
                     if(snapshot.numChildren() != null || snapshot.numChildren() != undefined){
-                    $scope.totalRatings = snapshot.numChildren();
+                    $scope.$apply(function(){
+                    $scope.totalRatings = snapshot.numChildren()    
+                        
+                    });
+                    
+                        
+                   
                     console.log($scope.totalRatings);
                     }
                  });

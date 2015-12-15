@@ -11,7 +11,7 @@ var votex = angular.module('starter', ['ionic','starter','starter.controllers','
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory, $rootScope) {
   $ionicPlatform.ready(function() { 
     
-    $rootScope = null;
+    $rootScope.placeObject;
     
     
    screen.lockOrientation('portrait');

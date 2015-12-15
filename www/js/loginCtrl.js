@@ -21,7 +21,9 @@
     //Get initial userdata-----------------------------
 
     var d = new Date();
-
+    
+    var minutes = d.getMinutes();
+    var hours = d.getHours();
     var day = d.getDate();
     var month = d.getMonth();
     var year = d.getFullYear();
@@ -42,7 +44,8 @@
                location: "",
                country: "",
                phone: 0,
-               registrationDate: day+" "+(month+1)+" "+year,  
+               last_login: "",
+               registrationDate: hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year
                 });
                 
      
@@ -91,11 +94,22 @@
                            // console.log("Error logging user in:", error);
                     }
                 } else {
+                    var d = new Date();
+    
+                    var minutes = d.getMinutes();
+                    var hours = d.getHours();
+                    var day = d.getDate();
+                    var month = d.getMonth();
+                    var year = d.getFullYear();
+                    
+                    var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authData.uid+"/last_login")
+                    userFB.set(hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year);
                     $ionicLoading.hide();
                      $rootScope.currentUserSignedIn =true;
                     
                      
             //    $scope.getProfilePic(authData);
+                    console.info("uid ="+authData.uid);
                      $scope.userID = authData.uid;
                    
                     showAlertLoggedIn(authData);
