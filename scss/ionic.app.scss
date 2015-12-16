@@ -22,9 +22,28 @@ $assertive: #D43D33!default;
 $testColor: #FFFAFA!default;
 
 
+textarea {
+  height:auto;
+  max-width:600px;
+  color:#999;
+  font-weight:400;
+  font-size:45px;
+  font-family:'Ubuntu', Helvetica, Arial, sans-serif;
+  width:90%;
+  background:#fff;
+  line-height:2em;
 
+  padding:30px;
+  -webkit-transition: height 2s ease;
+-moz-transition: height 2s ease;
+-ms-transition: height 2s ease;
+-o-transition: height 2s ease;
+transition: height 2s ease;
+}
 
-
+* {
+  -webkit-font-smoothing:antialiased !important;
+}
 
 
 .full-image {
@@ -449,6 +468,8 @@ src: local('Avenir Next LT Pro Condensed'), url('fonts/AvenirNextLTPro-Cn.woff')
 
 
 // ------------------ Vote-X Rating------------------
+
+//Small Icons
   .voteRateOn { 
       height: 19px;
       width: 22px;

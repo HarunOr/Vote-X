@@ -1,16 +1,103 @@
-<ion-header-bar align-title="center" class="bar-assertive">
-
+<ion-header-bar align-title="center" class="bar bar-assertive">
   <h1 class="title">{{businessName}}</h1>
   <div class="buttons">
     <button class="button button-clear" ng-click="closeVote()">Schließen</button>
   </div>
 </ion-header-bar>
 
-<ion-content class="businessMap" id="vote.html" type="text/ng-template" has-header>
-
-    <div class="row responsive-sm">
-      <div class="col" style="max-height:10px">Preis/Leistung</div>
-      <div class="col"><rating ng-model="fiveVote" max="5" state-on="'voteRateOn'" state-off="'voteRateOff'" readonly = "false"></rating></div>
+<ion-content class="businessMap" id="vote.html" type="text/ng-template" has-header ng-controller="voteCtrl">
+<ion-slide-box  delegate-handle="vote" show-pager="false">
+  
+  <ion-slide >
+    <div class="row" style="margin-top: 1%">
+      <div class="col">
+      <h4>Ihre Wertung</h4>
+      </div></div>
+      
+    <div class="row" style="margin-top: 5%">
+      <div class="col"><h4>Service</h4></div>
+      <div class="col"><rating ng-model="service.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
       </div>    
+
+
+    <div class="row " style="margin-top: 5%">
+      <div class="col"><h4>Location</h4></div>
+      <div class="col"><rating ng-model="location.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
+      </div>    
+
+    <div class="row " style="margin-top: 5%">
+      <div class="col"><h4>Qualität</h4></div>
+      <div class="col"><rating ng-model="quality.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
+      </div>    
+    
+    <div class="row" style="margin-top: 5%">
+      <div class="col" ><h4>Preis/Leistung</h4></div>
+      <div class="col"><rating ng-model="best_value.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
+      </div>
+           
+       <div class="row " style="margin-top: 5%">
+      <div class="col"><h4>Ambiente</h4></div>
+      <div class="col"><rating ng-model="ambiente.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
+      </div>
+          
+       <button class="button button-assertive button-block" ng-click="showInfo()">
+        Weiter
+        </button>       
+      </ion-slide>
+      
+<!-- ------------------------- 2. Seite ---------------------------- -->
+      <ion-slide >
+        
+   
+       <div class="row">
+  <div class="col">
+
+    <h4>Deine Bewertung</h4>
+  </div>
+  </div>
+ <div class="row" style="margin:0 auto">
+ <div class="col" style="margin:0 auto">
+ 
+<textarea id="TextArea" ng-model="description.text" ng-keyup="autoExpand($event)" > 
+</textarea>
+
+</div>
+</div>
+
+<div class="row" style="margin-top: 5%">
+  <div class="col">
+    <h4>Gesamtwertung</h4>
+    </div>
+    <div class="col">
+      <rating ng-model="total" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "true"></rating>
+      </div>
+  </div>
+
+
+
+        <div class="row">
+        <div class="col col-20">
+        <button ng-click="goBackVoting()" class="button button-clear button-block"> <i ng-click="goBackVoting()" class="icon ion-chevron-left"></i></button>  
+        </div>
+       
+        <div class="col col-80">
+          
+        <button class="button button-assertive button-block" ng-click="vote()">
+        <i class="icon icon-votex_icon" style="color: white;margin-right:10px"></i>Vote!
+        </button> 
+        </div>
+        
+        </div>
+        </ion-slide>
+        
+      
+      </ion-slide-box>
+      
+      
+      
+      
+      
+     
+          
 </ion-content>
 <script></script>

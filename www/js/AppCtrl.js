@@ -293,20 +293,30 @@
                     });
                  })
                  
+                 
+                 
+                 
+                
+                 
+                 //Votes berechnen
+                 
+                  var counter = 0;
+                 
+                 
                  var place_votes = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place_id+"/votes");
                  place_votes.once("value",function(snapshot){
 
-                    
-                    if(snapshot.numChildren() != null || snapshot.numChildren() != undefined){
+                     
+                   
                     $scope.$apply(function(){
-                    $scope.totalRatings = snapshot.numChildren()    
-                        
+                    $scope.totalRatings = snapshot.numChildren();
+  
                     });
                     
-                        
+
                    
-                    console.log($scope.totalRatings);
-                    }
+                  
+                    
                  });
 
 

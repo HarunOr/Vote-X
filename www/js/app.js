@@ -216,7 +216,7 @@ screen.unlockOrientation();
     url: "/vote",
     abstract: true,
     templateUrl: "templates/vote.html",
-    controller: 'businessCtrl'
+    controller: 'voteCtrl'
   })
   
     .state('app.businessMap', {

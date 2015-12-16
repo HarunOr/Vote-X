@@ -77,7 +77,7 @@ $state.go("app.home");
   
   $scope.groups[0] = { id:0 ,active: 0, name: "Detaillierte Votes",items: [("Service"), ("Location"),("Qualität der Speisen"),("Preis/Leistung"),("Ambiente")], scores: []  };
   $scope.groups[1] = { id:1 ,active: 0, name: "Bewertungen",items: ("Test")  };
-  $scope.groups[2] = { id:2 ,active: 0, name: "Beschreibung",items: ("-")  };
+  $scope.groups[2] = { id:2 ,active: 0, name: "Beschreibung",  };
   
   
   
