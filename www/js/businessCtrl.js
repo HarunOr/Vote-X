@@ -122,9 +122,9 @@ $state.go("app.home");
    } 
    //schließung Stunde
    if($scope.place.opening_hours.periods[i].close.minutes > 9)
-   $scope.groups[2].weekdaysClosedM[i] = $scope.place.opening_hours.periods[i].close.minutes;
+   $scope.groups[2].weekdaysClosedM[i] = $scope.place.opening_hours.periods[i].close.minutes+" Uhr";
    else {
-   $scope.groups[2].weekdaysClosedM[i] = "0"+$scope.place.opening_hours.periods[i].close.minutes; 
+   $scope.groups[2].weekdaysClosedM[i] = "0"+$scope.place.opening_hours.periods[i].close.minutes+" Uhr"; 
    } 
     }    
   }
