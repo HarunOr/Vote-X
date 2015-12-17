@@ -290,6 +290,7 @@
                  placePoints.once("value",function(avg_points){
                     $scope.$apply(function(){
                      $scope.votexRating = avg_points.val();
+                     
                     });
                  })
                  
@@ -310,7 +311,7 @@
                    
                     $scope.$apply(function(){
                     $scope.totalRatings = snapshot.numChildren();
-  
+                    $rootScope.votexObject = {avg_points: $scope.votexRating, amountRatings: $scope.totalRatings};
                     });
                     
 

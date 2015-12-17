@@ -18,12 +18,15 @@ $dark:                            #444 !default;
 textarea {
   height: auto;
   max-width: 600px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
   color: #999;
   font-weight: 400;
   font-size: 45px;
   font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
   width: 90%;
-  background: #fff;
+  background: #DFDFDF;
   line-height: 2em;
   padding: 30px;
   -webkit-transition: height 2s ease;

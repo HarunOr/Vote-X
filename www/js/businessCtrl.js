@@ -2,7 +2,7 @@ var votex = angular
        .module('starter.controllers')
        .controller("businessCtrl", function ($scope,$rootScope, $state, $ionicPopup, $ionicModal ,
                                              $ionicScrollDelegate, $http,$log,
-                                             $ionicLoading, $ionicPlatform) {
+                                             $ionicLoading, $ionicPlatform, $ionicSlideBoxDelegate) {
 
  var ref = new Firebase("https://vote-x.firebaseio.com/");
 
@@ -13,24 +13,15 @@ $scope.place = $rootScope.placeObject;
 
 
 //Anzahl der Votes
-var place_votes = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place.place_id+"/votes");
-place_votes.once("value",function(snapshot){
 
-                    
-  if(snapshot.numChildren() != null || snapshot.numChildren() != undefined){  
-  $scope.totalRatings = snapshot.numChildren();
-  }
-         });  
+$scope.totalRatings = $rootScope.votexObject.amountRatings;
+$scope.rate = $rootScope.votexObject.avg_points;
 
 // ---------------------- Vote-X RATING ----------------------
 var placeRef = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place.place_id);
 
    //Durchschnittspunktzahl
-   
-   placeRef.child('avg_vote_points').once("value", function(snapshot){
-    $scope.rate = snapshot.val();
-    
-   });
+
    
    //Durchschnitt Preis/Leistung
     placeRef.child('avg_best_value_points').once("value", function(snapshot){
@@ -77,7 +68,8 @@ $state.go("app.home");
   
   $scope.groups[0] = { id:0 ,active: 0, name: "Detaillierte Votes",items: [("Service"), ("Location"),("Qualität der Speisen"),("Preis/Leistung"),("Ambiente")], scores: []  };
   $scope.groups[1] = { id:1 ,active: 0, name: "Bewertungen",items: ("Test")  };
-  $scope.groups[2] = { id:2 ,active: 0, name: "Beschreibung",  };
+  $scope.groups[2] = { id:2 ,active: 0, name: "Öffnungszeiten",items: [("Montag"), ("Dienstag"),("Mittwoch"),("Donnerstag"),("Freitag"),("Samstag"),("Sontag")],  weekdays: []}
+  $scope.groups[3] = { id:3 ,active: 0, name: "Beschreibung",  };
   
   
   
@@ -102,11 +94,22 @@ $state.go("app.home");
           return false;
         }
     };
-    
   
-  //------------------------------TestImages------------------------------------
+  //-----------------------------Öffnungszeiten---------------------------
+  console.info("weekday[0] = "+$scope.place.opening_hours.weekday_text[0] );
+  if($scope.place.opening_hours.weekday_text.length == 7){
+  for(var i = 0; i < 7; i++){
+    
+   $scope.groups[2].weekdays[i] = $scope.place.opening_hours.weekday_text[i]; 
+    }    
+  }
+
+ 
+ 
+  //------------------------------Photos------------------------------------
+  $scope.testImages = [];  
   if($scope.place.photos != undefined){
-    $scope.testImages = [];   
+     
     
     for(var i = 0; $scope.place.photos[i] != undefined && i < 5; i++){
      $scope.testImages.push($scope.place.photos[i].getUrl({'maxWidth':750, 'maxHeight':400})); 
@@ -115,7 +118,9 @@ $state.go("app.home");
      $scope.isGoogle = "true";
      
                     }
-  
+  else {
+    $scope.testImages.push('img/noimage.jpg');
+  }
 
 
 
@@ -158,7 +163,11 @@ $scope.myPopup = $ionicPopup.show({
        $scope.closeVote = function(){
         $scope.myPopup.close();
       }
- 
+   $scope.goBackVoting = function(){
+    $rootScope.checkIfSecondSlide.is= false;
+     $ionicSlideBoxDelegate.$getByHandle('vote').previous();
+     $ionicSlideBoxDelegate.$getByHandle('vote').update();    
+  }
 }
 
 else {

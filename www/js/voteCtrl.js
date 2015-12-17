@@ -144,24 +144,23 @@
       $scope.best_value = {points: 3};
       $scope.ambiente = {points: 3};
       
-      
-      
+   
+   $ionicSlideBoxDelegate.$getByHandle('vote').enableSlide(false);
+
+     
+
       
   $scope.showInfo  = function(){
     
     $scope.total = ($scope.best_value.points+$scope.service.points+$scope.quality.points+$scope.location.points+$scope.ambiente.points)/5;  
+    $rootScope.checkIfSecondSlide.is= true;
     $ionicSlideBoxDelegate.$getByHandle('vote').next();
     $ionicSlideBoxDelegate.$getByHandle('vote').update();             
   }
   
   
 
-  $scope.goBackVoting = function(){
-    
-     $ionicSlideBoxDelegate.$getByHandle('vote').previous();
-     $ionicSlideBoxDelegate.$getByHandle('vote').update();    
-  }
-  
+
   //------------ TextArea functions ---------------
   
   $scope.description = {text: " "};

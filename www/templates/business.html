@@ -60,12 +60,17 @@
                           ng-repeat="item in group.items"
                           ng-show="isGroupShown(group)">
                     <div class="row">
-                      <div class="col" align="left">
+                      <div class="col" align="left" ng-if="group.id != 2">
                     {{item}}
                     </div>
                     <div class="col" ng-if="group.id == 0">
                     <rating ng-model="groups[0].scores[$index]" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "true"></rating>
-                      </div>   
+                      </div>
+                      
+                      <div class="col" ng-if="group.id == 2">
+                      {{groups[2].weekdays[$index]}}
+                      </div>  
+                         
                     </div>
                 </ion-item>
             </div>

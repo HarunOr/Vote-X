@@ -74,7 +74,8 @@
         });
             myRef.authWithPassword({
                 email: email,
-                password: password
+                password: password,
+                remember: "default"
             }, function (error, authData) {
                 if (error) {
                     $ionicLoading.hide();

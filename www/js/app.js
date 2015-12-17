@@ -12,7 +12,8 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
   $ionicPlatform.ready(function() { 
     
     $rootScope.placeObject;
-    
+    $rootScope.votexObject;
+    $rootScope.checkIfSecondSlide = {is: false };
     
    screen.lockOrientation('portrait');
       
