@@ -45,7 +45,7 @@
 
     <p>
       <div align="right" style="color: green;font-style:italic" ng-if="place_open"> Geöffnet </div>
-      <div align="right" style="color: red;font-style:italic" ng-if="!place_open"> Geschlossen </div>
+      <div align="right" style="color: red;font-style:italic" ng-if="!place_open && place_open != undefined"> Geschlossen </div>
       
       <b>Adresse</b><br />
        <div ng-show="place.vicinity">{{place.vicinity}}</div>

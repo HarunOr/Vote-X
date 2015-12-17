@@ -190,6 +190,7 @@ $scope.myPopup = $ionicPopup.show({
       
  
        $scope.closeVote = function(){
+         $rootScope.checkIfSecondSlide.is= false;
         $scope.myPopup.close();
       }
    $scope.goBackVoting = function(){
