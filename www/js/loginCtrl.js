@@ -74,8 +74,7 @@
         });
             myRef.authWithPassword({
                 email: email,
-                password: password,
-                remember: "default"
+                password: password
             }, function (error, authData) {
                 if (error) {
                     $ionicLoading.hide();
@@ -117,7 +116,8 @@
                   $scope.modal1.hide();
                  $state.go("app.home");
                 }
-            },{remember: "sessionOnly"
+            },{
+                remember: "default"
             })
         }
       };

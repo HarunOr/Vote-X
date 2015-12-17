@@ -360,8 +360,9 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 //  Business Modal
 .businessMap.popup-container .popup {
   max-height: 700px;
-  height: 75% !important;
+  height: 100% !important;
   width: 100% !important;
+  background-color: white;
 
 }
 .businessModal{

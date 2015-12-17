@@ -8491,8 +8491,9 @@ a.button {
 
 .businessMap.popup-container .popup {
   max-height: 700px;
-  height: 75% !important;
-  width: 100% !important; }
+  height: 100% !important;
+  width: 100% !important;
+  background-color: white; }
 
 .businessModal {
   text-align: center; }
