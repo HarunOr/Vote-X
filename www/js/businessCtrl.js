@@ -68,7 +68,7 @@ $state.go("app.home");
   
   $scope.groups[0] = { id:0 ,active: 0, name: "Detaillierte Votes",items: [("Service"), ("Location"),("Qualität der Speisen"),("Preis/Leistung"),("Ambiente")], scores: []  };
   $scope.groups[1] = { id:1 ,active: 0, name: "Bewertungen",items: ("Test")  };
-  $scope.groups[2] = { id:2 ,active: 0, name: "Öffnungszeiten",items: [("Montag"), ("Dienstag"),("Mittwoch"),("Donnerstag"),("Freitag"),("Samstag"),("Sontag")],  weekdays: []}
+  $scope.groups[2] = { id:2 ,active: 0, name: "Öffnungszeiten",items: [("Montag:"), ("Dienstag:"),("Mittwoch:"),("Donnerstag:"),("Freitag:"),("Samstag:"),("Sonntag:")],  weekdaysOpenH: [],weekdaysOpenM: [], weekdaysClosedH: [],weekdaysClosedM: []}
   $scope.groups[3] = { id:3 ,active: 0, name: "Beschreibung",  };
   
   
@@ -96,12 +96,41 @@ $state.go("app.home");
     };
   
   //-----------------------------Öffnungszeiten---------------------------
-  console.info("weekday[0] = "+$scope.place.opening_hours.weekday_text[0] );
-  if($scope.place.opening_hours.weekday_text.length == 7){
+  $scope.gotOpeningHours = {hours: false};
+  
+  if($scope.place.opening_hours != undefined){
+    $scope.gotOpeningHours.hours = true;
   for(var i = 0; i < 7; i++){
-    
-   $scope.groups[2].weekdays[i] = $scope.place.opening_hours.weekday_text[i]; 
+   
+   //öffnung Stunde 
+   if($scope.place.opening_hours.periods[i].open.hours > 9)
+   $scope.groups[2].weekdaysOpenH[i] = $scope.place.opening_hours.periods[i].open.hours;
+   else {
+     $scope.groups[2].weekdaysOpenH[i] = "0"+$scope.place.opening_hours.periods[i].open.hours;
+   }
+   //öffnung Minute 
+   if($scope.place.opening_hours.periods[i].open.minutes > 9)
+   $scope.groups[2].weekdaysOpenM[i] = $scope.place.opening_hours.periods[i].open.minutes;
+   else{
+     $scope.groups[2].weekdaysOpenM[i] = "0"+$scope.place.opening_hours.periods[i].open.minutes;
+   } 
+   //schließung Stunde
+   if($scope.place.opening_hours.periods[i].close.hours > 9)
+   $scope.groups[2].weekdaysClosedH[i] = $scope.place.opening_hours.periods[i].close.hours;
+   else {
+   $scope.groups[2].weekdaysClosedH[i] = "0"+$scope.place.opening_hours.periods[i].close.hours;  
+   } 
+   //schließung Stunde
+   if($scope.place.opening_hours.periods[i].close.minutes > 9)
+   $scope.groups[2].weekdaysClosedM[i] = $scope.place.opening_hours.periods[i].close.minutes;
+   else {
+   $scope.groups[2].weekdaysClosedM[i] = "0"+$scope.place.opening_hours.periods[i].close.minutes; 
+   } 
     }    
+  }
+  else {
+    $scope.gotOpeningHours.hours = false;
+    $scope.groups[2].items = [("Keine Öffnungszeiten gefunden")];
   }
 
  

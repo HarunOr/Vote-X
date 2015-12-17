@@ -60,15 +60,15 @@
                           ng-repeat="item in group.items"
                           ng-show="isGroupShown(group)">
                     <div class="row">
-                      <div class="col" align="left" ng-if="group.id != 2">
+                      <div class="col" align="left">
                     {{item}}
                     </div>
                     <div class="col" ng-if="group.id == 0">
                     <rating ng-model="groups[0].scores[$index]" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "true"></rating>
                       </div>
                       
-                      <div class="col" ng-if="group.id == 2">
-                      {{groups[2].weekdays[$index]}}
+                      <div class="col" ng-if="group.id == 2 && gotOpeningHours.hours">
+                      {{groups[2].weekdaysOpenH[$index]}}:{{groups[2].weekdaysOpenM[$index]}}-{{groups[2].weekdaysClosedH[$index]}}:{{groups[2].weekdaysClosedM[$index]}}
                       </div>  
                          
                     </div>

@@ -6,7 +6,7 @@
 var votex = angular.module('starter', ['ionic','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
                                         'starter.voteCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
                                         'angular-progress-button-styles','ngMap',
-                                        'google.places','720kb.tooltips','starter.searchHistoryCtrl', 'vcRecaptcha'])
+                                        'google.places','720kb.tooltips','starter.searchHistoryCtrl'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory, $rootScope) {
   $ionicPlatform.ready(function() { 
