@@ -301,8 +301,7 @@
                  
                  //Votes berechnen
                  
-                  var counter = 0;
-                 
+                
                  
                  var place_votes = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place_id+"/votes");
                  place_votes.once("value",function(snapshot){
@@ -311,6 +310,7 @@
                    
                     $scope.$apply(function(){
                     $scope.totalRatings = snapshot.numChildren();
+                    $scope.getVoteString($scope.totalRatings);
                     $rootScope.votexObject = {avg_points: $scope.votexRating, amountRatings: $scope.totalRatings};
                     });
                     
@@ -401,9 +401,20 @@ $scope.closeSearch = function() {
 
 // Search END ------------------------
 
-//------------------- Local storage PlaceID ----------------------
+//------------------- Vote String ----------------------
 
-
+                    $scope.getVoteString = function(rating){
+                        var erg= "";
+                        if(rating == 1){
+                            erg = "Vote";
+                        }
+                        else {
+                            erg = "Votes"
+                        }
+                        
+                        $scope.voteString = erg;
+                        return $scope.voteString;
+                    }
 
 
 

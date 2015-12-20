@@ -17,23 +17,47 @@ $scope.$on('$ionicView.beforeEnter', function() {
         
     	$scope.user_uid = rootRef.getAuth().uid;
 	
+  var numRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history");
+  
+  numRef.once("value", function(snapshot){
+    
+ $scope.totalSearchHistory = snapshot.numChildren();   
+   console.info("search number:"+ $scope.totalSearchHistory); 
+    
+  });
+  
+  
 
 	var searchRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history");
   
   searchRef.on("child_added", function(snapshot) {
-    
+  
+ 
+  console.info("search number in calc:"+ $scope.totalSearchHistory);
   $ionicLoading.show({
     template: '<ion-spinner icon="spiral" class="spinner-assertive"></ion-spinner>'
   });
- 
- var query = searchRef.limitToLast(25);
- $scope.searchHistory = $firebaseArray(query);
+$scope.searchHistory = $firebaseArray(searchRef);
+
+if($scope.totalSearchHistory > 25){
+  console.info("try to remove");
+  $scope.searchHistory.$remove(0);
+  
+  
      $timeout(function() {
      $ionicLoading.hide();; //close the popup after 0,5 seconds for some reason
   }, 500);
+}
 
+else {
+
+ 
+     $timeout(function() {
+     $ionicLoading.hide();; //close the popup after 0,5 seconds for some reason
+  }, 500);
+}
   });
-
+  
 
 }
     

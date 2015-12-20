@@ -4,6 +4,7 @@
   "description": "Vote-X-Beta: An Ionic project",
   "dependencies": {
     "angular-recaptcha": "^1.0.1",
+    "firebase": "^2.3.2",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
