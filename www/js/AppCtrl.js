@@ -416,23 +416,6 @@ $scope.closeSearch = function() {
                         return $scope.voteString;
                     }
 
-
-
-
-
-//------------------------------------------
-
-
-  $scope.rate = 4;
-
-
-    // GeoLocation
-
- $scope.businessName = "Marc's Restaurant";
-$scope.businessName2 = "Harun's Bar";
-   
-   
-
   
     //ion-refresher----------------------------------------------------------
     
@@ -471,6 +454,28 @@ $scope.businessName2 = "Harun's Bar";
   };
 
 
+
+ $scope.openVote = function() {
+     if($scope.currentUserSignedIn == false) {
+        $ionicPopup.alert({
+            title: 'Oh nein!',
+            template: 'Du musst dich einloggen, um das sehen zu können!'
+        });
+         return;
+        }
+        else {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: 'Wird geladen..',
+      hideOnStateChange: true
+    });
+  };
+
+  viewFactory.callVote = "true";
+  console.info("Call Vote = true");
+  $state.go('app.business');
+    }
+  };
 
 //-----------------------------------------END APPCTRL-----------------------------------------
 

@@ -1,4 +1,12 @@
 # Vote-X
+- TOP PRIO:
+- <b>Votes kommen an</b>
+- <b>Kommentare entfernen können</b>
+- <b> Kommentare melden können </b>
+
+
+
+
  -> ODER http://sachinchoolur.github.io/angular-flash/
 - LEVEL UPS / EREIGNISSE MIT ngDialog machen ! (https://github.com/likeastore/ngDialog#api)
 _____________
@@ -14,6 +22,7 @@ _____________
 
 _____________
 Todo
+- "Teilen"-Funktion für Facebook, Google etc.
 - Home -> Vote Icon führt direkt zu Vote-Modal
 - Home -> Informationen öffnet popover mit Öffnungszeiten, Straße etc.
 - <s>Ionic Lazy Load</s>

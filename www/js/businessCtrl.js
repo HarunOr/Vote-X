@@ -2,7 +2,7 @@ var votex = angular
        .module('starter.controllers')
        .controller("businessCtrl", function ($scope,$rootScope, $state, $ionicPopup, $ionicModal ,
                                              $ionicScrollDelegate, $http,$log,
-                                             $ionicLoading, $ionicPlatform, $ionicSlideBoxDelegate) {
+                                             $ionicLoading, $ionicPlatform, $ionicSlideBoxDelegate, viewFactory) {
 
  var ref = new Firebase("https://vote-x.firebaseio.com/");
 
@@ -186,7 +186,8 @@ $scope.myPopup = $ionicPopup.show({
      templateUrl:'templates/vote.html',
      scope: $scope,
      cssClass: 'businessMap'
-      })}; 
+      })
+      }; 
       
  
        $scope.closeVote = function(){
@@ -231,5 +232,17 @@ else {
 }
      
  }
+ 
+//--------------------- Call Vote from Home ------------------------
+
+if(viewFactory.callVote == "true"){
+    viewFactory.callVote = "false";
+    console.info("Calling Vote from Service");
+    $scope.myPopup = $ionicPopup.show({
+     templateUrl:'templates/vote.html',
+     scope: $scope,
+     cssClass: 'businessMap'
+      })
+}
 
 });
