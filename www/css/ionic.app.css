@@ -8466,9 +8466,10 @@ a.button {
   display: block; }
 
 .map {
+  margin-bottom: 3px;
   min-height: 169px;
   max-height: 700px;
-  height: 90%; }
+  height: 85%; }
 
 .kategorien-Titel {
   text-align: center;

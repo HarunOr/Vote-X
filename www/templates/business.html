@@ -29,20 +29,21 @@
 <!-- Slidebox End -->
 
   
-<div class="row">
-  <div class="col" align="center">
+<div class="row" style="margin: 0 auto">
+  <div class="col" align="center" style="margin: 0 auto">
   <h3>{{businessName}}</h3>
   </div>
 </div>
 
-<div class="row">
-  <div class="col col-75" align="center">
+<div class="row" style="margin: 0 auto">
+  <div class="col" align="center" style="margin: 0 auto">
        <rating ng-model="rate" max="5" state-on="'voteOn'" state-off="'voteOff'" readonly = "true"></rating>
+       </div>
        </div>
        <div class="col">
           <div style="font-style:italic">{{totalRatings}} Votes</div>
        </div>
-     </div>
+     
 
  <!-- Ionic Accordion -->
         <div style="margin-bottom: 10px;">
@@ -58,12 +59,13 @@
                 </ion-item>
                 <ion-item class="item-accordion"
                           ng-repeat="item in group.items"
-                          ng-show="isGroupShown(group)">
-                    <div class="row">
-                      <div class="col" align="left">
+                          ng-show="isGroupShown(group)"
+                          style="margin: 0 auto">
+                    <div class="row responsive-sm" style="margin: 0 auto">
+                      <div class="col" align="left" style="margin: 0 auto">
                     {{item}}
                     </div>
-                    <div class="col" ng-if="group.id == 0">
+                    <div class="col" ng-if="group.id == 0" style="margin: 0 auto">
                     <rating ng-model="groups[0].scores[$index]" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "true"></rating>
                       </div>
                       

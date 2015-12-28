@@ -14,9 +14,9 @@ $scope.place = $rootScope.placeObject;
 
 //Anzahl der Votes
 
-$scope.totalRatings = $rootScope.votexObject.amountRatings;
-$scope.rate = $rootScope.votexObject.avg_points;
 
+$scope.rate = $rootScope.votexObject.avg_points;
+$scope.totalRatings = $rootScope.votexObject.amountRatings;
 // ---------------------- Vote-X RATING ----------------------
 var placeRef = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place.place_id);
 
@@ -204,4 +204,32 @@ else {
   $state.go('app.home');
 }
  
+ //51.2027511
+ //6.692436100000009
+ 
+ //----------- Native Navigation Phonegap-Launch-Navigator -------------------
+ // Launches native navigation app
+ $scope.getRoute = function() {
+ var scheme;
+ console.info("platform = "+ionic.Platform.platform());
+
+if(ionic.Platform.isAndroid()){
+    launchnavigator.navigate(
+    [$rootScope.placeObject.geometry.location.lat(),$rootScope.placeObject.geometry.location.lng()],
+    null,
+    function(){
+        console.log("Launchnavigator success");
+    },
+    function(error){
+      console.log("Launchnavigator failed "+error);  
+    });
+}
+
+else {
+    console.log("Try launching navigator");
+    window.open('https://maps.google.de/?saddr=&daddr='+$rootScope.placeObject.geometry.location.lat()+'+'+$rootScope.placeObject.geometry.location.lng(),'_system', 'location=yes')
+}
+     
+ }
+
 });

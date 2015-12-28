@@ -31,9 +31,7 @@ $scope.$on('$ionicView.beforeEnter', function() {
 	var searchRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history");
   
   searchRef.on("child_added", function(snapshot) {
-  
- 
-  console.info("search number in calc:"+ $scope.totalSearchHistory);
+
   $ionicLoading.show({
     template: '<ion-spinner icon="spiral" class="spinner-assertive"></ion-spinner>'
   });

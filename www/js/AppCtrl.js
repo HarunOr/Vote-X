@@ -1,7 +1,7 @@
  var votex = angular
  
   .module('starter.controllers', [ 'ui.bootstrap','ionicLazyLoad','google.places',
-                                   'ngMap','firebase'])
+                                   'ngMap','firebase','ngCordova'])
 
   votex.controller('AppCtrl', function ($scope,viewFactory, $http,$ionicPlatform,
                                    $state, $ionicModal, $timeout, 
