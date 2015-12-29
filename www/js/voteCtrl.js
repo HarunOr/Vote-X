@@ -17,7 +17,7 @@
        
    $scope.getSlider = $ionicSlideBoxDelegate.$getByHandle('vote');   
       
-      $scope.vote_images = null;
+      $scope.vote_images = {src: null};
       
       
       
@@ -134,10 +134,11 @@
   $scope.capturePic = function(){
     
     navigator.camera.getPicture(function(imageData){
-        $scope.vote_images = imageData;
+        $scope.vote_images.src = imageData;
     },function(err){
         alert("Ups, etwas ist schief gelaufen!" +err);
-    },{sourceType: Camera.PictureSourceType.CAMERA});
+    },{sourceType: Camera.PictureSourceType.CAMERA,
+       destinationType: Camera.DestinationType.DATA_URL});
     
 
   };
@@ -147,10 +148,11 @@
   //Bild aus Gallerie
   $scope.selectPic = function(){
         navigator.camera.getPicture(function(imageData){
-        $scope.vote_images = imageData;
+        $scope.vote_images.src = imageData;
     },function(err){
       alert("Ups, etwas ist schief gelaufen!"+err);  
-    },{sourceType: Camera.PictureSourceType.PHOTOLIBRARY}); 
+    },{sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    destinationType: Camera.DestinationType.DATA_URL}); 
   }
   
   
@@ -176,13 +178,13 @@
     
     
   // Push new vote         
-	place_votes.push({
+	var votePusher = place_votes.push({
                   vote_nr: $scope.vote_nr,
                   voter_uid: $rootScope.userInfo.uid,
 				  vote_time: hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year, 
 				  reports: 0, 
 				  description: $scope.description.text,
-				  vote_images: $scope.vote_images,
+				  vote_images: $scope.vote_images.src,
       		      vote_points: $scope.vote_points,
 				  vote_location_points: $scope.location.points,	
                   vote_employees_points: $scope.service.points,
@@ -199,7 +201,14 @@
   placeRef.update({avg_best_value_points: (($rootScope.voteUpdater.best_value_avg+$scope.best_value.points)/($scope.totalvotes+1))});                    
   placeRef.update({avg_employee_points: (($rootScope.voteUpdater.service_avg+$scope.service.points)/($scope.totalvotes+1))});                    
   placeRef.update({avg_location_points: (($rootScope.voteUpdater.location_avg+$scope.location.points)/($scope.totalvotes+1))});                    
-  placeRef.update({avg_quality_points:(($rootScope.voteUpdater.quality_avg+$scope.quality.points)/($scope.totalvotes+1))});                  
+  placeRef.update({avg_quality_points:(($rootScope.voteUpdater.quality_avg+$scope.quality.points)/($scope.totalvotes+1))});   
+  
+  
+  var voteHistoryRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
+  
+  voteHistoryRef.child("vote_history").child($rootScope.placeObject.place_id).set(votePusher.key());
+  
+                 
       
       
         $ionicPopup.alert({

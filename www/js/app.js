@@ -11,7 +11,7 @@ var handleOpenURL = function(url) {
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
-                                        'starter.voteCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
+                                        'starter.voteCtrl','starter.editVoteCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
                                         'angular-progress-button-styles','ngMap',
                                         'google.places','720kb.tooltips','starter.searchHistoryCtrl'])
 
@@ -30,6 +30,12 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
         location_avg:null,
         quality_avg:null
     };
+    $rootScope.voteKey = {
+        key : null
+    }
+    
+    
+    
    screen.lockOrientation('portrait');
       
       
@@ -237,6 +243,12 @@ screen.unlockOrientation();
     abstract: true,
     templateUrl: "templates/vote.html"
   })
+  
+   .state('app.editVote', {
+    url: "/editVote",
+    abstract: true,
+    templateUrl: "templates/editVote.html"
+  }) 
   
     .state('app.businessMap', {
     url: "/businessMap",

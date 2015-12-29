@@ -57,9 +57,13 @@
   </div>
 
   <div class="item tabs tabs-secondary tabs-icon-left" >
-    <a class="tab-item" href="#" ng-click="openVote()">
+    <a class="tab-item" href="#" ng-click="openVote()" ng-if="!voted.is">
       <i class="icon icon-votex_icon" style="color: #D43D33" ></i>
       Vote
+    </a>
+      <a class="tab-item" href="#" ng-click="openBusiness()" ng-if="voted.is">
+      <i class="icon ion-edit" style="color: #FFD000" ></i>
+      Edit
     </a>
       <a class="tab-item" ng-click="openBusiness()">
     <i class="icon ion-information-circled" style="color: #D43D33"></i>

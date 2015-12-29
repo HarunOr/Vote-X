@@ -4,7 +4,18 @@ var votex = angular
                                              $ionicScrollDelegate, $http,$log,
                                              $ionicLoading, $ionicPlatform, $ionicSlideBoxDelegate, viewFactory) {
 
- var ref = new Firebase("https://vote-x.firebaseio.com/");
+ var votedRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/vote_history/"+$rootScope.placeObject.place_id);
+ 
+ $scope.voted= {is:false};
+
+votedRef.once("value", function(snapshot){
+    
+   if(snapshot.exists()){
+       $scope.voted.is = true;
+   } 
+});
+
+
 
 
 if($rootScope.placeObject != undefined){
@@ -199,6 +210,11 @@ $scope.myPopup = $ionicPopup.show({
      $ionicSlideBoxDelegate.$getByHandle('vote').previous();
      $ionicSlideBoxDelegate.$getByHandle('vote').update();    
   }
+  $scope.goBackVoting2 = function(){
+    $rootScope.checkIfSecondSlide.is= false;
+     $ionicSlideBoxDelegate.$getByHandle('editVote').previous();
+     $ionicSlideBoxDelegate.$getByHandle('editVote').update();    
+  }
 }
 
 else {
@@ -243,5 +259,31 @@ if(viewFactory.callVote == "true"){
      cssClass: 'businessMap'
       })
 }
+
+
+
+//-------------------- Edit Vote --------------------
+if(viewFactory.editVote == "true"){
+    viewFactory.editVote = "false";
+    $scope.myPopup = $ionicPopup.show({
+     templateUrl:'templates/editVote.html',
+     scope: $scope,
+     cssClass: 'businessMap'
+      })
+}
+
+
+
+  $scope.editVote = function() {
+   
+$scope.myPopup = $ionicPopup.show({
+     templateUrl:'templates/editVote.html',
+     scope: $scope,
+     cssClass: 'businessMap'
+      })
+      }; 
+
+
+
 
 });

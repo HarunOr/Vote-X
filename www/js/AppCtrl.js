@@ -29,7 +29,7 @@
                    $ionicLoading.show({
                      
       noBackdrop: true,
-      template: '<p class="item-icon-left">Wird geladen...<ion-spinner icon="lines"/></p>'
+      template: '<ion-spinner icon="lines" class="lines-assertive"/>'
     });
                 
                 
@@ -336,18 +336,41 @@
                     
                    $ionicScrollDelegate.scrollTop(); 
                    $scope.input = "";
-                   $ionicLoading.hide();
+                   
 
             },0);
 
 
+$ionicLoading.hide();
                 }   
                 
              else {
                  searchNull();
              }
+
+
+
+
+var votedRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/vote_history/"+$rootScope.placeObject.place_id);
+ 
+ $scope.voted= {is:false};
+
+votedRef.once("value", function(snapshot){
+    
+   if(snapshot.exists()){
+       $scope.voted.is = true;
+   } 
+});
+
+
+
+
+$ionicLoading.hide();
              
 }
+
+
+
 
     // -------------------- Suche Index erzeugen ---------------------
     
@@ -472,6 +495,28 @@ $scope.closeSearch = function() {
   };
 
   viewFactory.callVote = "true";
+  $state.go('app.business');
+    }
+  };
+  
+  
+   $scope.editVote = function() {
+     if($scope.currentUserSignedIn == false) {
+        $ionicPopup.alert({
+            title: 'Oh nein!',
+            template: 'Du musst dich einloggen, um das sehen zu können!'
+        });
+         return;
+        }
+        else {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: 'Wird geladen..',
+      hideOnStateChange: true
+    });
+  };
+
+  viewFactory.editVote = "true";
   $state.go('app.business');
     }
   };
