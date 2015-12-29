@@ -1,18 +1,51 @@
 angular.module('starter.profileCtrl', ['firebase'])
 
-.controller('profileCtrl', function ($scope, $firebaseAuth) {
-	 
+.controller('profileCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicPopup,$timeout, $ionicLoading, $ionicScrollDelegate) {
+	    
+        screen.lockOrientation('portrait');
+        
+        if(!$scope.ownProfile){
+         $scope.profileImg = 'img/standard_profileImg.jpg';   
+        }
+        else {
+            $scope.profileImg = $scope.ownProfileImage;
+        }
+             
+                   $ionicLoading.show({
+                     
+      noBackdrop: true,
+      template: '<ion-spinner icon="lines" class="lines-assertive"/>'
+    });
+         $timeout(function(){
+                  var voteHistoryRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
+         voteHistoryRef.child("vote_history").once("value", function(snapshot){
+            var count = snapshot.numChildren();
+            $scope.VotesCount = count; 
+         });
          
+         var userRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
+         userRef.once("value", function(snapshot){
+            $scope.$apply(function(){
+            $scope.userData = snapshot.val();
+            $scope.username = {name: $scope.userData.username};
+            $scope.verified = {verified: $scope.userData.verified};
+            $scope.ownProfile = $scope.userData.ownProfileImg;
+            $scope.ownProfileImage = $scope.userData.profileImage;                
+            });
+
+         }); 
+
+         $ionicLoading.hide(); 
+         }, 250);
+        
+
          
-         $scope.VotesCount= 9001;
-         $scope.username = 'Harun Oral';
-         $scope.lastDate = '06.10.2015';
-         $scope.level = 'Admin & Experte';
+
          
          
          
           //---------------SMS VERIF--------------------- 
-       var sendSMSText = function(recipient) {
+       $scope.sendSMSText = function(recipient) {
        var newFb = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.userID);
         var smsQueue = newFb.child("/sms/"+recipient.phone);
         
@@ -26,6 +59,14 @@ angular.module('starter.profileCtrl', ['firebase'])
             
                 }); 
                 }
+          
+        $scope.alreadyVerified = function(){
+            $ionicPopup.alert({
+     title: 'Erfolgreich Verifiziert!',
+     template: 'Du bist schon verifiziert und kannst Beiträge verfassen. Viel Spaß !'
+   });
+        }  
+          
           
 	 
   });

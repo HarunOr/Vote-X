@@ -4,22 +4,26 @@
 
 <!-- Content data-ng-init="loggedOut()"-->
 
-  <ion-content class="profile" ng-controller="profileCtrl" lazy-scroll has-bouncing="true">
+  <ion-content class="profile" ng-controller="profileCtrl" delegate-handle="profileScroll">
      
 
-       <img class="profileImg" ng-src="{{harunProfileImg}}" alt="Profilbild hochladen!">
+       <img class="profileImg" ng-src="{{profileImg}}" alt="Profilbild hochladen!">
            
   
   <div class="profileInfo">
-  <div class="row">
+  <div class="row" tyle="margin: 0 auto">
   <div class="col" align="center">
-  <h2 style="margin: 0 auto; margin-top: 10%"><i class="icon ion-ios-star" style="color: #D43D33;"></i>{{username}} </h2>
+  <h2 style="margin: 0 auto; margin-top: 10%"><i ng-if="verified" class="icon ion-ios-star" style="color: #D43D33;"></i>{{username.name}} </h2>
   </div>
 </div>
-
-  <button class="button button-stable button-block button-assertive" ng-click="sendSMSText()">
+<button class="button button-royal button-block" ng-click="selectPic()" style="margin:0 auto"><i class="icon ion-images" style="margin-right: 1px; "></i>Profilbild auswählen</button>   
+  <button class="button button-stable button-block button-assertive" ng-click="sendSMSText()" ng-if="!verified.verified">
           <i class="icon icon-votex_icon" style="color: white"></i>
   SMS-Verifizierung
+           </button>
+  <button class="button button-stable button-block button-energized" ng-click="alreadyVerified()" ng-if="verified.verified">
+          <i class="icon icon-votex_icon" style="color: white"></i>
+  Du bist verifiziert !
            </button>
              <div class="row" style="margin-left: 2px">
              <div class="col">

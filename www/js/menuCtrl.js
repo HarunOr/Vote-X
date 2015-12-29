@@ -3,7 +3,7 @@
             
 	   
 	        $scope.votexTitle = 'img/votex_title.png';
-     $scope.harunProfileImg = 'img/profile_harun-oral.jpg';
+     $scope.profileImg = 'img/standard_profileImg.jpg';
 	   
 	   
                // Firebase reference

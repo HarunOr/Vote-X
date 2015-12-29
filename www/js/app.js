@@ -33,6 +33,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     $rootScope.voteKey = {
         key : null
     }
+    $rootScope.userImg;
     
     
     
@@ -57,7 +58,8 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
         'img/profileBg.png',
         'img/modal1_opt-compressor.jpg',
         'img/background_opt-compressor.jpg',
-        'img/noimage.jpg'		
+        'img/noimage.jpg',
+        'img/standard_profileImg.jpg'		
          ]).then(function(){
 
     },function(failed){

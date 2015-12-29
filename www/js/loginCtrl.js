@@ -32,7 +32,8 @@
               var fbStr = new Firebase ("https://vote-x.firebaseio.com/users/");
                fbStr.child(userRef).set({
                email: $scope.userEmail,
-               verified: 0,
+               verified: false,
+               ownProfileImg: false,
                profileImage: "",
                birthday: "",
                firstname: "",
@@ -106,9 +107,7 @@
                     userFB.set(hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year);
                     $ionicLoading.hide();
                      $rootScope.currentUserSignedIn =true;
-                    
-                     
-            //    $scope.getProfilePic(authData);
+
                     $rootScope.userInfo = authData;
                      $scope.userID = authData.uid;
                    
