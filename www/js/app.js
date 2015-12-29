@@ -21,8 +21,15 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     $rootScope.placeObject;
     $rootScope.votexObject;
     $rootScope.checkIfSecondSlide = {is: false };
-   
-    
+    $rootScope.userInfo;
+    $rootScope.voteUpdater = {
+        avg_points:null,
+        ambiente_avg:null,
+        best_value_avg:null,
+        service_avg:null,
+        location_avg:null,
+        quality_avg:null
+    };
    screen.lockOrientation('portrait');
       
       
@@ -228,8 +235,7 @@ screen.unlockOrientation();
   .state('app.vote', {
     url: "/vote",
     abstract: true,
-    templateUrl: "templates/vote.html",
-    controller: 'voteCtrl'
+    templateUrl: "templates/vote.html"
   })
   
     .state('app.businessMap', {

@@ -109,7 +109,7 @@
                     
                      
             //    $scope.getProfilePic(authData);
-                    console.info("uid ="+authData.uid);
+                    $rootScope.userInfo = authData;
                      $scope.userID = authData.uid;
                    
                     showAlertLoggedIn(authData);

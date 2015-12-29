@@ -237,7 +237,6 @@ else {
 
 if(viewFactory.callVote == "true"){
     viewFactory.callVote = "false";
-    console.info("Calling Vote from Service");
     $scope.myPopup = $ionicPopup.show({
      templateUrl:'templates/vote.html',
      scope: $scope,

@@ -472,7 +472,6 @@ $scope.closeSearch = function() {
   };
 
   viewFactory.callVote = "true";
-  console.info("Call Vote = true");
   $state.go('app.business');
     }
   };
