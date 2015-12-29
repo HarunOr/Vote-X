@@ -1,6 +1,6 @@
 # Vote-X
 - TOP PRIO:
-- <b>Votes kommen an</b>
+- <s><b>Votes kommen an</b></s>
 - <b>Kommentare entfernen können</b>
 - <b> Kommentare melden können </b>
 
