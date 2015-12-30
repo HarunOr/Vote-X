@@ -48,6 +48,7 @@
                location: "",
                country: "",
                phone: 0,
+               favorites: "",
                last_login: "",
                registrationDate: hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year
                 });
@@ -120,6 +121,7 @@
                         $rootScope.user.username =  $scope.userData.username;
                         $rootScope.user.verified =  $scope.userData.verified;
                         $rootScope.user.ownProfileImage = $scope.userData.ownProfileImg;
+                        $rootScope.user.amountVotes = $scope.userData.votes;
                         $rootScope.user.profileImage = $scope.userData.profileImage;
                         $rootScope.user.memberSince = $scope.userData.registrationDate.substring(5,16);
                         $rootScope.user.contacts = $scope.userData.contacts;     

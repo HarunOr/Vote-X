@@ -21,17 +21,16 @@ $stable: #DFDFDF!default;
 $assertive: #D43D33!default;
 $testColor: #FFFAFA!default;
 
-.crop {
-    width: 200px;
-    height: 150px;
-    overflow: hidden;
-    margin: 0 auto;
+.frame{
+    text-align: center; margin: 2.5em 0;
+    
 }
-
-.crop img {
-    width: auto;
-    height: auto;
-    margin: 0 auto;
+.image {
+    display: inline-block;
+max-width: 30%;
+max-height: 30%;
+margin: 0 auto !important;
+vertical-align: middle;
 }
 
 

@@ -7,8 +7,7 @@
   "dependencies": {
     "angularfire": "~1.1.2",
     "ionic-image-lazy-load": "ion-image-lazy-load#*",
-    "angular-progress-button-styles": "~0.1.0",
-    "angular-tooltips": "~0.1.25",
-    "angular-recaptcha": "~2.2.5"
+    "angular-progress-button-styles": "~0.1.0"
+
   }
 }

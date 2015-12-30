@@ -12,7 +12,7 @@ var handleOpenURL = function(url) {
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
                                         'starter.voteCtrl','starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
-                                        'angular-progress-button-styles','ngMap',
+                                        'starter.vote_historyCtrl','angular-progress-button-styles','ngMap',
                                         'google.places','720kb.tooltips','starter.searchHistoryCtrl'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory, $rootScope, $location) {
@@ -266,6 +266,16 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     templateUrl: "templates/user.html",
     controller: 'userCtrl'
   }) 
+
+  .state('app.vote_history', {
+    url: '/vote_history',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/vote_history.html',
+        controller: 'vote_historyCtrl'
+      }
+    }
+  })
   
     .state('app.businessMap', {
     url: "/businessMap",

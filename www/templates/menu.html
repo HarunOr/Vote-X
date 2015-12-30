@@ -47,11 +47,11 @@
             <div class="col">
            <div class="item-thumbnail-left item-image">
        <img ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33"  ng-if="!user.ownProfileImage">
-         <img class="profileImg" data-ng-src="data:image/png;base64,{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage"  ng-if="user.ownProfileImage">
+         <img  data-ng-src="data:image/png;base64,{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33">
         </div>
         </div>
         <div class="col">
-          {{user.username}}
+          <i ng-if="user.verified" class="icon ion-ios-star" style="color: #D43D33;"></i>{{user.username}}
         <p>{{user.level}} </p>
      </div>
      </div>
@@ -70,6 +70,11 @@
           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/map" ng-if="currentUserSignedIn">
           <i class="icon ion-map" style="color: #D43D33;font-size: 22px"></i>
             Karte
+          </ion-item>
+          
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/vote_history" ng-if="currentUserSignedIn">
+          <i class="icon icon-votex_icon" style="color: #D43D33;font-size: 22px"></i>
+            Deine Votes
           </ion-item>
           
           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/searchHistory" ng-if="currentUserSignedIn">

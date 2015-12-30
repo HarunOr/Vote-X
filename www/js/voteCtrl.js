@@ -173,9 +173,11 @@
         
     }
     else {
-        
     
+    var voteCounterRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
     
+    voteCounterRef.update({votes: ($rootScope.user.amountVotes + 1)});
+    $rootScope.user.amountVotes = $rootScope.user.amountVotes+1;
     
   // Push new vote         
 	var votePusher = place_votes.push({

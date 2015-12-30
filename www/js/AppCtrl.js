@@ -24,7 +24,6 @@
      
      $scope.searched = true;
     
-     $scope.isGoogle = "false"; //ng-if Info
      
                    $ionicLoading.show({
                      
@@ -350,7 +349,7 @@ $ionicLoading.hide();
 
 
 
-
+ if($scope.currentUserSignedIn) {
 var votedRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/vote_history/"+$rootScope.placeObject.place_id);
  
  $scope.voted= {is:false};
@@ -366,7 +365,7 @@ votedRef.once("value", function(snapshot){
 
 
 $ionicLoading.hide();
-             
+ }          
 }
 
 

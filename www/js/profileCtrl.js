@@ -17,10 +17,7 @@ angular.module('starter.profileCtrl', ['firebase','ionic'])
                   var voteHistoryRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
          voteHistoryRef.child("vote_history").once("value", function(snapshot){
            
-            $scope.$apply(function(){
-               var count = snapshot.numChildren();
-               $scope.VotesCount = count;  
-            })
+
             
          });
 

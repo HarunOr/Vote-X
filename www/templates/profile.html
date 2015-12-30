@@ -8,9 +8,9 @@
      
 
        <img class="profileImg" ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="!user.ownProfileImage">
-       <div class="crop" ng-if="user.ownProfileImage">
-       <img data-ng-src="data:image/png;base64,{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage">
-       </div>    
+       <div class="frame">
+       <img class="image" data-ng-src="data:image/png;base64,{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage" style="border-style: solid; border-width: 2px; border-color: white">
+       </div>
   
   <div class="profileInfo">
   <div class="row" tyle="margin: 0 auto">
@@ -43,7 +43,7 @@
                Anzahl der Votes: 
                </div>
                <div class="col">
-                 {{VotesCount}}
+                 {{user.amountVotes}}
                  </div>
              </div>          
           
