@@ -34,11 +34,14 @@
                email: $scope.userEmail,
                verified: false,
                ownProfileImg: false,
-               profileImage: "",
+               profileImage: 'img/standard_profileImg.jpg',
                birthday: "",
                firstname: "",
                lastname: "",
                username: $scope.username,
+               level: "Neuling",
+               contacts: 0,
+               upvote_points: 0,
                votes: 0,
                uploaded_images: 0,
                vote_avg: 0,
@@ -105,12 +108,26 @@
                     
                     var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authData.uid+"/last_login")
                     userFB.set(hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year);
-                    $ionicLoading.hide();
+                    
                      $rootScope.currentUserSignedIn =true;
-
+                     
+                     //Get userdata to display
+                     var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authData.uid);
+                     userFB.once("value", function(snapshot){
+                        $scope.$apply(function(){
+                        $scope.userData = snapshot.val();
+                        $rootScope.user.level = $scope.userData.level;
+                        $rootScope.user.username =  $scope.userData.username;
+                        $rootScope.user.verified =  $scope.userData.verified;
+                        $rootScope.user.ownProfileImage = $scope.userData.ownProfileImg;
+                        $rootScope.user.profileImage = $scope.userData.profileImage;
+                        $rootScope.user.memberSince = $scope.userData.registrationDate.substring(5,16);
+                        $rootScope.user.contacts = $scope.userData.contacts;     
+                        $rootScope.user.upvotePoints = $scope.userData.upvote_points;
+                     })});
                     $rootScope.userInfo = authData;
                      $scope.userID = authData.uid;
-                   
+                   $ionicLoading.hide();
                     showAlertLoggedIn(authData);
                   $scope.modal1.hide();
                  $state.go("app.home");

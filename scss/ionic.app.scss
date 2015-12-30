@@ -21,6 +21,25 @@ $stable: #DFDFDF!default;
 $assertive: #D43D33!default;
 $testColor: #FFFAFA!default;
 
+.crop {
+    width: 200px;
+    height: 150px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.crop img {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+
+
+.profileImg {
+    height: auto; 
+    width: auto; 
+}
+
 
 textarea {
   height:auto;

@@ -1,14 +1,11 @@
-angular.module('starter.profileCtrl', ['firebase'])
+angular.module('starter.profileCtrl', ['firebase','ionic'])
 
 .controller('profileCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicPopup,$timeout, $ionicLoading, $ionicScrollDelegate) {
-	    
-        screen.lockOrientation('portrait');
-        
-        if(!$scope.ownProfile){
-         $scope.profileImg = 'img/standard_profileImg.jpg';   
-        }
-        else {
-            $scope.profileImg = $scope.ownProfileImage;
+
+
+        if(ionic.Platform.isWebView()){
+           screen.lockOrientation('portrait'); 
+            
         }
              
                    $ionicLoading.show({
@@ -19,27 +16,43 @@ angular.module('starter.profileCtrl', ['firebase'])
          $timeout(function(){
                   var voteHistoryRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
          voteHistoryRef.child("vote_history").once("value", function(snapshot){
-            var count = snapshot.numChildren();
-            $scope.VotesCount = count; 
-         });
-         
-         var userRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
-         userRef.once("value", function(snapshot){
+           
             $scope.$apply(function(){
-            $scope.userData = snapshot.val();
-            $scope.username = {name: $scope.userData.username};
-            $scope.verified = {verified: $scope.userData.verified};
-            $scope.ownProfile = $scope.userData.ownProfileImg;
-            $scope.ownProfileImage = $scope.userData.profileImage;                
-            });
+               var count = snapshot.numChildren();
+               $scope.VotesCount = count;  
+            })
+            
+         });
 
-         }); 
 
          $ionicLoading.hide(); 
          }, 250);
         
 
-         
+      //Bild aus Gallerie
+  $scope.selectPic = function(){
+        navigator.camera.getPicture(function(imageData){
+        $rootScope.user.profileImage = imageData;
+        var voteHistoryRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
+        voteHistoryRef.update({'profileImage': imageData, ownProfileImg: true});
+        
+        
+           $ionicPopup.alert({
+     title: 'Bild ausgewählt',
+     template: 'Sie haben erfolgreich ein neues Profilbild ausgewählt'
+   });
+        
+    },function(err){
+        if(err == "Selection cancelled"){
+            
+        }
+        else {
+      alert("Ups, etwas ist schief gelaufen!"+err);        
+        }
+      
+    },{sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    destinationType: Camera.DestinationType.DATA_URL}); 
+  }     
 
          
          

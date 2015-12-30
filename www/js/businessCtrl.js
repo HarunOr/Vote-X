@@ -28,6 +28,13 @@ $scope.place = $rootScope.placeObject;
 
 $scope.rate = $rootScope.votexObject.avg_points;
 $scope.totalRatings = $rootScope.votexObject.amountRatings;
+
+if($scope.totalRatings == 1){
+    $scope.voteString = "Vote";
+}
+else {
+    $scope.voteString = "Votes";
+}
 // ---------------------- Vote-X RATING ----------------------
 var placeRef = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place.place_id);
 

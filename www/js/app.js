@@ -11,7 +11,7 @@ var handleOpenURL = function(url) {
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
-                                        'starter.voteCtrl','starter.editVoteCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
+                                        'starter.voteCtrl','starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
                                         'angular-progress-button-styles','ngMap',
                                         'google.places','720kb.tooltips','starter.searchHistoryCtrl'])
 
@@ -22,6 +22,8 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     $rootScope.votexObject;
     $rootScope.checkIfSecondSlide = {is: false };
     $rootScope.userInfo;
+    $rootScope.user = {username: "", level: "", verified:"", ownProfie:"", ownProfileImage:"", memberSince:"", contacts:"", upvotePoints: ""};
+    
     $rootScope.voteUpdater = {
         avg_points:null,
         ambiente_avg:null,
@@ -37,7 +39,10 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     
     
     
-   screen.lockOrientation('portrait');
+           if(ionic.Platform.isWebView()){
+           screen.lockOrientation('portrait'); 
+            
+        }
       
       
     		    //Preload ALL Images
@@ -84,8 +89,12 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
             $location.path("/");
         }
 
-	  // allow user rotate
-screen.unlockOrientation();
+	  // allow user rotate      
+        if(ionic.Platform.isWebView()){
+           screen.unlockOrientation();
+            
+        }
+
   });
 })
 
@@ -250,6 +259,12 @@ screen.unlockOrientation();
     url: "/editVote",
     abstract: true,
     templateUrl: "templates/editVote.html"
+  }) 
+  
+     .state('app.user', {
+    url: "/user",
+    templateUrl: "templates/user.html",
+    controller: 'userCtrl'
   }) 
   
     .state('app.businessMap', {

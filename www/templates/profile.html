@@ -7,46 +7,34 @@
   <ion-content class="profile" ng-controller="profileCtrl" delegate-handle="profileScroll">
      
 
-       <img class="profileImg" ng-src="{{profileImg}}" alt="Profilbild hochladen!">
-           
+       <img class="profileImg" ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="!user.ownProfileImage">
+       <div class="crop" ng-if="user.ownProfileImage">
+       <img data-ng-src="data:image/png;base64,{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage">
+       </div>    
   
   <div class="profileInfo">
   <div class="row" tyle="margin: 0 auto">
   <div class="col" align="center">
-  <h2 style="margin: 0 auto; margin-top: 10%"><i ng-if="verified" class="icon ion-ios-star" style="color: #D43D33;"></i>{{username.name}} </h2>
+  <h2 style="margin: 0 auto; margin-top: 10%"><i ng-if="user.verified" class="icon ion-ios-star" style="color: #D43D33;"></i>{{user.username}} </h2>
   </div>
 </div>
 <button class="button button-royal button-block" ng-click="selectPic()" style="margin:0 auto"><i class="icon ion-images" style="margin-right: 1px; "></i>Profilbild auswählen</button>   
-  <button class="button button-stable button-block button-assertive" ng-click="sendSMSText()" ng-if="!verified.verified">
+  <button class="button button-stable button-block button-assertive" ng-click="sendSMSText()" ng-if="!user.verified">
           <i class="icon icon-votex_icon" style="color: white"></i>
   SMS-Verifizierung
            </button>
-  <button class="button button-stable button-block button-energized" ng-click="alreadyVerified()" ng-if="verified.verified">
+  <button class="button button-stable button-block button-energized" ng-click="alreadyVerified()" ng-if="user.verified">
           <i class="icon icon-votex_icon" style="color: white"></i>
   Du bist verifiziert !
            </button>
-             <div class="row" style="margin-left: 2px">
-             <div class="col">
-                 <button class="button  button-block button-positive">
-          <i class="icon ion-ios-contact-outline" style="color: white;margin-right: 5px"></i>   
-     Freunde werden
-           </button>
-               </div>
-                    <div class="col">
-                 <button class="button  button-block button-assertive">
-      <i class="icon ion-email" style="color: white;margin-right: 5px"></i>      
-      Mail schreiben
-           </button>
-               </div>
-               
-               </div>
+
   
        <div class="row" style="margin-left: 2px">
              <div class="col">
                Stufe:
                </div>
                <div class="col">
-               <b>  {{level}} </b>
+               <b>  {{user.level}} </b>
                  </div>
              </div>         
   
@@ -62,12 +50,30 @@
            
            <div class="row" style="margin-left: 2px">
              <div class="col">
-               Zuletzt aktiv am: 
+               Erhaltene Vote-Punkte: 
                </div>
                  <div class="col">
-                 {{lastDate}}
+                 {{user.upvotePoints}}
                  </div>
-             </div>         
+             </div>   
+                       <div class="row" style="margin-left: 2px">
+             <div class="col">
+               Kontakte: 
+               </div>
+                 <div class="col">
+                 {{user.contacts}}
+                 </div>
+             </div> 
+             
+                        <div class="row" style="margin-left: 2px">
+             <div class="col">
+               Mitglied seit: 
+               </div>
+                 <div class="col">
+                 {{user.memberSince}}
+                 </div>
+             </div>     
+                  
                     
                     </div>   
   </ion-content>

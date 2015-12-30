@@ -46,12 +46,13 @@
           <div class="row" >
             <div class="col">
            <div class="item-thumbnail-left item-image">
-       <img ng-src="{{profileImg}}" alt="Profilbild hochladen!" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33">
+       <img ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33"  ng-if="!user.ownProfileImage">
+         <img class="profileImg" data-ng-src="data:image/png;base64,{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage"  ng-if="user.ownProfileImage">
         </div>
         </div>
         <div class="col">
-          Harun Oral
-        <p>Experte </p>
+          {{user.username}}
+        <p>{{user.level}} </p>
      </div>
      </div>
         </ion-item>     
