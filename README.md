@@ -17,7 +17,6 @@ _____________
 - <s>Vote Modal erzeugen!</s>
 - Ionic Wizard für Registrierung, oder Intro ? http://arielfaur.github.io/ionic-wizard/
 - <b>Landscape mode buggy für iphone 6 plus ! max-width etc checken </b>
-- possible to Vote DOWN reviews -> comments in ionic popup with ionic infinite scroll ! MIN 180(?) Zeichen lang ein comment
 - Auch Achievements für Geschäfte: Vertrauenswürdig, Kumpel etc
 
 
@@ -34,7 +33,7 @@ Todo
 - Kommentare empfehlen können - Filter-Option
 - Kommentare wie angular-reddit-comments ? 
 - Votes nur für verifizierte Nutzer ? Kommentare auch für nicht-verifizierte, eingeloggte Benutzer
-- Profilseite
+- <s>Profilseite</s>
 - <s>$templateCache</s>
 - <s>!!! Imagepreload (auch Vote-X Title img!) !!!</s>
 - <s>Android Statusbar Color</s>
