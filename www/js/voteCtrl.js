@@ -192,7 +192,8 @@
                   vote_employees_points: $scope.service.points,
 				  vote_quality_points: $scope.quality.points,
 				  vote_best_value_points: $scope.best_value.points,
-                  vote_ambience_points: $scope.ambiente.points
+                  vote_ambience_points: $scope.ambiente.points,
+                  vote_upvotes: 0
 				            }) ;    
 
             

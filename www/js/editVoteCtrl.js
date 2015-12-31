@@ -33,7 +33,11 @@
                avg_vote_points: 0 
             });
                 
-
+              $scope.myPopup.close();
+                         $ionicPopup.alert({
+     title: 'Entfernt!',
+     template: 'Ihre Bewertung wurde erfolgreich entfernt'
+   });
         }
         
         else {

@@ -37,7 +37,6 @@
             $scope.icon = $scope.place.icon;
         
             $timeout(function(){
-                
                    $scope.dynamicName = $scope.place.name; 
                    
                    $scope.icon = $scope.place.icon;

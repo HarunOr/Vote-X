@@ -9,7 +9,7 @@
     $rootScope.counter = 0;
     $scope.votedPlace = [25];
     $scope.votedPlace[$rootScope.counter]= {id: 0, placeObject: "", voteText: "", votePoints: "", voteTime: "", voteUpvotes: 0};
-
+    $scope.somethingExists = false;
     
     
     userVoteRef.limitToFirst(25).on("child_added", function(snapshot){
@@ -29,6 +29,7 @@ votedPlaceRef.once("value", function(childSnapshot){
       if (status === google.maps.GeocoderStatus.OK) {
       if (results[0]) {
           $scope.$apply(function(){
+              $scope.somethingExists = true;
              $scope.votedPlace[$rootScope.counter] = {id: $rootScope.counter, placeObject: results[0], voteText:voteData.description,votePoints: voteData.vote_points, voteTime:voteData.vote_time,voteUpvotes: voteData.vote_upvotes};  
               
           })

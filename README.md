@@ -4,8 +4,11 @@
 - <s><b>Votes kommen an</b></s>
 - <s><b>Kommentare entfernen können</b></s>
 - <b> Kommentare melden können </b>
-
-
+- <b>Nachrichten verschicken/empfangen</b>
+- <b>Einzelne Votes ansehen</b>
+- <b>Einzelne Votes bewerten (votes_upvotes)</b>
+- <b>Lesezeichen für Places</b>
+-<b>werbung (immer textbanner/ nach 3. suchanfrage interstitial)</b>
 
 
  -> ODER http://sachinchoolur.github.io/angular-flash/

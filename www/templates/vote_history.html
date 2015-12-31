@@ -4,7 +4,7 @@
 </div>
   <ion-content has-bouncing="true" class=" has-header has-subheader" >
 
-
+<div ng-if="somethingExists">
 <div class="card" collection-repeat="object in votedPlace">
 
   <div class="item item-divider">
@@ -20,7 +20,7 @@
         <b>{{object.voteUpvotes}} Punkte</b>
      </div>
   </div>
-
+  </div>
   </div>
   
   
