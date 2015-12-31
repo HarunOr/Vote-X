@@ -2,7 +2,7 @@
 - TOP PRIO:
 - <b>Crop Pictures with https://github.com/jackrabbitsgroup/angular-area-select</b>
 - <s><b>Votes kommen an</b></s>
-- <b>Kommentare entfernen können</b>
+- <s><b>Kommentare entfernen können</b></s>
 - <b> Kommentare melden können </b>
 
 
