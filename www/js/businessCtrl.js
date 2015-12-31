@@ -118,7 +118,7 @@ $state.go("app.home");
   
   if($scope.place.opening_hours != undefined){
     $scope.gotOpeningHours.hours = true;
-  for(var i = 0; i < 7; i++){
+  for(var i = 0; i < $scope.place.opening_hours.periods.length; i++){
    
    //öffnung Stunde 
    if($scope.place.opening_hours.periods[i].open.hours > 9)
