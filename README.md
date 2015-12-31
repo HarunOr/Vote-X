@@ -1,6 +1,8 @@
 # Vote-X
 - TOP PRIO:
-- <b>Crop Pictures with https://github.com/jackrabbitsgroup/angular-area-select</b>
+- <s><b>Crop Pictures with https://github.com/jackrabbitsgroup/angular-area-select</b></s>
+- <b>SMS-Verifizierung</b>
+- <b>Nur verifizierte Nutzer können voten</b>
 - <s><b>Votes kommen an</b></s>
 - <s><b>Kommentare entfernen können</b></s>
 - <b> Kommentare melden können </b>
@@ -9,6 +11,7 @@
 - <b>Einzelne Votes bewerten (votes_upvotes)</b>
 - <b>Lesezeichen für Places</b>
 -<b>werbung (immer textbanner/ nach 3. suchanfrage interstitial)</b>
+- <b>Levels Neuling, Bekanntes Gesicht</b>
 
 
  -> ODER http://sachinchoolur.github.io/angular-flash/
