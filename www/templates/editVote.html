@@ -12,11 +12,14 @@
 <ion-slide-box  delegate-handle="editVote" show-pager="false">
   
   <ion-slide style="background-color: white">
+             <button class="button button-block" ng-click="removeVote()" style="background-color:#ff0033; color:white">
+        Wertung löschen
+        </button>
     <div class="row" style="margin-top: 2px; margin: 0 auto;">
       <div class="col">
       <h4>Ihre Wertung</h4>
       </div></div>
-      
+
     <div class="row responsive-sm" style="margin-top: 2%; margin: 0 auto;">
       <div class="col" style="margin:0 auto"><h4>Service</h4></div>
       <div class="col" style="margin:0 auto"><rating ng-model="service.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
@@ -47,7 +50,7 @@
        <button class="button button-positive button-block" ng-click="showInfo()">
         Weiter
         </button>
-        
+
       </ion-slide>
       
 <!-- ------------------------- 2. Seite ---------------------------- -->

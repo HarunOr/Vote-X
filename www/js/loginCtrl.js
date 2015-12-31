@@ -41,6 +41,7 @@
                username: $scope.username,
                level: "Neuling",
                contacts: 0,
+               contact_list: "",
                upvote_points: 0,
                votes: 0,
                uploaded_images: 0,

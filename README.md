@@ -24,8 +24,7 @@ _____________
 _____________
 Todo
 - "Teilen"-Funktion für Facebook, Google etc.
-- Home -> Vote Icon führt direkt zu Vote-Modal
-- Home -> Informationen öffnet popover mit Öffnungszeiten, Straße etc.
+- <s> Home -> Vote Icon führt direkt zu Vote-Modal</s>
 - <s>Ionic Lazy Load</s>
 - <s>Google Maps loading verbessern </s>
 - <s>Anstatt angular accordion <> ionic accordion ausprobieren *Performance Test*</s>
@@ -34,9 +33,7 @@ Todo
 - <s>$ionScrollDelegate in config geändert. -> collection-repeat für performance boost (http://www.thomasmaximini.com/2015/01/12/improving-scroll-performance-for-lists-in-ionic-framework.html)</s>
 - Kommentare empfehlen können - Filter-Option
 - Kommentare wie angular-reddit-comments ? 
-
 - Votes nur für verifizierte Nutzer ? Kommentare auch für nicht-verifizierte, eingeloggte Benutzer
-
 - Profilseite
 - <s>$templateCache</s>
 - <s>!!! Imagepreload (auch Vote-X Title img!) !!!</s>

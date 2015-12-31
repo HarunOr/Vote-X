@@ -1,9 +1,148 @@
  angular.module('starter.editVoteCtrl', ['firebase','ui.bootstrap'])
-.controller("editVoteCtrl", function ($scope,$http,$rootScope,$firebaseArray,$ionicLoading,$ionicSlideBoxDelegate,$ionicPopup,$timeout) {
+.controller("editVoteCtrl", function ($scope,$http,$rootScope,$firebaseArray,$state,$ionicLoading,$ionicSlideBoxDelegate,$ionicPopup,$timeout) {
 	
 	// Kommentar Funktion
 
   var getVoteRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/vote_history/"+$rootScope.placeObject.place_id);
+  
+  
+  
+  $scope.removeVote = function(){
+     
+     getVoteRef.once("value", function(snapshot){
+        var votedPlaceRef = new Firebase("https://vote-x.firebaseio.com/places/"+snapshot.key()+"/votes/"+snapshot.val());
+         votedPlaceRef.remove();
+         getVoteRef.remove();
+         $state.go('app.home');
+
+     });
+    
+     var place_votes = new Firebase("https://vote-x.firebaseio.com/places/"+$rootScope.placeObject.place_id+"/votes");      
+    place_votes.once("value",function(snapshot){
+        
+        $scope.totalvotes = snapshot.numChildren();
+        if($scope.totalvotes == undefined || $scope.totalvotes == 0){
+            $scope.totalvotes = 0
+            var placeRef = new Firebase("https://vote-x.firebaseio.com/places/"+$rootScope.placeObject.place_id);
+            placeRef.update({
+               avg_ambience_points: 0,
+               avg_best_value_points: 0,
+               avg_employee_points: 0,
+               avg_location_points: 0,
+               avg_quality_points: 0,
+               avg_vote_points: 0 
+            });
+                
+
+        }
+        
+        else {
+            console.info("vote numer = "+$scope.totalvotes);
+        snapshot.forEach(function(childSnapshot){
+           
+      $scope.votexRatingCalc;
+      $scope.temp = 0;
+      $scope.ambiente_temp = 0;
+      $scope.best_value_temp = 0;
+      $scope.avgService_temp = 0;
+      $scope.location_temp = 0;
+      $scope.quality_temp = 0;
+ 
+       //Nochmal die Votes berechnen
+      //1. Gesamtdurchschnittswertung
+      var avgPointRef = place_votes.child(childSnapshot.key()).child('vote_points');
+      
+      avgPointRef.once("value",function(data){
+       $scope.avg_points = data.val()+$scope.temp;
+       $scope.temp = $scope.avg_points;  
+                
+      console.log("$scope.avg_points = "+$scope.avg_points);  
+      $rootScope.voteUpdater.avg_points = $scope.avg_points;             
+       });
+       
+      //2. Gesamtdurchschnitt Ambiente Wertung
+      var avgAmbienteRef =  place_votes.child(childSnapshot.key()).child('vote_ambience_points');
+           
+      avgAmbienteRef.once("value",function(data){
+        
+       $scope.avg_ambience_points = data.val()+$scope.ambiente_temp;
+       $scope.ambiente_temp = $scope.avg_ambience_points;                  
+      console.log("$scope.avg_ambience_points = "+$scope.avg_ambience_points);                    
+        $rootScope.voteUpdater.ambiente_avg = $scope.avg_ambience_points;                   
+                        });      
+      
+      //3. Gesamtdurchschnitt Preis/Leistung Wertung
+      
+      var avgBestValueRef =  place_votes.child(childSnapshot.key()).child('vote_best_value_points');
+           
+      avgBestValueRef.once("value",function(data){
+        
+       $scope.best_value_points = data.val()+$scope.best_value_temp;
+       $scope.best_value_temp = $scope.best_value_points;                  
+      console.log("$scope.best_value_points = "+$scope.best_value_points);                    
+       $rootScope.voteUpdater.best_value_avg = $scope.best_value_points;                     
+                        });      
+
+      //4. Gesamtdurchschnitt Service Wertung
+      var avgServiceRef =  place_votes.child(childSnapshot.key()).child('vote_employees_points');
+           
+      avgServiceRef.once("value",function(data){
+        
+       $scope.avgService_points = data.val()+$scope.avgService_temp;
+       $scope.avgService_temp = $scope.avgService_points;                  
+      console.log("$scope.avgService_points = "+$scope.avgService_points);  
+      $rootScope.voteUpdater.service_avg = $scope.avgService_points;                  
+                            
+                        });          
+      //5. Gesamtdurchschnitt Location Wertung
+      var avgLocationRef =  place_votes.child(childSnapshot.key()).child('vote_location_points');
+           
+      avgLocationRef.once("value",function(data){
+        
+       $scope.location_points = data.val()+$scope.location_temp;
+       $scope.location_temp = $scope.location_points;                  
+      console.log(" $scope.location_points = "+$scope.location_points);
+      $rootScope.voteUpdater.location_avg = $scope.location_points;                    
+                            
+                        });                
+
+      //6. Gesamtdurchschnitt Quality Wertung
+      var avgQualityRef =  place_votes.child(childSnapshot.key()).child('vote_quality_points');
+           
+      avgQualityRef.once("value",function(data){
+        
+       $scope.quality_points = data.val()+$scope.quality_temp;
+       $scope.quality_temp = $scope.quality_points;                  
+      console.log(" $scope.quality_points = "+$scope.quality_points);                    
+        $rootScope.voteUpdater.quality_avg = $scope.quality_points;                       
+                        });          
+        });
+        
+          $timeout(function(){
+   var placeRef2 =  new Firebase("https://vote-x.firebaseio.com/places/"+$rootScope.placeObject.place_id);
+   console.info("totalvotes = "+$scope.totalvotes);
+   console.info("URL = "+placeRef2);
+  placeRef2.update({'avg_ambience_points': ($rootScope.voteUpdater.ambiente_avg)/($scope.totalvotes),
+                   'avg_vote_points': ($rootScope.voteUpdater.avg_points)/($scope.totalvotes),
+                   'avg_best_value_points': ($rootScope.voteUpdater.best_value_avg)/($scope.totalvotes),
+                   'avg_employee_points': ($rootScope.voteUpdater.service_avg)/($scope.totalvotes),
+                   'avg_location_points': ($rootScope.voteUpdater.location_avg)/($scope.totalvotes),
+                   'avg_quality_points':($rootScope.voteUpdater.quality_avg)/($scope.totalvotes)
+  });                
+     
+        
+  $scope.myPopup.close();
+           $ionicPopup.alert({
+     title: 'Entfernt!',
+     template: 'Ihre Bewertung wurde erfolgreich entfernt'
+   });
+  })  
+      }
+    });
+
+   
+  };
+  
   
   getVoteRef.once("value", function(snapshot){
       $rootScope.voteKey.key = snapshot.val();
