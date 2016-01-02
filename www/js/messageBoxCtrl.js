@@ -1,7 +1,7 @@
  angular.module('starter.messageBoxCtrl', ['firebase'])
 .controller("messageBoxCtrl", function ($scope,$rootScope,$ionicLoading, $timeout, $state) {
 	
-    
+    $scope.doneLoading = false;
     if($rootScope.currentUserSignedIn){
     $rootScope.messageBoxCounter = 0;
 
@@ -12,7 +12,12 @@
     //lade übersicht über unterhaltungen 
     var userMailboxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/messageBox");
 
-     userMailboxRef.on("child_added", function(snapshot){
+    userMailboxRef.on("child_added", function(snapshot){
+         
+         
+        
+             
+         
          $rootScope.messageKey = snapshot.key();
          
      // your messaging partner    
@@ -25,18 +30,19 @@
          });
  
          $rootScope.messageBoxCounter++;
+         $scope.doneLoading = true;
      });
      
      
-     
+     });
          
-     });
 
 
 
-     $scope.openMessages = function(name,key){
 
-         $rootScope.messageKey = {name:name ,key: key};
+     $scope.openMessages = function(name,key, ownImage, profileImg){
+
+         $rootScope.messageKey = {name:name ,key: key, ownImage: ownImage, profileImg: profileImg};
          $state.go('app.messages');
          
      }

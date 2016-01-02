@@ -520,23 +520,7 @@ $scope.closeSearch = function() {
   };
 
 
-//---------------------------------- AdMob -------------------------------------
 
-
-// AdMob HomeBanner
-            if(window.plugins && AdMob) {
-                var admob_key = ionic.Platform.device() == "Android" ? "ca-app-pub-9863131629845499/7662967966" : "ca-app-pub-9863131629845499/7802568766";
-               console.info("Found : "+ionic.Platform.device());
-               console.info("bannerID userd: "+admob_key);
-                    AdMob.createBanner( {
-        adId: admob_key, 
-        isTesting: false,
-        overlap: false, 
-        offsetTopBar: false, 
-        position: AdMob.AD_POSITION.BOTTOM_CENTER,
-        bgColor: 'white'
-    } );
-            }
 //-----------------------------------------END APPCTRL-----------------------------------------
 
 })

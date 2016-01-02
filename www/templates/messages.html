@@ -7,25 +7,35 @@
 <div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
   <h2 class="title"><i class="icon ion-chatbubbles" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>{{messageKey.name}}</h2>
 </div>
-  <ion-content has-bouncing="true" class=" has-header has-subheader" >
+  <ion-content has-bouncing="true" class=" has-header has-subheader has-footer" >
+      
 
-<div >
-<div class="card" collection-repeat="object in messages">
 
-  <div class="item item-divider">
+<div class="row" ng-repeat="object in messages" style="margin-left: 5px">
+        
+        <div ng-if="!messageKey.ownImage">
+           <img ng-src="{{messageKey.profileImg}}" alt="Fehler!" ng-class="{'profile-pic-right': object.ownMessage,'profile-pic-left': !object.ownMessage}">
+            </div>
+         
+         <div ng-if="messageKey.ownImage">
+             <img  data-ng-src="data:image/png;base64, {{messageKey.profileImg}}" alt="Fehler!" ng-class="{'profile-pic-right':object.ownMessage,'profile-pic-left': !object.ownMessage}">
+             </div>
+       
+         
+      
+    
+  
+    <div ng-class="{'chat-bubble right':object.ownMessage,'chat-bubble left':!object.ownMessage}">
     {{object.text}}
-    </div>
-  <div class="item item-text-wrap">
-      <i style="font-size:80%">{{object.time}}</i><br/>
-    {{object.text}}
+    {{object.ownImage}}
+    <p></p>
+    <p style="margin-top: 1%">{{object.time}}</p>
   </div>
-    <div class="item item-divider" style="margin-bottom: 15px">
-    <rating ng-model='object.votePoints' max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "true"></rating>
-        <div class="voteNumber">
-        <b>{{object.voteUpvotes}} Punkte</b>
-     </div>
-  </div>
-  </div>
+  
+
+
+  
+  
   </div>
   
   
@@ -37,6 +47,15 @@
 </div>
     
   </ion-content>
-
+ 
+    <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Sende {{messageKey.name}} eine Nachricht..." on-return="postMessage()" ng-model="input.message" on-focus="inputUp()" on-blur="inputDown()" />
+      </label>
+      <button ng-disabled='input.message == ""' class="button button-clear" ng-click="postMessage(input.message)">
+        Senden
+      </button>
+    </ion-footer-bar>
+          </form>
 
 </ion-view>

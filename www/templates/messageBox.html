@@ -4,24 +4,27 @@
 </div>
   <ion-content has-bouncing="true" class=" has-header has-subheader">
 
+              <div class="loader-center" ng-if="!doneLoading">
+            <div class="loader">
+              <i class="icon ion-loading-c"></i>
+            </div>
+        </div>
 
 
-<div class="card" collection-repeat="partner in messagePartner"> 
 
-  <div class="item item-divider" style="margin-bottom: 5px"> 
-   <img ng-if="!partner.ownImage" ng-src="{{partner.profileImg}}" style="width: 10%; border-radius:5%; -webkit-border-radius: 5%;-moz-border-radius: 5%;"/> 
-     <img ng-if="partner.ownImage" data-ng-src="data:image/png;base64,{{partner.profileImg}}"  >
+
+
+
+<div class="list" collection-repeat="partner in messagePartner"> 
+
+  <li class="item" style="margin-bottom: 5px"> 
+   <img ng-if="!partner.ownImage" ng-src="{{partner.profileImg}}" style="width: 10%; border-radius:50%;"/> 
+     <img ng-if="partner.ownImage" data-ng-src="data:image/png;base64,{{partner.profileImg}}" style="width: 10%; border-radius:50%;" >
    {{partner.username}}
-   <button ng-click="openMessages(partner.username,partner.uid)" class="button button-small button-assertive" style="float: right"> <i class="icon ion-email" style="margin-right:1%"></i>Öffnen</button>
-    </div>
+   <button ng-click="openMessages(partner.username,partner.uid,partner.ownImage ,partner.profileImg)" class="button  button-assertive button-clear" style="float: right"> <i class="icon ion-email" style="margin-right:1%"></i>Öffnen</button>
+    </li>
 
   </div>
-
-  
-  
-  
-  
-  
 
 <div style="height: 10%; margin-top:25px !important">
 </div>

@@ -1,4 +1,4 @@
- angular.module('starter.voteCtrl', ['firebase','ionicLazyLoad','ui.bootstrap'])
+ angular.module('starter.voteCtrl', ['firebase','ionicLazyLoad','ui.bootstrap','monospaced.elastic'])
 .controller("voteCtrl", function ($scope,$http,$rootScope,$firebaseArray,$ionicLoading,$ionicSlideBoxDelegate,$ionicPopup) {
 	
 	// Kommentar Funktion
@@ -247,22 +247,6 @@
     $ionicSlideBoxDelegate.$getByHandle('vote').update();             
   }
   
-  
-
-
-  //------------ TextArea functions ---------------
-  
-  
-  
-  $scope.autoExpand = function(e) {
-        var element = typeof e === 'object' ? e.target : document.getElementById(e);
-    		var scrollHeight = element.scrollHeight -20; // replace 60 by the sum of padding-top and padding-bottom
-        element.style.height =  scrollHeight + "px";    
-    };
-  
-  function expand() {
-    $scope.autoExpand('TextArea');
-  }  
   
   
 	
