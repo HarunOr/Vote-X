@@ -1,0 +1,32 @@
+<ion-view>
+<div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
+  <h2 class="title"><i class="icon ion-android-mail" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>Nachrichten</h2>
+</div>
+  <ion-content has-bouncing="true" class=" has-header has-subheader">
+
+
+
+<div class="card" collection-repeat="partner in messagePartner"> 
+
+  <div class="item item-divider" style="margin-bottom: 5px"> 
+   <img ng-if="!partner.ownImage" ng-src="{{partner.profileImg}}" style="width: 10%; border-radius:5%; -webkit-border-radius: 5%;-moz-border-radius: 5%;"/> 
+     <img ng-if="partner.ownImage" data-ng-src="data:image/png;base64,{{partner.profileImg}}"  >
+   {{partner.username}}
+   <button ng-click="openMessages(partner.username,partner.uid)" class="button button-small button-assertive" style="float: right"> <i class="icon ion-email" style="margin-right:1%"></i>Öffnen</button>
+    </div>
+
+  </div>
+
+  
+  
+  
+  
+  
+
+<div style="height: 10%; margin-top:25px !important">
+</div>
+    
+  </ion-content>
+
+
+</ion-view>

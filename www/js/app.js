@@ -11,9 +11,9 @@ var handleOpenURL = function(url) {
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
-                                        'starter.voteCtrl','starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
+                                        'starter.voteCtrl','starter.messageBoxCtrl','starter.messageCtrl','starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
                                         'starter.vote_historyCtrl','angular-progress-button-styles','ngMap',
-                                        'google.places','720kb.tooltips','starter.searchHistoryCtrl'])
+                                        'google.places','starter.searchHistoryCtrl'])
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory, $rootScope, $location) {
   $ionicPlatform.ready(function() { 
@@ -180,6 +180,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
   .state('app.profile', {
     url: "/profile",
+    cache: false,
     controller: "profileCtrl",
     views: {
       'menuContent': {
@@ -282,6 +283,26 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     abstract: true,
     templateUrl: "templates/businessMap.html",
     controller: 'businessCtrl'
+  })
+
+  .state('app.messages', {
+    url: '/messages',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/messages.html',
+        controller: 'messageCtrl'
+      }
+    }
+  })
+
+  .state('app.messageBox', {
+    url: '/messageBox',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/messageBox.html',
+        controller: 'messageBoxCtrl'
+      }
+    }
   })
 
 

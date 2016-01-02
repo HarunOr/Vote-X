@@ -1,5 +1,5 @@
  angular.module('starter.vote_historyCtrl', ['firebase','google.places'])
-.controller("vote_historyCtrl", function ($scope,$rootScope,$ionicLoading, $firebaseArray, $timeout) {
+.controller("vote_historyCtrl", function ($scope,$rootScope,$ionicLoading, $timeout) {
 	
     
     if($rootScope.currentUserSignedIn){

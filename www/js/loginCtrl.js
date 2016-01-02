@@ -44,6 +44,7 @@
                contact_list: "",
                upvote_points: 0,
                votes: 0,
+               messagebox: "",
                uploaded_images: 0,
                vote_avg: 0,
                location: "",
@@ -55,7 +56,7 @@
                 });
                 
      
-              usernameList.child(username).set(username);
+              usernameList.child(username).set(userRef);
                 
                 
                 

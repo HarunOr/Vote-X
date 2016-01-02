@@ -5,9 +5,21 @@
 
   var getVoteRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/vote_history/"+$rootScope.placeObject.place_id);
   
-  
+  var changeAmountVoteRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/votes");
   
   $scope.removeVote = function(){
+     
+     //change number of votes of user
+     
+     changeAmountVoteRef.once("value", function(voteSnap){
+        var amountVotes = voteSnap.val();
+        amountVotes = amountVotes-1;
+        var userRef  =  new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
+        userRef.update({'votes': amountVotes});
+         
+     });
+     
+     
      
      getVoteRef.once("value", function(snapshot){
         var votedPlaceRef = new Firebase("https://vote-x.firebaseio.com/places/"+snapshot.key()+"/votes/"+snapshot.val());

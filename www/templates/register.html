@@ -43,7 +43,7 @@
       
         <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : registerForm.password1.$invalid  && registerForm.$submitted}">
         <span class="input-label">Password</span>
-        <input name="password1" type="password" ng-model="password1" placeholder="Passwort"
+        <input name="password1" type="password" ng-model="password1" placeholder="Passwort (mindestends 5 Zeichen)"
         ng-minlength="5"
         ng-maxlength="25"
         required>
@@ -57,7 +57,7 @@
       
       <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : registerForm.password2.$invalid  && registerForm.$submitted}">
       <span class="input-label">Passwort wiederholen</span>
-      <input name="password2" type="password" ng-model="password2" placeholder="Passwort wiederholen"
+      <input name="password2" type="password" ng-model="password2" placeholder="Passwort wiederholen (mindestends 5 Zeichen)"
       ng-minlength="5"
       ng-maxlength="25"
       required>

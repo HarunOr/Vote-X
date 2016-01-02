@@ -199,12 +199,21 @@ $scope.myBusinessPopup = $ionicPopup.show({
  // Vote-Popup
 
   $scope.openVote = function() {
+      if($rootScope.user.verified){
    
 $scope.myPopup = $ionicPopup.show({
      templateUrl:'templates/vote.html',
      scope: $scope,
      cssClass: 'businessMap'
       })
+     }
+  
+  else {
+      $ionicPopup.alert({
+     title:"Nicht verifiziert!",
+     template: 'Du musst dich verifizieren um voten zu können!'
+      })
+  } 
       }; 
       
  
