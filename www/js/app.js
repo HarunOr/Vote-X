@@ -23,6 +23,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     $rootScope.checkIfSecondSlide = {is: false };
     $rootScope.userInfo;
     $rootScope.user = {username: "", level: "", verified:"", ownProfie:"", ownProfileImage:"", memberSince:"", contacts:"", upvotePoints: ""};
+    $rootScope.partnerUid;
     
     $rootScope.voteUpdater = {
         avg_points:null,

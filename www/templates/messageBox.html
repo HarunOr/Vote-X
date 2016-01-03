@@ -3,32 +3,22 @@
   <h2 class="title"><i class="icon ion-android-mail" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>Nachrichten</h2>
 </div>
   <ion-content has-bouncing="true" class=" has-header has-subheader">
-
-              <div class="loader-center" ng-if="!doneLoading">
-            <div class="loader">
-              <i class="icon ion-loading-c"></i>
-            </div>
-        </div>
+<button ng-click="createMail()" class="button button-assertive button-block"><i class="icon ion-paper-airplane"></i>Nachricht erstellen</button>
 
 
 
-
-
-
-<div class="list" collection-repeat="partner in messagePartner"> 
+<div class="list" ng-repeat="partner in messagePartner" ng-if="messageBoxCounter > 0"> 
 
   <li class="item" style="margin-bottom: 5px"> 
    <img ng-if="!partner.ownImage" ng-src="{{partner.profileImg}}" style="width: 10%; border-radius:50%;"/> 
-     <img ng-if="partner.ownImage" data-ng-src="data:image/png;base64,{{partner.profileImg}}" style="width: 10%; border-radius:50%;" >
+     <img ng-if="partner.ownImage" data-ng-src="data:image/png;base64,{{partner.profileImg}}" style="width: 10%; border-radius:50%;"/>
    {{partner.username}}
    <button ng-click="openMessages(partner.username,partner.uid,partner.ownImage ,partner.profileImg)" class="button  button-assertive button-clear" style="float: right"> <i class="icon ion-email" style="margin-right:1%"></i>Öffnen</button>
     </li>
 
   </div>
 
-<div style="height: 10%; margin-top:25px !important">
-</div>
-    
+
   </ion-content>
 
 
