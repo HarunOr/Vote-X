@@ -42,7 +42,7 @@ votedPlaceRef.once("value", function(childSnapshot){
 })   
     $timeout(function(){
      $ionicLoading.hide();      
-    },500);
+    },200);
    
      
     });

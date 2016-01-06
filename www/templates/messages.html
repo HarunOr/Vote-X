@@ -5,7 +5,7 @@
            
            
 <div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
-  <h2 class="title"><i class="icon ion-chatbubbles" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>{{messageKey.name}}</h2>
+  <h2 class="title"><i class="icon ion-chatbubbles" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>{{partner.name}}</h2>
 </div>
   <ion-content has-bouncing="true" class=" has-header has-subheader has-footer" delegate-handle="chatScroll">
       
@@ -13,21 +13,21 @@
 
 <div class="row" ng-repeat="object in messages track by $index" style="margin-left: 5px">
         
-        <div ng-if="!messageKey.ownImage">
-           <img ng-src="{{messageKey.profileImg}}" alt="Fehler!" ng-class="{'profile-pic-right': object.ownMessage,'profile-pic-left': !object.ownMessage}">
+        <div ng-if="!partner.ownProfileImage">
+           <img ng-src="{{partner.profileImage}}" alt="Fehler!" ng-class="{'profile-pic-right': object.ownMessage,'profile-pic-left': !object.ownMessage}">
             </div>
          
-         <div ng-if="messageKey.ownImage">
-             <img  data-ng-src="data:image/png;base64, {{messageKey.profileImg}}" alt="Fehler!" ng-class="{'profile-pic-right':object.ownMessage,'profile-pic-left': !object.ownMessage}">
+         <div ng-if="partner.ownProfileImage">
+             <img  data-ng-src="data:image/png;base64, {{partner.profileImage}}" alt="Fehler!" ng-class="{'profile-pic-right':object.ownMessage,'profile-pic-left': !object.ownMessage}">
              </div>
        
          
       
     
   
-    <div ng-class="{'chat-bubble right':object.ownMessage,'chat-bubble left':!object.ownMessage}">
+    <div ng-class="{'chat-bubble right':object.ownMessage,'chat-bubble left':!object.ownMessage}"  >
     {{object.text}}
-    {{object.ownImage}}
+
     <p></p>
     <p style="margin-top: 1%">{{object.time}}</p>
   </div>
@@ -48,9 +48,9 @@
     
   </ion-content>
  
-    <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
+    <ion-footer-bar class="bar-stable item-input-inset" keyboard-attach>
       <label class="item-input-wrapper">
-        <input type="text" placeholder="Sende {{messageKey.name}} eine Nachricht..." on-return="postMessage()" ng-model="input.message" on-focus="inputUp()" on-blur="inputDown()" />
+        <input type="text" placeholder="Sende {{partner.name}} eine Nachricht..." on-return="postMessage()" ng-model="input.message" on-focus="inputUp()" on-blur="inputDown()" />
       </label>
       <button ng-disabled='input.message == "" || input.message == null || input.message == undefined' class="button button-clear" ng-click="postMessage(input.message)">
         Senden

@@ -8,29 +8,18 @@
    // Firebase reference
    
     var rootRef = new Firebase("https://vote-x.firebaseio.com");
-	
-$scope.$on('$ionicView.beforeEnter', function() {
-    
-		if($rootScope.currentUserSignedIn){
+	if($rootScope.currentUserSignedIn){
+    $scope.$on('$ionicView.beforeEnter', function() {
 
-        
-        
     	$scope.user_uid = rootRef.getAuth().uid;
 	
   var numRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history");
-  
-  numRef.once("value", function(snapshot){
-    
- $scope.totalSearchHistory = snapshot.numChildren();   
-    
-  });
-  
   
 
 	var searchRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.user_uid+"/search_history");
   
   searchRef.limitToFirst(25).on("child_added", function(snapshot) {
-
+ $scope.totalSearchHistory = snapshot.numChildren();   
   $ionicLoading.show({
     template: '<ion-spinner icon="spiral" class="spinner-assertive"></ion-spinner>'
   });
@@ -43,7 +32,7 @@ $scope.searchHistory = $firebaseArray(searchRef);
   });
   
 
-}
-    
 })
+    
+}
 })

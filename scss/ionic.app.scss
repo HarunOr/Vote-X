@@ -42,6 +42,8 @@ button.ion-android-send {
 
 .bar.item-input-inset .item-input-wrapper input {
   width: 100% !important;
+  vertical-align: middle;
+  
 }
 
 .message-wrapper {
@@ -55,14 +57,13 @@ button.ion-android-send {
 
 .profile {
     
-background: rgba(240,147,104,1);
-background: -moz-linear-gradient(top, rgba(240,147,104,1) 0%, rgba(212,61,51,0.79) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(240,147,104,1)), color-stop(100%, rgba(212,61,51,0.79)));
-background: -webkit-linear-gradient(top, rgba(240,147,104,1) 0%, rgba(212,61,51,0.79) 100%);
-background: -o-linear-gradient(top, rgba(240,147,104,1) 0%, rgba(212,61,51,0.79) 100%);
-background: -ms-linear-gradient(top, rgba(240,147,104,1) 0%, rgba(212,61,51,0.79) 100%);
-background: linear-gradient(to bottom, rgba(240,147,104,1) 0%, rgba(212,61,51,0.79) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09368', endColorstr='#d43d33', GradientType=0 );
+background: -moz-linear-gradient(90deg, #BFBFBF 0%, #F5F5F5 100%); /* ff3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F5F5F5), color-stop(100%, #BFBFBF)); /* safari4+,chrome */
+background: -webkit-linear-gradient(90deg, #BFBFBF 0%, #F5F5F5 100%); /* safari5.1+,chrome10+ */
+background: -o-linear-gradient(90deg, #BFBFBF 0%, #F5F5F5 100%); /* opera 11.10+ */
+background: -ms-linear-gradient(90deg, #BFBFBF 0%, #F5F5F5 100%); /* ie10+ */
+background: linear-gradient(0deg, #BFBFBF 0%, #F5F5F5 100%); /* w3c */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F5F5F5', endColorstr='#BFBFBF',GradientType=0 ); /* ie6-9 */
 }
 
 
@@ -158,20 +159,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09368', end
 
 .chat-bubble.left:before {
   background-color: #e6e5eb;
-  left: 10px;
   -webkit-transform: rotate(70deg) skew(5deg);
 }
 
 .chat-bubble.right {
+  margin-right: 55px !important;  
   background-color: #158ffe;
   color: #fff;
   float: right;
-  margin-left: 50%;
+
 }
 
 .chat-bubble.right:before {
   background-color: #158ffe;
-  right: 10px;
   -webkit-transform: rotate(118deg) skew(-5deg);
 }
 

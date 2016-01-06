@@ -11,7 +11,7 @@ var handleOpenURL = function(url) {
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
-                                        'starter.voteCtrl','starter.messageBoxCtrl','starter.messageCtrl','starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
+                                        'starter.voteCtrl','starter.messageCtrl','starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
                                         'starter.vote_historyCtrl','angular-progress-button-styles','ngMap',
                                         'google.places','starter.searchHistoryCtrl'])
 
@@ -24,6 +24,8 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     $rootScope.userInfo;
     $rootScope.user = {username: "", level: "", verified:"", ownProfie:"", ownProfileImage:"", memberSince:"", contacts:"", upvotePoints: ""};
     $rootScope.partnerUid;
+    $rootScope.toUser;
+    $rootScope.messageBoxIndex = 0;
     
     $rootScope.voteUpdater = {
         avg_points:null,

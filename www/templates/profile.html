@@ -7,13 +7,13 @@
   <ion-content class="profile" ng-controller="profileCtrl" delegate-handle="profileScroll">
      
 
-       <img class="profileImg" ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="!user.ownProfileImage">
+       <img class="profileImg" ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="!user.ownProfileImage" style="margin: 0 auto">
        <div class="frame">
        <img class="image" data-ng-src="data:image/png;base64,{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage" style="border-style: solid; border-width: 2px; border-color: white">
        </div>
   
   <div class="profileInfo">
-  <div class="row" tyle="margin: 0 auto">
+  <div class="row" style="margin: 0 auto">
   <div class="col" align="center">
   <h2 style="margin: 0 auto; margin-top: 5%"><i ng-if="user.verified" class="icon ion-ios-star" style="color: #D43D33;"></i>{{user.username}} </h2>
   </div>

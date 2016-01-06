@@ -1,35 +1,37 @@
 /* global Firebase */
-      angular.module('starter.messageCtrl', ['firebase','monospaced.elastic','ionic'])
-.controller("messageCtrl", function ($ionicScrollDelegate,$scope,$rootScope,$ionicLoading, $timeout, $state) {
+var votex = angular
+
+      
+      .module('starter.messageCtrl',['firebase','monospaced.elastic','ionic'])
+      votex.controller("messageCtrl", function (messageFactory,$ionicScrollDelegate,$scope,$rootScope,$ionicLoading, $timeout, $state, $firebaseArray) {
 	
     
     if($rootScope.currentUserSignedIn){
-     $rootScope.messageCounter = 0;
-     $scope.messages= [100]; 
-     $scope.messages[$rootScope.messageCounter] = {key: "", text: "", time:"", read: false, ownMessage: false};
-     $scope.ownMessage = false ;
-      $scope.doneLoading = false;
-      $rootScope.input = {message: ""};
-      
- //lade einzelne chatverläufe
-     var messageRef =  new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/messageBox/"+$rootScope.messageKey.key);
-
-     messageRef.on("child_added", function(childSnapshot){
+   $rootScope.input = {message:""};     
         
-         var messageData= childSnapshot.val();
-         var messageID = childSnapshot.key();
-           
-          $scope.messages[$rootScope.messageCounter] = {key: messageID, text: messageData.text, time: messageData.time, read: messageData.read, ownMessage: messageData.ownMessage};   
-          $rootScope.messageCounter++;   
-         
-         $timeout(function() {
-        $ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom();
-    }, 300);
+        
+        
+   //get messagepartner information
+    
 
-     })
+      $scope.partner = {
+                        id: messageFactory.getPartnerData().id,
+                        name: messageFactory.getPartnerData().name,
+                        text: messageFactory.getPartnerData().text,
+                        ownProfileImage: messageFactory.getPartnerData().ownProfileImage,
+                        profileImage: messageFactory.getPartnerData().profileImage
+                        };
 
 
 
+
+       
+   var messageRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/messageBox/"+$scope.partner.id);
+ 
+    //Get messages
+    $scope.messages = $firebaseArray(messageRef);
+
+   
 
   $scope.inputUp = function() {
     if (ionic.Platform.isIOS()) $scope.data.keyboardHeight = 216;
@@ -51,21 +53,17 @@
         }
     
   };
-// Post message
+  
+  // Post message
 
 $scope.postMessage = function(message){
    
-    if ($rootScope.messageKey.key == undefined){
-        $rootScope.messageKey = {key: $rootScope.partnerUid};
-    }
 
-    var ownMailboxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/messageBox/"+$rootScope.messageKey.key);
-var partnerMailboxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.messageKey.key+"/messageBox/"+$rootScope.userInfo.uid);
+    var ownMailboxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/messageBox/"+$scope.partner.id);
+    var partnerMailboxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.partner.id+"/messageBox/"+$rootScope.userInfo.uid);
     
-      var d = new Date();
-    
-    
-    
+    var d = new Date();
+
     var minutes = d.getMinutes();
     var hours = d.getHours();
     var day = d.getDate();
@@ -88,28 +86,28 @@ var partnerMailboxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$roo
     else{
         zero = "";
     }        
-    ownMailboxRef.update({utime: Firebase.ServerValue.TIMESTAMP});
+  
     ownMailboxRef.push({
         ownMessage: true,
         read: true,
         text: message,
-        time: hours+":"+minutes+" "+day+"/"+zero+(month+1)+"/"+year
-        
+        time: hours+":"+minutes+" "+day+"/"+zero+(month+1)+"/"+year,
+        utime: Firebase.ServerValue.TIMESTAMP
         
     })
-       partnerMailboxRef.update({utime: Firebase.ServerValue.TIMESTAMP});
        partnerMailboxRef.push({
          ownMessage: false,
         read: false,
         text: message,
-        time: hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year       
+        time: hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year ,
+        utime: Firebase.ServerValue.TIMESTAMP      
     }) 
     
         $timeout(function() {
         $ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(true);
     }, 300);
     $rootScope.input.message = null;
-    
+
 }
 
         };

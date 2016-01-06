@@ -6,7 +6,7 @@
 - <s><b>Votes kommen an</b></s>
 - <s><b>Kommentare entfernen können</b></s>
 - <b> Kommentare melden können </b>
-- <b>Nachrichten verschicken/empfangen</b>
+- <s><b>Nachrichten verschicken/empfangen</b></s> <b>CSS Bugs & counter Bugs etc, vorallem bei Create Mail</b>
 - <b>Einzelne Votes ansehen</b>
 - <b>Einzelne Votes bewerten (votes_upvotes)</b>
 - <b>Lesezeichen für Places</b>
