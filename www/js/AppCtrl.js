@@ -46,9 +46,6 @@
                    $scope.place_id = $scope.place.place_id;
                    if($scope.place.opening_hours != undefined)
                    $scope.place_open = $scope.place.opening_hours.open_now;
-                   console.log($scope.place);
-                   console.log($scope.place.geometry.location.lat());
-                   console.log($scope.place.geometry.location.lng());
                    if($scope.place.geometry.viewport != null)
                     console.log($scope.place.geometry.viewport);
                    //Translate Type
@@ -348,7 +345,7 @@ $ionicLoading.hide();
 
 
 
- if($scope.currentUserSignedIn) {
+ if($scope.currentUserSignedIn && $rootScope.placeObject != undefined) {
 var votedRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/vote_history/"+$rootScope.placeObject.place_id);
  
  $scope.voted= {is:false};
@@ -364,7 +361,17 @@ votedRef.once("value", function(snapshot){
 
 
 $ionicLoading.hide();
- }          
+ }      
+ 
+ 
+  $rootScope.adMobCounter++;          
+
+ 
+ if($rootScope.adMobCounter != 0 && $rootScope.adMobCounter % 3 == 0 && ionic.Platform.isWebView()){
+           AdMob.showInterstitial();
+
+           }   
+     
 }
 
 

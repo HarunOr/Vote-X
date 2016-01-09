@@ -31,31 +31,29 @@
     <p></p>
     <p style="margin-top: 1%">{{object.time}}</p>
   </div>
-  
-
-
-  
-  
   </div>
   
   
+  <!-- bottom cut fix -->
+  <div style="height:10%"></div>
   
-  
-  
-
-<div style="height: 10%; margin-top:25px !important">
-</div>
+  <!-- Keyboard opened fix-->
+    <div ng-if="keyboardFix.keyboardOpen" style="height:20%"></div>
+    
+    <br/><br/>
     
   </ion-content>
  
-    <ion-footer-bar class="bar-stable item-input-inset" keyboard-attach>
-      <label class="item-input-wrapper">
-        <input type="text" placeholder="Sende {{partner.name}} eine Nachricht..." on-return="postMessage()" ng-model="input.message" on-focus="inputUp()" on-blur="inputDown()" />
-      </label>
-      <button ng-disabled='input.message == "" || input.message == null || input.message == undefined' class="button button-clear" ng-click="postMessage(input.message)">
+ 
+    <ion-footer-bar keyboard-attach class="bar-stable">    
+    <label class="item-input-wrapper" style="width: 100%">
+      <input type="text" placeholder="Sende eine Nachricht..." ng-model="input.message" style="width: 100%;height:95%;background-color:#F0F0F0">
+    </label>
+      <button ng-disabled='input.message == "" || input.message == null || input.message == undefined' class="button button-assertive" ng-click="postMessage(input.message)">
         Senden
       </button>
     </ion-footer-bar>
-          </form>
+    
+
 
 </ion-view>

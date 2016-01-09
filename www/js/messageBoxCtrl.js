@@ -64,6 +64,63 @@ votex.controller("messageBoxCtrl", function ($scope,$rootScope,$ionicLoading, $t
       $state.go('app.messages');  
     };
 
+
+
+
+    $scope.createMail = function(){
+        
+        $scope.findUser = {name: undefined};
+        
+        
+        
+        $ionicPopup.show({
+         template: '<input type="text" ng-model="findUser.name" placeholder=" Geben Sie einen Namen ein">',
+         title: 'Wem wollen Sie schreiben ?',
+         subTitle:"Achten Sie auf Groß- und Kleinschreibung",
+         scope: $scope,
+         buttons: [
+         { text: 'Abbrechen' },
+         {
+         text: '<b>Suchen</b>',
+         type: 'button-positive',
+         onTap: function(e) {
+          if ($scope.findUser.name == undefined) {
+
+            e.preventDefault();
+          } else {
+              var findUserRef = new Firebase("https://vote-x.firebaseio.com/users/usernameList");
+              findUserRef.once("value", function(findSnap){
+                  var findUserChild = findSnap.child($scope.findUser.name).exists();
+                  if(findUserChild){
+                      
+                     var newPartnerRef = new Firebase("https://vote-x.firebaseio.com/users/"+findSnap.child($scope.findUser.name).val());
+                     $scope.newPartner = $firebaseArray(newPartnerRef);
+                     
+                     console.info($scope.newPartner);
+                      messageFactory.createNewPartner($scope.newPartner);
+                      
+                      
+                      
+                      
+                  }
+                  
+                  
+                  
+                  
+                  
+              });  
+          }
+        }
+      }
+    ]
+  });
+        
+        
+        
+        
+    }
+
+
      
         };
         

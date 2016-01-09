@@ -10,12 +10,12 @@ var handleOpenURL = function(url) {
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var votex = angular.module('starter', ['ionic','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
+var votex = angular.module('starter', ['ionic','firebase','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
                                         'starter.voteCtrl','starter.messageCtrl','starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
                                         'starter.vote_historyCtrl','angular-progress-button-styles','ngMap',
                                         'google.places','starter.searchHistoryCtrl'])
 
-votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory, $rootScope, $location) {
+votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory, $rootScope, $location, $ionicLoading) {
   $ionicPlatform.ready(function() { 
     
     $rootScope.placeObject;
@@ -26,7 +26,8 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     $rootScope.partnerUid;
     $rootScope.toUser;
     $rootScope.messageBoxIndex = 0;
-    
+   $rootScope.adMobCounter = 0;
+   
     $rootScope.voteUpdater = {
         avg_points:null,
         ambiente_avg:null,
@@ -47,24 +48,9 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
             
         }
         
-        
-        //---------------------------------- AdMob -------------------------------------
+  
 
 
-// AdMob HomeBanner
-            if(window.plugins && AdMob) {
-                var admob_key = ionic.Platform.device() == "Android" ? "ca-app-pub-9863131629845499/7662967966" : "ca-app-pub-9863131629845499/7802568766";
-               console.info("Found : "+ionic.Platform.device());
-               console.info("bannerID userd: "+admob_key);
-                    AdMob.createBanner( {
-        adId: admob_key, 
-        isTesting: false,
-        overlap: false, 
-        offsetTopBar: false, 
-        position: AdMob.AD_POSITION.BOTTOM_CENTER,
-        bgColor: 'white'
-    } );
-            }
       
       
     		    //Preload ALL Images
@@ -97,14 +83,30 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
      
     
   
-    if (window.cordova && window.cordova.plugins && window.StatusBar) {
+    if (window.cordova && window.cordova.plugins ){ 
+         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             if (window.cordova.plugins.Keyboard) {
-			  $cordovaStatusbar.overlaysWebView(true);
-      		  $cordovaStatusbar.styleHex('#DFDFDF');
-              cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-              cordova.plugins.Keyboard.disableScroll(false)
+              if(ionic.Platform.isIOS()){
+                  cordova.plugins.Keyboard.disableScroll(true);
+              }
+           }
+            
+                
+                 if(ionic.Platform.isWebView()){
+                 if(AdMob){
+           
+           var admob_interstitial_key = ionic.Platform.device() == "Android" ? "ca-app-pub-9863131629845499/3899772767" : "ca-app-pub-9863131629845499/8329972361";
+           
+           AdMob.prepareInterstitial( {
+               adId:admob_interstitial_key,
+               autoShow:false
+               } );  
               
-            }
+                     
+        }
+       }      
+            
+            
         }
         
         if(typeof window.localStorage.getItem("external_load") !== "undefined"){
@@ -118,6 +120,15 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
         }
 
   });
+  
+  
+      
+  
+  
+  
+  
+  
+  
 })
 
 
@@ -192,7 +203,6 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
   .state('app.forgot', {
     url: "/forgot",
-    controller: 'loginCtrl',
     views: {
       'menuContent': {
         templateUrl: "templates/forgot.html"

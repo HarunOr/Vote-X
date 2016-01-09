@@ -73,6 +73,7 @@
 
     // Login
     $scope.doLogin = function (email, password) {
+    
 
         if (email !== undefined && password !== undefined) {
                     $ionicLoading.show({
@@ -112,9 +113,8 @@
                     userFB.set(hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year);
                     
                      $rootScope.currentUserSignedIn =true;
-                     
+                      var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authData.uid);
                      //Get userdata to display
-                     var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authData.uid);
                      userFB.once("value", function(snapshot){
                         $scope.$apply(function(){
                         $scope.userData = snapshot.val();
@@ -140,6 +140,56 @@
             })
         }
       };
+      
+
+                  var authDatas = myRef.getAuth();
+                  
+          
+            if (authDatas && !$rootScope.currentUserSignedIn) {
+                $ionicLoading.show({
+                  template: 'Anmeldung läuft<p><ion-spinner icon="dots" class="spinner-assertive"></ion-spinner></p>'
+                    });
+                
+                var d = new Date();
+    
+                    var minutes = d.getMinutes();
+                    var hours = d.getHours();
+                    var day = d.getDate();
+                    var month = d.getMonth();
+                    var year = d.getFullYear();
+                    
+                    var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authDatas.uid+"/last_login")
+                    userFB.set(hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year);
+                    $rootScope.currentUserSignedIn =true;
+                    var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authDatas.uid); 
+                     //Get userdata to display
+                     userFB.once("value", function(snapshot){
+                        if(!$scope.$$phase) {
+                        $scope.$apply(function(){
+                        $scope.userData = snapshot.val();
+                        $rootScope.user.level = $scope.userData.level;
+                        $rootScope.user.username =  $scope.userData.username;
+                        $rootScope.user.verified =  $scope.userData.verified;
+                        $rootScope.user.ownProfileImage = $scope.userData.ownProfileImg;
+                        $rootScope.user.amountVotes = $scope.userData.votes;
+                        $rootScope.user.profileImage = $scope.userData.profileImage;
+                        $rootScope.user.memberSince = $scope.userData.registrationDate.substring(5,16);
+                        $rootScope.user.contacts = $scope.userData.contacts;     
+                        $rootScope.user.upvotePoints = $scope.userData.upvote_points;
+                     })}});                
+                     
+                     $rootScope.userInfo = authDatas;
+                     $scope.userID = authDatas.uid;
+                
+                $ionicLoading.hide();
+        }         
+         else {
+        
+            }
+           
+        
+      
+      
 
 //----------------------Register function ------------------------------
       $scope.doRegister = function (username,username1, password1, password2) {

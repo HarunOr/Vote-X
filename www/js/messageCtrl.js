@@ -5,7 +5,7 @@ var votex = angular
       .module('starter.messageCtrl',['firebase','monospaced.elastic','ionic'])
       votex.controller("messageCtrl", function (messageFactory,$ionicScrollDelegate,$scope,$rootScope,$ionicLoading, $timeout, $state, $firebaseArray) {
 	
-    
+
     if($rootScope.currentUserSignedIn){
    $rootScope.input = {message:""};     
         
@@ -31,7 +31,9 @@ var votex = angular
     //Get messages
     $scope.messages = $firebaseArray(messageRef);
 
-   
+         $timeout(function() {
+        $ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(false);
+    });
 
   $scope.inputUp = function() {
     if (ionic.Platform.isIOS()) $scope.data.keyboardHeight = 216;
@@ -112,7 +114,52 @@ $scope.postMessage = function(message){
 
         };
         
+        
+        
+       if(ionic.Platform.isAndroid()){
+           
+window.addEventListener('native.keyboardshow', keyboardShowHandler);
+
+function keyboardShowHandler(e){
+    
+    console.info("keyboard height = "+e.keyboardHeight);
+  
+    $scope.keyboardFix = {
+                          position: 'relative',
+                          footerHeight: e.keyboardHeight-44,
+                          contentHeight: e.keyboardHeight,
+                          keyboardOpen: true
+                         } 
+    $scope.keyboardOpened = true;
+    console.info("footer height = "+$scope.keyboardFix.footerHeight);
+    $timeout(function(){
+        $ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(false);
+        $ionicScrollDelegate.$getByHandle('chatScroll').resize();
+    });
+ 
+    
+    }
+
+
+window.addEventListener('native.keyboardhide', keyboardHideHandler);
+
+function keyboardHideHandler(e){
+   $scope.keyboardOpened = false;
+   $scope.keyboardFix.keyboardOpen = false;
+       $timeout(function(){
+        $ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(false);
+        $ionicScrollDelegate.$getByHandle('chatScroll').resize();
+    });
+   
+    }
+       } 
+        
+        
+        
+        
      $scope.goBack = function(){
+         
+        
          $rootScope.messageCounter = 0;
        $state.go('app.messageBox');  
      };   

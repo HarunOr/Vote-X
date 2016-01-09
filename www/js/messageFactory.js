@@ -19,6 +19,14 @@ votex.factory('messageFactory', function(){
        
        getPartnerData : function(){
            return partnerData;
+       },
+       
+       createNewPartner : function(newPartnerData){
+           newPartner = {
+                            
+                    
+               
+                        }
        }
        
     }
