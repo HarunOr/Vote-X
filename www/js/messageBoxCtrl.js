@@ -92,13 +92,23 @@ votex.controller("messageBoxCtrl", function ($scope,$rootScope,$ionicLoading, $t
               findUserRef.once("value", function(findSnap){
                   var findUserChild = findSnap.child($scope.findUser.name).exists();
                   if(findUserChild){
-                      
-                     var newPartnerRef = new Firebase("https://vote-x.firebaseio.com/users/"+findSnap.child($scope.findUser.name).val());
-                     $scope.newPartner = $firebaseArray(newPartnerRef);
-                     
-                     console.info($scope.newPartner);
-                      messageFactory.createNewPartner($scope.newPartner);
-                      
+                     $scope.findUserKey = findSnap.child($scope.findUser.name).val();
+                     var newPartnerRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.findUserKey);
+                     newPartnerRef.once("value", function(partnerDataSnap){
+                        var partnerDatas = partnerDataSnap.val(); 
+                         
+                        $scope.newPartnerArray = { pID: $scope.findUserKey,
+                                                   text: null,
+                                                   name: partnerDatas.username,
+                                                   ownProfileImage: partnerDatas.ownProfileImg,
+                                                   profileImage: partnerDatas.profileImage                                        
+                                                }    
+                      messageFactory.setPartnerData($scope.newPartnerArray);
+                      $state.go('app.messages');                          
+                                              
+                     });
+
+
                       
                       
                       

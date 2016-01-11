@@ -9,11 +9,15 @@
 
 <div class="list" ng-repeat="partner in message track by $index"> 
 
-  <li class="item" style="margin-bottom: 5px"> 
-   <img ng-if="!partner.ownProfileImage" ng-src="{{partner.profileImage}}" style="width: 10%; border-radius:50%;"/> 
-     <img ng-if="partner.ownProfileImage" data-ng-src="data:image/png;base64,{{partner.profileImage}}" style="width: 10%; border-radius:50%;"/>
-   {{partner.name}}
-   <button ng-click="openMessages($index)" class="button button-assertive button-clear" style="float: right"> <i class="icon ion-email" style="margin-right:1%"></i>Öffnen</button>
+  <li class="item" class="listMessageItem"> 
+  <div class="row">
+      <div class="col">
+   <img ng-if="!partner.ownProfileImage" ng-src="{{partner.profileImage}}" class="listItemAvatar"/> 
+     <img ng-if="partner.ownProfileImage" data-ng-src="data:image/png;base64,{{partner.profileImage}}" class="listItemAvatar"/>{{partner.name}}
+   </div>
+   <div class="col">
+   <button ng-click="openMessages($index)" class="button button-assertive button-clear openMessageItem"> <i class="icon ion-email" style="margin-right:1%"></i>Öffnen</button>
+   </div></div>
     </li>
 
   </div>

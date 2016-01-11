@@ -35,26 +35,6 @@ var votex = angular
         $ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(false);
     });
 
-  $scope.inputUp = function() {
-    if (ionic.Platform.isIOS()) $scope.data.keyboardHeight = 216;
-    $timeout(function() {
-        $ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(true);
-    }, 300);
-
-  };
-
-  $scope.inputDown = function() {
-    if (ionic.Platform.isIOS()) $scope.data.keyboardHeight = 0;
-     $ionicScrollDelegate.$getByHandle('chatScroll').resize();
-  };
-
-  $scope.closeKeyboard = function() {
-                if(ionic.Platform.isWebView()){
-            cordova.plugins.Keyboard.close();
-            
-        }
-    
-  };
   
   // Post message
 
@@ -163,7 +143,10 @@ function keyboardHideHandler(e){
          $rootScope.messageCounter = 0;
        $state.go('app.messageBox');  
      };   
-        
+     
+     
+     
+       
         
      });
 

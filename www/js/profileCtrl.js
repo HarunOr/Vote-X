@@ -1,12 +1,7 @@
-angular.module('starter.profileCtrl', ['firebase','ionic'])
+angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
 
-.controller('profileCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicPopup,$timeout, $ionicLoading, $ionicScrollDelegate) {
+.controller('profileCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicPopup,$timeout, $ionicLoading, $ionicScrollDelegate, $jrCrop) {
 
-
-        if(ionic.Platform.isWebView()){
-           screen.lockOrientation('portrait'); 
-            
-        }
              
                    $ionicLoading.show({
                      
@@ -29,19 +24,37 @@ angular.module('starter.profileCtrl', ['firebase','ionic'])
       //Bild aus Gallerie
   $scope.selectPic = function(){
         navigator.camera.getPicture(function(imageData){
-        $rootScope.user.profileImage = imageData;
-        var voteHistoryRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
-        voteHistoryRef.update({'profileImage': imageData, ownProfileImg: true});
+            
+        $jrCrop.crop({
+             url: "data:image/jpeg;base64," + imageData,
+             width: 200,
+             height: 200,
+             cancelText: 'Abbrechen',
+             chooseText: 'Fertig'
+             }).then(function(canvas) {
+            // success!
+            var image = canvas.toDataURL();
+            console.info("image = "+image);
+             $rootScope.user.profileImage = image;
+             var voteHistoryRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
+             voteHistoryRef.update({'profileImage': image, ownProfileImg: true});
+             
+             $ionicPopup.alert({
+             title: 'Bild ausgewählt',
+             template: 'Sie haben erfolgreich ein neues Profilbild ausgewählt'
+            });
+            }, function() {
+            // User canceled or couldn't load image.
+            });    
+            
+            
+       
         
         
-           $ionicPopup.alert({
-     title: 'Bild ausgewählt',
-     template: 'Sie haben erfolgreich ein neues Profilbild ausgewählt'
-   });
         
     },function(err){
         if(err == "Selection cancelled"){
-            
+            alert("Bildauswahl abgebrochen!"); 
         }
         else {
       alert("Ups, etwas ist schief gelaufen!"+err);        

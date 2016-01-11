@@ -18,12 +18,12 @@
         <span class="input-label">Benutzername</span>
         <input name="username" type="text" ng-model="username" placeholder="Benutzername"
         ng-minlength="5"
-        ng-maxlength="15"
+        ng-maxlength="10"
         required>
       </label>
         <div style="color:red" class="form-errors" ng-messages="registerForm.username.$error" ng-if="registerForm.$submitted">
         <div class="form-error" ng-message="required">Sie benötigen zur Registrierung einen Benutzernamen.</div>
-        <div class="form-error" ng-message="maxlength">Ihr Benutzername darf maximal 15 Zeichen enthalten!</div>
+        <div class="form-error" ng-message="maxlength">Ihr Benutzername darf maximal 10 Zeichen enthalten!</div>
         <div class="form-error" ng-message="minlength">Ihr Benutzername muss mindestens 5 Zeichen enthalten!</div>
         <div class="form-error" ng-message="pattern">Ihr Benutzername darf nur aus Buchstaben und Zahlen bestehen!</div>
       </div>

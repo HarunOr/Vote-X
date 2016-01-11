@@ -1,5 +1,5 @@
  angular.module('starter.loginCtrl', ['firebase','ngMessages'])
-.controller("loginCtrl", function ($scope, $ionicModal, $rootScope, $ionicPopup, $state, $firebaseAuth, $ionicLoading, $firebaseArray) {
+.controller("loginCtrl", function ($scope, $ionicModal, $rootScope, $ionicPopup, $state, $firebaseAuth, $ionicLoading, $firebaseArray, $timeout) {
 
 
    // Firebase reference
@@ -164,7 +164,7 @@
                     var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authDatas.uid); 
                      //Get userdata to display
                      userFB.once("value", function(snapshot){
-                        if(!$scope.$$phase) {
+                        if(!$scope.$$phase && $rootScope.user) {
                         $scope.$apply(function(){
                         $scope.userData = snapshot.val();
                         $rootScope.user.level = $scope.userData.level;
@@ -176,16 +176,36 @@
                         $rootScope.user.memberSince = $scope.userData.registrationDate.substring(5,16);
                         $rootScope.user.contacts = $scope.userData.contacts;     
                         $rootScope.user.upvotePoints = $scope.userData.upvote_points;
-                     })}});                
+                     })}
+                     else {
+                        $rootScope.user = {username: "", level: "", verified:"", ownProfie:"", ownProfileImage:"", memberSince:"", contacts:"", upvotePoints: ""};  
+                        $scope.userData = snapshot.val();
+                        $rootScope.user.level = $scope.userData.level;
+                        $rootScope.user.username =  $scope.userData.username;
+                        $rootScope.user.verified =  $scope.userData.verified;
+                        $rootScope.user.ownProfileImage = $scope.userData.ownProfileImg;
+                        $rootScope.user.amountVotes = $scope.userData.votes;
+                        $rootScope.user.profileImage = $scope.userData.profileImage;
+                        $rootScope.user.memberSince = $scope.userData.registrationDate.substring(5,16);
+                        $rootScope.user.contacts = $scope.userData.contacts;     
+                        $rootScope.user.upvotePoints = $scope.userData.upvote_points; 
+                         
+                         
+                         
+                     }
+                     
+                     
+                     
+                     });                
                      
                      $rootScope.userInfo = authDatas;
                      $scope.userID = authDatas.uid;
                 
-                $ionicLoading.hide();
+                    $timeout(function() {
+     $ionicLoading.hide();; //close the popup after 0,5 seconds for some reason
+  }, 500);
         }         
-         else {
-        
-            }
+
            
         
       

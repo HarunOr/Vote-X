@@ -63,7 +63,6 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
         'img/voteTitleOff.png',
         'img/voteRateOn.png',
         'img/voteRateOff.png',
-        'img/profile_harun-oral.jpg',
         'img/buttonRestaurant.png',
         'img/buttonBar.png',
         'img/buttonCoffee.png',

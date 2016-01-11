@@ -43,14 +43,14 @@
           </ion-item>
           
           <ion-item nav-clear menu-close href="#/app/profile" style="height: 100px" ng-if="currentUserSignedIn">
-          <div class="row" >
+          <div class="row" style="width: 100%; margin: 0 auto" >
             <div class="col">
            <div class="item-thumbnail-left item-image">
        <img ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33"  ng-if="!user.ownProfileImage">
          <img  data-ng-src="data:image/png;base64,{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33">
         </div>
         </div>
-        <div class="col">
+        <div class="col" style="margin-left: auto; margin-right: auto; left: 0; right: 0">
           <i ng-if="user.verified" class="icon ion-ios-star" style="color: #D43D33;"></i>{{user.username}}
         <p>{{user.level}} </p>
      </div>

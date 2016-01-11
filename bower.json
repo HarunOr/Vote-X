@@ -9,6 +9,7 @@
     "ionic-image-lazy-load": "ion-image-lazy-load#*",
     "angular-progress-button-styles": "~0.1.0",
     "angular-moment": "~0.10.3",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "jr-crop": "~1.1.2"
   }
 }

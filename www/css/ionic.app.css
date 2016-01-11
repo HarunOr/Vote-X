@@ -90,6 +90,24 @@ $dark:                            #444 !default;
   background-color: #158ffe;
   -webkit-transform: rotate(118deg) skew(-5deg); }
 
+.listMessageItem {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-bottom: 5px; }
+
+.listItemAvatar {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  max-width: 50%;
+  border-radius: 50%; }
+
+.openMessageItem {
+  color: #D43D33; }
+
 .frame {
   text-align: center;
   margin: 2em 0; }
@@ -104,6 +122,7 @@ $dark:                            #444 !default;
   width: auto; }
 
 .profileImg {
+  margin-top: 5% !important;
   height: auto;
   width: auto; }
 
