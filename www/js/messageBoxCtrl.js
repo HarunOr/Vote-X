@@ -59,9 +59,10 @@ votex.controller("messageBoxCtrl", function ($scope,$rootScope,$ionicLoading, $t
         
     });
     
-    $scope.openMessages = function(index){
+    $scope.openMessages = function(index){  
       messageFactory.setPartnerData($scope.message[index]);
       $state.go('app.messages');  
+   
     };
 
 

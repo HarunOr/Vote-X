@@ -47,7 +47,7 @@
             <div class="col">
            <div class="item-thumbnail-left item-image">
        <img ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33"  ng-if="!user.ownProfileImage">
-         <img  data-ng-src="data:image/png;base64,{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33">
+         <img  data-ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33">
         </div>
         </div>
         <div class="col" style="margin-left: auto; margin-right: auto; left: 0; right: 0">
@@ -90,16 +90,6 @@
           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/trends" ng-if="currentUserSignedIn">
           <i class="icon ion-ios-flame" style="color: #D43D33;font-size: 22px"></i>
            Trends
-          </ion-item>
-          
-           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/trends" ng-if="currentUserSignedIn">
-          <i class="icon ion-chatbox" style="color: #D43D33;font-size: 22px"></i>
-           Chat
-          </ion-item>
-          
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/offers" ng-if="currentUserSignedIn">
-          <i class="icon ion-flag" style="color: #D43D33;font-size: 22px"></i>
-            Angebote/Rabatte
           </ion-item>
           
           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/settings" ng-if="currentUserSignedIn">

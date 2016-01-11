@@ -492,7 +492,9 @@ $scope.closeSearch = function() {
          return;
         }
         else {
-  $scope.show = function() {
+            
+   if($rootScope.user.verified){
+          $scope.show = function() {
     $ionicLoading.show({
       template: 'Wird geladen..',
       hideOnStateChange: true
@@ -500,7 +502,17 @@ $scope.closeSearch = function() {
   };
 
   viewFactory.callVote = "true";
-  $state.go('app.business');
+  $state.go('app.business');       
+   }         
+   
+   else {
+               $ionicPopup.alert({
+            title: 'Oh nein!',
+            template: 'Du musst dich erst verifizieren, um voten zu können!'
+        });
+       
+   }
+
     }
   };
   

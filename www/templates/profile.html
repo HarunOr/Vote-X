@@ -9,7 +9,7 @@
 
        <img class="profileImg" ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="!user.ownProfileImage" style="margin: 0 auto">
        <div class="frame">
-       <img class="image" data-ng-src="data:image/png;base64,{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage" >
+       <img class="image" data-ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage" >
        </div>
   
   <div class="profileInfo">

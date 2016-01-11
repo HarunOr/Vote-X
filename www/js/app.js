@@ -11,7 +11,7 @@ var handleOpenURL = function(url) {
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var votex = angular.module('starter', ['ionic','firebase','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
-                                        'starter.voteCtrl','starter.messageCtrl','starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
+                                        'starter.voteCtrl','starter.messageCtrl','starter.settingCtrl','starter.bookmarkCtrl','starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
                                         'starter.vote_historyCtrl','angular-progress-button-styles','ngMap',
                                         'google.places','starter.searchHistoryCtrl'])
 
@@ -22,7 +22,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     $rootScope.votexObject;
     $rootScope.checkIfSecondSlide = {is: false };
     $rootScope.userInfo;
-    $rootScope.user = {username: "", level: "", verified:"", ownProfie:"", ownProfileImage:"", memberSince:"", contacts:"", upvotePoints: ""};
+    $rootScope.user = {username: "", level: "", verified:"", ownProfile:"", ownProfileImage:"", memberSince:"", contacts:"", upvotePoints: ""};
     $rootScope.partnerUid;
     $rootScope.toUser;
     $rootScope.messageBoxIndex = 0;
@@ -336,7 +336,27 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     }
   })
 
-
+  .state('app.bookmark', {
+    url: '/bookmark',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/bookmark.html',
+        controller: 'bookmarkCtrl'
+      }
+    }
+  })
+  
+  
+  
+    .state('app.settings', {
+    url: '/settings',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/settings.html',
+        controller: 'settingCtrl'
+      }
+    }
+  })
 
   $urlRouterProvider.otherwise('/app/home');
   

@@ -96,7 +96,7 @@ $scope.postMessage = function(message){
         
         
         
-       if(ionic.Platform.isAndroid()){
+   
            
 window.addEventListener('native.keyboardshow', keyboardShowHandler);
 
@@ -111,6 +111,12 @@ function keyboardShowHandler(e){
                           keyboardOpen: true
                          } 
     $scope.keyboardOpened = true;
+     if(ionic.Platform.isIOS()){
+       $scope.keyboardFix.footerHeight =   $scope.keyboardFix.footerHeight+20;
+         
+      }
+    
+    
     console.info("footer height = "+$scope.keyboardFix.footerHeight);
     $timeout(function(){
         $ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(false);
@@ -132,9 +138,13 @@ function keyboardHideHandler(e){
     });
    
     }
-       } 
+       
         
         
+        if(ionic.Platform.isIOS()){
+         $scope.isApple = {yes: true};     
+        };
+       
         
         
      $scope.goBack = function(){

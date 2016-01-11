@@ -5,30 +5,22 @@
            
            
 <div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
-  <h2 class="title"><i class="icon ion-chatbubbles" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>{{partner.name}}</h2>
+  <h2 class="title">
+ <img  ng-src="{{partner.profileImage}}" alt="Fehler!" style="max-height:80%; border-radius:50%" /> {{partner.name}}</h2>
 </div>
   <ion-content has-bouncing="true" class=" has-header has-subheader has-footer" delegate-handle="chatScroll">
       
 
 
-<div class="row" ng-repeat="object in messages track by $index" style="margin-left: 5px">
-        
-        <div ng-if="!partner.ownProfileImage">
-           <img ng-src="{{partner.profileImage}}" alt="Fehler!" ng-class="{'profile-pic-right': object.ownMessage,'profile-pic-left': !object.ownMessage}">
-            </div>
-         
-         <div ng-if="partner.ownProfileImage">
-             <img  data-ng-src="data:image/png;base64, {{partner.profileImage}}" alt="Fehler!" ng-class="{'profile-pic-right':object.ownMessage,'profile-pic-left': !object.ownMessage}">
-             </div>
-       
-         
-      
+<div class="row" ng-repeat="object in messages track by $index">
     
-  
-    <div ng-class="{'chat-bubble right':object.ownMessage,'chat-bubble left':!object.ownMessage}"  >
+    <div ng-class="{'chat-bubble right':object.ownMessage,'chat-bubble left':!object.ownMessage}">
+        
+
     {{object.text}}
 
     <p></p>
+      <hr noshade size="1">  
     <p style="margin-top: 1%">{{object.time}}</p>
   </div>
   </div>
@@ -38,9 +30,14 @@
   <div style="height:10%"></div>
   
   <!-- Keyboard opened fix-->
-    <div ng-if="keyboardFix.keyboardOpen" style="height:20%"></div>
+    <div ng-if="keyboardFix.keyboardOpen" style="height:{{keyboardFix.footerHeight}}px"></div>
     
     <br/><br/>
+    
+    
+    <div ng-if="isApple.yes">
+        <br/><br/>
+    </div>
     
   </ion-content>
  

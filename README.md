@@ -2,7 +2,8 @@
 - TOP PRIO:
 - <s><b>Crop Pictures with https://github.com/jackrabbitsgroup/angular-area-select</b></s>
 - <b>SMS-Verifizierung</b>
-- <b>Nur verifizierte Nutzer können voten</b>
+- <s><b>Nur verifizierte Nutzer können voten</b></s>
+- <b> Benachrichtigungen bei Nachrichten, antworten etc </b>
 - <s><b>Votes kommen an</b></s>
 - <s><b>Kommentare entfernen können</b></s>
 - <b> Kommentare melden können </b>
