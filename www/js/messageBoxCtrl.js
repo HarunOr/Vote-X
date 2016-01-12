@@ -41,17 +41,15 @@ votex.controller("messageBoxCtrl", function ($scope,$rootScope,$ionicLoading, $t
                                         pID:  $scope.partnerID,
                                         text: $scope.text,
                                         name: $scope.partnerInformation.username,
-                                        ownProfileImage: $scope.partnerInformation.ownProfileImg,
                                         profileImage: $scope.partnerInformation.profileImage
                                     };
                                     
                                     $rootScope.messageBoxIndex++;
             }
-              
           });
           })     
-       
-           
+
+           $ionicLoading.hide();   
        });
        
 
@@ -101,7 +99,6 @@ votex.controller("messageBoxCtrl", function ($scope,$rootScope,$ionicLoading, $t
                         $scope.newPartnerArray = { pID: $scope.findUserKey,
                                                    text: null,
                                                    name: partnerDatas.username,
-                                                   ownProfileImage: partnerDatas.ownProfileImg,
                                                    profileImage: partnerDatas.profileImage                                        
                                                 }    
                       messageFactory.setPartnerData($scope.newPartnerArray);
@@ -136,7 +133,5 @@ votex.controller("messageBoxCtrl", function ($scope,$rootScope,$ionicLoading, $t
         };
         
         
-          $timeout(function(){
-     $ionicLoading.hide();      
-    },500);  
+  
      });

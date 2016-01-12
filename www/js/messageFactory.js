@@ -11,7 +11,6 @@ votex.factory('messageFactory', function(){
                                 id: data.pID,
                                 text: data.text,
                                 name: data.name,
-                                ownProfileImage: data.ownProfileImage,
                                 profileImage: data.profileImage
                                }
       

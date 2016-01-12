@@ -119,6 +119,7 @@
                         $scope.$apply(function(){
                         $scope.userData = snapshot.val();
                         $rootScope.user.level = $scope.userData.level;
+                        $rootScope.user.uid = authData.uid;
                         $rootScope.user.username =  $scope.userData.username;
                         $rootScope.user.verified =  $scope.userData.verified;
                         $rootScope.user.ownProfileImage = $scope.userData.ownProfileImg;
@@ -146,10 +147,9 @@
                   
           
             if (authDatas && !$rootScope.currentUserSignedIn) {
-                $ionicLoading.show({
-                  template: 'Anmeldung läuft<p><ion-spinner icon="dots" class="spinner-assertive"></ion-spinner></p>'
-                    });
-                
+                    $ionicLoading.show({
+            template: 'Anmeldung läuft<p><ion-spinner icon="dots" class="spinner-assertive"></ion-spinner></p>'
+        });
                 var d = new Date();
     
                     var minutes = d.getMinutes();
@@ -170,6 +170,7 @@
                         $rootScope.user.level = $scope.userData.level;
                         $rootScope.user.username =  $scope.userData.username;
                         $rootScope.user.verified =  $scope.userData.verified;
+                        $rootScope.user.uid = authDatas.uid;
                         $rootScope.user.ownProfileImage = $scope.userData.ownProfileImg;
                         $rootScope.user.amountVotes = $scope.userData.votes;
                         $rootScope.user.profileImage = $scope.userData.profileImage;
@@ -181,6 +182,7 @@
                         $rootScope.user = {username: "", level: "", verified:"", ownProfie:"", ownProfileImage:"", memberSince:"", contacts:"", upvotePoints: ""};  
                         $scope.userData = snapshot.val();
                         $rootScope.user.level = $scope.userData.level;
+                        $rootScope.user.uid = authDatas.uid;
                         $rootScope.user.username =  $scope.userData.username;
                         $rootScope.user.verified =  $scope.userData.verified;
                         $rootScope.user.ownProfileImage = $scope.userData.ownProfileImg;
@@ -201,9 +203,9 @@
                      $rootScope.userInfo = authDatas;
                      $scope.userID = authDatas.uid;
                 
-                    $timeout(function() {
+          
      $ionicLoading.hide();; //close the popup after 0,5 seconds for some reason
-  }, 500);
+
         }         
 
            

@@ -17,6 +17,9 @@ var votex = angular.module('starter', ['ionic','firebase','starter','starter.con
 
 votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $ImageCacheFactory, $rootScope, $location, $ionicLoading) {
   $ionicPlatform.ready(function() { 
+             $ionicLoading.show({
+    template: '<ion-spinner icon="spiral" class="spinner-assertive"></ion-spinner>'
+  });
     
     $rootScope.placeObject;
     $rootScope.votexObject;
@@ -118,6 +121,9 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
             
         }
 
+
+
+        $ionicLoading.hide();
   });
   
   
@@ -140,7 +146,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 // ------------------------
 
 
-	$ionicConfigProvider.views.maxCache(7);
+	$ionicConfigProvider.views.maxCache(13);
 	
 	
   $stateProvider
@@ -155,6 +161,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
   .state('app.home', {
     url: '/home',
+    cache: true,
     views: {
       'menuContent': {
         templateUrl: 'templates/home.html',
@@ -211,7 +218,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
   .state('app.profile', {
     url: "/profile",
-    cache: false,
+    cache: true,
     controller: "profileCtrl",
     views: {
       'menuContent': {
@@ -232,6 +239,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
   .state('app.trends', {
     url: '/trends',
+    cache: true,
     controller: 'AppCtrl',
     views: {
       'menuContent': {
@@ -261,25 +269,6 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     }
   })
   
-.state('app.rooms', {
-    url: '/rooms',
-    views: {
-        'tab-rooms': {
-            templateUrl: 'templates/rooms.html',
-            controller: 'RoomsCtrl'
-        }
-    }
-})
-
-.state('app.chat', {
-    url: '/chat',
-    views: {
-        'tab-chat': {
-            templateUrl: 'templates/chat.html',
-            controller: 'ChatCtrl'
-        }
-    }
-})
 
   .state('app.vote', {
     url: "/vote",
@@ -318,6 +307,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
   .state('app.messages', {
     url: '/messages',
+    cache: true,
     views: {
       'menuContent': {
         templateUrl: 'templates/messages.html',
@@ -328,6 +318,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
   .state('app.messageBox', {
     url: '/messageBox',
+    cache: true,
     views: {
       'menuContent': {
         templateUrl: 'templates/messageBox.html',

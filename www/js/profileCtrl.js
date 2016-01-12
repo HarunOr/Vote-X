@@ -23,6 +23,8 @@ angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
 
       //Bild aus Gallerie
   $scope.selectPic = function(){
+      
+
         navigator.camera.getPicture(function(imageData){
             
         $jrCrop.crop({
@@ -61,26 +63,53 @@ angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
         }
       
     },{sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-    destinationType: Camera.DestinationType.DATA_URL}); 
+    destinationType: Camera.DestinationType.DATA_URL,
+    quality : 75,
+    encodingType: Camera.EncodingType.JPEG,
+    popoverOptions: CameraPopoverOptions,
+    saveToPhotoAlbum: false
+    }); 
   }     
 
          
          
          
           //---------------SMS VERIF--------------------- 
-       $scope.sendSMSText = function(recipient) {
-       var newFb = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.userID);
-        var smsQueue = newFb.child("/sms/"+recipient.phone);
+       $scope.sendSMSText = function() {
+       var newSmsRef = new Firebase("https://vote-x.firebaseio.com/users");
         
-        var personalizedText = "Hallo "+ recipient.name+". Danke für's verifizieren !"+ "./n/n"
-                                "Wir wünschen Dir noch viel Spaß, dein Vote-X Team :)";
         
-        smsQueue.set({
-                name: recipient.name,
-                phone: recipient.phone,
-                text: personalizedText
-            
-                }); 
+        $scope.userNr = {nr: ""};
+        
+          $ionicPopup.show({
+         template: '<input type="text" ng-required ng-model="userNr.nr" placeholder=" z.B. 4915212345678">',
+         title: 'Geben Sie ihre Handynummer ein',
+         subTitle:"Sie erhalten einen Code per SMS, mit dem Sie sich verifizieren können",
+         scope: $scope,
+         buttons: [
+         { text: 'Abbrechen' },
+         {
+         text: '<b>Senden</b>',
+         type: 'button-positive',
+         onTap: function(e) {
+               
+                var uCode = Math.floor(1000 + Math.random() * 9000);
+                var smsQueue = newSmsRef.child("/sms/"+$rootScope.userInfo.uid);
+              var personalizedText = "Hallo "+$rootScope.user.username+"! /n/n. Dein Code lautet :"+uCode+"/n/n"
+                                "Wir wünschen Dir noch viel Spaß! /n/n Dein Vote-X Team :)";
+              
+        
+        smsQueue.update({ 
+            Nr: $scope.userNr.nr, 
+            Code:uCode,
+            text: personalizedText 
+            });
+                
+        }
+      }
+    ]
+  });
+
                 }
           
         $scope.alreadyVerified = function(){

@@ -4,12 +4,12 @@
 
 <!-- Content data-ng-init="loggedOut()"-->
 
-  <ion-content class="profile" ng-controller="profileCtrl" delegate-handle="profileScroll">
+  <ion-content class="profile" ng-controller="profileCtrl">
      
 
-       <img class="profileImg" ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="!user.ownProfileImage" style="margin: 0 auto">
-       <div class="frame">
-       <img class="image" data-ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" ng-if="user.ownProfileImage" >
+    
+       <div class="frame" style="max-width: 200px; margin: 0 auto;margin-top: 5%">
+       <img class="image" data-ng-src="{{user.profileImage}}" alt="Profilbild hochladen!">
        </div>
   
   <div class="profileInfo">

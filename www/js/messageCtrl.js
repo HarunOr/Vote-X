@@ -2,7 +2,7 @@
 var votex = angular
 
       
-      .module('starter.messageCtrl',['firebase','monospaced.elastic','ionic'])
+      .module('starter.messageCtrl',['firebase','monospaced.elastic','ionic','ionicLazyLoad'])
       votex.controller("messageCtrl", function (messageFactory,$ionicScrollDelegate,$scope,$rootScope,$ionicLoading, $timeout, $state, $firebaseArray) {
 	
 
@@ -95,13 +95,12 @@ $scope.postMessage = function(message){
         };
         
         
-        
-   
+
            
 window.addEventListener('native.keyboardshow', keyboardShowHandler);
 
 function keyboardShowHandler(e){
-    
+     if(ionic.Platform.isIOS()){
     console.info("keyboard height = "+e.keyboardHeight);
   
     $scope.keyboardFix = {
@@ -111,10 +110,10 @@ function keyboardShowHandler(e){
                           keyboardOpen: true
                          } 
     $scope.keyboardOpened = true;
-     if(ionic.Platform.isIOS()){
+   
        $scope.keyboardFix.footerHeight =   $scope.keyboardFix.footerHeight+20;
          
-      }
+     
     
     
     console.info("footer height = "+$scope.keyboardFix.footerHeight);
@@ -124,7 +123,24 @@ function keyboardShowHandler(e){
     });
  
     
-    }
+        }
+        
+      else {
+              $scope.keyboardFix = {
+                          position: 'relative',
+                          footerHeight: 20,
+                          contentHeight: 0,
+                          keyboardOpen: true
+                         } 
+    $scope.keyboardOpened = true;
+          $timeout(function(){
+        $ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(true);
+        $ionicScrollDelegate.$getByHandle('chatScroll').resize();
+    });
+ 
+      }  
+         
+    };
 
 
 window.addEventListener('native.keyboardhide', keyboardHideHandler);
