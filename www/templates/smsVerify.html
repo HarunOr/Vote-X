@@ -1,0 +1,85 @@
+<ion-header-bar align-title="center" class="bar bar-assertive">
+  <div class="buttons">
+  <button ng-click="goBackVoting()" class="button button-clear" ng-if="checkIfSecondSlide.is"> <i style="font-size: 80%" class="icon ion-chevron-left"></i></button>  
+  </div>
+  <h1 class="title">Verifizierung</h1>
+  <div class="buttons">
+    <button class="button button-clear" ng-click="closeSmsPop()">Schließen</button>
+  </div>
+</ion-header-bar>
+
+<ion-content class="businessMap" type="text/ng-template" has-header ng-controller="profileCtrl">
+<ion-slide-box  delegate-handle="verifySMS" show-pager="false">
+  
+  <ion-slide style="background-color: white">
+
+               <div class="row">
+           <div class="col">
+        <h5 class="title">Geben Sie ihre Handynummer ein</h2>
+        </div></div>    
+       <div class="row">
+           <div class="col">
+        <h5 class="title">Sie erhalten einen Code per SMS, mit dem Sie sich verifizieren können</h2>
+        </div></div>
+         <div class="row" style="margin: 0 auto; margin-top: 5%">
+      
+      <form name="numberForm">
+      <i class="icon ion-checkmark-round"  style="color: #008B01;font-size: 22px; margin-right: 5px" ng-if="userNr.de"></i> <i class="icon ion-close-round"  style="color: #E50000;font-size: 22px; margin-right: 5px" ng-if="!userNr.de"></i>Ihre Nummer muss mit der deutschen Ländervorwahl beginnen (49).
+        </div>
+      <div class="row" style="margin: 0 auto">
+      
+      <i class="icon ion-checkmark-round"  style="color: #008B01;font-size: 22px; margin-right: 5px" ng-if="userNr.lang"></i><i class="icon ion-close-round"  style="color: #E50000;font-size: 22px; margin-right: 5px" ng-if="!userNr.lang"></i>Ihre Nummer muss eine gültige Länge haben.
+        </div>
+        
+        <div>
+              <label class="item item-input">
+             <input type="text" ng-model="userNr.nr">
+            </label>
+        </div>
+      
+       <button class="button button-positive button-block" ng-click="senden()">
+        Senden
+        </button>
+        </form>
+        
+        
+      </ion-slide>
+      
+<!-- ------------------------- 2. Seite ---------------------------- -->
+      <ion-slide style="background-color: white">
+        
+   
+
+       <div class="row">
+           <div class="col">
+        <h5 class="title">Geben Sie jetzt den Code ein, der per SMS an ihre Nummer versendet wurde</h2>
+        </div></div>
+
+
+
+                <div>
+              <label class="item item-input">
+             <input type="text" ng-model="sms.code">
+            </label>
+        </div>
+            
+            
+  <div class="row" style="margin:0 auto">    
+       <div class="col">    
+        <button class="button button-assertive button-block" ng-click="codeVerification()">
+        <i class="icon icon-votex_icon" style="color: white;margin-right:10px"></i>Verifizieren
+        </button> 
+        </div>
+   </div>
+ 
+  </ion-slide>
+</ion-slide-box>
+      
+      
+      
+      
+      
+     
+          
+</ion-content>
+<script></script>

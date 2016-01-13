@@ -66,11 +66,6 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
         'img/voteTitleOff.png',
         'img/voteRateOn.png',
         'img/voteRateOff.png',
-        'img/buttonRestaurant.png',
-        'img/buttonBar.png',
-        'img/buttonCoffee.png',
-        'img/buttonClub.png',
-        'img/profileBg.png',
         'img/modal1_opt-compressor.jpg',
         'img/background_opt-compressor.jpg',
         'img/noimage.jpg',
@@ -348,6 +343,13 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
       }
     }
   })
+
+  .state('app.smsVerify', {
+    url: "/smsVerify",
+    abstract: true,
+    templateUrl: "templates/smsVerify.html"
+  })
+
 
   $urlRouterProvider.otherwise('/app/home');
   

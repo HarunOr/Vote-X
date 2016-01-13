@@ -1,7 +1,11 @@
 angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
 
-.controller('profileCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicPopup,$timeout, $ionicLoading, $ionicScrollDelegate, $jrCrop) {
+.controller('profileCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicPopup,$timeout, $ionicLoading, $ionicScrollDelegate, $jrCrop, $ionicSlideBoxDelegate) {
+ 
 
+            $rootScope.userNr = {nr:"49",lang: false, de: false, unique: true};
+            $rootScope.sms = {code: null, tryCode: null};
+            
              
                    $ionicLoading.show({
                      
@@ -64,7 +68,7 @@ angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
       
     },{sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
     destinationType: Camera.DestinationType.DATA_URL,
-    quality : 75,
+    quality : 45,
     encodingType: Camera.EncodingType.JPEG,
     popoverOptions: CameraPopoverOptions,
     saveToPhotoAlbum: false
@@ -76,41 +80,160 @@ angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
          
           //---------------SMS VERIF--------------------- 
        $scope.sendSMSText = function() {
-       var newSmsRef = new Firebase("https://vote-x.firebaseio.com/users");
-        
-        
-        $scope.userNr = {nr: ""};
-        
-          $ionicPopup.show({
-         template: '<input type="text" ng-required ng-model="userNr.nr" placeholder=" z.B. 4915212345678">',
-         title: 'Geben Sie ihre Handynummer ein',
-         subTitle:"Sie erhalten einen Code per SMS, mit dem Sie sich verifizieren können",
-         scope: $scope,
-         buttons: [
-         { text: 'Abbrechen' },
-         {
-         text: '<b>Senden</b>',
-         type: 'button-positive',
-         onTap: function(e) {
-               
-                var uCode = Math.floor(1000 + Math.random() * 9000);
-                var smsQueue = newSmsRef.child("/sms/"+$rootScope.userInfo.uid);
-              var personalizedText = "Hallo "+$rootScope.user.username+"! /n/n. Dein Code lautet :"+uCode+"/n/n"
-                                "Wir wünschen Dir noch viel Spaß! /n/n Dein Vote-X Team :)";
+           
+           $scope.sent = false;
+          
+           
+               $scope.smsPopup = $ionicPopup.show({
+                 templateUrl:'templates/smsVerify.html',
+                 scope: $scope,
+                 cssClass: 'businessMap'
+                    })
+                  
+                $timeout(function(){
+                  $ionicSlideBoxDelegate.$getByHandle('verifySMS').enableSlide(false);      
+                });  
               
-        
-        smsQueue.update({ 
-            Nr: $scope.userNr.nr, 
-            Code:uCode,
-            text: personalizedText 
-            });
-                
-        }
-      }
-    ]
-  });
+          
+           
+                $scope.senden = function(){
+                    
+                    var str = $rootScope.userNr.nr.substring(0,2);
+           
+            
+                    if(str == "49"){
+                    $rootScope.userNr.de = true;
+                    }
 
+                    if($scope.userNr.nr.length >11 && $scope.userNr.nr.length < 14){
+                    $rootScope.userNr.lang = true;
+                    }             
+                    
+                   var checkUniqueRef = new Firebase("https://vote-x.firebaseio.com/users/voters_list");
+                   checkUniqueRef.once("value", function(checkData){
+                   
+                    checkData.forEach(function(childCheck){
+                           if(childCheck.val() == $rootScope.userNr.nr){
+                               $rootScope.userNr.unique = false;
+                           }
+                    });
+                      
+                       
+                   }); 
+                    
+                    
+                    
+                    if($scope.userNr.de && $scope.userNr.lang &&  $rootScope.user.verified== false){
+                        
+                        if(!$scope.userNr.unique){
+                            
+                            $ionicPopup.alert({
+                                 title: 'Nummer vergeben',
+                                 template: '<p style="margin:0 auto">Diese Nummer wird schon von einem anderen Nutzer genutzt!</p>'
+                                        });
+                            
+                        }
+                        else{
+                            
+                        
+                        
+                         var uCode = Math.floor(1000 + Math.random() * 9000);
+                         var newSmsRef = new Firebase("https://vote-x.firebaseio.com/users/sms");
+                         var personalizedText = "Hallo "+$rootScope.user.username+"! Dein Code lautet :"+uCode+
+                                " Wir wünschen Dir noch viel Spaß! Dein Vote-X Team :)";
+                         
+                        newSmsRef.update({
+                            Code: uCode,
+                            Text: personalizedText,
+                            phone_number: $rootScope.userNr.nr
+                        })
+                        
+                        if($rootScope.user.uid != undefined || $rootScope.user.uid != null){
+                        var userPushSMS = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.user.uid);
+                        userPushSMS.update({
+                         sms_code:    uCode
+                        });                            
+                        }
+                        
+                        else {
+                               $ionicPopup.alert({
+                                 title: 'Fehler',
+                                 template: '<p style="margin:0 auto">Es fehlen notwendige Daten!</p>'+
+                                        '<p style="margin:0 auto">Wiederholen Sie den Vorgang später nochmal, oder starten Sie die App neu.</p>'
+                                        });
+                                        
+                                   $scope.closeSmsPop();                          
+                        }
+
+                        
+                         $ionicSlideBoxDelegate.$getByHandle('verifySMS').next();
+                        
+                        $scope.codeVerification = function(){
+                          
+                          userPushSMS.once("value", function(codeSnap){
+                             
+                             $rootScope.sms.tryCode = codeSnap.val().sms_code;
+                             
+                             
+                             
+                              
+                          });
+                                               $ionicLoading.show({
+                     
+                            noBackdrop: true,
+                            template: '<ion-spinner icon="lines" class="lines-assertive"/>'
+                                         });
+                          $timeout(function(){ 
+                                                  
+                        if( $rootScope.sms.code == $rootScope.sms.tryCode){
+                           $rootScope.user.verified = true;
+                            userPushSMS.update({
+                              verified: true
+                                
+                            });
+                            
+                            var voterRef = new Firebase("https://vote-x.firebaseio.com/users/voters_list");
+                            voterRef.child($rootScope.user.uid).set($rootScope.userNr.nr);
+                            
+                            $ionicPopup.alert({
+                                 title: 'Verifizierung abgeschlossen',
+                                 template: '<p style="margin:0 auto">Sie haben sich erfolgreich verifiziert!</p>'+
+                                        '<p style="margin:0 auto">Viel Spaß beim Voten</p>'
+                                        });
+                                        
+                                   $scope.closeSmsPop(); 
+                             }
+                               
+                            else {
+                                                        $ionicPopup.alert({
+                        title: 'Fehler!',
+                        template: '<p style="margin:0 auto">Ihr Code ist falsch!</p>'
+                            });
+                            }
+                           },2000);
+                           
+                           
+                           $ionicLoading.hide();
+                        };
+                        
+                        
+                        
+                    }}
+                    else {
+                        $ionicPopup.alert({
+                        title: 'Fehler!',
+                        template: '<p style="margin:0 auto">Ihre Nummer muss alle Bedingungen erfüllen</p>'
+                            });
+                    }
+                    };
+                
                 }
+                
+                
+                $scope.closeSmsPop = function(){
+                     $scope.smsPopup.close();
+                };
+                
           
         $scope.alreadyVerified = function(){
             $ionicPopup.alert({
@@ -118,7 +241,7 @@ angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
      template: 'Du bist schon verifiziert und kannst Beiträge verfassen. Viel Spaß !'
    });
         }  
-          
+
           
 	 
   });

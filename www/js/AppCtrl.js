@@ -302,12 +302,14 @@
                  place_votes.once("value",function(snapshot){
 
                      
-                   
-                    $scope.$apply(function(){
-                    $scope.totalRatings = snapshot.numChildren();
-                    $scope.getVoteString($scope.totalRatings);
-                    $rootScope.votexObject = {avg_points: $scope.votexRating, amountRatings: $scope.totalRatings};
-                    });
+                   $timeout(function(){
+                       $scope.$apply(function(){
+                       $scope.totalRatings = snapshot.numChildren();
+                       $scope.getVoteString($scope.totalRatings);
+                       $rootScope.votexObject = {avg_points: $scope.votexRating, amountRatings: $scope.totalRatings};
+                    });                       
+                   })
+
                     
 
                    
