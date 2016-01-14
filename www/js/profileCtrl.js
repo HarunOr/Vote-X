@@ -1,11 +1,15 @@
 angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
 
-.controller('profileCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicPopup,$timeout, $ionicLoading, $ionicScrollDelegate, $jrCrop, $ionicSlideBoxDelegate) {
+.controller('profileCtrl', function ($scope, $state,$firebaseAuth, $rootScope, $ionicPopup,$timeout, $ionicLoading, $ionicScrollDelegate, $jrCrop, $ionicSlideBoxDelegate) {
  
-
+if($rootScope.currentUserSignedIn){
+    
+    
+    
+    
             $rootScope.userNr = {nr:"49",lang: false, de: false, unique: true};
             $rootScope.sms = {code: null, tryCode: null};
-            
+
              
                    $ionicLoading.show({
                      
@@ -28,28 +32,47 @@ angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
       //Bild aus Gallerie
   $scope.selectPic = function(){
       
-
         navigator.camera.getPicture(function(imageData){
             
         $jrCrop.crop({
-             url: "data:image/jpeg;base64," + imageData,
+             url:"data:image/jpeg;base64,"+imageData,
              width: 200,
              height: 200,
              cancelText: 'Abbrechen',
              chooseText: 'Fertig'
              }).then(function(canvas) {
             // success!
-            var image = canvas.toDataURL();
-            console.info("image = "+image);
-             $rootScope.user.profileImage = image;
+            var image = canvas.toDataURL("image/jpeg");
+                   // amazon upload
+                 
+                 
+    
+                 
+                 var params = { Bucket: $rootScope.creds.bucket, Key: "users/"+$rootScope.user.uid+"/profileImg.txt", ContentType: "text/plain",  Body: image	};
+                 $rootScope.profileImgUrl = params.Key;
+
+                $rootScope.bucket.upload(params, function(err, data){
+                    if(err){
+                                console.log(err);
+                                console.log('Error uploading data: ', data); 
+                    }
+                    else {
+                                     $rootScope.user.profileImage = image;
              var voteHistoryRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
-             voteHistoryRef.update({'profileImage': image, ownProfileImg: true});
+             voteHistoryRef.update({'profileImage': $rootScope.profileImgUrl, ownProfileImg: true});
              
              $ionicPopup.alert({
              title: 'Bild ausgewählt',
              template: 'Sie haben erfolgreich ein neues Profilbild ausgewählt'
             });
-            }, function() {
+                        console.log('succesfully uploaded the image!');
+                       
+                    }
+                } )
+             // Amazon upload end 
+             
+            }, function(err) {
+                console.info("jrCrop ERROR = "+err);
             // User canceled or couldn't load image.
             });    
             
@@ -68,15 +91,13 @@ angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
       
     },{sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
     destinationType: Camera.DestinationType.DATA_URL,
-    quality : 45,
-    encodingType: Camera.EncodingType.JPEG,
-    popoverOptions: CameraPopoverOptions,
+    quality : 75,
     saveToPhotoAlbum: false
     }); 
   }     
+//-------------------------------------------------
 
-         
-         
+
          
           //---------------SMS VERIF--------------------- 
        $scope.sendSMSText = function() {
@@ -139,8 +160,8 @@ angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
                         
                          var uCode = Math.floor(1000 + Math.random() * 9000);
                          var newSmsRef = new Firebase("https://vote-x.firebaseio.com/users/sms");
-                         var personalizedText = "Hallo "+$rootScope.user.username+"! Dein Code lautet :"+uCode+
-                                " Wir wünschen Dir noch viel Spaß! Dein Vote-X Team :)";
+                         var personalizedText = "Hallo "+$rootScope.user.username+"! \n Dein Code lautet :"+uCode+"\n"+
+                                "Wir wünschen Dir\nnoch viel Spaß!\n\nDein Vote-X Team :)";
                          
                         newSmsRef.update({
                             Code: uCode,
@@ -242,6 +263,13 @@ angular.module('starter.profileCtrl', ['firebase','ionic','jrCrop'])
    });
         }  
 
-          
+        }    
+        
+   else {
+       $state.go('app.home');
+   }     
+        
+        
+     
 	 
   });

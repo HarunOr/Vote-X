@@ -1,5 +1,5 @@
  angular.module('starter.loginCtrl', ['firebase','ngMessages'])
-.controller("loginCtrl", function ($scope, $ionicModal, $rootScope, $ionicPopup, $state, $firebaseAuth, $ionicLoading, $firebaseArray, $timeout) {
+.controller("loginCtrl", function ($scope, $ionicModal, $rootScope, $firebaseObject ,$ionicPopup, $state, $firebaseAuth, $ionicLoading, $firebaseArray, $timeout) {
 
 
    // Firebase reference
@@ -101,6 +101,9 @@
                            // console.log("Error logging user in:", error);
                     }
                 } else {
+                    // LOGIN BUTTON
+                                //amazon s3
+
                     var d = new Date();
     
                     var minutes = d.getMinutes();
@@ -111,6 +114,7 @@
                     
                     var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authData.uid+"/last_login")
                     userFB.set(hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year);
+
                     
                      $rootScope.currentUserSignedIn =true;
                       var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authData.uid);
@@ -131,7 +135,11 @@
                      })});
                     $rootScope.userInfo = authData;
                      $scope.userID = authData.uid;
+                   //Load Amazon Credentials & get profile Img
+                        $scope.getS3();
                    $ionicLoading.hide();
+                         
+                   
                     showAlertLoggedIn(authData);
                   $scope.modal1.hide();
                  $state.go("app.home");
@@ -150,6 +158,9 @@
                     $ionicLoading.show({
             template: 'Anmeldung läuft<p><ion-spinner icon="dots" class="spinner-assertive"></ion-spinner></p>'
         });
+        
+                 
+               
                 var d = new Date();
     
                     var minutes = d.getMinutes();
@@ -158,10 +169,14 @@
                     var month = d.getMonth();
                     var year = d.getFullYear();
                     
+                    
                     var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authDatas.uid+"/last_login")
                     userFB.set(hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year);
                     $rootScope.currentUserSignedIn =true;
                     var userFB = new Firebase("https://vote-x.firebaseio.com/users/"+authDatas.uid); 
+                    
+                                                
+                    
                      //Get userdata to display
                      userFB.once("value", function(snapshot){
                         if(!$scope.$$phase && $rootScope.user) {
@@ -177,8 +192,15 @@
                         $rootScope.user.memberSince = $scope.userData.registrationDate.substring(5,16);
                         $rootScope.user.contacts = $scope.userData.contacts;     
                         $rootScope.user.upvotePoints = $scope.userData.upvote_points;
+                        
+                        //Load Amazon Credentials & get profile Img
+                        $scope.getS3();
+                        
+
                      })}
                      else {
+                                  
+               
                         $rootScope.user = {username: "", level: "", verified:"", ownProfie:"", ownProfileImage:"", memberSince:"", contacts:"", upvotePoints: ""};  
                         $scope.userData = snapshot.val();
                         $rootScope.user.level = $scope.userData.level;
@@ -192,6 +214,8 @@
                         $rootScope.user.contacts = $scope.userData.contacts;     
                         $rootScope.user.upvotePoints = $scope.userData.upvote_points; 
                          
+                        //Load Amazon Credentials & get profile Img
+                        $scope.getS3();
                          
                          
                      }
@@ -309,7 +333,57 @@
      
     }
   
+    //-----------------------------Load Amazon Credentials - GET Profile Image-----------------------------------
+    
+            $scope.getS3 = function(){
+                
+                    //amazon s3
+                                
+                                
+                     var credRef = new Firebase("https://vote-x.firebaseio.com/s3/");
+                     var loadCred = $firebaseObject(credRef);
+                     
+                     loadCred.$loaded().then(function(){
 
+                         
+                         $rootScope.creds = {
+                         bucket: loadCred.bucket,
+                         access_key: loadCred.ak_id,
+                         secret_key: loadCred.sak
+                      }      
+                      
+
+               AWS.config.region = 'eu-central-1'; // 
+               AWS.config.update({ accessKeyId: $rootScope.creds.access_key, secretAccessKey: $rootScope.creds.secret_key });
+               $rootScope.bucket = new AWS.S3({ params: { Bucket: $rootScope.creds.bucket } });
+                      
+              if($rootScope.user.ownProfileImage){
+                      
+              var key ="users/"+$rootScope.user.uid+'/profileImg.txt';
+                var imgParams = {
+                    Bucket: '01vtxfra',
+                    Key: key
+                }
+                $rootScope.bucket.getObject(imgParams, function(err,data){
+                if(err){
+                    console.info(err, err.stack);
+                }
+                else {
+
+                    $scope.$apply(function(){
+                    $rootScope.user.profileImage = data.Body.toString('ascii');     
+                    })
+                 }  
+
+                 });
+               }                     
+            
+        });
+    
+    
+    
+          
+            }
     
     
   

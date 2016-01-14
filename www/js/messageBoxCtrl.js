@@ -3,9 +3,7 @@
  .module('starter.messageCtrl')
 votex.controller("messageBoxCtrl", function ($scope,$rootScope,$ionicLoading, $timeout, $state,messageFactory, $ionicPopup, $firebaseArray) {
 	
-             $ionicLoading.show({
-    template: '<ion-spinner icon="spiral" class="spinner-assertive"></ion-spinner>'
-  });
+
   
     if($rootScope.currentUserSignedIn){
    

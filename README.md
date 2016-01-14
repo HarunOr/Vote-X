@@ -3,6 +3,7 @@
 - <s><b>Crop Pictures with https://github.com/jackrabbitsgroup/angular-area-select</b></s>
 - <b>SMS-Verifizierung</b>
 - <b> Bilder in AMAZON S3 laden </b>
+- <b> amazon s3 credentials immer runterladen </b>
 - <s><b>Nur verifizierte Nutzer können voten</b></s>
 - <b> Benachrichtigungen bei Nachrichten, antworten etc </b>
 - <s><b>Votes kommen an</b></s>
