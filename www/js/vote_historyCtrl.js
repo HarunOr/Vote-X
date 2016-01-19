@@ -12,7 +12,7 @@
     $scope.somethingExists = false;
     
     
-    userVoteRef.limitToFirst(25).on("child_added", function(snapshot){
+    userVoteRef.limitToLast(25).on("child_added", function(snapshot){
         
          $ionicLoading.show({
     template: '<ion-spinner icon="spiral" class="spinner-assertive"></ion-spinner>'

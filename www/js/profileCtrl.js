@@ -116,7 +116,10 @@ if($rootScope.currentUserSignedIn){
           
            
                 $scope.senden = function(){
-                    
+                    $ionicLoading.show({
+                        template: '<ion-spinner icon="spiral" class="spinner-assertive"></ion-spinner>'
+                    });
+                                         
                     var str = $rootScope.userNr.nr.substring(0,2);
                     var checkZero = $rootScope.userNr.nr.substring(0,1);
             
@@ -146,11 +149,9 @@ if($rootScope.currentUserSignedIn){
                        
                    }); 
                     
-                    
-                    
-                    if($scope.userNr.de && $scope.userNr.lang && !$scope.userNr.zero &&$rootScope.user.verified== false){
+                    $timeout(function(){
                         
-                        if(!$scope.userNr.unique){
+                   if(!$rootScope.userNr.unique){
                             
                             $ionicPopup.alert({
                                  title: 'Nummer vergeben',
@@ -158,7 +159,12 @@ if($rootScope.currentUserSignedIn){
                                         });
                             
                         }
-                        else{
+                       
+                    else{
+                        
+                    if($scope.userNr.de && $scope.userNr.lang && !$scope.userNr.zero &&$rootScope.user.verified== false){
+                        
+
                             
                         
                         
@@ -245,13 +251,15 @@ if($rootScope.currentUserSignedIn){
                         
                         
                         
-                    }}
-                    else {
+                    }                   
+                     else {
                         $ionicPopup.alert({
                         title: 'Fehler!',
-                        template: '<p style="margin:0 auto">Ihre Nummer muss alle Bedingungen erfüllen</p>'
+                        template: '<p>Ihre Nummer muss alle Bedingungen erfüllen</p>'
                             });
-                    }
+                    }}
+                     $ionicLoading.hide();
+                     },1000)
                     };
                 
                 }

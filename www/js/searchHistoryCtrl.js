@@ -26,7 +26,7 @@
 $scope.searchHistory = $firebaseArray(searchRef.limitToLast(15));
 
      $timeout(function() {
-     $ionicLoading.hide();; //close the popup after 0,5 seconds for some reason
+     $ionicLoading.hide(); //close the popup after 0,5 seconds for some reason
   }, 500);
 
   });
