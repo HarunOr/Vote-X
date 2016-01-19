@@ -29,7 +29,20 @@
       <div class="row" style="margin: 0 auto">
       
       <i class="icon ion-checkmark-round"  style="color: #008B01;font-size: 22px; margin-right: 5px" ng-if="userNr.lang"></i><i class="icon ion-close-round"  style="color: #E50000;font-size: 22px; margin-right: 5px" ng-if="!userNr.lang"></i>Ihre Nummer muss eine gültige Länge haben.
+      
+      </div>
+      
+      <div class="row" style="margin: 0 auto">
+      
+      <i class="icon ion-checkmark-round"  style="color: #008B01;font-size: 22px; margin-right: 5px" ng-if="!userNr.zero"></i><i class="icon ion-close-round"  style="color: #E50000;font-size: 22px; margin-right: 5px" ng-if="userNr.zero"></i>Ihre Nummer darf nicht mit einer 0 beginnen.
+      
         </div>
+        
+            <div class="row" style="margin: 0 auto; margin-top:1%">
+      
+            Beispiel: 4915212345678
+        </div>
+        
         
         <div>
               <label class="item item-input">

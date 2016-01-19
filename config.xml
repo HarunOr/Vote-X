@@ -7,7 +7,7 @@
   <author email="admin@vote-x.net" href="http://vote-x.net">
      Vote-X
     </author>
-  <content src="index.html"/>
+  <content src="http://192.168.2.100:8100" original-src="index.html"/>
   <access origin="*"/>
   <access launch-external="yes" origin="tel:*"/>
   <allow-navigation href="*"/>

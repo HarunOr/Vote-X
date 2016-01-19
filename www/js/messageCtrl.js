@@ -22,11 +22,8 @@ var votex = angular
                         profileImage: messageFactory.getPartnerData().profileImage
                         };
 
-
-
-
        
-   var messageRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/messageBox/"+$scope.partner.id);
+   var messageRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/messageBox/"+$scope.partner.id+"/messages");
  
     //Get messages
     $scope.messages = $firebaseArray(messageRef);
@@ -41,8 +38,8 @@ var votex = angular
 $scope.postMessage = function(message){
    
 
-    var ownMailboxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/messageBox/"+$scope.partner.id);
-    var partnerMailboxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.partner.id+"/messageBox/"+$rootScope.userInfo.uid);
+    var ownMailboxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/messageBox/"+$scope.partner.id+"/messages");
+    var partnerMailboxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.partner.id+"/messageBox/"+$rootScope.userInfo.uid+"/messages");
     
     var d = new Date();
 
@@ -78,18 +75,39 @@ $scope.postMessage = function(message){
         
     })
        partnerMailboxRef.push({
-         ownMessage: false,
+        ownMessage: false,
         read: false,
         text: message,
         time: hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year ,
         utime: Firebase.ServerValue.TIMESTAMP      
     }) 
     
+        var ownMessageBoxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/messageBox/"+$scope.partner.id);
+        var partnerMessageBoxRef = new Firebase("https://vote-x.firebaseio.com/users/"+$scope.partner.id+"/messageBox/"+$rootScope.userInfo.uid);
+       
+  
+       var minusTime = Date.now()*(-1);
+       
+       ownMessageBoxRef.update({
+          read:true,
+          last_message_time: minusTime
+       });
+       
+       partnerMessageBoxRef.update({
+          read:false,
+          last_message_time: minusTime  
+       });
+       
+       var partnerNewMailRef =  new Firebase("https://vote-x.firebaseio.com/users/"+$scope.partner.id);
+       partnerNewMailRef.update({
+           newMail: true
+       })
+       
+       
         $timeout(function() {
         $ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(true);
     }, 300);
     $rootScope.input.message = null;
-
 }
 
         };

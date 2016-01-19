@@ -3,7 +3,7 @@
       <div class="bar bar-subheader item-input-inset" style="background-color: white;border-right-color: transparent;border-left-color: transparent;border-top-color: transparent;border-bottom-color: #D43D33;border-style: solid; border-width:2px;">
   <label class="item-input-wrapper">
     <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
-    <input id="searchBar" type="text" g-places-autocomplete ng-focus="disableTap()" ng-model="input" style="background-color:transparent" addbuttons/>
+    <input id="searchBar" placeholder="Suchen Sie etwas ?" type="text" g-places-autocomplete ng-focus="disableTap()" ng-model="input" style="background-color:transparent" addbuttons/>
   </label>
   <button class="button button-stable" ng-click="se()">
     Suchen
@@ -12,12 +12,13 @@
 
  
   <ion-content class="voteBg has-header has-subheader" lazy-scroll >
-    
+
    
    
 <!-- -------------------------------- -->
-<div align="center" style="font-color: #bebfc0; font-style: bold ;margin-top: 3%;margin-bottom: 3%; opacity: 0.8;" ng-show="!currentUserSignedIn">Loggen Sie sich ein, um Zugang zu allen Funktionen zu erhalten <i class="icon ion-alert" style="color: #D43D33;font-size: 22px; font-style: italic"></i></div>
-<div align="center" style="font-color: #bebfc0;margin-top: 20%;  opacity: 0.5;" ng-hide="searched"> Suchen Sie etwas, um es hier anzeigen zu lassen </div>
+<div class="alert alert-danger" ng-if="!currentUserSignedIn" role="alert">Loggen Sie sich ein, um Zugang zu allen Funktionen zu erhalten</div>
+
+
 
 
 <div class="list card" ng-show="searched">

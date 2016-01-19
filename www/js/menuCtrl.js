@@ -1,16 +1,13 @@
    angular.module('starter.menuCtrl', ['firebase'])
-      .controller("menuCtrl", function ($scope, $ionicModal, $state, $ionicPopup,$rootScope, $ionicScrollDelegate) {
+      .controller("menuCtrl", function ($scope, $ionicModal,$firebaseArray ,$state, $timeout ,$ionicPopup,$rootScope, $ionicScrollDelegate) {
             
 	   
 	        $scope.votexTitle = 'img/votex_title.png';
      $scope.profileImg = 'img/standard_profileImg.jpg';
-	   
+
 	   
                // Firebase reference
     var myRef = new Firebase("https://vote-x.firebaseio.com");
-     $rootScope.currentUserSignedIn = false;
-     
-     
 
     
    // Open the login modal----------------------------------------------------------

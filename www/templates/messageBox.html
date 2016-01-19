@@ -1,28 +1,38 @@
 <ion-view>
 <div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
-  <h2 class="title"><i class="icon ion-android-mail" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>Nachrichten</h2>
+         <button class="button button-icon icon ion-ios-minus-outline"
+          ng-click="show.delete = !show.delete;"></button> 
+          <h2 class="title"><i class="icon ion-android-mail" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>Nachrichten</h2>
+          <button ng-click="createMail()" class="button button-assertive"><i class="icon ion-paper-airplane"></i></button>
 </div>
-  <ion-content has-bouncing="true" class=" has-header has-subheader" lazy-scroll>
-<button ng-click="createMail()" class="button button-assertive button-block"><i class="icon ion-paper-airplane"></i>Nachricht erstellen</button>
+  <ion-content class="has-header has-subheader">
+  <ion-refresher
+    pulling-text="Runterziehen zum aktualisieren..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
+
+ <div style="margin-bottom: 63px"></div>
 
 
+<ion-list show-delete='show.delete'> 
+  
 
-<div class="list" ng-repeat="partner in message track by $index"> 
-
-  <li class="item" class="listMessageItem"> 
+  <ion-item class="listMessageItem" ng-repeat="partner in messageArray track by $index" ng-if="messageArray != undefined"> 
   <div class="row">
       <div class="col">
-   <img  ng-src="{{partner.profileImage}}" class="listItemAvatar"/> 
+   <img  data-ng-src="{{partner.profileImg}}" class="listItemAvatar"/> 
     {{partner.name}}
    </div>
-   <div class="col">
-   <button ng-click="openMessages($index)" class="button button-assertive button-clear openMessageItem"> <i class="icon ion-email" style="margin-right:1%"></i>Öffnen</button>
+   <div class="col col-center">
+   <button ng-click="openMessages($index)" class="button button-assertive button-clear openMessageItem"> <i class="icon ion-email" ng-if="partner.read" style="margin-right:1%"></i><i class="icon ion-email-unread" ng-if="!partner.read" style="margin-right:1%"></i>Öffnen</button>
    </div></div>
-    </li>
+       <ion-delete-button class="ion-minus-circled"
+                       ng-click="deleteMessage($index)">
+    </ion-delete-button>
+  </ion-item>
+</ion-list>
 
-  </div>
-
-
+ <div style="margin-bottom: 63px"></div>
   </ion-content>
 
 

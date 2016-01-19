@@ -4,13 +4,32 @@
                                    'ngMap','firebase','ngCordova'])
 
   votex.controller('AppCtrl', function ($scope,viewFactory, $http,$ionicPlatform,
-                                   $state, $ionicModal, $timeout, 
+                                   $state, $ionicModal, $timeout, $firebaseObject,
                                    $ionicPopup, $cordovaOauth, $rootScope,
                                    $ionicLoading, $ionicScrollDelegate, $firebaseArray, $window
                                     )    {
 
  var ref = new Firebase("https://vote-x.firebaseio.com/");
  $scope.searched = false;
+ 
+ 
+ 
+ 
+ //------------------------ Refresher ----------------------------
+ 
+ 
+ 	
+    $scope.doRefresh = function(){
+       $state.reload();
+         $scope.$broadcast('scroll.refreshComplete');
+    };
+  
+ 
+ 
+ 
+ 
+ 
+ 
 //----------------------------- Search ------------------------------------
    
 
@@ -446,20 +465,7 @@ $scope.closeSearch = function() {
                         return $scope.voteString;
                     }
 
-  
-    //ion-refresher----------------------------------------------------------
-    
 
-    $scope.doRefresh = function () {
-
-
-        $timeout(function () {
-
-            //Stop the ion-refresher from spinning
-            $scope.$broadcast('scroll.refreshComplete');
-
-        }, 1000);
-    };
 //------------------------------Business Modal---------------------------------
 
  $scope.openBusiness = function() {
@@ -539,8 +545,6 @@ $scope.closeSearch = function() {
   $state.go('app.business');
     }
   };
-
-
 
 //-----------------------------------------END APPCTRL-----------------------------------------
 

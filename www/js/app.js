@@ -7,11 +7,10 @@ var handleOpenURL = function(url) {
 };
 
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
+
 var votex = angular.module('starter', ['ionic','firebase','starter','starter.controllers','starter.loginCtrl','starter.menuCtrl','starter.profileCtrl', 
-                                        'starter.voteCtrl','starter.messageCtrl','starter.settingCtrl','starter.bookmarkCtrl','starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
+                                        'starter.voteCtrl','starter.messageCtrl','starter.settingCtrl','starter.bookmarkCtrl',
+                                        'starter.editVoteCtrl','starter.userCtrl','ngCordova','ionic.ion.imageCacheFactory', 'starter.agbCtrl',
                                         'starter.vote_historyCtrl','angular-progress-button-styles','ngMap',
                                         'google.places','starter.searchHistoryCtrl'])
 
@@ -20,7 +19,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
              $ionicLoading.show({
     template: '<ion-spinner icon="spiral" class="spinner-assertive"></ion-spinner>'
   });
-    
+    $rootScope.newMail ;
     $rootScope.placeObject;
     $rootScope.votexObject;
     $rootScope.checkIfSecondSlide = {is: false };
@@ -28,8 +27,10 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
     $rootScope.user = {username: "", level: "", verified:"", ownProfile:"", ownProfileImage:"", memberSince:"", contacts:"", upvotePoints: ""};
     $rootScope.partnerUid;
     $rootScope.toUser;
+    $rootScope.messageArray = [];
     $rootScope.messageBoxIndex = 0;
-   $rootScope.adMobCounter = 0;
+    $rootScope.adMobCounter = 0;
+
    
     $rootScope.voteUpdater = {
         avg_points:null,
@@ -121,34 +122,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
         $ionicLoading.hide();
   });
   
-          var getImage = function(){
-            
-            
-                          var key ="/users/"+$rootScope.user.uid+'/profileImg.txt';
-                          console.info(key)
-                var imgParams = {
-                    Bucket: '01vtxfra',
-                    Key: key
-                }
-                $rootScope.bucket.getObject(imgParams, function(err,data){
-                if(err){
-                    console.info(err, err.stack);
-                }
-                else {
 
-                    $scope.$apply(function(){
-                    $rootScope.user.profileImage = data.Body.toString('ascii');     
-                    })
-   
-       
-                }  
-        });
-    
-    
-    
-          
-            }
-      
   
   
   
@@ -159,6 +133,8 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
+ 
+ 
  
   if (!ionic.Platform.isIOS()) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
@@ -182,7 +158,6 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
   .state('app.home', {
     url: '/home',
-    cache: true,
     views: {
       'menuContent': {
         templateUrl: 'templates/home.html',
@@ -250,6 +225,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
   
   .state('app.business', {
     url: "/business",
+    cache: false,
   views: {
       'menuContent': {
         templateUrl: "templates/business.html",
@@ -328,7 +304,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
   .state('app.messages', {
     url: '/messages',
-    cache: true,
+    reload: true,
     views: {
       'menuContent': {
         templateUrl: 'templates/messages.html',
@@ -339,7 +315,7 @@ votex.run(function($ionicPlatform, $cordovaSplashscreen, $cordovaStatusbar, $Ima
 
   .state('app.messageBox', {
     url: '/messageBox',
-    cache: true,
+    reload: true,
     views: {
       'menuContent': {
         templateUrl: 'templates/messageBox.html',

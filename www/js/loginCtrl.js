@@ -16,7 +16,7 @@
     $scope.registerID;
     $scope.userID; //authData.uid nach Login gespeichert
     $scope.profilePic;
-    var fid; // Firebade user ID firebaseio.com/users/*fid*/email etc
+
    var usernameList = new Firebase("https://vote-x.firebaseio.com/users/usernameList");  
     //Get initial userdata-----------------------------
 
@@ -42,6 +42,7 @@
                level: "Neuling",
                contacts: 0,
                contact_list: "",
+               blocked_list:"",
                upvote_points: 0,
                votes: 0,
                uploaded_images: 0,
@@ -49,6 +50,7 @@
                location: "",
                country: "",
                phone: 0,
+               newMail: false,
                favorites: "",
                last_login: "",
                registrationDate: hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year
@@ -130,8 +132,8 @@
                         $rootScope.user.amountVotes = $scope.userData.votes;
                         $rootScope.user.profileImage = $scope.userData.profileImage;
                         $rootScope.user.memberSince = $scope.userData.registrationDate.substring(5,16);
-                        $rootScope.user.contacts = $scope.userData.contacts;     
-                        $rootScope.user.upvotePoints = $scope.userData.upvote_points;
+                        $rootScope.user.contacts = $scope.userData.contacts;   
+                        $rootScope.newMail = $scope.userData.newMail; 
                      })});
                     $rootScope.userInfo = authData;
                      $scope.userID = authData.uid;
@@ -192,7 +194,7 @@
                         $rootScope.user.memberSince = $scope.userData.registrationDate.substring(5,16);
                         $rootScope.user.contacts = $scope.userData.contacts;     
                         $rootScope.user.upvotePoints = $scope.userData.upvote_points;
-                        
+                        $rootScope.newMail = $scope.userData.newMail;
                         //Load Amazon Credentials & get profile Img
                         $scope.getS3();
                         
@@ -213,7 +215,7 @@
                         $rootScope.user.memberSince = $scope.userData.registrationDate.substring(5,16);
                         $rootScope.user.contacts = $scope.userData.contacts;     
                         $rootScope.user.upvotePoints = $scope.userData.upvote_points; 
-                         
+                        $rootScope.newMail = $scope.userData.newMail;
                         //Load Amazon Credentials & get profile Img
                         $scope.getS3();
                          
@@ -361,7 +363,7 @@
                       
               var key ="users/"+$rootScope.user.uid+'/profileImg.txt';
                 var imgParams = {
-                    Bucket: '01vtxfra',
+                    Bucket: $rootScope.creds.bucket,
                     Key: key
                 }
                 $rootScope.bucket.getObject(imgParams, function(err,data){

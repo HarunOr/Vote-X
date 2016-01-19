@@ -9,9 +9,8 @@ votex.factory('messageFactory', function(){
         setPartnerData : function(data){
          partnerData = {
                                 id: data.pID,
-                                text: data.text,
                                 name: data.name,
-                                profileImage: data.profileImage
+                                profileImage: data.profileImg
                                }
       
        },

@@ -138,7 +138,9 @@
     },function(err){
         alert("Ups, etwas ist schief gelaufen!" +err);
     },{sourceType: Camera.PictureSourceType.CAMERA,
-       destinationType: Camera.DestinationType.DATA_URL});
+        correctOrientation: true,
+       destinationType: Camera.DestinationType.DATA_URL,
+       saveToPhotoAlbum: true});
     
 
   };
@@ -152,6 +154,7 @@
     },function(err){
       alert("Ups, etwas ist schief gelaufen!"+err);  
     },{sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    correctOrientation: true,
     destinationType: Camera.DestinationType.DATA_URL}); 
   }
   
@@ -168,7 +171,7 @@
              
    $ionicPopup.alert({
      title: 'Text zu kurz',
-     template: 'Ihre Bewertung muss mindestends 10 Zeichen enthalten!'
+     template: 'Ihre Bewertung muss mindestens 10 Zeichen enthalten!'
    });
         
     }
@@ -178,12 +181,18 @@
     
     voteCounterRef.update({votes: ($rootScope.user.amountVotes + 1)});
     $rootScope.user.amountVotes = $rootScope.user.amountVotes+1;
+   
+   // amazon upload
+                 
+   var params = { Bucket: $rootScope.creds.bucket, Key: "places/"+$rootScope.user.uid+"/profileImg.txt", ContentType: "text/plain",  Body: image	};
+   $rootScope.profileImgUrl = params.Key;
     
   // Push new vote         
 	var votePusher = place_votes.push({
                   vote_nr: $scope.vote_nr,
                   voter_uid: $rootScope.userInfo.uid,
-				  vote_time: hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year, 
+				  vote_time: hours+":"+minutes+" "+day+"/"+(month+1)+"/"+year,
+                  vote_utime: Firebase.ServerValue.TIMESTAMP, 
 				  reports: 0, 
 				  description: $scope.description.text,
 				  vote_images: $scope.vote_images.src,
@@ -251,4 +260,5 @@
   
 	
 })
-});
+})
+;

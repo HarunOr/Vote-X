@@ -2,35 +2,56 @@
 <div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
   <h2 class="title"><i class="icon icon-votex_icon" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>Deine Votes</h2>
 </div>
-  <ion-content has-bouncing="true" class=" has-header has-subheader" >
+  <ion-content has-bouncing="true" class=" has-header has-subheader">
 
-<div ng-if="somethingExists">
-<div class="card" collection-repeat="object in votedPlace">
 
-  <div class="item item-divider">
-    {{object.placeObject.formatted_address}}
+<ion-list>
+    <ion-item  
+    style="margin: 0 auto"
+    ng-repeat="object in votedPlace">
+                       <div class="row responsive-sm" style="margin: 0 auto">
+                      <div class="col" align="left" style="margin: 0 auto">
+<div class="list card">
+
+ <div class="item item-avatar">
+   <h2>  {{object.placeObject.formatted_address}}</h2>
+    <p><i style="font-size:80%">{{object.voteTime}}</i></p>
   </div>
-  <div class="item item-text-wrap">
-      <i style="font-size:80%">{{object.voteTime}}</i><br/>
-    {{object.voteText}}
+ 
+     
+      <div class="item item-body">
+      <p ng-if="object.voteText.length > 100  && !object.wholeText">
+        
+    {{object.voteText | cut:true:100}} <button class="button button-small button-clear" ng-click="object.wholeText = !object.wholeText"> Mehr</button>
+    </p>
+          <p ng-if="object.voteText.length > 100 && object.wholeText">
+   {{object.voteText}} <button class="button button-small button-clear" ng-click="object.wholeText = !object.wholeText"> Weniger</button>
+    </p>
+              <p ng-if="object.voteText.length <= 100">
+               
+    {{object.voteText}} </p>
+ 
   </div>
-    <div class="item item-divider" style="margin-bottom: 15px">
+      <div class="row row-center" style="background-color: white; margin:0 auto">
+<div style="col">
     <rating ng-model='object.votePoints' max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "true"></rating>
-        <div class="voteNumber">
-        <b>{{object.voteUpvotes}} Punkte</b>
-     </div>
-  </div>
-  </div>
-  </div>
-  
-  
-  
-  
-  
-
-<div style="height: 10%; margin-top:25px !important">
 </div>
+<div class="col">
+        {{object.voteUpvotes}} Punkte
+        </div>
+    </div>
+    </div>
+
+</div>
+</div>
+  </ion-item>
+</ion-list>
     
+    
+    
+    <!-- Bottom Cut fix-->
+<div style="height: 10%; margin-top:50px !important">
+</div>
   </ion-content>
 
 

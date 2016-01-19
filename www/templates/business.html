@@ -10,7 +10,7 @@
   
 
     <button class="button button-block button-assertive" ng-click="openVote()" ng-if="!voted.is" style="margin:0 auto"><i class="icon icon-votex_icon" style="color: white;margin-right:10px"></i>Vote</button>
-     <button class="button button-block button-energized" ng-click="editVote()" ng-if="voted.is" style="margin:0 auto"><i class="icon ion-edit" style="color: white;margin-right:10px"></i>Vote editieren</button> 
+     <button class="button button-block button-energized" ng-click="editVote()" ng-if="voted.is" style="margin:0 auto"><i class="icon ion-edit" style="color: white;margin-right:10px"></i>Vote bearbeiten</button> 
 
     <button class="button button-block button-positive" ng-click="openBusinessMap()" style="margin:0 auto; margin-top:5px;margin-bottom: 5px"><i class="icon ion-map" style="color: white;margin-right:10px"></i>Standort</button> 
      <button class="button button-block button-balanced" ng-click="addFav()" style="margin:0 auto; margin-top:5px;margin-bottom: 5px"><i class="icon ion-bookmark" style="color: white;margin-right:10px"></i>Lesezeichen hinzufügen</button>
@@ -49,19 +49,75 @@
             <div ng-repeat="group in groups">
                 <ion-item class="item-stable"
                           style="background-color: white;"
-                          ng-click="toggleGroup(group)"
                           ng-class="{active: isGroupShown(group)}">
-                    <i class="icon" style="color: #D43D33;" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
-                     
-                    {{group.name}}
+                     <div ng-click="toggleGroup(group)"> <i class="icon" style="color: #D43D33;" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>                          
+                  {{group.name}}</div>
+                                <div  style="float: right" ng-if="showSort(group) && isGroupShown(group)">
+                                   <h4> Sortieren nach</h4> 
+                                <select >
+                                <option selected>Beste</option>
+                                <option>Neueste</option>
+                                </select>
+                                </div>
                 </ion-item>
                 <ion-item class="item-accordion"
-                          ng-repeat="item in group.items"
+                          ng-repeat="item in group.items track by $index"
                           ng-show="isGroupShown(group)"
                           style="margin: 0 auto">
                     <div class="row responsive-sm" style="margin: 0 auto">
                       <div class="col" align="left" style="margin: 0 auto">
-                    {{item}}
+                          <div ng-if="group.id == 0 || group.id == 2">
+                     {{item}}
+                          </div>
+                          
+                          
+                            <div ng-if="group.id == 1">
+                                <div class="list card">
+
+                            
+                            
+                                <div class="row">
+                                    <div class="col">
+                                        <h2 class="commentName">{{item.voterName}}</h2>
+                                        <img data-ng-src="{{item.voterImg}}" class="listItemAvatar">
+                                        </div>
+                                        <div class="col">
+                                             <p class="commentTime">{{item.vote_time}}</p>
+                                    <rating class="commentRating" ng-model="item.vote_points" max="5" state-on="'voteTitleOn'" 
+                                    state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
+                                            </div>
+                                    </div>
+                                    
+
+                                <div class="item item-body">
+                                    <img class="full-image" src="">
+                                    <p ng-if="item.description.length > 100 && !item.wholeText">
+                                    {{item.description | cut:true:100}} <button class="button button-small button-clear" ng-click="item.wholeText = true"> Mehr</button>
+                                    </p>
+                                    <p ng-if="item.description.length <= 100">
+                                        {{item.description}}
+                                        </p>
+                                    <p ng-if="item.description.length > 100 && item.wholeText">
+                                    {{item.description}} <button class="button button-small button-clear" ng-click="item.wholeText = false"> Weniger</button>
+                                    </p>
+                                    <p>
+                                    {{item.vote_upvotes}} Punkte
+                                    </p>
+                                </div>
+                                   <div class="item tabs tabs-secondary tabs-icon-left" >
+                                    <button class="button button-clear tab-item" href="#" ng-click="openVote()">
+                                    <i class="icon icon-votex_icon" style="color: #D43D33" ></i>
+                                    Hilfreicher Beitrag
+                                    </button>
+                                    <button class="button button-clear tab-item" ng-click="openBusiness()">
+                                    <i class="icon ion-ios-flag" style="color: #D43D33"></i>
+                                    Melden
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+                    
+                  
                     </div>
                     <div class="col" ng-if="group.id == 0" style="margin: 0 auto">
                     <rating ng-model="groups[0].scores[$index]" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "true"></rating>
@@ -80,7 +136,7 @@
  </br>
   <br>
  </br>
- 
+ <ion-thread comments="groups[1].items[0]"></ion-thread>
  <!-- Ionic Accordion End -->
  
    

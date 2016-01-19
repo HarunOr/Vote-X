@@ -1,9 +1,13 @@
 # Vote-X
 - TOP PRIO:
+
+
+
+- <b>HTML in messageBox.html nochmal überarbeit - infinite Scroll und http://ionicframework.com/docs/api/directive/ionList/ austesten </b>
 - <s><b>Crop Pictures with https://github.com/jackrabbitsgroup/angular-area-select</b></s>
-- <b>SMS-Verifizierung</b>
-- <b> Bilder in AMAZON S3 laden </b>
-- <b> amazon s3 credentials immer runterladen </b>
+- <s><b>SMS-Verifizierung</b></s>
+- <s><b> Bilder in AMAZON S3 laden </b></s>
+- <s><b> amazon s3 credentials immer runterladen </b></s>
 - <s><b>Nur verifizierte Nutzer können voten</b></s>
 - <b> Benachrichtigungen bei Nachrichten, antworten etc </b>
 - <s><b>Votes kommen an</b></s>
@@ -13,7 +17,7 @@
 - <b>Einzelne Votes ansehen</b>
 - <b>Einzelne Votes bewerten (votes_upvotes)</b>
 - <b>Lesezeichen für Places</b>
--<b>werbung (immer textbanner/ nach 3. suchanfrage interstitial)</b>
+- <s><b>werbung nach 3. suchanfrage interstitial</b></s>
 - <b>Levels Neuling, Bekanntes Gesicht</b>
 
 

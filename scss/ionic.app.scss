@@ -21,9 +21,33 @@ $stable: #DFDFDF!default;
 $assertive: #D43D33!default;
 $testColor: #FFFAFA!default;
 
+@import "www/lib/ionic-threads/ionic.threads.scss";
 
 
 
+.commentImg{
+   float:left;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 40%;
+    max-width:100px;
+    border-radius: 25%!important;
+}
+
+.commentName {
+    float:left;
+    left: 0
+}
+
+.commentRating {
+    float: right;
+}
+
+.commentTime {
+    float:right;
+    font-style: italic !important;
+    
+}
 
 
 
@@ -131,17 +155,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F5F5F5', end
     bottom: 0;
     margin-top: auto;
     margin-bottom: auto;
-    max-width: 30%;
+    width: 40%;
+    max-width:100px;
     border-radius:50%;
 }
 
 .openMessageItem {
-    float: right;
-    position: relative;
-    top: 0;
-    bottom: 0;
-    margin-top: auto;
-    margin-bottom: auto;
+    float:right;
     color: $assertive
 }
 

@@ -7,7 +7,7 @@ if($rootScope.currentUserSignedIn){
     
     
     
-            $rootScope.userNr = {nr:"49",lang: false, de: false, unique: true};
+            $rootScope.userNr = {nr:"49",lang: false, de: false, unique: true, zero: false};
             $rootScope.sms = {code: null, tryCode: null};
 
              
@@ -44,9 +44,6 @@ if($rootScope.currentUserSignedIn){
             // success!
             var image = canvas.toDataURL("image/jpeg");
                    // amazon upload
-                 
-                 
-    
                  
                  var params = { Bucket: $rootScope.creds.bucket, Key: "users/"+$rootScope.user.uid+"/profileImg.txt", ContentType: "text/plain",  Body: image	};
                  $rootScope.profileImgUrl = params.Key;
@@ -91,6 +88,7 @@ if($rootScope.currentUserSignedIn){
       
     },{sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
     destinationType: Camera.DestinationType.DATA_URL,
+    correctOrientation: true,
     quality : 75,
     saveToPhotoAlbum: false
     }); 
@@ -120,7 +118,7 @@ if($rootScope.currentUserSignedIn){
                 $scope.senden = function(){
                     
                     var str = $rootScope.userNr.nr.substring(0,2);
-           
+                    var checkZero = $rootScope.userNr.nr.substring(0,1);
             
                     if(str == "49"){
                     $rootScope.userNr.de = true;
@@ -129,6 +127,12 @@ if($rootScope.currentUserSignedIn){
                     if($scope.userNr.nr.length >11 && $scope.userNr.nr.length < 14){
                     $rootScope.userNr.lang = true;
                     }             
+                    
+                    if(checkZero == 0){
+                    $rootScope.userNr.zero = true;
+                    }      
+                    
+                    
                     
                    var checkUniqueRef = new Firebase("https://vote-x.firebaseio.com/users/voters_list");
                    checkUniqueRef.once("value", function(checkData){
@@ -144,7 +148,7 @@ if($rootScope.currentUserSignedIn){
                     
                     
                     
-                    if($scope.userNr.de && $scope.userNr.lang &&  $rootScope.user.verified== false){
+                    if($scope.userNr.de && $scope.userNr.lang && !$scope.userNr.zero &&$rootScope.user.verified== false){
                         
                         if(!$scope.userNr.unique){
                             
@@ -215,6 +219,8 @@ if($rootScope.currentUserSignedIn){
                             
                             var voterRef = new Firebase("https://vote-x.firebaseio.com/users/voters_list");
                             voterRef.child($rootScope.user.uid).set($rootScope.userNr.nr);
+                            var voteHistoryRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid);
+                            voteHistoryRef.update({phone: $rootScope.userNr.nr});
                             
                             $ionicPopup.alert({
                                  title: 'Verifizierung abgeschlossen',

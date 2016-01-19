@@ -72,7 +72,7 @@
           </ion-item>
           
           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/messageBox" ng-if="currentUserSignedIn">
-          <i class="icon ion-android-mail" style="color: #D43D33;font-size: 22px"></i>
+          <i class="icon ion-email" ng-if="!newMail" style="color: #D43D33;font-size: 22px"></i> <i ng-if="newMail" class="icon ion-email-unread" style="color: #D43D33;font-size: 22px"></i>
             Nachrichten
           </ion-item>
           

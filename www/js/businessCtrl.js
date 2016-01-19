@@ -2,8 +2,9 @@ var votex = angular
        .module('starter.controllers')
        .controller("businessCtrl", function ($scope,$rootScope, $state, $ionicPopup, $ionicModal ,
                                              $ionicScrollDelegate, $http,$log,
-                                             $ionicLoading, $ionicPlatform, $ionicSlideBoxDelegate, viewFactory) {
+                                             $ionicLoading, $ionicPlatform, $ionicSlideBoxDelegate, viewFactory, $firebaseArray) {
 
+if($rootScope.currentUserSignedIn){
  var votedRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.userInfo.uid+"/vote_history/"+$rootScope.placeObject.place_id);
  
  $scope.voted= {is:false};
@@ -35,6 +36,8 @@ if($scope.totalRatings == 1){
 else {
     $scope.voteString = "Votes";
 }
+
+
 // ---------------------- Vote-X RATING ----------------------
 var placeRef = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place.place_id);
 
@@ -74,7 +77,6 @@ var placeRef = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place
 
 $scope.businessName = $scope.place.name;
 
-
 // ---------------------- End RATING ----------------------
 $scope.goHome = function() {
 $state.go("app.home");
@@ -85,7 +87,7 @@ $state.go("app.home");
   $scope.groups = [2];
   
   $scope.groups[0] = { id:0 ,active: 0, name: "Detaillierte Votes",items: [("Service"), ("Location"),("Qualität der Speisen"),("Preis/Leistung"),("Ambiente")], scores: []  };
-  $scope.groups[1] = { id:1 ,active: 0, name: "Bewertungen",items: ("Test")  };
+  $scope.groups[1] = { id:1 ,active: 0, name: "Bewertungen",items: []  };
   $scope.groups[2] = { id:2 ,active: 0, name: "Öffnungszeiten",items: [("Montag:"), ("Dienstag:"),("Mittwoch:"),("Donnerstag:"),("Freitag:"),("Samstag:"),("Sonntag:")],  weekdaysOpenH: [],weekdaysOpenM: [], weekdaysClosedH: [],weekdaysClosedM: []}
   $scope.groups[3] = { id:3 ,active: 0, name: "Beschreibung",  };
   
@@ -113,6 +115,54 @@ $state.go("app.home");
         }
     };
   
+  
+    $scope.showSort = function(group){
+        if(group.id == 1){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+  
+  
+// ---------------------- Get Comments --------------------
+
+var commentRef = new Firebase("https://vote-x.firebaseio.com/places/"+$scope.place.place_id+"/votes");
+var commentArray = $firebaseArray(commentRef);
+commentArray.$loaded().then(function(){
+for(var i = 0; i < commentArray.length; i++){
+    $scope.groups[1].items.push(commentArray[i]);
+    $scope.groups[1].items[i].wholeText = false;
+    $scope.groups[1].items[i].aID = i;
+    
+    $scope.getVoterInfo($scope.groups[1].items[i], i);
+}
+});
+
+
+    $scope.getVoterInfo = function(array, f) {
+            var voterInfoRef =  new Firebase("https://vote-x.firebaseio.com/users/"+array.voter_uid);
+    voterInfoRef.once("value", function(voterData){
+       var data = voterData.val();
+         $scope.groups[1].items[f].voterName =  data.username;
+         $scope.groups[1].items[f].voterOwnProfileImg = data.ownProfileImg;
+         $scope.groups[1].items[f].voterImg = data.profileImage;
+         
+         if(!data.ownProfileImg){
+           $scope.groups[1].items[f].voterImg = data.profileImage;  
+         }
+         else{
+             $scope.getImage(array.voter_uid);
+             
+           $rootScope.commenterImg.on("success", function(resp){
+            $scope.groups[1].items[f].voterImg = resp.data.Body.toString();
+            $ionicLoading.hide();
+                 });
+         }
+    });
+    }
+
   //-----------------------------Öffnungszeiten---------------------------
   $scope.gotOpeningHours = {hours: false};
   
@@ -168,7 +218,6 @@ $state.go("app.home");
   else {
     $scope.testImages.push('img/noimage.jpg');
   }
-
 
 
   // ------------------------------ ngMap -------------------------------------
@@ -300,6 +349,57 @@ $scope.myPopup = $ionicPopup.show({
       }; 
 
 
+        // Get Image from Amazon
+        
+        $scope.getImage = function(index){
+       
+                 var key ="users/"+index+'/profileImg.txt';
+                var imgParams = {
+                    Bucket: $rootScope.creds.bucket,
+                    Key: key
+                }
+                
+             $rootScope.commenterImg = $rootScope.bucket.getObject(imgParams);
+             $rootScope.commenterImg.send();
+            };
+            
+            
+            
+    }
+    
+        else {
+           var fbRef = new Firebase("https://vote-x.firebaseio.com/");
+           var authData = fbRef.getAuth();
+           
+           if(authData){
+               $rootScope.userInfo = authData;
+               $rootScope.userInfo.uid = authData.uid;
+               $rootScope.currentUserSignedIn = true;
+           }
+        }
+})
 
 
-});
+.filter('cut', function () {
+        return function (value, wordwise, max, tail) {
+            if (!value) return '';
+
+            max = parseInt(max, 10);
+            if (!max) return value;
+            if (value.length <= max) return value;
+
+            value = value.substr(0, max);
+            if (wordwise) {
+                var lastspace = value.lastIndexOf(' ');
+                if (lastspace != -1) {
+                    value = value.substr(0, lastspace);
+                }
+            }         
+            
+            return value + (tail || ' …');
+        };
+    });
+
+
+
+;
