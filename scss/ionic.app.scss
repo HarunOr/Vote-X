@@ -46,7 +46,7 @@ $testColor: #FFFAFA!default;
 .commentTime {
     float:right;
     font-style: italic !important;
-    
+
 }
 
 
@@ -61,7 +61,7 @@ $testColor: #FFFAFA!default;
 
 
 .profile {
-    
+
 background: -moz-linear-gradient(90deg, #BFBFBF 0%, #F5F5F5 100%); /* ff3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F5F5F5), color-stop(100%, #BFBFBF)); /* safari4+,chrome */
 background: -webkit-linear-gradient(90deg, #BFBFBF 0%, #F5F5F5 100%); /* safari5.1+,chrome10+ */
@@ -81,7 +81,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F5F5F5', end
   border-radius: 50%;
   position: fixed;
 
-  
+
 
 
 }
@@ -155,8 +155,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F5F5F5', end
     bottom: 0;
     margin-top: auto;
     margin-bottom: auto;
-    width: 40%;
-    max-width:100px;
+    width: 20vw;
+    max-width:25vw;
     border-radius:50%;
 }
 
@@ -172,7 +172,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F5F5F5', end
 //-----------------------------------------------
 .frame{
     text-align: center; margin: 2em 0;
-    
+
 }
 
 
@@ -182,8 +182,8 @@ max-width: 65%;
 max-height: 20%;
 margin: 0em 0 !important;
 vertical-align: middle;
-    height: auto; 
-    width: auto; 
+    height: auto;
+    width: auto;
 }
 
 
@@ -192,8 +192,8 @@ vertical-align: middle;
 
 .profileImg {
     margin-top: 5% !important;
-    height: auto; 
-    width: auto; 
+    height: auto;
+    width: auto;
 }
 
 
@@ -204,10 +204,6 @@ vertical-align: middle;
 }
 
 
-.full-image {
-  max-height: 400px;
-  max-width: 380px;
-}
 
 
 
@@ -279,10 +275,11 @@ user-select: auto !important;
 
 
 .scroll {
-  height: 100%;
+  height: 100% !important;
 }
 
 .body {
+  height: 100% !important;
   width: 100%;
   margin: 0 auto !important;
 }
@@ -298,7 +295,7 @@ user-select: auto !important;
     opacity: 0;
   }
 }
-  
+
 
 @media (max-width: 680px) {
     .active .modal-backdrop-bg {
@@ -329,7 +326,7 @@ margin: 0 auto !important;
 .bottom {
      position:fixed;
    bottom:0;
- 
+
 }
 
 .poweredBy {
@@ -341,7 +338,7 @@ margin: 0 auto;
 // Sidemenu Icon Size
 
 .voteBg {
-  
+
   background-color: #ECEDEF;
 }
 
@@ -351,7 +348,7 @@ margin: 0 auto;
 // Sidemenu Button
         // Profil Bild
 .item-avatar-left {
-  
+
   border: none;
   border-bottom-color: transparent !important;
   border-top-color: transparent !important;
@@ -361,8 +358,8 @@ margin: 0 auto;
 // Home Business Avatar
 .row.row-avatar {
   max-height: 30px;
- 
-  
+
+
 }
 
 // Facebook Button on Login page
@@ -381,7 +378,7 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
     background-color: $assertive;
     background-image: linear-gradient(0deg, #AF251B, #AF251B 50%, transparent 50%);
     color: #fff; }
-    
+
       .bar.bar-assertive .title {
       color: #fff; }
 //-------------------------
@@ -391,16 +388,16 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
  .platform-ipad .registration.scroll-content {
   background: url('../img/background_opt-compressor.jpg') no-repeat;
   background-size: 180% auto;
-   
+
  }
- 
+
   .platform-ipad .modal1.scroll-content {
     background: url('../img/modal1_opt-compressor.jpg') no-repeat;
   background-size:   auto;
 }
- 
- 
- 
+
+
+
 .modal1.scroll-content {
     background: url('../img/modal1_opt-compressor.jpg') no-repeat;
   background-size:  auto;
@@ -431,11 +428,11 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
   margin-left: auto;
   margin-right: auto ;
   position: relative;
-  border-radius: 10px; 
-  border-width: 1px; 
-  border-style: solid; 
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
   border-color: white;
-  
+
 }
 
 
@@ -444,7 +441,7 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 .profileInfo {
   margin-top: 3%;
   padding-bottom: 25%;
-  
+
 }
 
 
@@ -459,8 +456,8 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
         margin: 30px auto 0;
         box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
       }
-      
-      
+
+
 // Google map css
 
 .angular-google-map,
@@ -476,7 +473,7 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
   margin-bottom: 3px;
   min-height: 169px;
   max-height: 700px;
-  height: 85% ;  
+  height: 85% ;
 }
 
 // kategorien  - catagory
@@ -484,7 +481,7 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 .kategorien-Titel {
   text-align: center;
   font-size: 28px;
-  
+
   margin-top: 10px;
   margin-left: 5%;
   margin-right: 5%;
@@ -493,17 +490,17 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
   border-color: $assertive;
   border: 2px solid;
   color: $assertive;
-  
+
 }
 
 .kategorien {
-  
+
   border-top-color: $assertive;
   border-bottom-color: $assertive;
   border-style: solid;
   margin-bottom: 10px;
   background-color: $assertive;
- 
+
 }
 
 
@@ -522,37 +519,37 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
 
 
 .businessBox {
-  
+
   display:block !important;
   max-width:100% !important;
   height:360px !important;
   box-shadow: none;
-  
-  
+
+
 }
 
  //slidebox
- 
+
  .slider {
-   
+
    height: top;
-   
-   
+
+
  }
- 
- 
+
+
 
 .card{
 
   background-image: linear-gradient(0deg, #B2B2B2, #B2B2B2 50%, rgba(0, 0, 0, 0) 50%);
   box-shadow: none;
-  
+
 }
 
 // Subheader
 
 .bar.bar-subheader {
-  
+
   width: 100%;
   background-color: #B3B2B2;
   border-bottom-color: #5C5858;
@@ -566,7 +563,7 @@ $ionicons-font-path: "../lib/ionic/release/fonts" !default;
   font-style:italic;
   font-size: 12px;
   float:right;
-  
+
 }
 
 // Ionic Accordion
@@ -624,21 +621,21 @@ src: local('Avenir Next LT Pro Condensed'), url('fonts/AvenirNextLTPro-Cn.woff')
 // ------------------ Vote-X Rating------------------
 
 //Small Icons
-  .voteRateOn { 
+  .voteRateOn {
       height: 19px;
       width: 22px;
       background-size: contain;
       background-image: url('../img/voteRateOn.png');
     }
-    
+
     .voteRateOff {
       height: 19px;
       width: 22px;
       background-size: contain;
       background-image: url('../img/voteRateOff.png');
     }
-    
-  .voteOn { 
+
+  .voteOn {
       height: 35px;
       width: 40px;
       background-size: contain;
@@ -652,7 +649,7 @@ src: local('Avenir Next LT Pro Condensed'), url('fonts/AvenirNextLTPro-Cn.woff')
     }
 
 
-  .voteTitleOn { 
+  .voteTitleOn {
       height: 26px;
       width: 30px;
       background-size: contain;
@@ -667,9 +664,3 @@ src: local('Avenir Next LT Pro Condensed'), url('fonts/AvenirNextLTPro-Cn.woff')
 
 
 // ---------------------- Vote-X Rating End -------------------
-
-
-  [nav-view-transition="ios"][nav-view-direction="forward"],
-[nav-view-transition="ios"][nav-view-direction="back"] {
-background-color: transparent;
-}

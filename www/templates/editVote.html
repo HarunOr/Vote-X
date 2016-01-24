@@ -1,6 +1,8 @@
 <ion-header-bar align-title="center" class="bar bar-energized">
   <div class="buttons">
-  <button ng-click="goBackVoting2()" class="button button-clear" ng-if="checkIfSecondSlide.is"> <i style="font-size: 80%" class="icon ion-chevron-left"></i></button>  
+    <button ng-click="goBackVoting2()" class="button button-clear" ng-if="checkIfSecondSlide.is">
+      <i style="font-size: 80%" class="icon ion-chevron-left"></i>
+    </button>
   </div>
   <h1 class="title">{{businessName}}</h1>
   <div class="buttons">
@@ -9,104 +11,120 @@
 </ion-header-bar>
 
 <ion-content class="businessMap" id="editVote.html" type="text/ng-template" has-header ng-controller="editVoteCtrl">
-<ion-slide-box  delegate-handle="editVote" show-pager="false">
-  
-  <ion-slide style="background-color: white">
-             <button class="button button-block" ng-click="removeVote()" style="background-color:#ff0033; color:white">
+  <ion-slide-box delegate-handle="editVote" show-pager="false">
+
+    <ion-slide style="background-color: white">
+      <button class="button button-block" ng-click="removeVote()" style="background-color:#ff0033; color:white">
+        <i class="icon ion-trash-b"></i>
         Wertung löschen
-        </button>
-    <div class="row" style="margin-top: 2px; margin: 0 auto;">
-      <div class="col">
-      <h4>Ihre Wertung</h4>
-      </div></div>
-
-    <div class="row responsive-sm" style="margin-top: 2%; margin: 0 auto;">
-      <div class="col" style="margin:0 auto"><h4>Service</h4></div>
-      <div class="col" style="margin:0 auto"><rating ng-model="service.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
-      </div>    
-
-
-    <div class="row responsive-sm" style="margin-top: 5%; margin: 0 auto;">
-      <div class="col" style="margin:0 auto"><h4>Location</h4></div>
-      <div class="col" style="margin:0 auto"><rating ng-model="location.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
-      </div>    
-
-    <div class="row responsive-sm" style="margin-top: 5%; margin: 0 auto;">
-      <div class="col" style="margin:0 auto"><h4>Qualität</h4></div>
-      <div class="col" style="margin:0 auto"><rating ng-model="quality.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
-      </div>    
-    
-    <div class="row responsive-sm" style="margin-top: 5%; margin: 0 auto;">
-      <div class="col" style="margin:0 auto" ><h4>Preis/Leistung</h4></div>
-      <div class="col" style="margin:0 auto"><rating ng-model="best_value.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
-      </div>
-           
-       <div class="row responsive-sm" style="margin-top: 5%; margin: 0 auto;">
-      <div class="col" style="margin:0 auto"><h4>Ambiente</h4></div>
-      <div class="col" style="margin:0 auto"><rating ng-model="ambiente.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "false"></rating></div>
-      </div>
-       
- 
-       <button class="button button-positive button-block" ng-click="showInfo()">
-        Weiter
-        </button>
-
-      </ion-slide>
-      
-<!-- ------------------------- 2. Seite ---------------------------- -->
-      <ion-slide style="background-color: white">
-        
-   
-       <div class="row" style="margin:0 auto">
-  <div class="col" style="margin:0 auto">
-
-    <h4>Deine Bewertung</h4>
-  </div>
-  </div>
-
-   <button class="button button-calm button-block" ng-click="capturePic()" style="margin:0 auto; margin-buttom:2px"><i class="icon ion-ios-camera" style="margin-right: 1px"></i>Bild aufnehmen</button>
-   <button class="button button-royal button-block" ng-click="selectPic()" style="margin:0 auto"><i class="icon ion-images" style="margin-right: 1px; "></i>Bild aus deiner Gallerie</button>   
-  
-   <div ng-if="vote_images.src">
-     <img data-ng-src="data:image/png;base64,{{vote_images.src}}" style="max-width: 100%; max-height:20%"/>
- </div>
-  
- <div class="row" style="margin:0 auto;">
- <div class="col" style="margin:0 auto;border-style:solid; border-color: black">
- 
-<textarea id="TextArea" ng-model="description.text" ng-keyup="autoExpand($event)" style="margin:0 auto;" ng-required="true" ng-minlength="10" ng-maxlength="1000" ng-trim="true"> 
-</textarea>
-
-</div>
-</div>
-
-<div class="row" style="margin-top: 5%;margin:0 auto">
-  <div class="col">
-    <h4>Gesamtwertung</h4>
-    </div>
-    <div class="col">
-      <rating ng-model="total.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly = "true"></rating>
-      </div>
-  </div>
-
-
-
-  <div class="row" style="margin:0 auto">    
-       <div class="col">    
-        <button class="button button-energized button-block" ng-click="vote()">
-        <i class="icon ion-edit" style="color: white;margin-right:10px"></i>Vote editieren
-        </button> 
+      </button>
+      <div class="row" style="margin-top: 2px; margin: 0 auto;">
+        <div class="col">
+          <h4>Ihre Wertung</h4>
         </div>
-   </div>
- 
-  </ion-slide>
-</ion-slide-box>
-      
-      
-      
-      
-      
-     
-          
+      </div>
+
+      <div class="row responsive-sm" style="margin-top: 2%; margin: 0 auto;">
+        <div class="col" style="margin:0 auto">
+          <h4>Service</h4>
+        </div>
+        <div class="col" style="margin:0 auto">
+          <rating ng-model="service.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="false"></rating>
+        </div>
+      </div>
+
+      <div class="row responsive-sm" style="margin-top: 5%; margin: 0 auto;">
+        <div class="col" style="margin:0 auto">
+          <h4>Location</h4>
+        </div>
+        <div class="col" style="margin:0 auto">
+          <rating ng-model="location.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="false"></rating>
+        </div>
+      </div>
+
+      <div class="row responsive-sm" style="margin-top: 5%; margin: 0 auto;">
+        <div class="col" style="margin:0 auto">
+          <h4>Qualität</h4>
+        </div>
+        <div class="col" style="margin:0 auto">
+          <rating ng-model="quality.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="false"></rating>
+        </div>
+      </div>
+
+      <div class="row responsive-sm" style="margin-top: 5%; margin: 0 auto;">
+        <div class="col" style="margin:0 auto">
+          <h4>Preis/Leistung</h4>
+        </div>
+        <div class="col" style="margin:0 auto">
+          <rating ng-model="best_value.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="false"></rating>
+        </div>
+      </div>
+
+      <div class="row responsive-sm" style="margin-top: 5%; margin: 0 auto;">
+        <div class="col" style="margin:0 auto">
+          <h4>Ambiente</h4>
+        </div>
+        <div class="col" style="margin:0 auto">
+          <rating ng-model="ambiente.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="false"></rating>
+        </div>
+      </div>
+
+      <button class="button button-positive button-block" ng-click="showInfo()">
+        Weiter
+      </button>
+
+    </ion-slide>
+
+    <!-- ------------------------- 2. Seite ---------------------------- -->
+    <ion-slide style="background-color: white">
+
+      <div class="row" style="margin:0 auto">
+        <div class="col" style="margin:0 auto">
+
+          <h4>Deine Bewertung</h4>
+        </div>
+      </div>
+
+      <button class="button button-calm button-block" ng-click="capturePic()" style="margin:0 auto; margin-buttom:2px">
+        <i class="icon ion-ios-camera" style="margin-right: 1px"></i>Bild aufnehmen</button>
+      <button class="button button-royal button-block" ng-click="selectPic()" style="margin:0 auto">
+        <i class="icon ion-images" style="margin-right: 1px; "></i>Bild aus deiner Gallerie</button>
+
+      <div class="row" style="margin: 0 auto">
+        <div class="col col-center">
+          <div ng-if="vote_images.src">
+            <img data-ng-src="data:image/png;base64,{{vote_images.src}}" style="max-width: 100%; max-height:20%"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin:0 auto;">
+        <div class="col" style="margin:0 auto;border-style:solid; border-color: black">
+
+          <textarea id="TextArea" style="background-color: #f6f5f4" ng-model="description.text" ng-keyup="autoExpand($event)" style="margin:0 auto;" ng-required="true" ng-minlength="10" ng-maxlength="1000" ng-trim="true"></textarea>
+
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 5%;margin:0 auto">
+        <div class="col">
+          <h4>Gesamtwertung</h4>
+        </div>
+        <div class="col">
+          <rating ng-model="total.points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true"></rating>
+        </div>
+      </div>
+
+      <div class="row" style="margin:0 auto">
+        <div class="col">
+          <button class="button button-energized button-block" ng-click="vote()">
+            <i class="icon ion-edit" style="color: white;margin-right:10px"></i>Vote editieren
+          </button>
+        </div>
+      </div>
+
+    </ion-slide>
+  </ion-slide-box>
+
 </ion-content>
 <script></script>

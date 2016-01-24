@@ -1,89 +1,84 @@
 <ion-view >
-  
-      <div class="bar bar-subheader item-input-inset" style="background-color: white;border-right-color: transparent;border-left-color: transparent;border-top-color: transparent;border-bottom-color: #D43D33;border-style: solid; border-width:2px;">
-  <label class="item-input-wrapper">
-    <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
-    <input id="searchBar" placeholder="Suchen Sie etwas ?" type="text" g-places-autocomplete ng-focus="disableTap()" ng-model="input" style="background-color:transparent" addbuttons/>
-  </label>
-  <button class="button button-stable" ng-click="se()">
-    Suchen
-  </button>
-</div>
 
- 
-  <ion-content class="voteBg has-header has-subheader" lazy-scroll >
-
-   
-   
-<!-- -------------------------------- -->
-<div class="alert alert-danger" ng-if="!currentUserSignedIn" role="alert">Loggen Sie sich ein, um Zugang zu allen Funktionen zu erhalten</div>
-
-
-
-
-<div class="list card" ng-show="searched">
-
-  <div class="item item-avatar">
-
-   
-   
-         <h2>{{dynamicName}}</h2>
-         
-    <p><img ng-src="{{icon}}" ng-show="icon" lazy-scroll-resize="true" style="max-width: 20px"> </img> {{type}}</p>
-
-     <rating ng-model="votexRating" max="5" state-on="'voteTitleOn'" 
-     state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
-    
-     
-      <div class="voteNumber">
-        <b>{{totalRatings}} {{voteString}}</b>
-     </div>
+  <div class="bar bar-subheader item-input-inset" style="background-color: white;border-right-color: transparent;border-left-color: transparent;border-top-color: transparent;border-bottom-color: #D43D33;border-style: solid; border-width:2px;">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
+      <input id="searchBar" placeholder="Suchen Sie etwas ?" type="text" g-places-autocomplete ng-focus="disableTap()" ng-model="input" style="background-color:transparent" addbuttons/>
+    </label>
+    <button class="button button-stable" ng-click="se()">
+      Suchen
+    </button>
   </div>
 
-  <div class="item item-body" >
-   
-   <div align="center"> <img class="full-image" ng-click="openBusiness(place)" ng-src="{{testImage}}"  image-lazy-loader="lines" lazy-scroll-resize="true" ng-if="isGoogle"> </div>
+  <ion-content class="voteBg has-header has-subheader">
 
-    <p>
-      <div align="right" style="color: green;font-style:italic" ng-if="place_open"> Geöffnet </div>
-      <div align="right" style="color: red;font-style:italic" ng-if="!place_open && place_open != undefined"> Geschlossen </div>
-      
-      <b>Adresse</b><br />
-       <div ng-show="place.vicinity">{{place.vicinity}}</div>
-      <b>Telefon</b><br />
-      <a ng-href="tel:{{place.formatted_phone_number}}" ng-show="place.formatted_phone_number">{{place.formatted_phone_number}}</a><br />
-      <b ng-show="place.website">Website</b><br />
-      <a href='#' ng-click="openWindow()">{{place.website}}</a>
-      </p>
-  </div>
+    <!-- -------------------------------- -->
+    <div class="alert alert-danger" ng-if="!currentUserSignedIn" role="alert">Loggen Sie sich ein, um Zugang zu allen Funktionen zu erhalten</div>
 
-  <div class="item tabs tabs-secondary tabs-icon-left" >
-    <a class="tab-item" href="#" ng-click="openVote()" ng-if="!voted.is">
-      <i class="icon icon-votex_icon" style="color: #D43D33" ></i>
-      Vote
-    </a>
-      <a class="tab-item" href="#" ng-click="openBusiness()" ng-if="voted.is">
-      <i class="icon ion-edit" style="color: #D43D33" ></i>
-      Edit
-    </a>
-      <a class="tab-item" ng-click="openBusiness()">
-    <i class="icon ion-information-circled" style="color: #D43D33"></i>
-    Informationen
-  </a>
-    <a class="tab-item" href="#">
-      <i class="icon ion-share" style="color: #D43D33"></i>
-      Teilen
-    </a>
-  </div>
+    <div class="list card" ng-show="searched">
 
-</div>
+      <div class="item item-avatar">
 
+        <h2>{{dynamicName}}</h2>
 
+        <p>
+          <img ng-src="{{icon}}" ng-show="icon" style="max-width: 5vw">
+          {{type}}</p>
 
-<!-- Bottom Cut fix-->
-<div style="height: 10%; margin-top:50px !important">
-</div>
+        <rating ng-model="votexRating" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
 
+        <div class="voteNumber">
+          <b>{{totalRatings}}
+            {{voteString}}</b>
+        </div>
+      </div>
+
+      <div class="item item-body" style="margin:0 auto">
+
+        <div align="center" style="margin:0 auto">
+          <img style="max-height:30vh; max-width: 95vw;" ng-click="openBusiness(place)" image-lazy-src="{{test.Image}}" lazy-scroll-resize="true" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="100">
+        </div>
+
+        <p>
+          <div align="right" style="color: green;font-style:italic" ng-if="place_open">
+            Geöffnet
+          </div>
+          <div align="right" style="color: red;font-style:italic" ng-if="!place_open && place_open != undefined">
+            Geschlossen
+          </div>
+
+          <b>Adresse</b><br/>
+          <div ng-show="place.vicinity">{{place.vicinity}}</div>
+          <b>Telefon</b><br/>
+          <a ng-href="tel:{{place.formatted_phone_number}}" ng-show="place.formatted_phone_number">{{place.formatted_phone_number}}</a><br/>
+          <b ng-show="place.website">Website</b><br/>
+          <a href="#" ng-click="openWindow()">{{place.website}}</a>
+        </p>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#" ng-click="openVote()" ng-if="!voted.is">
+          <i class="icon icon-votex_icon" style="color: #D43D33"></i>
+          Vote
+        </a>
+        <a class="tab-item" href="#" ng-click="openBusiness()" ng-if="voted.is">
+          <i class="icon ion-edit" style="color: #D43D33"></i>
+          Edit
+        </a>
+        <a class="tab-item" ng-click="openBusiness()">
+          <i class="icon ion-information-circled" style="color: #D43D33"></i>
+          Informationen
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-share" style="color: #D43D33"></i>
+          Teilen
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Bottom Cut fix-->
+    <div style="height: 10%; margin-top:50px !important"></div>
 
   </ion-content>
 

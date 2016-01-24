@@ -1,28 +1,28 @@
 <ion-side-menus enable-menu-with-back-views="true">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable" align-title="center" >  
-          
+    <ion-nav-bar class="bar-stable" align-title="center" >
+
           <!-- Vote-X Title Icon Origin -->
        <ion-nav-title align-title="center">
           <img ng-src="{{votexTitle}}">
-              </ion-nav-title>  
-               
+              </ion-nav-title>
+
       <ion-nav-buttons side="left">
         <button class="button button-icon button-clear button-assertive ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-   
-      
+
+
            <button  class="button button-assertive" ng-if="!currentUserSignedIn" progress-button="openModal(1)">
             <div style="padding-right:3px !important">Login</div>
            </button>
-       
+
 
             <button class="button  button-clear" ng-click="logout()" ng-if="currentUserSignedIn">
             Logout
            </button>
-         
+
          </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
@@ -35,18 +35,18 @@
     <ion-content ng-controller="menuCtrl">
 
       <ion-list >
-        
-    
+
+
           <ion-item class="item item-icon-left" nav-clear menu-close ng-click="openModal(1)" ng-if="!currentUserSignedIn">
           <i class="icon ion-log-in" style="color: #D43D33;font-size: 22px"></i>
              Login
           </ion-item>
-          
+
           <ion-item nav-clear menu-close href="#/app/profile" style="height: 100px" ng-if="currentUserSignedIn">
           <div class="row" style="width: 100%; margin: 0 auto" >
             <div class="col">
            <div class="item-thumbnail-left item-image">
-       <img ng-src="{{user.profileImage}}" alt="Profilbild hochladen!" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33" >
+       <img ng-src="{{user.profileImage}}" alt="" style="border-radius: 10px; border-width: 1px; border-style: solid; border-color: #D43D33" >
         </div>
         </div>
         <div class="col" style="margin-left: auto; margin-right: auto; left: 0; right: 0">
@@ -54,60 +54,54 @@
         <p>{{user.level}} </p>
      </div>
      </div>
-        </ion-item>     
-          
+        </ion-item>
+
           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/home">
           <i class="icon ion-ios-home-outline" style="color: #D43D33;font-size: 22px"></i>
             Startseite
           </ion-item>
-          
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/search" ng-if="currentUserSignedIn">
-          <i class="icon ion-android-search" style="color: #D43D33;font-size: 22px"></i>
-            Erweiterte Suche
-          </ion-item>
-          
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/map" ng-if="currentUserSignedIn">
-          <i class="icon ion-map" style="color: #D43D33;font-size: 22px"></i>
-            Karte
-          </ion-item>
-          
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/messageBox" ng-if="currentUserSignedIn">
-          <i class="icon ion-email" ng-if="!newMail" style="color: #D43D33;font-size: 22px"></i> <i ng-if="newMail" class="icon ion-email-unread" style="color: #D43D33;font-size: 22px"></i>
-            Nachrichten
-          </ion-item>
-          
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/vote_history" ng-if="currentUserSignedIn">
-          <i class="icon icon-votex_icon" style="color: #D43D33;font-size: 22px"></i>
-            Deine Votes
-          </ion-item>
-          
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/searchHistory" ng-if="currentUserSignedIn">
-          <i class="icon ion-ios-book-outline" style="color: #D43D33;font-size: 22px"></i>
-          Zuletzt besucht
-          </ion-item>
-          
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/trends" ng-if="currentUserSignedIn">
-          <i class="icon ion-ios-flame" style="color: #D43D33;font-size: 22px"></i>
-           Trends
-          </ion-item>
-          
-          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/settings" ng-if="currentUserSignedIn">
-          <i class="icon ion-ios-gear" style="color: #D43D33;font-size: 22px"></i>
-           Einstellungen
-          </ion-item>
-          
+
           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/bookmark" ng-if="currentUserSignedIn">
           <i class="icon ion-bookmark" style="color: #D43D33;font-size: 22px"></i>
             Lesezeichen
           </ion-item>
-          
-          
+
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/map" ng-if="currentUserSignedIn">
+          <i class="icon ion-map" style="color: #D43D33;font-size: 22px"></i>
+            Karte
+          </ion-item>
+
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/messageBox" ng-if="currentUserSignedIn">
+          <i class="icon ion-email" ng-if="!newMail" style="color: #D43D33;font-size: 22px"></i> <i ng-if="newMail" class="icon ion-email-unread" style="color: #D43D33;font-size: 22px"></i>
+            Nachrichten
+          </ion-item>
+
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/vote_history" ng-if="currentUserSignedIn">
+          <i class="icon icon-votex_icon" style="color: #D43D33;font-size: 22px"></i>
+            Deine Votes
+          </ion-item>
+
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/trends" ng-if="currentUserSignedIn">
+          <i class="icon ion-ios-flame" style="color: #D43D33;font-size: 22px"></i>
+           Trends
+          </ion-item>
+
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/searchHistory" ng-if="currentUserSignedIn">
+          <i class="icon ion-ios-book-outline" style="color: #D43D33;font-size: 22px"></i>
+          Zuletzt besucht
+          </ion-item>
+
+          <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/settings" ng-if="currentUserSignedIn">
+          <i class="icon ion-ios-gear" style="color: #D43D33;font-size: 22px"></i>
+           Einstellungen
+          </ion-item>
+
           <ion-item class="item item-icon-left" nav-clear menu-close href="#/app/feedback">
           <i class="icon ion-help-circled" style="color: #D43D33;font-size: 22px"></i>
            Feedback/Support
           </ion-item>
-          
-                          
+
+
         </ion-list>
         <!-- Bottom Cut fix-->
 <div style="height: 10%; margin-top:20px !important">
@@ -115,7 +109,7 @@
 
     </ion-content>
     <div class="bar bar-footer bar-dark">
-       
+
 </div>
   </ion-side-menu>
 </ion-side-menus>

@@ -1,20 +1,86 @@
 <ion-view>
-<div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
-  <h2 class="title"><i class="icon ion-bookmark" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>Lesezeichen</h2>
-</div>
-  <ion-content has-bouncing="true" class=" has-header has-subheader" >
+  <div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
+    <h2 class="title">
+      <i class="icon ion-bookmark" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>Lesezeichen</h2>
+  </div>
+  <ion-content has-bouncing="true" class=" has-header has-subheader">
+
+    <ion-refresher ng-controller="messageBoxCtrl" pulling-text="Runterziehen zum aktualisieren..." on-refresh="leggo()"></ion-refresher>
+
+    <ion-list>
+      <ion-item collection-repeat="bookmarks in bookPlace track by $index" id="itli">
+        <div class="row">
+          <div class="col">
+          <b>{{bookmarks.name}}</b>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div style="float:left">
+              {{bookmarks.placeObject.address_components[1].long_name}}
+              {{bookmarks.placeObject.address_components[0].long_name}},
+              {{bookmarks.placeObject.address_components[2].long_name}}
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-10">
+            <img ng-show="bookmarks.icon" style="max-width: 5vw" ng-src="{{bookmarks.icon}}">  {{bookmarks.placeObject.types[0]}}
+          </div>
+        </div>
 
 
-  
-  
-  
-  
-  
+        <div class="row" ng-if="bookmarks.tel">
+          <div class="col">
+              <div style="float:left">
+                Telefon: <a ng-href="tel:{{bookmarks.tel}}" ng-show="bookmarks.tel">
+              {{bookmarks.tel}}
+            </a>
+              </div>
+          </div>
+        </div>
 
-<div style="height: 10%; margin-top:25px !important">
-</div>
-    
+        <div class="row" g-if="bookmarks.web">
+          <div class="col">
+            <a href="{{bookmarks.web}}" style="float:left">
+            {{bookmarks.web}}
+          </a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-90">
+            <div style="float:left">
+              <rating class="commentRating" ng-model="bookmarks.rating" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
+            </div>
+          </div>
+          <div class="col col-10">
+            {{bookmarks.ratingNumber}}
+            {{bookmarks.voteString}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div ng-if="userGEO" style="float:left">
+              Entfernung:
+              {{bookmarks.dist}}
+              km
+            </div>
+            <div ng-if="!userGEO" style="float:left">
+              {{bookmarks.dist}}
+            </div>
+          </div>
+        </div>
+        <button class="button button-block button-positive" style="background-color:{{bookmarks.butCol}}" ng-click="showBusiness(bookmarks.placeObject, bookmarks.rating, bookmarks.ratingNumber)">
+          Zu
+          <b style="text-shadow: 0 0 2px black;">{{bookmarks.name}}</b>
+        </button>
+      </ion-item>
+    </ion-list>
+    <!-- bottom cut fix -->
+    <div style="margin-top: 10vh"></div>
   </ion-content>
-
 
 </ion-view>

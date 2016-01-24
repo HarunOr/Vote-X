@@ -1,9 +1,19 @@
 # Vote-X
 - TOP PRIO:
 
+- <b>Lesezeichen hinzufügen/entfernen + auf business.html verweisen</b>
+- <b>Kontaktliste</b>
+- <b> User view </b>
+- <b> Trends, charts </b>
+- <b> Kommentare Upvoten/melden können </b>
+- <b> Bilder uploaden </b>
+- <b> Bilder Galerie in business view </b>
+- <b> Erweiterte suche in Home view </b>
+- <b> edit vote kontrollieren </b>
+- <b> Einstellungen - Delete account - Reset password </b>
 
+_______________________________________________________________________
 
-- <b>HTML in messageBox.html nochmal überarbeit - infinite Scroll und http://ionicframework.com/docs/api/directive/ionList/ austesten </b>
 - <s><b>Crop Pictures with https://github.com/jackrabbitsgroup/angular-area-select</b></s>
 - <s><b>SMS-Verifizierung</b></s>
 - <s><b> Bilder in AMAZON S3 laden </b></s>
@@ -18,11 +28,7 @@
 - <b>Einzelne Votes bewerten (votes_upvotes)</b>
 - <b>Lesezeichen für Places</b>
 - <s><b>werbung nach 3. suchanfrage interstitial</b></s>
-- <b>Levels Neuling, Bekanntes Gesicht</b>
 
-
- -> ODER http://sachinchoolur.github.io/angular-flash/
-- LEVEL UPS / EREIGNISSE MIT ngDialog machen ! (https://github.com/likeastore/ngDialog#api)
 _____________
 
 
@@ -41,10 +47,10 @@ Todo
 - <s>Google Maps loading verbessern </s>
 - <s>Anstatt angular accordion <> ionic accordion ausprobieren *Performance Test*</s>
 - Forum / Chat (FireChat)
-- App Logo Android 
+- App Logo Android
 - <s>$ionScrollDelegate in config geändert. -> collection-repeat für performance boost (http://www.thomasmaximini.com/2015/01/12/improving-scroll-performance-for-lists-in-ionic-framework.html)</s>
 - Kommentare empfehlen können - Filter-Option
-- Kommentare wie angular-reddit-comments ? 
+- Kommentare wie angular-reddit-comments ?
 - Votes nur für verifizierte Nutzer ? Kommentare auch für nicht-verifizierte, eingeloggte Benutzer
 - <s>Profilseite</s>
 - <s>$templateCache</s>
@@ -56,11 +62,9 @@ Todo
 _________________
 New updates:
 
-- facebook login 
+- facebook login
 - zapier & twilio api implementation (SMS)
 __________________
 
-Idee:	
+Idee:
 		- US Präsidentschaftswahl 2016 -> "Vote" easy marketing (SEO)
-
-		
