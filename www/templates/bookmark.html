@@ -42,9 +42,9 @@
           </div>
         </div>
 
-        <div class="row" g-if="bookmarks.web">
+        <div class="row" ng-if="bookmarks.web">
           <div class="col">
-            <a href="{{bookmarks.web}}" style="float:left">
+            <a href="#" ng-click="openWindow(bookmarks.web)" style="float:left">
             {{bookmarks.web}}
           </a>
           </div>

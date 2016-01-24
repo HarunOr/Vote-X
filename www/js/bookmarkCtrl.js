@@ -417,6 +417,17 @@ if($rootScope.currentUserSignedIn){
           $state.go('app.home');
         }
 
+
+
+        //----------- Go to Website -------------------
+
+        $scope.openWindow = function(web) {
+          $window.open(web, '_system', 'location=yes');
+        };
+
+
+
+
         //----------- Go Business View -----------------
 
         $scope.showBusiness = function (place, avg, number) {
