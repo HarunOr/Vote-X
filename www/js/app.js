@@ -12,15 +12,13 @@ var votex = angular.module('starter', ['ionic', 'firebase', 'starter', 'starter.
   'starter.voteCtrl', 'starter.messageCtrl', 'starter.settingCtrl', 'starter.bookmarkCtrl',
   'starter.editVoteCtrl', 'starter.userCtrl', 'ngCordova', 'ionic.ion.imageCacheFactory', 'starter.agbCtrl',
   'starter.vote_historyCtrl', 'angular-progress-button-styles', 'ngMap',
-  'google.places', 'starter.searchHistoryCtrl'
-]);
+  'google.places', 'starter.searchHistoryCtrl','ngSanitize', 'textAngular']);
 
 
 
 
 /*
  *- TODO Kontaktliste
- *- TODO User view
  *- TODO Notifications
  *- TODO Trends, charts
  *- TODO Kommentare Upvoten/melden können
@@ -32,6 +30,7 @@ var votex = angular.module('starter', ['ionic', 'firebase', 'starter', 'starter.
  *- TODO Blockierliste, nachrichten
  *- TODO Network connection error etc
  *- TODO Google analytics
+ *- TODO editVoteCtrl REMOVE reparieren
  */
 
 
@@ -386,7 +385,7 @@ votex.run(function($ionicPlatform, $cordovaStatusbar, $ImageCacheFactory, $rootS
     abstract: true,
     templateUrl: "templates/messagePop.html",
     controller: 'messageBoxCtrl'
-  })
+  });
 
 
   $urlRouterProvider.otherwise('/app/home');

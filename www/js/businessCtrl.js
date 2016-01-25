@@ -387,8 +387,15 @@ var votex = angular
           $ionicSlideBoxDelegate.$getByHandle('vote').previous();
           $ionicSlideBoxDelegate.$getByHandle('vote').update();
         };
+
         $scope.goBackVoting2 = function() {
+
+          if($ionicSlideBoxDelegate.$getByHandle('editVote').currentIndex() === 1){
           $rootScope.checkIfSecondSlide.is = false;
+          }
+          else{
+            $rootScope.checkIfSecondSlide.is = true;
+          }
           $ionicSlideBoxDelegate.$getByHandle('editVote').previous();
           $ionicSlideBoxDelegate.$getByHandle('editVote').update();
         };

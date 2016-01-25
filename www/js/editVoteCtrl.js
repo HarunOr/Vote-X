@@ -53,7 +53,6 @@
              template: 'Ihre Bewertung wurde erfolgreich entfernt'
            });
          } else {
-           console.info("vote numer = " + $scope.totalvotes);
            snapshot.forEach(function(childSnapshot) {
 
              $scope.votexRatingCalc = null;
@@ -72,7 +71,6 @@
                $scope.avg_points = data.val() + $scope.temp;
                $scope.temp = $scope.avg_points;
 
-               console.log("$scope.avg_points = " + $scope.avg_points);
                $rootScope.voteUpdater.avg_points = $scope.avg_points;
              });
 
@@ -83,7 +81,6 @@
 
                $scope.avg_ambience_points = data.val() + $scope.ambiente_temp;
                $scope.ambiente_temp = $scope.avg_ambience_points;
-               console.log("$scope.avg_ambience_points = " + $scope.avg_ambience_points);
                $rootScope.voteUpdater.ambiente_avg = $scope.avg_ambience_points;
              });
 
@@ -95,7 +92,6 @@
 
                $scope.best_value_points = data.val() + $scope.best_value_temp;
                $scope.best_value_temp = $scope.best_value_points;
-               console.log("$scope.best_value_points = " + $scope.best_value_points);
                $rootScope.voteUpdater.best_value_avg = $scope.best_value_points;
              });
 
@@ -106,7 +102,6 @@
 
                $scope.avgService_points = data.val() + $scope.avgService_temp;
                $scope.avgService_temp = $scope.avgService_points;
-               console.log("$scope.avgService_points = " + $scope.avgService_points);
                $rootScope.voteUpdater.service_avg = $scope.avgService_points;
 
              });
@@ -117,7 +112,6 @@
 
                $scope.location_points = data.val() + $scope.location_temp;
                $scope.location_temp = $scope.location_points;
-               console.log(" $scope.location_points = " + $scope.location_points);
                $rootScope.voteUpdater.location_avg = $scope.location_points;
 
              });
@@ -129,15 +123,12 @@
 
                $scope.quality_points = data.val() + $scope.quality_temp;
                $scope.quality_temp = $scope.quality_points;
-               console.log(" $scope.quality_points = " + $scope.quality_points);
                $rootScope.voteUpdater.quality_avg = $scope.quality_points;
              });
            });
 
            $timeout(function() {
              var placeRef2 = new Firebase("https://vote-x.firebaseio.com/places/" + $rootScope.placeObject.place_id);
-             console.info("totalvotes = " + $scope.totalvotes);
-             console.info("URL = " + placeRef2);
              placeRef2.update({
                'avg_ambience_points': ($rootScope.voteUpdater.ambiente_avg) / ($scope.totalvotes),
                'avg_vote_points': ($rootScope.voteUpdater.avg_points) / ($scope.totalvotes),
@@ -212,6 +203,14 @@
            template: '<ion-spinner icon="dots" class="spinner-assertive"></ion-spinner>'
          });
          var data = snapshot.val();
+         if(data === null){
+           $timeout(function () {
+
+
+           },1000);
+         }
+         else{
+
 
          $scope.service = {
            points: data.vote_employees_points
@@ -240,11 +239,9 @@
          };
          $ionicSlideBoxDelegate.$getByHandle('editVote').enableSlide(false);
          $ionicLoading.hide();
+         }
        });
-     }, 250);
-
-
-
+     }, 1000);
 
 
 
@@ -260,20 +257,20 @@
 
 
 
+     $scope.showInfo2 = function() {
 
-     //------------ TextArea functions ---------------
-
-
-
-     $scope.autoExpand = function(e) {
-       var element = typeof e === 'object' ? e.target : document.getElementById(e);
-       var scrollHeight = element.scrollHeight - 20; // replace 60 by the sum of padding-top and padding-bottom
-       element.style.height = scrollHeight + "px";
+       $scope.total = {
+         points: ($scope.service.points + $scope.location.points + $scope.quality.points + $scope.best_value.points + $scope.ambiente.points) / 5
+       };
+       $rootScope.checkIfSecondSlide.is = true;
+       $ionicSlideBoxDelegate.$getByHandle('editVote').next();
+       $ionicSlideBoxDelegate.$getByHandle('editVote').update();
      };
 
-     function expand() {
-       $scope.autoExpand('TextArea');
-     }
+
+
+
+     //------------ TextArea functions ---------------
 
 
      $scope.vote = function() {
@@ -282,7 +279,7 @@
        //Leerer Text
 
 
-       if ($scope.description.text === undefined) {
+       if ($scope.description.text === undefined || $scope.description.text.length < 10 ) {
 
 
          $ionicPopup.alert({
@@ -291,8 +288,6 @@
          });
 
        } else {
-         console.info("image parent: " + $scope.vote_images);
-         console.info("image child: " + $scope.vote_images.src);
          if ($scope.vote_images.src === undefined) {
            $scope.vote_images.src = null;
 
@@ -338,7 +333,6 @@
                $scope.avg_points = data.val() + $scope.temp;
                $scope.temp = $scope.avg_points;
 
-               console.log("$scope.avg_points = " + $scope.avg_points);
                $rootScope.voteUpdater.avg_points = $scope.avg_points;
              });
 
@@ -349,7 +343,6 @@
 
                $scope.avg_ambience_points = data.val() + $scope.ambiente_temp;
                $scope.ambiente_temp = $scope.avg_ambience_points;
-               console.log("$scope.avg_ambience_points = " + $scope.avg_ambience_points);
                $rootScope.voteUpdater.ambiente_avg = $scope.avg_ambience_points;
              });
 
@@ -361,7 +354,7 @@
 
                $scope.best_value_points = data.val() + $scope.best_value_temp;
                $scope.best_value_temp = $scope.best_value_points;
-               console.log("$scope.best_value_points = " + $scope.best_value_points);
+
                $rootScope.voteUpdater.best_value_avg = $scope.best_value_points;
              });
 
@@ -372,7 +365,7 @@
 
                $scope.avgService_points = data.val() + $scope.avgService_temp;
                $scope.avgService_temp = $scope.avgService_points;
-               console.log("$scope.avgService_points = " + $scope.avgService_points);
+
                $rootScope.voteUpdater.service_avg = $scope.avgService_points;
 
              });
@@ -383,7 +376,7 @@
 
                $scope.location_points = data.val() + $scope.location_temp;
                $scope.location_temp = $scope.location_points;
-               console.log(" $scope.location_points = " + $scope.location_points);
+
                $rootScope.voteUpdater.location_avg = $scope.location_points;
 
              });
@@ -395,17 +388,15 @@
 
                $scope.quality_points = data.val() + $scope.quality_temp;
                $scope.quality_temp = $scope.quality_points;
-               console.log(" $scope.quality_points = " + $scope.quality_points);
+
                $rootScope.voteUpdater.quality_avg = $scope.quality_points;
              });
            });
          });
          $timeout(function() {
-           console.info("URL = " + $rootScope.voteUpdater.ambiente_avg);
 
            var placeRef2 = new Firebase("https://vote-x.firebaseio.com/places/" + $rootScope.placeObject.place_id);
-           console.info("totalvotes = " + $scope.totalvotes);
-           console.info("URL = " + placeRef2);
+
            placeRef2.update({
              'avg_ambience_points': ($rootScope.voteUpdater.ambiente_avg) / ($scope.totalvotes),
              'avg_vote_points': ($rootScope.voteUpdater.avg_points) / ($scope.totalvotes),

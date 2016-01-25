@@ -24,6 +24,20 @@ $testColor: #FFFAFA!default;
 @import "www/lib/ionic-threads/ionic.threads.scss";
 
 
+// remove scrollbar while using overflow-scroll="true"
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.ta-editor {
+  min-height: 300px;
+  height: auto;
+  overflow: auto;
+  font-family: inherit;
+  font-size: 100%;
+}
 
 .searchRow{
   width: 100% !important;
