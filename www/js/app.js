@@ -31,6 +31,7 @@ var votex = angular.module('starter', ['ionic', 'firebase', 'starter', 'starter.
  *- TODO Network connection error etc
  *- TODO Google analytics
  *- TODO editVoteCtrl REMOVE reparieren
+ *- TODO kommentare tabs margin center
  */
 
 
