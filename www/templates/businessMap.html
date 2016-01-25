@@ -6,16 +6,15 @@
   </div>
 </ion-header-bar>
 
-<ion-content  type="text/ng-template" overflow-scroll="false" ng-controller="businessCtrl">
+<ion-content type="text/ng-template" overflow-scroll="false" ng-controller="businessCtrl">
 
-<button ng-click="getRoute()" class="button  button-positive button-block">
-  Route hierhin
+  <button ng-click="getRoute()" class="button  button-positive button-block">
+    Route hierhin
   </button>
 
   <ng-map class="map" center="{{lat}},{{lng}}" zoom="20" draggable="false">
     <marker position="{{lat}},{{lng}}"></marker>
-    </ng-map>
-
+  </ng-map>
 
 </ion-content>
 

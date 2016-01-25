@@ -5,56 +5,48 @@
       <button class="button button-dark button-clear" ng-click="closeModal(1)">Schließen</button>
     </div>
   </ion-header-bar>
-  <ion-content class="modal1" ng-controller="loginCtrl">
+  <ion-content class="modal1" data-ng-controller="loginCtrl">
     <div id="form">
-              <form novalidate name="loginForm" ng-submit="loginForm.$valid && doLogin(email,password)">
-            <div class="list">
-              <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.email.$invalid && loginForm.$submitted }">
-                <span class="input-label">Email</span>
-                <input name="email" type="email" ng-model="email" placeholder="Email"
-                ng-minlength="5"
-                ng-maxlength="30"
-                required>
-              </label>
-              <!-- Edit this messages if you want -->
-              <div style="color:red" class="form-errors" ng-messages="loginForm.email.$error" ng-if="loginForm.$submitted">
-                <div class="form-error" ng-message="required">Dieses Feld muss ausgefüllt werden.</div>
-                <div class="form-error" ng-message="email">Dieses Feld muss eine Email enthalten.</div>
-                <div class="form-error" ng-message="minlength">Dieses Feld muss mindestens 5 Zeichen enthalten.</div>
-                <div class="form-error" ng-message="maxlength">Dieses Feld darf maximal 30 Zeichen enthalten.</div>
-              </div>
-              <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : loginForm.email.$invalid && loginForm.$submitted }">
-                <span class="input-label">Passwort</span>
-                <input name="password" type="password" ng-model="password" placeholder="Passwort"
-                ng-minlength="5"
-                ng-maxlength="30"
-                required>
-              </label>
-              <!-- Edit this messages if you want -->
-              <div style="color:red" class="form-errors" ng-messages="loginForm.password.$error" ng-if="loginForm.$submitted">
-              <div class="form-error" ng-message="required">Dieses Feld muss ausgefüllt werden.</div>
-              <div class="form-error" ng-message="minlength">Dieses Feld muss mindestens 5 Zeichen enthalten.</div>
-              <div class="form-error" ng-message="maxlength">Dieses Feld darf maximal 30 Zeichen enthalten.</div>
-              </div>
-           
-            <div class="padding-top">
-              <input type="submit" class="button button-block button-positive" value="Einloggen">
-                </div> 
-                
-            </form>
-             
-            
-             
-             <button class="button button-block button-facebook" ng-click="loginFB()" style="color: $facebook">Einloggen via Facebook</button>
-             
-              <button class="button button-block button-assertive" ng-click="closeModal()" ui-sref="app.register">
-                  Registrieren
-        </button>
-              <p class="text-center ">
-                  <a ui-sref="app.forgot" class="button button-clear button-positive" ng-click="closeModal()">Passwort vergessen</a>
-        </p>
-        </div>
-        </div>
-        </ion-content>
+      <form novalidate name="loginForm" ng-submit="loginForm.$valid && doLogin(email,password)">
+        <div class="list">
+          <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.email.$invalid && loginForm.$submitted }">
+            <span class="input-label">Email</span>
+            <input name="email" type="email" ng-model="email" placeholder="Email" ng-minlength="5" ng-maxlength="30" required>
+          </label>
+          <!-- Edit this messages if you want -->
+          <div style="color:red" class="form-errors" ng-messages="loginForm.email.$error" ng-if="loginForm.$submitted">
+            <div class="form-error" ng-message="required">Dieses Feld muss ausgefüllt werden.</div>
+            <div class="form-error" ng-message="email">Dieses Feld muss eine Email enthalten.</div>
+            <div class="form-error" ng-message="minlength">Dieses Feld muss mindestens 5 Zeichen enthalten.</div>
+            <div class="form-error" ng-message="maxlength">Dieses Feld darf maximal 30 Zeichen enthalten.</div>
+          </div>
+          <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : loginForm.email.$invalid && loginForm.$submitted }">
+            <span class="input-label">Passwort</span>
+            <input name="password" type="password" ng-model="password" placeholder="Passwort" ng-minlength="5" ng-maxlength="30" required>
+          </label>
+          <!-- Edit this messages if you want -->
+          <div style="color:red" class="form-errors" ng-messages="loginForm.password.$error" ng-if="loginForm.$submitted">
+            <div class="form-error" ng-message="required">Dieses Feld muss ausgefüllt werden.</div>
+            <div class="form-error" ng-message="minlength">Dieses Feld muss mindestens 5 Zeichen enthalten.</div>
+            <div class="form-error" ng-message="maxlength">Dieses Feld darf maximal 30 Zeichen enthalten.</div>
+          </div>
 
-</ion-modal-view>
+          <div class="padding-top">
+            <input type="submit" class="button button-block button-positive" value="Einloggen">
+          </div>
+
+        </form>
+
+        <button class="button button-block button-facebook" ng-click="loginFB()" style="color: $facebook">Einloggen via Facebook</button>
+
+        <button class="button button-block button-assertive" ng-click="closeModal()" ui-sref="app.register">
+          Registrieren
+        </button>
+        <p class="text-center ">
+          <a ui-sref="app.forgot" class="button button-clear button-positive" ng-click="closeModal()">Passwort vergessen</a>
+        </p>
+      </div>
+
+    </ion-content>
+
+  </ion-modal-view>

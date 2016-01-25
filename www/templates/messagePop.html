@@ -1,0 +1,22 @@
+<ion-header-bar align-title="left" class="bar bar-assertive">
+  <h2 class="title">Wen wollen Sie anschreiben ?</h2>
+  <div class="buttons">
+    <button class="button button-clear" ng-click="closePop()">Schließen</button>
+  </div>
+</ion-header-bar>
+<ion-content type="text/ng-template" has-header ng-controller="messageBoxCtrl">
+
+  <button class="button button-block button-positive" ng-click="createMail()">
+    <i class="icon ion-ios-search-strong"></i>
+    Benutzer finden</button>
+
+  <div class="item item-divider" style="background-color: #f26249; margin-top:3vh; text-align: center; color: white">
+    <i class="icon ion-person-stalker"></i>
+    Kontakte
+  </div>
+  <ion-list>
+    <ion-item collection-repeat="contact in contactList track by $index"></ion-item>
+
+  </ion-list>
+
+</ion-content>

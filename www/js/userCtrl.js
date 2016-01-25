@@ -1,14 +1,10 @@
 angular.module('starter.userCtrl', [])
 
-.controller('userCtrl', function ($scope, $firebaseAuth, $rootScope, $ionicPopup,$timeout, $ionicLoading, $ionicScrollDelegate) {
-	    console.info("ionic.Platform.isWebView() = "+ionic.Platform.isWebView());
-        if(ionic.Platform.isWebView()){
-           screen.lockOrientation('portrait'); 
-            
-        }
+.controller('userCtrl', function ($scope, $ionicModal, userFactory) {
 
-        
+	$scope.viewerData = userFactory.giveProfileData();
+	$scope.viewerData.since = $scope.viewerData.since.substring(5, 16);
 
-          
-	 
+
+
   });

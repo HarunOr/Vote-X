@@ -9,8 +9,8 @@
 
     <ion-list>
       <ion-item collection-repeat="bookmarks in bookPlace track by $index" id="itli">
-        <div class="row">
-          <div class="col">
+        <div class="row" style="margin:0 auto">
+          <div class="col" style="margin:0 auto">
           <b>{{bookmarks.name}}</b>
           </div>
         </div>
@@ -44,9 +44,11 @@
 
         <div class="row" ng-if="bookmarks.web">
           <div class="col">
-            <a href="#" ng-click="openWindow(bookmarks.web)" style="float:left">
-            {{bookmarks.web}}
-          </a>
+            <div style="float:left">
+              Website: <a href="#" ng-click="openWindow(bookmarks.web)">
+              {{bookmarks.web}}
+            </a>
+            </div>
           </div>
         </div>
 
@@ -74,8 +76,7 @@
           </div>
         </div>
         <button class="button button-block button-positive" style="background-color:{{bookmarks.butCol}}" ng-click="showBusiness(bookmarks.placeObject, bookmarks.rating, bookmarks.ratingNumber)">
-          Zu
-          <b style="text-shadow: 0 0 2px black;">{{bookmarks.name}}</b>
+          <b style="text-shadow: 0 0 2px black;">Zu {{bookmarks.name}}</b>
         </button>
       </ion-item>
     </ion-list>

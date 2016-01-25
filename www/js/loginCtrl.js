@@ -35,7 +35,7 @@
          verified: false,
          ownProfileImg: false,
          profileImage: 'img/standard_profileImg.jpg',
-         birthday: "",
+         age: "",
          firstname: "",
          lastname: "",
          username: $scope.username,
@@ -186,10 +186,14 @@
                               };
        },
                                             function () {
+                                              if($rootScope.gpsCounter === 0){
                                               alert("Aktivieren Sie ihre GPS-Funktion, um die Entfernung zu den gesuchten Orten bestimmen zu können !");
+                                              $rootScope.gpsCounter++;
+                                            }
 
                                             },
                                             { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+
 
        var userFB = new Firebase("https://vote-x.firebaseio.com/users/" + authDatas.uid + "/last_login");
        userFB.set(hours + ":" + minutes + " " + day + "/" + (month + 1) + "/" + year);

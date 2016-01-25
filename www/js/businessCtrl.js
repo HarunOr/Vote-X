@@ -4,9 +4,10 @@ var votex = angular
     $state, $ionicPopup, $ionicModal,
     $ionicScrollDelegate, $http, $log,
     $ionicLoading, $ionicPlatform, $ionicSlideBoxDelegate,
-    viewFactory, $firebaseArray, $timeout) {
+    viewFactory, $firebaseArray, $timeout, userFactory) {
 
     if ($rootScope.currentUserSignedIn) {
+
       var votedRef = new Firebase("https://vote-x.firebaseio.com/users/" + $rootScope.user.uid + "/vote_history/" + $rootScope.placeObject.place_id);
       var select = "";
       $rootScope.has = {
@@ -33,7 +34,7 @@ var votex = angular
 
       if ($rootScope.placeObject !== undefined) {
         $scope.place = $rootScope.placeObject;
-        
+
 
 
         //Anzahl der Votes
@@ -101,7 +102,7 @@ var votex = angular
           id: 0,
           active: 0,
           name: "Detaillierte Votes",
-          items: [("Service"), ("Location"), ("Qualität der Speisen"), ("Preis/Leistung"), ("Ambiente")],
+          items: [("Service"), ("Location"), ("Qualität"), ("Preis/Leistung"), ("Ambiente")],
           scores: []
         };
         $scope.groups[1] = {
@@ -161,8 +162,10 @@ var votex = angular
         $scope.select = function(select) {
 
           if (select == "Beste") {
+            alert("BESTE !");
             $scope.ordered = 'item.vote_upvotes';
           } else if (select == "Neueste") {
+            alert("Neueste !");
             $scope.ordered = 'item.vote_upvotes';
           }
         };
@@ -198,29 +201,7 @@ var votex = angular
               $scope.groups[1].items[i].aID = i;
               $scope.groups[1].items[i].loaded_img = "";
 
-              if ($scope.groups[1].items[i].vote_img !== null &&
-                $scope.groups[1].items[i].vote_img !== undefined &&
-                $scope.groups[1].items[i].vote_img !== "") {
 
-
-                var key = $scope.groups[1].items[i].vote_img;
-                var imgParams = {
-                  Bucket: $rootScope.creds.bucket,
-                  Key: key
-                };
-                $rootScope.bucket.getObject(imgParams, function(err, data) {
-                  if (err) {
-                    console.info(err, err.stack);
-                  } else {
-
-                    $scope.$apply(function() {
-                      $scope.groups[1].items[$rootScope.commentImg].loaded_img = "data:image/jpeg;base64," + data.Body.toString('ascii');
-                      $rootScope.commentImg++;
-                    });
-                  }
-
-                });
-              }
               if ($scope.groups[1].items[i].vote_upvotes == 1) {
                 $scope.point.string = "Punkt";
               } else {
@@ -241,6 +222,13 @@ var votex = angular
             $scope.groups[1].items[f].voterName = data.username;
             $scope.groups[1].items[f].voterOwnProfileImg = data.ownProfileImg;
             $scope.groups[1].items[f].voterImg = data.profileImage;
+            $scope.groups[1].items[f].contacts = data.contacts;
+            $scope.groups[1].items[f].since = data.registrationDate;
+            $scope.groups[1].items[f].amountVotes = data.votes;
+            $scope.groups[1].items[f].upvotePoints = data.upvote_points;
+            $scope.groups[1].items[f].location = data.location;
+            $scope.groups[1].items[f].verified = data.verified;
+            $scope.groups[1].items[f].age = data.age;
 
             if (!data.ownProfileImg) {
               $scope.groups[1].items[f].voterImg = data.profileImage;
@@ -507,12 +495,11 @@ var votex = angular
       }
     }
 
+    $scope.uFshow = function (item) {
 
-    $scope.viewPics = function(index) {
-      console.info(index);
+      userFactory.setProfileViewer(item);
+      userFactory.showProfile($scope);
     };
-
-
 
     //----------------------- businessCtrl END ------------------------
   })

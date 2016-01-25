@@ -1,7 +1,9 @@
  var votex = angular
 
    .module('starter.messageCtrl');
- votex.controller("messageBoxCtrl", function($scope, $rootScope, $firebaseObject, $ionicLoading, $timeout, $state, messageFactory, $ionicPopup, $firebaseArray, $window) {
+ votex.controller("messageBoxCtrl", function($scope, $rootScope, $firebaseObject,
+   $ionicLoading, $timeout, $state, messageFactory, $firebaseArray,
+   $window, $ionicPopup) {
 
 
    $scope.leggo = function() {
@@ -211,6 +213,7 @@
                                };
 
                                messageFactory.setPartnerData($scope.newPartnerArray);
+                               $scope.closePop();
                                $state.go('app.messages');
 
                              });
@@ -298,6 +301,20 @@
            }
          });
        };
+       //------------------------------------------------
+       // Open the login modal----------------------------------------------------------
+
+       $scope.openPop = function () {
+         $scope.myMessagePop = $ionicPopup.show({
+           templateUrl: 'templates/messagePop.html',
+           scope: $scope,
+           cssClass: 'businessMap'
+         });
+       };
+
+       $scope.closePop = function() {
+         $scope.myMessagePop.close();
+       };
 
 
 
@@ -306,9 +323,7 @@
        //--------------------------
 
      }
-   }
-
-   else{
+   } else {
      $state.go('app.home');
    }
 

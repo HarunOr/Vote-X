@@ -21,6 +21,7 @@ var votex = angular.module('starter', ['ionic', 'firebase', 'starter', 'starter.
 /*
  *- TODO Kontaktliste
  *- TODO User view
+ *- TODO Notifications
  *- TODO Trends, charts
  *- TODO Kommentare Upvoten/melden können
  *- TODO Bilder Gallerie in business view
@@ -29,16 +30,19 @@ var votex = angular.module('starter', ['ionic', 'firebase', 'starter', 'starter.
  *- TODO Einstellungen - Delete account - Reset password
  *- TODO Socia network für Business & Kommentare
  *- TODO Blockierliste, nachrichten
+ *- TODO Network connection error etc
+ *- TODO Google analytics
  */
 
 
 
-votex.run(function($ionicPlatform,$cordovaStatusbar, $ImageCacheFactory, $rootScope, $location, $ionicLoading) {
+votex.run(function($ionicPlatform, $cordovaStatusbar, $ImageCacheFactory, $rootScope, $location, $ionicLoading) {
   $ionicPlatform.ready(function() {
     $ionicLoading.show({
       template: '<ion-spinner icon="spiral" class="spinner-assertive"></ion-spinner>'
     });
     $rootScope.newMail = null;
+    $rootScope.gpsCounter = 0;
     $rootScope.placeObject = null;
     $rootScope.votexObject = null;
     $rootScope.checkIfSecondSlide = {
@@ -118,9 +122,9 @@ votex.run(function($ionicPlatform,$cordovaStatusbar, $ImageCacheFactory, $rootSc
           cordova.plugins.Keyboard.disableScroll(true);
         }
       }
-        if (navigator.splashscreen) {
-         navigator.splashscreen.hide();
-        }
+      if (navigator.splashscreen) {
+        navigator.splashscreen.hide();
+      }
 
       if (ionic.Platform.isWebView()) {
         if (AdMob) {
@@ -153,12 +157,6 @@ votex.run(function($ionicPlatform,$cordovaStatusbar, $ImageCacheFactory, $rootSc
 
     $ionicLoading.hide();
   });
-
-
-
-
-
-
 
 
 })
@@ -210,8 +208,7 @@ votex.run(function($ionicPlatform,$cordovaStatusbar, $ImageCacheFactory, $rootSc
   .state('app.login', {
     url: "/login",
     abstract: true,
-    templateUrl: "templates/login.html",
-    controller: 'loginCtrl'
+    templateUrl: "templates/login.html"
   })
 
   .state('app.register', {
@@ -269,7 +266,6 @@ votex.run(function($ionicPlatform,$cordovaStatusbar, $ImageCacheFactory, $rootSc
   .state('app.trends', {
     url: '/trends',
     cache: true,
-    controller: 'AppCtrl',
     views: {
       'menuContent': {
         templateUrl: 'templates/trends.html'
@@ -358,6 +354,7 @@ votex.run(function($ionicPlatform,$cordovaStatusbar, $ImageCacheFactory, $rootSc
 
   .state('app.bookmark', {
     url: '/bookmark',
+    reload: true,
     views: {
       'menuContent': {
         templateUrl: 'templates/bookmark.html',
@@ -382,7 +379,14 @@ votex.run(function($ionicPlatform,$cordovaStatusbar, $ImageCacheFactory, $rootSc
     url: "/smsVerify",
     abstract: true,
     templateUrl: "templates/smsVerify.html"
-  });
+  })
+
+  .state('app.messagePop', {
+    url: "/messagePop",
+    abstract: true,
+    templateUrl: "templates/messagePop.html",
+    controller: 'messageBoxCtrl'
+  })
 
 
   $urlRouterProvider.otherwise('/app/home');

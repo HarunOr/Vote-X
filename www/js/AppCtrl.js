@@ -4,7 +4,7 @@
 
  votex.controller('AppCtrl', function($scope, viewFactory, $http, $ionicPlatform,
    $state, $ionicModal, $timeout, $firebaseObject,
-   $ionicPopup, $cordovaOauth, $rootScope,
+   $ionicPopup, $cordovaOauth, $rootScope,userFactory,
    $ionicLoading, $ionicScrollDelegate, $firebaseArray, $window
  ) {
 
@@ -28,6 +28,7 @@
    //----------------------------- Search ------------------------------------
 
    $scope.se = function() {
+      if($scope.input){
      $scope.images = null;
      if ($scope.input !== null && $scope.input.place_id !== undefined) {
 
@@ -398,6 +399,20 @@
          //-------------------------------------Translate END--------------------------------------------------------------------------
 
 
+
+         //------------------ Calc distance -----------------------
+
+
+           console.info("usergeo = "+$rootScope.userGEO);
+           if ($rootScope.userGEO ) {
+             $scope.distance = (google.maps.geometry.spherical.computeDistanceBetween(
+               new google.maps.LatLng($rootScope.userGEO.lat, $rootScope.userGEO.lng), new google.maps.LatLng($rootScope.placeObject.geometry.location.lat(), $rootScope.placeObject.geometry.location.lng())) / 1000).toFixed(2);
+           }
+
+
+
+
+
          // User Suchverlauf --------------------------
          if (ref.getAuth() !== null && $rootScope.currentUserSignedIn) {
            $scope.user_uid = ref.getAuth().uid;
@@ -497,7 +512,8 @@
 
 
 
-     if ($scope.currentUserSignedIn && $rootScope.placeObject !== undefined) {
+     if ($scope.input && $scope.currentUserSignedIn) {
+       if($rootScope.placeObject !== undefined){
        var votedRef = new Firebase("https://vote-x.firebaseio.com/users/" + $rootScope.user.uid + "/vote_history/" + $rootScope.placeObject.place_id);
 
        $scope.voted = {
@@ -525,8 +541,13 @@
        AdMob.showInterstitial();
 
      }
-
-   };
+    }
+   } else{
+      $ionicPopup.alert({
+        title: 'Nach was soll ich denn suchen ?'
+      });
+    }
+ };
 
 
 

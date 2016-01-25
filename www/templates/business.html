@@ -54,10 +54,13 @@
             <div style="float: right" ng-if="showSort(group) && isGroupShown(group)">
               <h4>
                 Sortieren nach</h4>
-              <select ng-model="selectOrder" ng-change="select(selectOrder)">
-                <option selected>Beste</option>
-                <option >Neueste</option>
-              </select>
+
+
+                <select ng-model="selectOrder" ng-change="select(selectOrder)">
+                  <option selected>Beste</option>
+                  <option >Neueste</option>
+                </select>
+
             </div>
           </ion-item>
           <ion-item class="item-accordion" ng-repeat="item in group.items track by $index | orderBy: ordered" ng-show="isGroupShown(group)" style="margin: 0 auto">
@@ -70,24 +73,18 @@
                 <div ng-if="group.id == 1">
                   <div class="list card">
 
-                    <div class="row responsive-sm">
-                      <div class="col" style="float:left">
+                    <div class="row">
+                      <div class="col" style="float:left;" ng-click="uFshow(item)">
                         <b><h2 class="commentName">{{item.voterName}}</h2></b>
-                        <img data-ng-src="{{item.voterImg}}" class="listItemAvatar" style="max-width: 18vw">
+                        <img data-ng-src="{{item.voterImg}}" class="listItemAvatar" style="max-width: 100px;width:16vw">
                       </div>
-                      <div class="col" style="float:right">
-                        <p class="commentTime">{{item.vote_time}}</p>
+                      <div class="col" style="float:right;margin:0;margin-bottom:0px !important">
+                        <p class="commentTime" style="margin:0">{{item.vote_time}}</p>
                         <rating  class="commentRating" ng-model="item.vote_points" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
                       </div>
                     </div>
 
                     <div class="item item-body" style="margin: 0 auto">
-                      <div class="row" ng-if="item.loaded_img">
-                        <div class="col">
-                            <img data-ng-src="{{item.loaded_img}}" style="max-width: 20vw">
-                        </div>
-
-                      </div>
 
                       <p ng-if="item.description.length > 100 && !item.wholeText">
                         {{item.description | cut:true:100}}

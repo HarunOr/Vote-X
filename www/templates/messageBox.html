@@ -1,40 +1,37 @@
 <ion-view>
-<div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
-         <button class="button button-icon icon ion-ios-minus-outline"
-          ng-click="show.delete = !show.delete;"></button>
-          <h2 class="title"><i class="icon ion-android-mail" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>Nachrichten</h2>
-          <button ng-click="createMail()" class="button button-assertive"><i class="icon ion-paper-airplane"></i></button>
-</div>
+  <div class="bar bar-subheader" style="background-color: white; border-bottom-color: #D43D33; border-bottom-size: 1px; border-bottom-style: solid">
+    <button class="button button-icon icon ion-ios-minus-outline" ng-click="show.delete = !show.delete;"></button>
+    <h2 class="title">
+      <i class="icon ion-android-mail" style="color: #D43D33;font-size: 22px; margin-right: 5px"></i>Nachrichten</h2>
+    <button ng-click="openPop()" class="button button-assertive">
+      <i class="icon ion-paper-airplane"></i>
+    </button>
+  </div>
   <ion-content class="has-header has-subheader">
 
+    <ion-refresher ng-controller="messageBoxCtrl" pulling-text="Runterziehen zum aktualisieren..." on-refresh="leggo()"></ion-refresher>
 
-  <ion-refresher ng-controller="messageBoxCtrl"
-    pulling-text="Runterziehen zum aktualisieren..." on-refresh="leggo()">
-  </ion-refresher>
+    <div ng-if="messageArray" style="margin-bottom: 63px"></div>
 
- <div ng-if="messageArray" style="margin-bottom: 63px"></div>
+    <ion-list show-delete="show.delete">
 
+      <ion-item class="listMessageItem" ng-repeat="partner in messageArray track by $index" ng-if="messageArray != undefined">
+        <div class="row">
+          <div class="col">
+            <img data-ng-src="{{partner.profileImage}}" class="listItemAvatar"/>
+            {{partner.name}}
+          </div>
+          <div class="col col-center">
+            <button ng-click="openMessages($index)" class="button button-assertive button-clear openMessageItem">
+              <i class="icon ion-email" ng-if="partner.read" style="margin-right:1%"></i>
+              <i class="icon ion-email-unread" ng-if="!partner.read" style="margin-right:1%"></i>Öffnen</button>
+          </div>
+        </div>
+        <ion-delete-button class="ion-minus-circled" ng-click="deleteMessage($index)"></ion-delete-button>
+      </ion-item>
+    </ion-list>
 
-<ion-list show-delete="show.delete">
-
-
-  <ion-item class="listMessageItem" ng-repeat="partner in messageArray track by $index" ng-if="messageArray != undefined">
-  <div class="row">
-      <div class="col">
-   <img  data-ng-src="{{partner.profileImage}}" class="listItemAvatar"/>
-    {{partner.name}}
-   </div>
-   <div class="col col-center">
-   <button ng-click="openMessages($index)" class="button button-assertive button-clear openMessageItem"> <i class="icon ion-email" ng-if="partner.read" style="margin-right:1%"></i><i class="icon ion-email-unread" ng-if="!partner.read" style="margin-right:1%"></i>Öffnen</button>
-   </div></div>
-       <ion-delete-button class="ion-minus-circled"
-                       ng-click="deleteMessage($index)">
-    </ion-delete-button>
-  </ion-item>
-</ion-list>
-
- <div style="margin-bottom: 63px"></div>
+    <div style="margin-bottom: 63px"></div>
   </ion-content>
-
 
 </ion-view>

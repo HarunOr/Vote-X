@@ -1,0 +1,37 @@
+
+.animated.modal.fadeIn.ng-leave {
+    -webkit-animation-name:fadeOut;
+    animation-name:fadeOut;
+}
+.animated.modal.fadeInDown.ng-leave {
+    -webkit-animation-name:fadeOutDown;
+    animation-name:fadeOutDown;
+}
+.animated.modal.fadeInDownBig.ng-leave {
+    -webkit-animation-name:fadeOutDownBig;
+    animation-name:fadeOutDownBig;
+}
+.animated.modal.fadeInLeft.ng-leave {
+    -webkit-animation-name:fadeOutLeft;
+    animation-name:fadeOutLeft;
+}
+.animated.modal.fadeInLeftBig.ng-leave {
+    -webkit-animation-name:fadeOutLeftBig;
+    animation-name:fadeOutLeftBig;
+}
+.animated.modal.fadeInRight.ng-leave {
+    -webkit-animation-name:fadeOutRight;
+    animation-name:fadeOutRight;
+}
+.animated.modal.fadeInRightBig.ng-leave {
+    -webkit-animation-name:fadeOutRightBig;
+    animation-name:fadeOutRightBig;
+}
+.animated.modal.fadeInUp.ng-leave {
+    -webkit-animation-name:fadeOutUp;
+    animation-name:fadeOutUp;
+}
+.animated.modal.fadeInUpBig.ng-leave {
+    -webkit-animation-name:fadeOutUpBig;
+    animation-name:fadeOutUpBig;
+}

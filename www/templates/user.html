@@ -1,74 +1,80 @@
-<!-- Title -->
-<ion-view >
+<ion-modal-view style="
+                        width: 90%; height: 60%;border-radius: 20px;
+                        top:26%; bottom: 20%; left: 8%;
+                         min-height: 0 !important;background-color:transparent">
+
+  <ion-content ng-controller="userCtrl">
+
+    <div style="width:90%;position: relative;background-color:transparent;">
+
+      <img data-ng-src="{{viewerData.img}}" style="border-radius:50%;max-width: 110px;top:0;left:0;border-style:solid; border-width:2px;border-color:darkred;width: 27vw;margin-bottom:-15%">
+
+      <div style="border-style: solid; background-color: whitesmoke; border-width: 2px; border-color: darkred; border-radius: 25px;">
+
+        <div class="row" style="margin-left:0.5%">
+          <div style="margin-left: 10%;" class="col">
+            <h3 class="ng-binding" style="color: darkred;">{{viewerData.name}}<i ng-if="viewerData.verified" class="icon ion-ios-star" style="color: #D43D33;"></i></h3>
+          </div>
+        </div>
 
 
-<!-- Content data-ng-init="loggedOut()"-->
+        <div style="margin-left: 2px;height: 5vh" class="row" ng-if="viewerData.age">
+          <div class="col">
+            <h5>Alter:</h5>
 
-  <ion-content class="profile" ng-controller="userCtrl" delegate-handle="userScroll">
-     
+          </div>
+          <div class="col">
+            <h5>{{viewerData.age}}</h5>
+          </div>
+        </div>
 
-       <img class="profileImg" ng-src="{{profileImg}}" alt="Profilbild hochladen!">
-           
-  
-  <div class="profileInfo">
-  <div class="row" tyle="margin: 0 auto">
-  <div class="col" align="center">
-  <h2 style="margin: 0 auto; margin-top: 10%"><i ng-if="verified" class="icon ion-ios-star" style="color: #D43D33;"></i>{{username.name}} </h2>
-  </div>
-</div>
-<button class="button button-royal button-block" ng-click="selectPic()" style="margin:0 auto"><i class="icon ion-images" style="margin-right: 1px; "></i>Profilbild auswählen</button>   
-  <button class="button button-stable button-block button-assertive" ng-click="sendSMSText()" ng-if="!verified.verified">
-          <i class="icon icon-votex_icon" style="color: white"></i>
-  SMS-Verifizierung
-           </button>
-  <button class="button button-stable button-block button-energized" ng-click="alreadyVerified()" ng-if="verified.verified">
-          <i class="icon icon-votex_icon" style="color: white"></i>
-  Du bist verifiziert !
-           </button>
-             <div class="row" style="margin-left: 2px">
-             <div class="col">
-                 <button class="button  button-block button-positive">
-          <i class="icon ion-ios-contact-outline" style="color: white;margin-right: 5px"></i>   
-     Freunde werden
-           </button>
-               </div>
-                    <div class="col">
-                 <button class="button  button-block button-assertive">
-      <i class="icon ion-email" style="color: white;margin-right: 5px"></i>      
-      Mail schreiben
-           </button>
-               </div>
-               
-               </div>
-  
-       <div class="row" style="margin-left: 2px">
-             <div class="col">
-               Stufe:
-               </div>
-               <div class="col">
-               <b>  {{level}} </b>
-                 </div>
-             </div>         
-  
-             <div class="row" style="margin-left: 2px">
-             <div class="col">
-               Anzahl der Votes: 
-               </div>
-               <div class="col">
-                 {{VotesCount}}
-                 </div>
-             </div>          
-          
-           
-           <div class="row" style="margin-left: 2px">
-             <div class="col">
-               Zuletzt aktiv am: 
-               </div>
-                 <div class="col">
-                 {{lastDate}}
-                 </div>
-             </div>         
-                    
-                    </div>   
+        <div style="margin-left: 2px;height: 5vh" class="row" ng-if="viewerData.city">
+          <div class="col">
+            <h5>Ort:</h5>
+
+          </div>
+          <div class="col">
+            <h5>{{viewerData.city}}</h5>
+          </div>
+        </div>
+
+
+
+        <div style="margin-left: 2px;height: 5vh" class="row">
+          <div class="col">
+            <h5>Votes:</h5>
+
+          </div>
+          <div class="col">
+            <h5>{{viewerData.amountVotes}}</h5>
+          </div>
+        </div>
+
+        <div style="margin-left: 2px;height: 5vh" class="row">
+          <div class="col">
+            <h5>Vote-Punkte:</h5>
+
+          </div>
+          <div class="col">
+            <h5>{{viewerData.upvotePoints}}</h5>
+          </div>
+        </div>
+
+        <div style="margin-left: 2px;height: 8vh" class="row">
+          <div class="col">
+            <h5>Mitglied seit:</h5>
+
+          </div>
+          <div class="col">
+            <h5>{{viewerData.since}}</h5>
+          </div>
+        </div>
+
+        <button style="margin-top: 0px ! important; margin-bottom: 0px ! important; border-radius: 0px 0px 20px 20px; background-color: darkred; color: whitesmoke;" class="button button-block">
+          <i class="icon ion-person-add"></i>
+          Kontaktanfrage</button>
+
+      </div>
+    </div>
   </ion-content>
-</ion-view>
+</ion-modal-view>

@@ -1,37 +1,40 @@
-angular.module('starter.bookmarkCtrl', ['firebase','google.places'])
+angular.module('starter.bookmarkCtrl', ['firebase', 'google.places'])
 
-.controller('bookmarkCtrl', function ($scope, $rootScope, $firebaseArray, $state, $timeout) {
-
-
-if($rootScope.currentUserSignedIn){
-
-    $scope.book = {exists: false};
-
-    $scope.getBookmarks = function () {
+.controller('bookmarkCtrl', function($scope, $rootScope, $firebaseArray,
+                                     $ionicLoading,$state, $timeout, $window) {
 
 
-    $rootScope.bookPlace = [];
-    $scope.bookCounter = 0;
-    var userBookmarkRef = new Firebase("https://vote-x.firebaseio.com/users/"+$rootScope.user.uid+"/bookmarks");
+  if ($rootScope.currentUserSignedIn) {
 
-    userBookmarkRef.once("value", function (bookChild) {
+    $scope.book = {
+      exists: false
+    };
 
-
-      bookChild.forEach(function (bookData) {
-
-
-        var map = new google.maps.Map({});
-        var request = {
-          placeId: bookData.key()
-        };
-
-        service = new google.maps.places.PlacesService(map);
-        service.getDetails(request, callback);
+    $scope.getBookmarks = function() {
 
 
-        // get placeobject from google‚
-        function callback(place, status) {
-          if (status == google.maps.places.PlacesServiceStatus.OK) {
+      $rootScope.bookPlace = [];
+      $scope.bookCounter = 0;
+      var userBookmarkRef = new Firebase("https://vote-x.firebaseio.com/users/" + $rootScope.user.uid + "/bookmarks");
+
+      userBookmarkRef.once("value", function(bookChild) {
+
+
+        bookChild.forEach(function(bookData) {
+
+
+          var map = new google.maps.Map({});
+          var request = {
+            placeId: bookData.key()
+          };
+
+          service = new google.maps.places.PlacesService(map);
+          service.getDetails(request, callback);
+
+
+          // get placeobject from google‚
+          function callback(place, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
 
               $scope.$apply(function() {
                 $scope.book.exists = true;
@@ -42,12 +45,15 @@ if($rootScope.currentUserSignedIn){
                   icon: place.icon,
                   tel: place.formatted_phone_number,
                   web: place.website,
-                  butCol: randomColor({ luminosity: 'random',hue: 'random'}),
+                  butCol: randomColor({
+                    luminosity: 'random',
+                    hue: 'random'
+                  }),
                   placeObject: place,
-                  dist: calcDist(place.geometry.location.lat(),place.geometry.location.lng())
+                  dist: calcDist(place.geometry.location.lat(), place.geometry.location.lng())
                 };
 
-                $scope.getVoteInfo(bookData.key(),$scope.bookCounter);
+                $scope.getVoteInfo(bookData.key(), $scope.bookCounter);
 
                 // Richtigen String
                 switch ($rootScope.bookPlace[$scope.bookCounter].placeObject.types[0]) {
@@ -361,98 +367,99 @@ if($rootScope.currentUserSignedIn){
               $scope.bookCounter++;
 
 
+            }
           }
-        }
+
+        });
 
       });
+    };
 
-    });
-  };
+    var calcDist = function(pLat, pLng) {
 
-        var calcDist = function (pLat, pLng) {
-
-          if($rootScope.userGEO && ionic.Platform.isWebView()){
-            var dist = (google.maps.geometry.spherical.computeDistanceBetween(
-              new google.maps.LatLng($rootScope.userGEO.lat, $rootScope.userGEO.lng), new google.maps.LatLng(pLat, pLng))/1000);
-            return dist.toFixed(2);
-         }
-
-          else{
-            return " - ";
-          }
-        };
+      if ($rootScope.userGEO && ionic.Platform.isWebView()) {
+        var dist = (google.maps.geometry.spherical.computeDistanceBetween(
+          new google.maps.LatLng($rootScope.userGEO.lat, $rootScope.userGEO.lng), new google.maps.LatLng(pLat, pLng)) / 1000);
+        return dist.toFixed(2);
+      } else {
+        return "  ";
+      }
+    };
 
 
 
-        //--------------------- Get Vote Info ---------------------
-        $scope.getVoteInfo = function (pID,index) {
-          var place_votes = new Firebase("https://vote-x.firebaseio.com/places/" + pID);
-          place_votes.once("value", function(snapshot) {
+    //--------------------- Get Vote Info ---------------------
+    $scope.getVoteInfo = function(pID, index) {
+      var place_votes = new Firebase("https://vote-x.firebaseio.com/places/" + pID);
+      place_votes.once("value", function(snapshot) {
 
-            if (snapshot.val() !== null) {
+        if (snapshot.val() !== null) {
 
 
-              $scope.$apply(function() {
-                  $rootScope.bookPlace[index].ratingNumber = snapshot.val().total_votes;
-                  $rootScope.bookPlace[index].rating = snapshot.val().avg_vote_points;
-                  if(snapshot.val().total_votes === 1){
-                  $rootScope.bookPlace[index].voteString = "Vote";
-                  }
-                  else{
-                  $rootScope.bookPlace[index].voteString = "Votes";
-                  }
-                });
+          $scope.$apply(function() {
+            $rootScope.bookPlace[index].ratingNumber = snapshot.val().total_votes;
+            $rootScope.bookPlace[index].rating = snapshot.val().avg_vote_points;
+            if (snapshot.val().total_votes === 1) {
+              $rootScope.bookPlace[index].voteString = "Vote";
             } else {
-              $rootScope.bookPlace[index].ratingNumber  = 0;
-              $rootScope.bookPlace[index].rating = 0;
               $rootScope.bookPlace[index].voteString = "Votes";
             }
           });
-        };
-
-        //----------- Vote Info END --------------------
-
+        } else {
+          $rootScope.bookPlace[index].ratingNumber = 0;
+          $rootScope.bookPlace[index].rating = 0;
+          $rootScope.bookPlace[index].voteString = "Votes";
         }
-        else{
-          $state.go('app.home');
-        }
+      });
+    };
+
+    //----------- Vote Info END --------------------
+
+  } else {
+    $state.go('app.home');
+  }
 
 
 
-        //----------- Go to Website -------------------
+  //----------- Go to Website -------------------
 
-        $scope.openWindow = function(web) {
-          $window.open(web, '_system', 'location=yes');
-        };
-
-
-
-
-        //----------- Go Business View -----------------
-
-        $scope.showBusiness = function (place, avg, number) {
-          console.info("name : "+name);
-          $timeout(function () {
-            $rootScope.placeObject = place;
-            $rootScope.votexObject = {avg_points : avg,
-                                     amountRatings : number};
-
-            $state.go('app.business');
-          });
-
-
-        };
+  $scope.openWindow = function(web) {
+    if (web) {
+      $window.open(web, '_system', 'location=yes');
+    }
+  };
 
 
 
-        //----------- Refresher ------------------------
 
-        $scope.leggo = function() {
-          $scope.getBookmarks();
-          $state.reload();
-          $scope.$broadcast('scroll.refreshComplete');
-        };
-        $scope.getBookmarks();
+  //----------- Go Business View -----------------
 
-        //----------- Refresher End ---------------------
-  });
+  $scope.showBusiness = function(place, avg, number) {
+    $ionicLoading.show({
+      template: 'Wird geladen..',
+      hideOnStateChange: true
+    });
+      $rootScope.placeObject = place;
+      $rootScope.votexObject = {
+        avg_points: avg,
+        amountRatings: number
+      };
+
+      $state.go('app.business');
+
+
+  };
+
+
+
+  //----------- Refresher ------------------------
+
+  $scope.leggo = function() {
+    $scope.getBookmarks();
+    $state.reload();
+    $scope.$broadcast('scroll.refreshComplete');
+  };
+  $scope.getBookmarks();
+
+  //----------- Refresher End ---------------------
+});

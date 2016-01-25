@@ -1,11 +1,11 @@
 <ion-view >
 
   <div class="bar bar-subheader item-input-inset" style="background-color: white;border-right-color: transparent;border-left-color: transparent;border-top-color: transparent;border-bottom-color: #D43D33;border-style: solid; border-width:2px;">
-    <label class="item-input-wrapper">
+    <label class="item-input-wrapper" style="margin:0px">
       <i class="icon ion-ios-search placeholder-icon" style="color: #D43D33"></i>
       <input id="searchBar" placeholder="Suchen Sie etwas ?" type="text" g-places-autocomplete ng-focus="disableTap()" ng-model="input" style="background-color:transparent" addbuttons/>
     </label>
-    <button class="button button-stable" ng-click="se()">
+    <button class="button button-stable" ng-click="se()" style="line-height:28px;	background-color: #D43D33; color: white;">
       Suchen
     </button>
   </div>
@@ -24,28 +24,48 @@
         <p>
           <img ng-src="{{icon}}" ng-show="icon" style="max-width: 5vw">
           {{type}}</p>
+        <div class="row" style="padding-bottom: 0px; padding-top: 0px;" >
+          <div class="col">
 
-        <rating ng-model="votexRating" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
+          <rating ng-model="votexRating" max="5" state-on="'voteTitleOn'" state-off="'voteTitleOff'" readonly="true" titles="['one','two','three','four','five']"></rating>
+          </div>
+          <div class="col">
 
-        <div class="voteNumber">
-          <b>{{totalRatings}}
-            {{voteString}}</b>
+            <div class="voteNumber">
+              <b>{{totalRatings}}
+                {{voteString}}</b>
+            </div>
+
+          </div>
+
         </div>
       </div>
 
       <div class="item item-body" style="margin:0 auto">
 
         <div align="center" style="margin:0 auto">
-          <img style="max-height:30vh; max-width: 95vw;" ng-click="openBusiness(place)" image-lazy-src="{{test.Image}}" lazy-scroll-resize="true" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="100">
+          <img style="max-width: 500px; max-height: 400px; width: 100%; height: 100% ! important;" ng-click="openBusiness(place)" image-lazy-src="{{test.Image}}" lazy-scroll-resize="true" image-lazy-loader="lines" image-lazy-distance-from-bottom-to-load="100">
         </div>
 
         <p>
-          <div align="right" style="color: green;font-style:italic" ng-if="place_open">
+          <div class="row" style="padding-left: 10px; padding-right: 0px">
+          <div class="col">
+
+          <div align="left" style="font-style:italic" ng-if="distance">
+            Entfernung: {{distance}} km
+          </div>
+          </div>
+          <div class="col col-10">
+          <div style="color: green;font-style:italic;float:right" ng-if="place_open">
             Geöffnet
           </div>
-          <div align="right" style="color: red;font-style:italic" ng-if="!place_open && place_open != undefined">
+
+          <div  style="color: red;font-style:italic;float:right" ng-if="!place_open && place_open != undefined">
             Geschlossen
           </div>
+          </div>
+        </div>
+
 
           <b>Adresse</b><br/>
           <div ng-show="place.vicinity">{{place.vicinity}}</div>
